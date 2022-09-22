@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliRoaming v1.0.4-request-beta");
+const $ = new Env("📺 BiliRoaming v1.0.5-request-beta");
 const URL = new URLs();
 const DataBase = {
 	"BiliRoaming":{
@@ -24,38 +24,47 @@ for (const [key, value] of Object.entries($request.headers)) {
 	if (Settings.Switch) {
 		let url = URL.parse($request.url);
 		$.log(url.path);
-		switch (url.path) {
-			case "pgc/player/api/playurl":
-			case "pgc/player/web/playurl":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+		switch (url.host) {
+			case "api.bilibili.com":
+				switch (url.path) {
+					case "pgc/player/api/playurl":
+					case "pgc/player/web/playurl":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+					case "x/v2/search/type":
+					case "x/web-interface/search/type":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+					case "pgc/view/web/season":
+					case "pgc/view/v2/app/season":
+						break;
+				};
 				break;
-			case "intl/gateway/v2/ogv/playurl":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-				break;
-			case "x/v2/search/type":
-			case "x/web-interface/search/type":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-				break;
-			case "intl/gateway/v2/app/search/type":
-			case "intl/gateway/v2/app/search/v2":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-				break;
-			case "pgc/view/web/season":
-			case "pgc/view/v2/app/season":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-				break;
-			case "intl/gateway/v2/ogv/view/app/season":
-			case "intl/gateway/v2/ogv/view/app/season/section":
-			case "intl/gateway/v2/ogv/view/app/season/user/status":
-			case "intl/gateway/v2/ogv/view/app/season2":
-			case "intl/gateway/v2/ogv/view/app/episode":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-				break;
-			case "intl/gateway/v2/app/subtitle":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-				break;
-			case "x/intl/passport-login/oauth2/refresh_token":
-				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+			case "app.biliintl.com":
+			case "api.global.bilibili.com":
+				switch (url.path) {
+					case "intl/gateway/v2/ogv/playurl":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+					case "intl/gateway/v2/app/search/type":
+					case "intl/gateway/v2/app/search/v2":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+					case "intl/gateway/v2/ogv/view/app/season":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+					case "intl/gateway/v2/ogv/view/app/season/section":
+					case "intl/gateway/v2/ogv/view/app/season/user/status":
+					case "intl/gateway/v2/ogv/view/app/season2":
+					case "intl/gateway/v2/ogv/view/app/episode":
+						break;
+					case "intl/gateway/v2/app/subtitle":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+					case "x/intl/passport-login/oauth2/refresh_token":
+						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+						break;
+				};
 				break;
 		};
 		$request.headers["X-From-Biliroaming"] = "1.6.5"
