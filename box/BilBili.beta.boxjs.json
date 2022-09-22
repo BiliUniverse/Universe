@@ -1,0 +1,134 @@
+{
+  "id": "BiliBili.beta.app.sub",
+  "name": "📺 哔哩哔哩 β",
+  "author": "@VirgilClyne",
+  "description": "哔哩哔哩功能增强系列",
+  "icon": "https://avatars.githubusercontent.com/u/2111377?s=100&v=4",
+  "repo": "https://github.com/VirgilClyne/BiliBili",
+  "apps": [
+    {
+      "id": "BiliBili.BiliRoaming.beta",
+      "name": "📺 哔哩漫游 β",
+      "descs_html": [
+        "使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliRoming#使用方式\">使用方式</a>进行配置",
+        "填写完成后记得点击此页面底端右下角的\"保存\"。"
+      ],
+      "keys": [
+        "@BiliBili.BiliRoaming.Settings",
+        "@BiliBili.BiliRoaming.Caches"
+      ],
+      "settings": [
+        {
+					"id": "@BiliBili.BiliRoaming.Settings.Switch",
+					"name": "总功能开关",
+					"val": true,
+					"type": "boolean",
+					"desc": "是否启用此APP修改"
+				},
+        {
+          "id": "@BiliBili.BiliRoaming.Settings.Proxy.Pool",
+          "name": "代理池选择",
+          "val": [
+            "哔哩.plus",
+            "api.qiu.moe",
+            "哔哩.icu",
+            "陈睿.我爱你",
+            "xn--3dz622b.xn--n4y597a0mfle743a.icu",
+            "bili.tuturu.top",
+            "東雪蓮.我爱你",
+            "璃月烧鸡.fun",
+            "xn--8fv56a330gjea.icu",
+            "伊蕾娜.我爱你",
+            "atri.ink",
+            "星瞳.我爱你",
+            "嘉然批.发超市.icu",
+            "万人骑.pch.pub",
+            "melusinesuki.site",
+            "bili.takami.ink"
+          ],
+          "type": "checkboxes",
+          "items": [
+            {
+              "key": "哔哩.plus",
+              "label": "哔哩.plus by @Kimmy_XYC"
+            },
+            {
+              "key": "api.qiu.moe",
+              "label": "api.qiu.moe by @Sakura_Akino"
+            },
+            {
+              "key": "哔哩.icu",
+              "label": "哔哩.icu by @qi_mo_bot"
+            },
+            {
+              "key": "陈睿.我爱你",
+              "label": "陈睿.我爱你 by @internetbugs"
+            },
+            {
+              "key": "xn--3dz622b.xn--n4y597a0mfle743a.icu",
+              "label": "xn--3dz622b.xn--n4y597a0mfle743a.icu by @internetbugs"
+            },
+            {
+              "key": "bili.tuturu.top",
+              "label": "bili.tuturu.top by @AisukaYuki"
+            },
+            {
+              "key": "東雪蓮.我爱你",
+              "label": "東雪蓮.我爱你 by @東雪蓮Official"
+            },
+            {
+              "key": "璃月烧鸡.fun",
+              "label": "璃月烧鸡.fun by @東雪蓮Official"
+            },
+            {
+              "key": "xn--8fv56a330gjea.icu",
+              "label": "xn--8fv56a330gjea.icu by @東雪蓮Official"
+            },
+            {
+              "key": "伊蕾娜.我爱你",
+              "label": "伊蕾娜.我爱你 by @azurstar"
+            },
+            {
+              "key": "atri.ink",
+              "label": "atri.ink by @atri828"
+            },
+            {
+              "key": "星瞳.我爱你",
+              "label": "星瞳.我爱你 by @星瞳_Official"
+            },
+            {
+              "key": "嘉然批.发超市.icu",
+              "label": "嘉然批.发超市.icu by @P CH"
+            },
+            {
+              "key": "万人骑.pch.pub",
+              "label": "万人骑.pch.pub by @pchpub"
+            },
+            {
+              "key": "melusinesuki.site",
+              "label": "melusinesuki.site by @kotori tan"
+            },
+            {
+              "key": "bili.takami.ink",
+              "label": "bili.takami.ink by @Takami114514"
+            }
+          ],
+          "desc": "选择启用的服务器"
+        },
+        {
+          "id": "@BiliBili.BiliRoaming.Settings.Proxy.Customs",
+          "name": "代理池自定义",
+          "val": "",
+          "type": "textarea",
+          "placeholder": "api.bilibili.sb",
+          "autoGrow": true,
+          "rows": 3,
+          "desc": "一行一个代理域名，以回车/换行分隔多个域名，留空不修改"
+        }
+      ],
+      "author": "@VirgilClyne",
+      "repo": "https://github.com/VirgilClyne/BiliBili/blob/beta/js/BiliRomaing.beta.js",
+      "icons": ["https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/bilibili.png", "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png"]
+    }
+  ]
+}
