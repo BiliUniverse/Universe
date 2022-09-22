@@ -1,11 +1,11 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliRoaming v1.0.2-request-beta");
+const $ = new Env("📺 BiliRoaming v1.0.4-request-beta");
 const URL = new URLs();
 const DataBase = {
 	"BiliRoaming":{
-		"Settings":{"Switch":true,"Proxy":{"Pool":["哔哩.plus","api.qiu.moe","哔哩.icu","陈睿.我爱你","xn--3dz622b.xn--n4y597a0mfle743a.icu","bili.tuturu.top","東雪蓮.我爱你","璃月烧鸡.fun","xn--8fv56a330gjea.icu","伊蕾娜.我爱你","atri.ink","星瞳.我爱你","嘉然批.发超市.icu","万人骑.pch.pub","melusinesuki.site","bili.takami.ink"],"Customs":""}}
+		"Settings":{"Switch":true,"Proxy":{"Pool":["xn--2vrub.plus","api.qiu.moe","xn--2vrub.icu","xn--n4yr07d.xn--6qq986b3xl","xn--3dz622b.xn--n4y597a0mfle743a.icu","bili.tuturu.top","xn--7rv796dvkm.xn--6qq986b3xl","xn--7ovr3tf1cxr4d.fun","xn--8fv56a330gjea.icu","xn--qoqt3y678a.xn--6qq986b3xl","atri.ink","xn--kiv440b.xn--6qq986b3xl","xn--w4r620anpl.xn--oor00vs23b.icu","xn--chqwq129p.pch.pub","melusinesuki.site","bili.takami.ink"],"Customs":""}}
 	},
 	"Default": {
 		"Settings":{"Switch":true}
@@ -25,40 +25,43 @@ for (const [key, value] of Object.entries($request.headers)) {
 		let url = URL.parse($request.url);
 		$.log(url.path);
 		switch (url.path) {
-            case "pgc/player/api/playurl":
-            case "pgc/player/web/playurl":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+			case "pgc/player/api/playurl":
+			case "pgc/player/web/playurl":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 				break;
 			case "intl/gateway/v2/ogv/playurl":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 				break;
-            case "x/v2/search/type":
-            case "x/web-interface/search/type":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-                break;
-            case "intl/gateway/v2/app/search/type":
-            case "intl/gateway/v2/app/search/v2":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-                break;
-            case "pgc/view/web/season":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-                break;
-            case "intl/gateway/v2/ogv/view/app/season":
-            case "intl/gateway/v2/ogv/view/app/season2":
-            case "intl/gateway/v2/ogv/view/app/episode":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-                break;
-            case "intl/gateway/v2/app/subtitle":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-                break;
-            case "x/intl/passport-login/oauth2/refresh_token":
-                url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
-                break;
-        };
-        $request.headers["X-From-Biliroaming"] = "1.6.5"
-        if ($request?.headers?.host) $request.headers.host = url.host;
-        if ($request?.headers?.Host) $request.headers.Host = url.host;
-        if ($request?.headers?.authority) $request.headers.authority = url.host;
+			case "x/v2/search/type":
+			case "x/web-interface/search/type":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				break;
+			case "intl/gateway/v2/app/search/type":
+			case "intl/gateway/v2/app/search/v2":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				break;
+			case "pgc/view/web/season":
+			case "pgc/view/v2/app/season":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				break;
+			case "intl/gateway/v2/ogv/view/app/season":
+			case "intl/gateway/v2/ogv/view/app/season/section":
+			case "intl/gateway/v2/ogv/view/app/season/user/status":
+			case "intl/gateway/v2/ogv/view/app/season2":
+			case "intl/gateway/v2/ogv/view/app/episode":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				break;
+			case "intl/gateway/v2/app/subtitle":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				break;
+			case "x/intl/passport-login/oauth2/refresh_token":
+				url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
+				break;
+		};
+		$request.headers["X-From-Biliroaming"] = "1.6.5"
+		if ($request?.headers?.host) $request.headers.host = url.host;
+		if ($request?.headers?.Host) $request.headers.Host = url.host;
+		if ($request?.headers?.authority) $request.headers.authority = url.host;
 		$request.url = URL.stringify(url);
 	}
 })()
@@ -94,10 +97,10 @@ async function setENV(name, platform, database) {
 	/***************** Prase *****************/
 	Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
-    if (typeof Settings.Proxy.Pool === "string") Settings.Proxy.Pool = Settings.Proxy.Pool.split(",") // BoxJs字符串转数组
-    if (Settings?.Proxy?.Customs) {
-        Settings.Proxy.Pool = [...new Set([...Settings.Proxy.Customs.split("\n") ?? [], ...Settings.Proxy.Pool ?? []])];
-    }
+	if (typeof Settings.Proxy.Pool === "string") Settings.Proxy.Pool = Settings.Proxy.Pool.split(",") // BoxJs字符串转数组
+	if (Settings?.Proxy?.Customs) {
+		Settings.Proxy.Pool = [...new Set([...Settings.Proxy.Customs.split("\n") ?? [], ...Settings.Proxy.Pool ?? []])];
+	}
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	return { Settings, Caches }
 };
