@@ -29,27 +29,27 @@
           "id": "@BiliBili.BiliRoaming.Settings.Proxy.Pool",
           "name": "代理池选择",
           "val": [
-            "哔哩.plus",
+            "xn--2vrub.plus",
             "api.qiu.moe",
-            "哔哩.icu",
-            "陈睿.我爱你",
+            "xn--2vrub.icu",
+            "xn--n4yr07d.xn--6qq986b3xl",
             "xn--3dz622b.xn--n4y597a0mfle743a.icu",
             "bili.tuturu.top",
-            "東雪蓮.我爱你",
-            "璃月烧鸡.fun",
+            "xn--7rv796dvkm.xn--6qq986b3xl",
+            "xn--7ovr3tf1cxr4d.fun",
             "xn--8fv56a330gjea.icu",
-            "伊蕾娜.我爱你",
+            "xn--qoqt3y678a.xn--6qq986b3xl",
             "atri.ink",
-            "星瞳.我爱你",
-            "嘉然批.发超市.icu",
-            "万人骑.pch.pub",
+            "xn--kiv440b.xn--6qq986b3xl",
+            "xn--w4r620anpl.xn--oor00vs23b.icu",
+            "xn--chqwq129p.pch.pub",
             "melusinesuki.site",
             "bili.takami.ink"
           ],
           "type": "checkboxes",
           "items": [
             {
-              "key": "哔哩.plus",
+              "key": "xn--2vrub.plus",
               "label": "哔哩.plus by @Kimmy_XYC"
             },
             {
@@ -57,11 +57,11 @@
               "label": "api.qiu.moe by @Sakura_Akino"
             },
             {
-              "key": "哔哩.icu",
+              "key": "xn--2vrub.icu",
               "label": "哔哩.icu by @qi_mo_bot"
             },
             {
-              "key": "陈睿.我爱你",
+              "key": "xn--n4yr07d.xn--6qq986b3xl",
               "label": "陈睿.我爱你 by @internetbugs"
             },
             {
@@ -73,11 +73,11 @@
               "label": "bili.tuturu.top by @AisukaYuki"
             },
             {
-              "key": "東雪蓮.我爱你",
+              "key": "xn--7rv796dvkm.xn--6qq986b3xl",
               "label": "東雪蓮.我爱你 by @東雪蓮Official"
             },
             {
-              "key": "璃月烧鸡.fun",
+              "key": "xn--7ovr3tf1cxr4d.fun",
               "label": "璃月烧鸡.fun by @東雪蓮Official"
             },
             {
@@ -85,7 +85,7 @@
               "label": "xn--8fv56a330gjea.icu by @東雪蓮Official"
             },
             {
-              "key": "伊蕾娜.我爱你",
+              "key": "xn--qoqt3y678a.xn--6qq986b3xl",
               "label": "伊蕾娜.我爱你 by @azurstar"
             },
             {
@@ -93,15 +93,15 @@
               "label": "atri.ink by @atri828"
             },
             {
-              "key": "星瞳.我爱你",
+              "key": "xn--kiv440b.xn--6qq986b3xl",
               "label": "星瞳.我爱你 by @星瞳_Official"
             },
             {
-              "key": "嘉然批.发超市.icu",
+              "key": "xn--w4r620anpl.xn--oor00vs23b.icu",
               "label": "嘉然批.发超市.icu by @P CH"
             },
             {
-              "key": "万人骑.pch.pub",
+              "key": "xn--chqwq129p.pch.pub",
               "label": "万人骑.pch.pub by @pchpub"
             },
             {
