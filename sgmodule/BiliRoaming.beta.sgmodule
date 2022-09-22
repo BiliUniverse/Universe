@@ -1,0 +1,25 @@
+#!name=📺 BiliBili for ✈ BiliRoaming
+#!desc=(BETA) 哔哩哔哩多地区漫游解锁及内容合成
+#!openUrl=http://boxjs.com/#/app/BiliBili.BiliRoaming.beta
+#!author=VirgilClyne
+#!homepage=https://github.com/VirgilClyne
+#!manual=https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliRoaming
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+
+[Script]
+BiliBili.Roaming.playurl = type=http-request, pattern=^https?:\/\/api\.bilibili\.com\/pgc\/player\/(api|web)\/playurl(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+BiliIntl.Roaming.playurl = type=http-request, pattern=^https?:\/\/app\.(biliintl|global\.bilibili)\.com\/intl\/gateway\/v2\/ogv\/playurl(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+
+BiliBili.Roaming.search = type=http-request, pattern=^https?:\/\/app\.bilibili\.com\/x\/(v2|web-interface)\/search\/type(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+BiliIntl.Roaming.search = type=http-request, pattern=^https?:\/\/app\.(biliintl|global\.bilibili)\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+
+BiliBili.Roaming.season = type=http-request, pattern=^https?:\/\/app\.bilibili\.com\/pgc\/view\/web\/season(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+BiliIntl.Roaming.season = type=http-request, pattern=^https?:\/\/app\.(biliintl|global\.bilibili)\.com\/intl\/gateway\/v2\/ogv\/view\/app\/(season2?|episode)(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+
+BiliIntl.Roaming.subtitle = type=http-request, pattern=^https?:\/\/app\.(biliintl|global\.bilibili)\.com\/intl\/gateway\/v2\/app\/subtitle(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+
+BiliIntl.Roaming.refresh_token = type=http-request, pattern=^https?:\/\/app\.(biliintl|global\.bilibili)\.com\/x\/intl\/passport-login\/oauth2\/refresh_token(\?.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliRoaming.request.beta.js, argument=
+
+[MITM]
+hostname = %APPEND% app.bilibili.com, app.global.bilibili.com, app.biliintl.com
+tcp-connection = true
