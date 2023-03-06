@@ -1,0 +1,276 @@
+{
+	"code": 0,
+	"message": "success",
+	"result": {
+		"4185": {
+			"badge": "独家",
+			"badge_info": {
+				"bg_color": "#00C0FF",
+				"bg_color_night": "#0B91BE",
+				"text": "独家"
+			},
+			"badge_type": 1,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/image/47c0108259355d6d2c517ed97f6b90fb777f844f.png",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/bangumi/a5b592fec7f377a4b03a9450bd27f78ccecc0c7b.jpg",
+				"id": 293081,
+				"index_show": "全24话",
+				"long_title": "女教皇 其二",
+				"pub_time": "2019-11-30 00:00:00",
+				"title": "24"
+			},
+			"season_id": 4185,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 4664194,
+				"series_follow": 9083569
+			},
+			"subtitle": "真是high到不行",
+			"title": "JOJO的奇妙冒险 星尘远征军"
+		},
+		"25739": {
+			"badge": "会员专享",
+			"badge_info": {
+				"bg_color": "#FB7299",
+				"bg_color_night": "#BB5B76",
+				"text": "会员专享"
+			},
+			"badge_type": 0,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/archive/88211e0d1618b8aa5b48267e77d91c1f25279d4c.jpg",
+				"id": 366494,
+				"index_show": "全29话",
+				"long_title": "外传：利姆鲁的华丽教师生活 其三",
+				"pub_time": "2020-11-27 00:00:00",
+				"title": "OAD05"
+			},
+			"season_id": 25739,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 7553836,
+				"series_follow": 10221222
+			},
+			"subtitle": "参见萌王！",
+			"title": "关于我转生变成史莱姆这档事"
+		},
+		"29358": {
+			"badge": "独家",
+			"badge_info": {
+				"bg_color": "#00C0FF",
+				"bg_color_night": "#0B91BE",
+				"text": "独家"
+			},
+			"badge_type": 1,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/image/8021d3f6b0df6dbba6d32f76eb9cfe2531e166c4.png",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/archive/796251a226ca658039734524f4a881fb289e86b8.jpg",
+				"id": 307080,
+				"index_show": "全12话",
+				"long_title": "防御特化与相连。",
+				"pub_time": "2020-03-25 22:30:00",
+				"title": "12"
+			},
+			"season_id": 29358,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 6551662,
+				"series_follow": 7069305
+			},
+			"subtitle": "盾娘的开挂生活",
+			"title": "因为太怕痛就全点防御力了"
+		},
+		"28544": {
+			"badge": "独家",
+			"badge_info": {
+				"bg_color": "#00C0FF",
+				"bg_color_night": "#0B91BE",
+				"text": "独家"
+			},
+			"badge_type": 1,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/9a3ce7ccfb2f20bf1cee49c5859add6f41bdec4c.png",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/archive/328ff7fd2feecafd238ed741f110da56b572d01e.jpg",
+				"id": 286152,
+				"index_show": "全12话",
+				"long_title": "说了赤色誓约是不灭的吧！",
+				"pub_time": "2019-12-23 23:00:00",
+				"title": "12"
+			},
+			"season_id": 28544,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 2524925,
+				"series_follow": 2524925
+			},
+			"subtitle": "少女的能力如何平均",
+			"title": "我，不是说了能力要平均值么！"
+		},
+		"5069": {
+			"badge": "会员专享",
+			"badge_info": {
+				"bg_color": "#FB7299",
+				"bg_color_night": "#BB5B76",
+				"text": "会员专享"
+			},
+			"badge_type": 0,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/7449bdd3c8067fec587a0cf2a8f7f1f5275b757f.jpg",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i2.hdslb.com/bfs/archive/6124aa68f14d0d8ca5dae98b1554f395e953e028.jpg",
+				"id": 95974,
+				"index_show": "全24话",
+				"long_title": "",
+				"pub_time": "2016-12-26 01:35:00",
+				"title": "24"
+			},
+			"season_id": 5069,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 3218371,
+				"series_follow": 5327800
+			},
+			"subtitle": "超能同学竟在我身边",
+			"title": "齐木楠雄的灾难"
+		},
+		"5058": {
+			"badge": "会员专享",
+			"badge_info": {
+				"bg_color": "#FB7299",
+				"bg_color_night": "#BB5B76",
+				"text": "会员专享"
+			},
+			"badge_type": 0,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i1.hdslb.com/bfs/archive/10c4878da895099da0435d62c5211fe6e770a2bd.jpg",
+				"id": 92403,
+				"index_show": "全12话",
+				"long_title": "龙套与灵幻 ～巨大土龙出现之篇～",
+				"pub_time": "2016-09-27 00:30:00",
+				"title": "12"
+			},
+			"season_id": 5058,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 3785684,
+				"series_follow": 5557368
+			},
+			"subtitle": "最强路人",
+			"title": "路人超能100(灵能百分百)"
+		},
+		"36167": {
+			"badge": "独家",
+			"badge_info": {
+				"bg_color": "#00C0FF",
+				"bg_color_night": "#0B91BE",
+				"text": "独家"
+			},
+			"badge_type": 1,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/image/f0796e37abac25ba2aa9f23120646aaa9a3d5ea7.png",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/archive/42c04907f3306b2e5dacc1c55f782acfa7f8be22.jpg",
+				"id": 393471,
+				"index_show": "全24话",
+				"long_title": "目前仍是蜘蛛，你有意见？",
+				"pub_time": "2021-07-03 21:00:00",
+				"title": "24"
+			},
+			"season_id": 36167,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 6115002,
+				"series_follow": 6115002
+			},
+			"subtitle": "转生成蜘蛛后的逆袭",
+			"title": "转生成蜘蛛又怎样！"
+		},
+		"25510": {
+			"badge": "会员专享",
+			"badge_info": {
+				"bg_color": "#FB7299",
+				"bg_color_night": "#BB5B76",
+				"text": "会员专享"
+			},
+			"badge_type": 0,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/image/473b8f1c7e23c79b868ef46df3f3cff67362f285.jpg",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/archive/16fae85d7fdd00e1d8b7cfb833f3e5a5fa80c7b0.jpg",
+				"id": 250560,
+				"index_show": "全24话",
+				"long_title": "我的英雄",
+				"pub_time": "2019-03-31 00:30:00",
+				"title": "24"
+			},
+			"season_id": 25510,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 4614382,
+				"series_follow": 8108294
+			},
+			"subtitle": "这游戏可真要命！",
+			"title": "刀剑神域 Alicization"
+		},
+		"3450": {
+			"badge": "独家",
+			"badge_info": {
+				"bg_color": "#00C0FF",
+				"bg_color_night": "#0B91BE",
+				"text": "独家"
+			},
+			"badge_type": 1,
+			"can_watch": 1,
+			"cover": "http://i0.hdslb.com/bfs/bangumi/14ba6643f22405e2777cca992002cc6411601334.jpg",
+			"is_finish": 1,
+			"is_started": 1,
+			"new_ep": {
+				"cover": "http://i0.hdslb.com/bfs/archive/4a8d4d67d3330a377fc34a3800163a80bb0b364c.jpg",
+				"id": 96751,
+				"index_show": "全13话",
+				"long_title": "TV未放送",
+				"pub_time": "2016-10-08 22:00:00",
+				"title": "13"
+			},
+			"season_id": 3450,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"stat": {
+				"follow": 5953852,
+				"series_follow": 6070862
+			},
+			"subtitle": "帅气坂本，在线撩人",
+			"title": "在下坂本，有何贵干？"
+		}
+	}
+}
