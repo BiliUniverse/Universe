@@ -10,4 +10,4 @@
 # force-http-engine-hosts = %APPEND% 
 
 [MITM]
-hostname = %APPEND% grpc.biliapi.com, api.bilibili.com, api.global.bilibili.com, app.biliintl.com
+hostname = %APPEND% *.biliapi.com, *.biliapi.net, api.bilibili.com, api.vc.bilibili.com, api.live.bilibili.com, api.global.bilibili.com, app.bilibili.com, app.biliintl.com
