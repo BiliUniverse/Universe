@@ -1,0 +1,1182 @@
+{
+	"code": 0,
+	"data": {
+		"actor": {
+			"info": "萊因哈特·馮·羅嚴克拉姆：宮野真守\n楊文里：鈴村健一\n齊格飛·吉爾菲艾斯：梅原裕一郎\n尤里安·敏茲：梶裕貴\n巴爾·馮·奧貝斯坦：諏訪部順一\n渥佛根·米達麥亞：小野大輔\n奧斯卡·馮·羅嚴塔爾：中村悠一\n亞列克斯·卡介倫：川島得愛\n菲列特利加·格林希爾：遠藤綾\n華爾特·馮·先寇布：三木眞一郎\n維利伯·尤希姆·馮·梅爾卡茲：石塚運昇\n史塔汀/施塔登：水內清光\n佛格：藤原貴弘\n艾爾拉赫/葉爾拉：楠見尚己\n艾伯特·馮·法倫海特：竹內良太\n派特：福松進紗\n培特雷：目黑光祐\n摩爾/慕亞：櫻井徹\n拉歐：畠中祐\n約翰·羅貝爾·拉普：小野友樹\n安妮羅潔·馮·格裡華德：坂本真綾\n旁白：下山吉光",
+			"title": "角色声优"
+		},
+		"alias": "",
+		"all_buttons": {
+			"watch_formal": "看正片"
+		},
+		"all_up_infos": {},
+		"areas": [
+			{
+				"id": 2,
+				"name": "日本"
+			}
+		],
+		"badge": "独家",
+		"badge_info": {
+			"bg_color": "#00C0FF",
+			"bg_color_night": "#0B91BE",
+			"text": "独家"
+		},
+		"cover": "http://i0.hdslb.com/bfs/bangumi/image/88189fa2fc774ca4647fe742608f20190d89b7d9.png",
+		"detail": "详情",
+		"dynamic_subtitle": "銀河系三大勢力",
+		"earphone_conf": {
+			"sp_phones": []
+		},
+		"evaluate": "描述銀河系三大勢力的近況，例如「萊因哈特·馮·羅嚴克拉姆」致力改革銀河帝國，得到大量民眾的支持。而「自由行星同盟」政府日漸腐敗令國力大幅縮水，「不敗的魔術師」楊文里等人亦受到影響而變得掣肘。第三勢力「費沙」領地的「魯賓斯基」對「自由行星同盟」進行著一場大陰謀，綁架年輕的銀河帝國皇帝到「自由行星同盟」尋求庇護，「萊因哈特」洞悉陰謀後決定利用它來實現自己的野心，楊文里也預見到「自由行星同盟」正面臨著最大的危機，一場決定銀河系歸屬的大決戰正悄悄地拉開序幕。",
+		"link": "bilibili://pgc/media/28339757",
+		"media_badge_info": {
+			"bg_color": "#00C0FF",
+			"bg_color_night": "#0B91BE",
+			"text": "独家"
+		},
+		"media_id": 28339757,
+		"mode": 2,
+		"modules": [
+			{
+				"data": {
+					"episodes": [
+						{
+							"aid": 388472080,
+							"badge": "",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": ""
+							},
+							"badge_type": 0,
+							"bvid": "BV11d4y1z76H",
+							"cid": 846861191,
+							"cover": "http://i0.hdslb.com/bfs/archive/a1fd44d7bcc3761b677ec367ae69a4f552757e37.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 1,
+							"from": "bangumi",
+							"id": 681149,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681149",
+							"long_title": "要塞對要塞 4：落幕",
+							"pub_time": 1664492400,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "388472080",
+								"ep_title": "1",
+								"epid": "681149",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第1话 要塞對要塞 4：落幕",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681149",
+							"short_link": "https://b23.tv/ep681149",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 129,
+								"danmakus": 45,
+								"likes": 994,
+								"play": 36271,
+								"reply": 32
+							},
+							"status": 2,
+							"subtitle": "已观看7.3万次",
+							"title": "1",
+							"vid": ""
+						},
+						{
+							"aid": 515938719,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV15g411e73K",
+							"cid": 846860288,
+							"cover": "http://i0.hdslb.com/bfs/archive/040800d1a867e03563ec17ea6063e41040ab7da2.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 2,
+							"from": "bangumi",
+							"id": 681150,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681150",
+							"long_title": "決意和野心",
+							"pub_time": 1665097200,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "515938719",
+								"ep_title": "2",
+								"epid": "681150",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第2话 決意和野心",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681150",
+							"short_link": "https://b23.tv/ep681150",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 52,
+								"danmakus": 18,
+								"likes": 780,
+								"play": 5071,
+								"reply": 20
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "2",
+							"vid": ""
+						},
+						{
+							"aid": 561553071,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1te4y1v775",
+							"cid": 860386119,
+							"cover": "http://i0.hdslb.com/bfs/archive/9f537d4a949bfe8bfa602e96085c2eceb73e5863.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 3,
+							"from": "bangumi",
+							"id": 681151,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681151",
+							"long_title": "雷鳴",
+							"pub_time": 1665702000,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "561553071",
+								"ep_title": "3",
+								"epid": "681151",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第3话 雷鳴",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681151",
+							"short_link": "https://b23.tv/ep681151",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 64,
+								"danmakus": 26,
+								"likes": 782,
+								"play": 4042,
+								"reply": 11
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "3",
+							"vid": ""
+						},
+						{
+							"aid": 901692051,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1eN4y1w7Xp",
+							"cid": 866650678,
+							"cover": "http://i0.hdslb.com/bfs/archive/676fcd4bfddd0f2b56d764427845a08dba744ccd.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 4,
+							"from": "bangumi",
+							"id": 681152,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681152",
+							"long_title": "迷宮",
+							"pub_time": 1666306800,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "901692051",
+								"ep_title": "4",
+								"epid": "681152",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第4话 迷宮",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681152",
+							"short_link": "https://b23.tv/ep681152",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 45,
+								"danmakus": 26,
+								"likes": 774,
+								"play": 3468,
+								"reply": 20
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "4",
+							"vid": ""
+						},
+						{
+							"aid": 604469056,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1h84y1B7QW",
+							"cid": 872285103,
+							"cover": "http://i0.hdslb.com/bfs/archive/dfcf0f96f333bd520b81458b0aad300a9f334413.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 5,
+							"from": "bangumi",
+							"id": 681153,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681153",
+							"long_title": "箭已離弦",
+							"pub_time": 1666911600,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "604469056",
+								"ep_title": "5",
+								"epid": "681153",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第5话 箭已離弦",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681153",
+							"short_link": "https://b23.tv/ep681153",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 46,
+								"danmakus": 13,
+								"likes": 739,
+								"play": 3219,
+								"reply": 14
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "5",
+							"vid": ""
+						},
+						{
+							"aid": 559730821,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1me4y1y7zv",
+							"cid": 879926776,
+							"cover": "http://i0.hdslb.com/bfs/archive/4fb1df757889258ecfeea6bf7f2004ff3b5adde8.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 6,
+							"from": "bangumi",
+							"id": 681154,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681154",
+							"long_title": "銀河帝國正統政府",
+							"pub_time": 1667516400,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "559730821",
+								"ep_title": "6",
+								"epid": "681154",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第6话 銀河帝國正統政府",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681154",
+							"short_link": "https://b23.tv/ep681154",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 35,
+								"danmakus": 56,
+								"likes": 705,
+								"play": 3214,
+								"reply": 30
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "6",
+							"vid": ""
+						},
+						{
+							"aid": 304949737,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1GP411c7F4",
+							"cid": 886881114,
+							"cover": "http://i0.hdslb.com/bfs/archive/35253405f4f958866f6603df75f8fd9285f82e6a.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 7,
+							"from": "bangumi",
+							"id": 681155,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681155",
+							"long_title": "宣戰文告",
+							"pub_time": 1668121200,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "304949737",
+								"ep_title": "7",
+								"epid": "681155",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第7话 宣戰文告",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681155",
+							"short_link": "https://b23.tv/ep681155",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 40,
+								"danmakus": 63,
+								"likes": 704,
+								"play": 3090,
+								"reply": 14
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "7",
+							"vid": ""
+						},
+						{
+							"aid": 305231556,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1YP411g7GW",
+							"cid": 893345229,
+							"cover": "http://i0.hdslb.com/bfs/archive/40bf75551e09e1bea6a36ccd672d3225501d59a8.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 8,
+							"from": "bangumi",
+							"id": 681156,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681156",
+							"long_title": "啟程",
+							"pub_time": 1668726000,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "305231556",
+								"ep_title": "8",
+								"epid": "681156",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第8话 啟程",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681156",
+							"short_link": "https://b23.tv/ep681156",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 52,
+								"danmakus": 28,
+								"likes": 705,
+								"play": 2827,
+								"reply": 14
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "8",
+							"vid": ""
+						},
+						{
+							"aid": 562900579,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1gv4y1278d",
+							"cid": 901116947,
+							"cover": "http://i0.hdslb.com/bfs/archive/e6ce29f961ecabbad74eab61aea1c60f41eab342.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 9,
+							"from": "bangumi",
+							"id": 681157,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681157",
+							"long_title": "皇帝廢立",
+							"pub_time": 1669330800,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "562900579",
+								"ep_title": "9",
+								"epid": "681157",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第9话 皇帝廢立",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681157",
+							"short_link": "https://b23.tv/ep681157",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 41,
+								"danmakus": 37,
+								"likes": 706,
+								"play": 2930,
+								"reply": 11
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "9",
+							"vid": ""
+						},
+						{
+							"aid": 390678438,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1yd4y1x7jk",
+							"cid": 906801780,
+							"cover": "http://i0.hdslb.com/bfs/archive/8929cf4cce914a73459248495acd4c7c391551c2.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 10,
+							"from": "bangumi",
+							"id": 681158,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681158",
+							"long_title": "行動代號「諸神黃昏」",
+							"pub_time": 1669935600,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "390678438",
+								"ep_title": "10",
+								"epid": "681158",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第10话 行動代號「諸神黃昏」",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681158",
+							"short_link": "https://b23.tv/ep681158",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 28,
+								"danmakus": 21,
+								"likes": 56,
+								"play": 2629,
+								"reply": 8
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "10",
+							"vid": ""
+						},
+						{
+							"aid": 775910035,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1n14y1J7JE",
+							"cid": 915429715,
+							"cover": "http://i0.hdslb.com/bfs/archive/19218124c94fae3bb9e010cf9a2ae5027c8d43fe.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1511000,
+							"ep_index": 11,
+							"from": "bangumi",
+							"id": 681159,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681159",
+							"long_title": "安魂曲的邀請函",
+							"pub_time": 1670540400,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "775910035",
+								"ep_title": "11",
+								"epid": "681159",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第11话 安魂曲的邀請函",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681159",
+							"short_link": "https://b23.tv/ep681159",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 37,
+								"danmakus": 37,
+								"likes": 728,
+								"play": 2971,
+								"reply": 25
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "11",
+							"vid": ""
+						},
+						{
+							"aid": 391027553,
+							"badge": "会员",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员"
+							},
+							"badge_type": 0,
+							"bvid": "BV1Fd4y1x7pp",
+							"cid": 916200013,
+							"cover": "http://i0.hdslb.com/bfs/archive/f9e832ebfdff06f4cbf8af1021c72e75e5fe40c6.png",
+							"dimension": {
+								"height": 1080,
+								"rotate": 0,
+								"width": 1920
+							},
+							"duration": 1501000,
+							"ep_index": 12,
+							"from": "bangumi",
+							"id": 681160,
+							"is_view_hide": false,
+							"link": "https://www.bilibili.com/bangumi/play/ep681160",
+							"long_title": "占領費沙",
+							"pub_time": 1671145200,
+							"pv": 0,
+							"release_date": "",
+							"report": {
+								"aid": "391027553",
+								"ep_title": "12",
+								"epid": "681160",
+								"position": "",
+								"season_id": "43185",
+								"season_type": "1",
+								"section_id": "86534",
+								"section_type": "0",
+								"style": "1"
+							},
+							"rights": {
+								"allow_demand": 0,
+								"allow_dm": 1,
+								"allow_download": 0,
+								"area_limit": 0
+							},
+							"section_index": 1,
+							"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》第12话 占領費沙",
+							"share_url": "https://www.bilibili.com/bangumi/play/ep681160",
+							"short_link": "https://b23.tv/ep681160",
+							"skip": {
+								"ed": {
+									"end": 0,
+									"start": 0
+								},
+								"op": {
+									"end": 0,
+									"start": 0
+								}
+							},
+							"stat": {
+								"coin": 82,
+								"danmakus": 40,
+								"likes": 773,
+								"play": 3487,
+								"reply": 30
+							},
+							"status": 13,
+							"subtitle": "已观看7.3万次",
+							"title": "12",
+							"vid": ""
+						}
+					]
+				},
+				"id": 1,
+				"module_style": {
+					"hidden": 0,
+					"line": 0
+				},
+				"more": "查看更多",
+				"style": "positive",
+				"title": "选集"
+			},
+			{
+				"data": {
+					"seasons": [
+						{
+							"badge": "",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": ""
+							},
+							"badge_type": 0,
+							"cover": "http://i0.hdslb.com/bfs/bangumi/4de079779e0693bf7adaca75e5859df62d62daf5.png",
+							"horizontal_cover": "http://i0.hdslb.com/bfs/archive/c40288009d65abfaa3d47f40d29c1b9abde59b23.jpg",
+							"is_new": 0,
+							"link": "https://www.bilibili.com/bangumi/play/ss23870",
+							"new_ep": {
+								"cover": "http://i0.hdslb.com/bfs/archive/c40288009d65abfaa3d47f40d29c1b9abde59b23.jpg",
+								"id": 206637,
+								"is_new": 0,
+								"title": "12"
+							},
+							"report": {
+								"display_type": "0",
+								"season_id": "23870",
+								"season_type": "1",
+								"version_style": "1"
+							},
+							"resource": "",
+							"season_id": 23870,
+							"season_title": "第一季（港澳台）",
+							"title": "銀河英雄傳說：全新命題 邂逅（僅限港澳台地區）"
+						},
+						{
+							"badge": "",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": ""
+							},
+							"badge_type": 0,
+							"cover": "http://i0.hdslb.com/bfs/bangumi/96b3ed036bce6879c0fd30820098b71301fcbe9b.png",
+							"horizontal_cover": "http://i0.hdslb.com/bfs/archive/ff4b94eebeac44e4e7e6c91c1e749231c5a57ff3.jpg",
+							"is_new": 0,
+							"link": "https://www.bilibili.com/bangumi/play/ss28664",
+							"new_ep": {
+								"cover": "http://i0.hdslb.com/bfs/archive/ff4b94eebeac44e4e7e6c91c1e749231c5a57ff3.jpg",
+								"id": 285077,
+								"is_new": 0,
+								"title": "24"
+							},
+							"report": {
+								"display_type": "0",
+								"season_id": "28664",
+								"season_type": "1",
+								"version_style": "1"
+							},
+							"resource": "",
+							"season_id": 28664,
+							"season_title": "第二季（港澳台）",
+							"title": "銀河英雄傳說：全新命題 星亂（僅限港澳台地區）"
+						},
+						{
+							"badge": "会员抢先",
+							"badge_info": {
+								"bg_color": "#FB7299",
+								"bg_color_night": "#BB5B76",
+								"text": "会员抢先"
+							},
+							"badge_type": 0,
+							"cover": "http://i0.hdslb.com/bfs/bangumi/image/633a31f3408c48088421259a2dc87b6e7844b2e3.png",
+							"horizontal_cover": "http://i0.hdslb.com/bfs/bangumi/image/bc3a8c5ab463cff72cfcd36c34abcfd73100dfe3.png",
+							"is_new": 0,
+							"link": "https://www.bilibili.com/bangumi/play/ss41396",
+							"new_ep": {
+								"cover": "http://i0.hdslb.com/bfs/archive/800a36b50bd728b7ab30969577c6461ff0c0da72.png",
+								"id": 474542,
+								"is_new": 0,
+								"title": "12"
+							},
+							"report": {
+								"display_type": "0",
+								"season_id": "41396",
+								"season_type": "1",
+								"version_style": "1"
+							},
+							"resource": "",
+							"season_id": 41396,
+							"season_title": "第三季",
+							"title": "銀河英雄傳說 Die Neue These 激突（僅限港澳台地區）"
+						},
+						{
+							"badge": "独家",
+							"badge_info": {
+								"bg_color": "#00C0FF",
+								"bg_color_night": "#0B91BE",
+								"text": "独家"
+							},
+							"badge_type": 1,
+							"cover": "http://i0.hdslb.com/bfs/bangumi/image/88189fa2fc774ca4647fe742608f20190d89b7d9.png",
+							"horizontal_cover": "http://i0.hdslb.com/bfs/bangumi/image/6ee47b5395e501672d004a9d476a8eee01230798.png",
+							"is_new": 0,
+							"link": "https://www.bilibili.com/bangumi/play/ss43185",
+							"new_ep": {
+								"cover": "http://i0.hdslb.com/bfs/archive/f9e832ebfdff06f4cbf8af1021c72e75e5fe40c6.png",
+								"id": 681160,
+								"is_new": 0,
+								"title": "12"
+							},
+							"report": {
+								"display_type": "0",
+								"season_id": "43185",
+								"season_type": "1",
+								"version_style": "1"
+							},
+							"resource": "",
+							"season_id": 43185,
+							"season_title": "第四季",
+							"title": "銀河英雄傳說Die Neue These: 策謀（僅限港澳台地區）"
+						}
+					]
+				},
+				"id": 2,
+				"module_style": {
+					"line": 1
+				},
+				"style": "season",
+				"title": "銀河英雄傳說（僅限港澳台等地區）"
+			}
+		],
+		"new_ep": {
+			"desc": "已完结, 全12话",
+			"id": 681160,
+			"is_new": 0,
+			"more": "",
+			"title": "12"
+		},
+		"new_keep_activity_material": {
+			"activityId": 58
+		},
+		"origin_name": "銀河英雄伝説Die Neue These",
+		"payment": {
+			"dialog": {},
+			"pay_tip": {},
+			"pay_type": {
+				"allow_ticket": 0
+			},
+			"price": "0",
+			"report_type": 0,
+			"tv_price": "0",
+			"vip_discount_price": "0",
+			"vip_promotion": ""
+		},
+		"play_strategy": {
+			"auto_play_toast": "即将播放：",
+			"recommend_show_strategy": 0,
+			"strategies": [
+				"common_section-formal_first_ep",
+				"common_section-common_section",
+				"common_section-next_season",
+				"formal-finish-next_season",
+				"formal-end-other_section",
+				"formal-end-next_season",
+				"ord"
+			]
+		},
+		"player_icon": {
+			"ctime": 1647703238,
+			"hash1": "33fc09dd1a06b08986e174785572948b",
+			"hash2": "a927ff8e4a5e6ff5528c7af4e663ed61",
+			"url1": "https://i0.hdslb.com/bfs/garb/item/71f169ccc4e29e1f4945633fb581b6f0730cec24.json",
+			"url2": "https://i0.hdslb.com/bfs/garb/item/14e8723f9467c6365501892b694ec7b95f2fdb25.json"
+		},
+		"premieres": [],
+		"publish": {
+			"is_finish": 1,
+			"is_started": 1,
+			"pub_time": "2022-09-30 07:00:00",
+			"pub_time_show": "2022年09月30日07:00",
+			"release_date_show": "2022年9月30日开播",
+			"time_length_show": "已完结，全12话",
+			"unknow_pub_date": 0,
+			"update_info_desc": "已完结，全12话",
+			"weekday": 0
+		},
+		"record": "",
+		"refine_cover": "http://i0.hdslb.com/bfs/bangumi/image/88189fa2fc774ca4647fe742608f20190d89b7d9.png",
+		"reserve": {
+			"episodes": [],
+			"tip": "资源更新后WiFi或免流环境下将自动下载"
+		},
+		"rights": {
+			"allow_bp": 0,
+			"allow_bp_rank": 0,
+			"allow_download": 0,
+			"allow_review": 0,
+			"area_limit": 0,
+			"ban_area_show": 4,
+			"can_watch": 1,
+			"copyright": "dujia",
+			"copyright_name": "独家",
+			"forbid_pre": 0,
+			"freya_white": 0,
+			"is_cover_show": 0,
+			"is_preview": 0,
+			"only_vip_download": 0,
+			"resource": "",
+			"watch_platform": 0
+		},
+		"season_id": 43185,
+		"season_title": " 銀河英雄傳說Die Neue These: 策謀",
+		"series": {
+			"display_type": 0,
+			"series_id": 4560,
+			"series_title": "銀河英雄傳說（僅限港澳台等地區）"
+		},
+		"share_copy": "《 銀河英雄傳說Die Neue These: 策謀》銀河系三大勢力",
+		"share_url": "https://www.bilibili.com/bangumi/play/ss43185",
+		"short_link": "https://b23.tv/ss43185",
+		"show_season_type": 1,
+		"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/d5f100015f1737f0539878e2578c2b26169351b2.png",
+		"staff": {
+			"info": "原作：田中芳樹\n監修：らいとすたっふ\n企劃協力：Kitty Entertainment\n監督：多田俊介\n助監督：森山悠二郎\n系列構成：高木登\n角色設計：菊地洋子 / 寺岡巌 / 津島桂\n總作畫監督：後藤隆幸 / 菊地洋子\n特技監督：竹內敦志\n機械設計：竹內敦志 / 臼井伸二 / 常木志伸\n原創機械設計：加藤直之\n道具設計：太田恵子\n道具設計、紋章設計：秋篠Denforword日和\n3D：I.G3D\n3D監督：森本シグマ\n美術監督：竹田悠介\n美術設定：塩澤良憲 / 曽野由大 / 藤井一志\n美術設計：渡部隆\n色彩設計：竹田由香\n音響監督：三間雅文\n攝影監督：荒井栄児\n編輯：植松淳一\n音樂：橋本慎\n音樂製作：ROOFTOP\n執行製作人：郡司幹雄\n製作人：田坂秀將\n動畫製作人：磯部真彩\n動畫製作：Production I.G\n製作協力：徳間書店\n製作協力：龜山敬司 / DMM pictures\n製作：松竹 / Production I.G",
+			"title": "制作信息"
+		},
+		"stat": {
+			"coins": 651,
+			"danmakus": 410,
+			"favorite": 117,
+			"favorites": 91637,
+			"followers": "9.2万系列追番",
+			"likes": 8446,
+			"play": "7.3万播放",
+			"reply": 229,
+			"share": 21,
+			"views": 73219
+		},
+		"status": 13,
+		"styles": [
+			{
+				"id": 10034,
+				"name": "架空",
+				"url": "bilibili://pgc/common/index?style_id=10034&area=2"
+			},
+			{
+				"id": 10023,
+				"name": "科幻",
+				"url": "bilibili://pgc/common/index?style_id=10023&area=2"
+			}
+		],
+		"subtitle": "已观看7.3万次",
+		"test_switch": {
+			"channel_entrance_exp_action": 0,
+			"is_merge_preview_section": false,
+			"is_ogv_fav_exp": false,
+			"mergeSeasonEpUpperExp": 0,
+			"movie_mark_action": 0,
+			"optimize_display_info_exp": 0,
+			"player_ip_community_exp": 0,
+			"short_space_title_exp": 0,
+			"was_freya_double": 0,
+			"was_hit_four_crowd": 0,
+			"was_ios_pip_exp": true,
+			"was_merge_exp": false,
+			"was_pugv_style_optimize": true
+		},
+		"title": " 銀河英雄傳說Die Neue These: 策謀",
+		"total": 12,
+		"type": 1,
+		"type_desc": "2022 | 番剧 | 科幻、架空",
+		"type_name": "番剧",
+		"user_status": {
+			"follow": 0,
+			"follow_bubble": 0,
+			"follow_status": 2,
+			"pay": 1,
+			"pay_for": 0,
+			"review": {
+				"article_url": "https://member.bilibili.com/article-text/mobile?media_id=28339757",
+				"is_open": 1,
+				"score": 0
+			},
+			"sponsor": 0,
+			"vip": 1,
+			"vip_frozen": 0
+		}
+	},
+	"message": "success"
+}

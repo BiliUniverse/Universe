@@ -1,0 +1,1304 @@
+{
+	"code": 0,
+	"message": "success",
+	"result": {
+		"follow_list": [
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "https://i0.hdslb.com/bfs/bangumi/image/9f42a3f76429092b6011e5d9ebd2d7fe8100e21f.png",
+				"follow": 1,
+				"is_finish": 0,
+				"movable": 1,
+				"mtime": 1678014001,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/6b8259c50385694d3c8441d6ad537f232e893a15.png",
+					"duration": 1504000,
+					"id": 736291,
+					"index_show": "更新至第11话",
+					"is_new": 1
+				},
+				"season_id": 43148,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 2,
+					"id": 5352,
+					"title": "致不灭的你"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/f4db51dae601d7d366d3910a3fbea0dfdd37ca43.png",
+				"title": "致不灭的你 第二季",
+				"url": "https://www.bilibili.com/bangumi/play/ss43148"
+			},
+			{
+				"badge": "会员专享",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员专享"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/71d54cae830d32a5af776dcc46632146fbdba868.jpg",
+				"follow": 1,
+				"is_finish": 0,
+				"movable": 1,
+				"mtime": 1678008601,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/f03fc5ecd4d52627e98df3a5d1bb61c9bb2941da.jpg",
+					"duration": 1435000,
+					"id": 737423,
+					"index_show": "更新至第281话",
+					"is_new": 1
+				},
+				"progress": {
+					"index_show": "看到第221话 0:28",
+					"last_ep_id": 438805,
+					"last_time": 28
+				},
+				"season_id": 5978,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 3579,
+					"title": "博人传 火影忍者新时代"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/3121473d5dd03a9bcccb8490034207e724e731b3.jpg",
+				"title": "博人传 火影忍者新时代",
+				"url": "https://www.bilibili.com/bangumi/play/ss5978"
+			},
+			{
+				"badge": "会员专享",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员专享"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "https://i0.hdslb.com/bfs/bangumi/image/c8ae03115425c1a8a012e6dda598d3a8ff7bed1c.png",
+				"follow": 1,
+				"is_finish": 0,
+				"movable": 1,
+				"mtime": 1677951001,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/2dc70c786999caafd667d53b9257b2164733ece3.png",
+					"duration": 1426000,
+					"id": 733938,
+					"index_show": "更新至第6话",
+					"is_new": 1
+				},
+				"progress": {
+					"index_show": "看到第2话 0:03",
+					"last_ep_id": 725461,
+					"last_time": 3
+				},
+				"season_id": 44508,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6487,
+					"title": "尼爾：自動人形 Ver1.1a（僅限港澳台地區）"
+				},
+				"square_cover": "https://i0.hdslb.com/bfs/bangumi/image/a97c2293483e76c6c582f2cda1a75cec238e58dd.png",
+				"title": "尼爾：自動人形 Ver1.1a（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss44508"
+			},
+			{
+				"badge": "出品",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "出品"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/b3a9b5975059e074593b9381322ad8c423be7b89.png",
+				"follow": 1,
+				"is_finish": 0,
+				"movable": 1,
+				"mtime": 1677729601,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/6c6efa4ae771990ed6c9e95b4a2da6d6f4faf919.png",
+					"duration": 1166000,
+					"id": 703360,
+					"index_show": "更新至第14话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到PV1 0:43",
+					"last_ep_id": 431229,
+					"last_time": 43
+				},
+				"season_id": 39706,
+				"season_type": 4,
+				"season_type_name": "国创",
+				"series": {
+					"count": 3,
+					"id": 4262,
+					"title": "元龙"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/66461c322e993e57928f0542e766547fda441178.png",
+				"title": "元龙 第三季",
+				"url": "https://www.bilibili.com/bangumi/play/ss39706"
+			},
+			{
+				"badge": "出品",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "出品"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "https://i0.hdslb.com/bfs/bangumi/image/26176fbfd7eb802afdfbcd03ce1702d931e13591.png",
+				"follow": 1,
+				"is_finish": 0,
+				"movable": 1,
+				"mtime": 1677691501,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/b0dad42d1e7336ad2c796caf0465e15b7b3f5aff.png",
+					"duration": 1370000,
+					"id": 735518,
+					"index_show": "更新至第8话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第2话",
+					"last_ep_id": 719416,
+					"last_time": -1
+				},
+				"season_id": 44080,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6335,
+					"title": "大雪海的卡纳"
+				},
+				"square_cover": "https://i0.hdslb.com/bfs/bangumi/image/641606a5badf91f9b407c8fcb9706e68a680418f.png",
+				"title": "大雪海的卡纳",
+				"url": "https://www.bilibili.com/bangumi/play/ss44080"
+			},
+			{
+				"badge": "出品",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "出品"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "https://i0.hdslb.com/bfs/bangumi/image/e9ad30dd6f8fa74df16c62de048e35dd5d7ffda1.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1676167201,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/b1d24b77567ead275ccb2b61c4b2bdf28a4c82bc.jpg",
+					"duration": 997916,
+					"id": 706673,
+					"index_show": "全8话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第6集预告 0:11",
+					"last_ep_id": 706841,
+					"last_time": 11
+				},
+				"season_id": 39707,
+				"season_type": 4,
+				"season_type_name": "国创",
+				"series": {
+					"count": 1,
+					"id": 5818,
+					"title": "中国奇谭"
+				},
+				"square_cover": "https://i0.hdslb.com/bfs/bangumi/image/e61146fcf8148545cdf4181d41821141dadcff77.png",
+				"title": "中国奇谭",
+				"url": "https://www.bilibili.com/bangumi/play/ss39707"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "https://i0.hdslb.com/bfs/bangumi/image/14ccd8457a9b7351e7be1d87db2719791108ddc0.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1674975756,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/490d08d50f54d604c38b849785006c6ac14ea6e8.png",
+					"duration": 1423000,
+					"id": 704357,
+					"index_show": "全38话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第38话 0:22",
+					"last_ep_id": 704357,
+					"last_time": 22
+				},
+				"season_id": 39431,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 8,
+					"id": 2397,
+					"title": "JOJO的奇妙冒险"
+				},
+				"square_cover": "https://i0.hdslb.com/bfs/bangumi/image/e373b6f6384ed6f0012488f4ca67d89d4532c6bd.png",
+				"title": "JOJO的奇妙冒险 石之海",
+				"url": "https://www.bilibili.com/bangumi/play/ss39431"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/a18543f8de923d8ffeb71481a3810ede2e82152d.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1673443319,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/e9dfafd1c1cfcf9569d23969a3559c21a5462051.png",
+					"duration": 1438000,
+					"id": 681443,
+					"index_show": "全25话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第12话 21:03",
+					"last_ep_id": 681443,
+					"last_time": 1263
+				},
+				"season_id": 43177,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 5,
+					"id": 4998,
+					"title": "機動戰士高達 THE ORIGIN（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/db586acdbe6eb104fcb0bf9b42e735d3f2d0c970.png",
+				"title": "機動戰士鋼彈 水星的魔女（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43177"
+			},
+			{
+				"badge": "会员抢先",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员抢先"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/300e6d42bbfa633f45d69bca6240f014c0d9de5b.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1673183748,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/1f6a4d63e56590fc61dd1a40f9798bfe69c2d87c.png",
+					"duration": 1436000,
+					"id": 679968,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第12话",
+					"last_ep_id": 679968,
+					"last_time": -1
+				},
+				"season_id": 43060,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6236,
+					"title": "鏈鋸人（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/8cae4ea0ea97c612c9ab229fdb751b364a99e3cb.png",
+				"title": "鏈鋸人（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43060"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/eddab327275e162d624da3fdd55ce4bcef6aef05.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671976801,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/2cbe75e74cb79e9aa1955badc307d5d8fb4017f2.png",
+					"duration": 1451000,
+					"id": 682078,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"season_id": 43267,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6262,
+					"title": "夫婦以上，戀人未滿。（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/86ed3fed23a1f0be4078bc8c8d5aa0e4c351b9ac.png",
+				"title": "夫婦以上，戀人未滿。（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43267"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/3583c5bec6f28a2d6e8fa62fd8651f81675a8b7c.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671903338,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/ce1536ddff48ea51927f13135ca6b080cfcdafe3.png",
+					"duration": 1451000,
+					"id": 476239,
+					"index_show": "更新至第25话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第25话",
+					"last_ep_id": 476239,
+					"last_time": -1
+				},
+				"season_id": 41469,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 2,
+					"id": 6029,
+					"title": "SPY×FAMILY 間諜家家酒（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/02ad7f3c825cd31ed4cbb9ef0f534ee09461467a.png",
+				"title": "SPY×FAMILY 間諜家家酒（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss41469"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/16e1a353eaa6a0af34860808b6be538e8cb35a06.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671897601,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/d99cc889a342c04b80c558a1b18a38bab6a9997c.png",
+					"duration": 1426000,
+					"id": 683215,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"season_id": 43278,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6266,
+					"title": "後宮之烏（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/b67d533e8d810fc5a1ab8b9ac3fedf6e89c9eee1.png",
+				"title": "後宮之烏",
+				"url": "https://www.bilibili.com/bangumi/play/ss43278"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/2dd252cb48b59a4a8ce6ac606c78dd0a97ba758b.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671890401,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/ca26fec66d74e86ec5b128b367bf35f5f6e4cb36.png",
+					"duration": 1421000,
+					"id": 680061,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"season_id": 43171,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 2,
+					"id": 5044,
+					"title": "宇崎學妹想要玩！（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/75ae15bbcc90c32725a538711e712f13c2af98ef.png",
+				"title": "宇崎學妹想要玩！第二季（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43171"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/114d282590aa3432ec5cba11ef44e5c820e840dd.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671890401,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/f6dd408c303a9f083b434b27745c1afbdc4e9ca2.png",
+					"duration": 1421000,
+					"id": 683497,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"season_id": 43100,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6256,
+					"title": "被勇者隊伍開除的馭獸使、邂逅了最強種的貓耳少女（僅限港澳台地"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/3f4922a4d165b4cdfeaa877f586b421ba98e7004.png",
+				"title": "被勇者隊伍開除的馭獸使、邂逅了最強種的貓耳少女（僅限港澳台）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43100"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/f298e43fd9673abdaf86ecb30ba8197410ee3c3e.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671716637,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/e95fad1c92792deb275ea4bca1b78073ccfcaa7c.png",
+					"duration": 1421000,
+					"id": 703379,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第12话",
+					"last_ep_id": 703379,
+					"last_time": -1
+				},
+				"season_id": 43141,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 5,
+					"id": 2995,
+					"title": "路人超能100(灵能百分百)"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/1d9e2ff2fa6560302519e21407d5f797dfe2a0c6.png",
+				"title": "路人超能100 III(灵能百分百 第三季)",
+				"url": "https://www.bilibili.com/bangumi/play/ss43141"
+			},
+			{
+				"badge": "出品",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "出品"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/12910e4c3ea697c8886e4d1de3f03f7ca8433e5e.jpg",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671282001,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/2dec7afba591964eb64eb659c85488245ade8bd5.png",
+					"duration": 1402000,
+					"id": 693142,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第9话 0:03",
+					"last_ep_id": 691448,
+					"last_time": 3
+				},
+				"season_id": 43150,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6246,
+					"title": "点满农民相关技能后，不知为何就变强了。"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/a76ad9ee4e63bcb47ca0a2452c5d5b3bfafe6e49.png",
+				"title": "点满农民相关技能后，不知为何就变强了。",
+				"url": "https://www.bilibili.com/bangumi/play/ss43150"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/c7142ad400ccd9407e7bebb693182d19476c724a.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671282000,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/2dec7afba591964eb64eb659c85488245ade8bd5.png",
+					"duration": 1432000,
+					"id": 681031,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"season_id": 43143,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6248,
+					"title": "點滿農民相關技能後，不知為何就變強了。（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/cb96562b8dc1a10e36e13fa7b66a75bf17d012d8.png",
+				"title": "點滿農民相關技能後，不知為何就變強了。（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43143"
+			},
+			{
+				"badge": "会员专享",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员专享"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/ac2bf4cf0a0e661f0d497229f112470572240bb6.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1668955300,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/8dfab65265c66a8451eb1bbed0c3a4f6f6e1b80a.png",
+					"duration": 1421000,
+					"id": 472129,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第1话 10:15",
+					"last_ep_id": 450050,
+					"last_time": 615
+				},
+				"season_id": 40142,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 5850,
+					"title": "天才王子的赤字国家振兴术"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/74e6bba64204e39b4b662192c5f7a662e2c95b66.png",
+				"title": "天才王子的赤字国家振兴术",
+				"url": "https://www.bilibili.com/bangumi/play/ss40142"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/53e6a08505b5a889feb14d2f5ee8a7f22b961847.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1668864601,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/27620fd88f7ee715a9b778a51f9d50532f9db5f8.png",
+					"duration": 1449000,
+					"id": 691488,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第4话",
+					"last_ep_id": 674250,
+					"last_time": -1
+				},
+				"season_id": 42176,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6172,
+					"title": "莉可丽丝"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/6ea75b548fc1ccaf1b6a4e3611410d7931850cd8.png",
+				"title": "莉可丽丝",
+				"url": "https://www.bilibili.com/bangumi/play/ss42176"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/0228277a8bbab4d4a298a7e559fbfb12f47fc989.png",
+				"follow": 1,
+				"is_finish": 0,
+				"movable": 1,
+				"mtime": 1668745234,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/ea3c86d510f84b93a0860f16e6f1c989d56c9c49.png",
+					"duration": 0,
+					"id": 0,
+					"index_show": "",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到PV 0:01",
+					"last_ep_id": 680311,
+					"last_time": 1
+				},
+				"season_id": 43165,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6241,
+					"title": "机动战士高达：水星的魔女"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/b1e0e9eb1fbb672e093e522d2e938bc7bd9e3e9f.png",
+				"title": "机动战士高达：水星的魔女",
+				"url": "https://www.bilibili.com/bangumi/play/ss43165"
+			}
+		],
+		"has_next": 1,
+		"series": [],
+		"total": 101,
+		"vip_tip": [],
+		"want": [],
+		"watched": [
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/a18543f8de923d8ffeb71481a3810ede2e82152d.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1673443319,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/e9dfafd1c1cfcf9569d23969a3559c21a5462051.png",
+					"duration": 1438000,
+					"id": 681443,
+					"index_show": "全25话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第12话 21:03",
+					"last_ep_id": 681443,
+					"last_time": 1263
+				},
+				"season_id": 43177,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 5,
+					"id": 4998,
+					"title": "機動戰士高達 THE ORIGIN（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/db586acdbe6eb104fcb0bf9b42e735d3f2d0c970.png",
+				"title": "機動戰士鋼彈 水星的魔女（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43177"
+			},
+			{
+				"badge": "会员抢先",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员抢先"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/300e6d42bbfa633f45d69bca6240f014c0d9de5b.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1673183748,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/1f6a4d63e56590fc61dd1a40f9798bfe69c2d87c.png",
+					"duration": 1436000,
+					"id": 679968,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第12话",
+					"last_ep_id": 679968,
+					"last_time": -1
+				},
+				"season_id": 43060,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6236,
+					"title": "鏈鋸人（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/8cae4ea0ea97c612c9ab229fdb751b364a99e3cb.png",
+				"title": "鏈鋸人（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss43060"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/3583c5bec6f28a2d6e8fa62fd8651f81675a8b7c.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671903338,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/ce1536ddff48ea51927f13135ca6b080cfcdafe3.png",
+					"duration": 1451000,
+					"id": 476239,
+					"index_show": "更新至第25话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第25话",
+					"last_ep_id": 476239,
+					"last_time": -1
+				},
+				"season_id": 41469,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 2,
+					"id": 6029,
+					"title": "SPY×FAMILY 間諜家家酒（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/02ad7f3c825cd31ed4cbb9ef0f534ee09461467a.png",
+				"title": "SPY×FAMILY 間諜家家酒（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss41469"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/f298e43fd9673abdaf86ecb30ba8197410ee3c3e.png",
+				"follow": 1,
+				"is_finish": 1,
+				"movable": 1,
+				"mtime": 1671716637,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/e95fad1c92792deb275ea4bca1b78073ccfcaa7c.png",
+					"duration": 1421000,
+					"id": 703379,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第12话",
+					"last_ep_id": 703379,
+					"last_time": -1
+				},
+				"season_id": 43141,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 5,
+					"id": 2995,
+					"title": "路人超能100(灵能百分百)"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/1d9e2ff2fa6560302519e21407d5f797dfe2a0c6.png",
+				"title": "路人超能100 III(灵能百分百 第三季)",
+				"url": "https://www.bilibili.com/bangumi/play/ss43141"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/786554dea36a4ab297bca0cc8aefff1977945450.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1664382190,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/cdc7c5eb5b9c7ad3c5e13e16f9b91a187e529969.png",
+					"duration": 2842000,
+					"id": 567799,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第12话",
+					"last_ep_id": 567799,
+					"last_time": -1
+				},
+				"season_id": 42190,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 6158,
+					"title": "來自深淵 烈日的黃金鄉（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/64144f3b91b1f70958f92c1cff294350261e242c.png",
+				"title": "來自深淵 烈日的黃金鄉（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss42190"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/6a57186f195101b3f160158670c45bdbd987b533.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1664290217,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/529166649c8d28fc3c5a76a3a5d104c045943898.png",
+					"duration": 1421000,
+					"id": 678881,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第13话",
+					"last_ep_id": 678881,
+					"last_time": -1
+				},
+				"season_id": 42082,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 2,
+					"id": 4492,
+					"title": "OVERLORD（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/6abe499201da7cf914369281337100e952b47dfd.png",
+				"title": "OVERLORD 第四季（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss42082"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/ffe6ebdf6770e7975bf830bee73a03c79e81b690.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1658559878,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/57a9841f5c902e2cec86dcea62be8bbb3c8abdcf.png",
+					"duration": 1429000,
+					"id": 562250,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第13话 23:48",
+					"last_ep_id": 562250,
+					"last_time": 1428
+				},
+				"season_id": 41411,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 5,
+					"id": 4264,
+					"title": "辉夜大小姐想让我告白"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/48c0290b66784242c5eed83965bdc79a6b62eff5.png",
+				"title": "辉夜大小姐想让我告白 -究极浪漫-",
+				"url": "https://www.bilibili.com/bangumi/play/ss41411"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/00090a73056292733b62e66bea7e918b223fb090.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1650702312,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/83e1fbf4d9571f2c5e85fa4162f03751a99fc0a4.png",
+					"duration": 1421000,
+					"id": 430155,
+					"index_show": "更新至第23话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第23话 23:41",
+					"last_ep_id": 430155,
+					"last_time": 1421
+				},
+				"season_id": 38442,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 5429,
+					"title": "86－不存在的戰區－（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/592b5d803697cf2107fff1a8904d979931778a88.png",
+				"title": "86－不存在的戰區－（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss38442"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/847e9dbb6876fb37a30199a5c88910704976d45b.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1650469890,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/d72d11b4892f107d9171b0b6d509a2916fca010c.png",
+					"duration": 1405000,
+					"id": 480411,
+					"index_show": "全13话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第13话 23:25",
+					"last_ep_id": 480411,
+					"last_time": 1405
+				},
+				"season_id": 38921,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 4,
+					"id": 3484,
+					"title": "小林家的龙女仆"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/24b917454bac5a444ef4536dbf5595666eaa900e.png",
+				"title": "小林家的龙女仆 第二季",
+				"url": "https://www.bilibili.com/bangumi/play/ss38921"
+			},
+			{
+				"badge": "会员专享",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员专享"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/ddfeb0782515b3af39fb12818273b9ced5850f34.jpg",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1648964161,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/1057ea21297b64005d0e6cc11419f3ef0dfd0869.png",
+					"duration": 1441000,
+					"id": 467554,
+					"index_show": "全26话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第26话 24:00",
+					"last_ep_id": 467554,
+					"last_time": 1440
+				},
+				"season_id": 38952,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 5562,
+					"title": "现实主义勇者的王国再建记"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/918dbdcdd8fe70f11f9e04fa542367164f0879f7.png",
+				"title": "现实主义勇者的王国再建记",
+				"url": "https://www.bilibili.com/bangumi/play/ss38952"
+			},
+			{
+				"badge": "会员专享",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": "会员专享"
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/ee8f3e39a672d78f4bcadf35fbad281b1869cd91.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1648484912,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/24b5d1d3a9dae2bffb23cf90b1a50b20b919b083.png",
+					"duration": 1451000,
+					"id": 469630,
+					"index_show": "全12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第12话 24:10",
+					"last_ep_id": 469630,
+					"last_time": 1450
+				},
+				"season_id": 39463,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 5699,
+					"title": "宿命回响"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/ad55cdc252ae7c1574e5dbb0bcb006007a974c6e.png",
+				"title": "宿命回响：命运节拍",
+				"url": "https://www.bilibili.com/bangumi/play/ss39463"
+			},
+			{
+				"badge": "独家",
+				"badge_info": {
+					"bg_color": "#00C0FF",
+					"bg_color_night": "#0B91BE",
+					"text": "独家"
+				},
+				"badge_type": 1,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/8aead7650fb3ded88f24654b7b66823169cb9a8c.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1648212513,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/330040a514148d89f8ae0a233edb3ad5f62921f6.jpg",
+					"duration": 1370000,
+					"id": 473805,
+					"index_show": "全23话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第23话 22:37",
+					"last_ep_id": 473805,
+					"last_time": 1357
+				},
+				"season_id": 39462,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 5698,
+					"title": "国王排名"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/940314a9af07bde22cb4d767a894ebbddf2714c2.png",
+				"title": "国王排名",
+				"url": "https://www.bilibili.com/bangumi/play/ss39462"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/45ca2a90f714e1fb2a23d52f415a43530940e069.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1644855348,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/1cf2ef772cba02ee095ee1c89281cd17ead120f0.png",
+					"duration": 1947000,
+					"id": 434510,
+					"index_show": "更新至第11话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "看到第11话 32:27",
+					"last_ep_id": 434510,
+					"last_time": 1947
+				},
+				"season_id": 40083,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 7,
+					"id": 4550,
+					"title": "鬼滅之刃（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/db32436c802c3f4760d5184f1a3bc6d82509401b.png",
+				"title": "鬼滅之刃 遊郭篇（僅限台灣地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss40083"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/637aa8c875a5be5a222be01555f471310950af44.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1640100092,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/77fa91054859885a42fe5fbcbd773454defb294d.png",
+					"duration": 1441000,
+					"id": 424277,
+					"index_show": "更新至第12话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第12话",
+					"last_ep_id": 424277,
+					"last_time": -1
+				},
+				"season_id": 39551,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 1,
+					"id": 5732,
+					"title": "陰陽眼見子（僅限港澳台地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/56d45e56bea3874bc131f1a7f3c33e6cc7276b52.png",
+				"title": "陰陽眼見子（僅限港澳台地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss39551"
+			},
+			{
+				"badge": "",
+				"badge_info": {
+					"bg_color": "#FB7299",
+					"bg_color_night": "#BB5B76",
+					"text": ""
+				},
+				"badge_type": 0,
+				"can_watch": 1,
+				"cover": "http://i0.hdslb.com/bfs/bangumi/image/bba9479870651f75795d525bf482a0ebfb860a77.png",
+				"follow": 1,
+				"is_finish": 1,
+				"mtime": 1638794826,
+				"new_ep": {
+					"cover": "http://i0.hdslb.com/bfs/archive/59f6d4e62106c5aaa47402c22b69fb5781a28b32.png",
+					"duration": 1591000,
+					"id": 425868,
+					"index_show": "全7话",
+					"is_new": 0
+				},
+				"progress": {
+					"index_show": "已看完第7话",
+					"last_ep_id": 425868,
+					"last_time": -1
+				},
+				"season_id": 39593,
+				"season_type": 1,
+				"season_type_name": "番剧",
+				"series": {
+					"count": 7,
+					"id": 4550,
+					"title": "鬼滅之刃（僅限港澳台等地區）"
+				},
+				"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/19fbc008fad1adb85cf9ba1e00b543d71fd53aea.png",
+				"title": "鬼滅之刃 無限列車篇（僅限台灣地區）",
+				"url": "https://www.bilibili.com/bangumi/play/ss39593"
+			}
+		]
+	}
+}
