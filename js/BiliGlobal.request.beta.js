@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(1) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(2) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -23,7 +23,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 
 /***************** Processing *****************/
 !(async () => {
-	const { Settings, Caches } = await setENV("BiliBili", "BiliGlobal", DataBase);
+    const { Settings, Caches, Configs } = await setENV("BiliBili", "BiliGlobal", DataBase);
 	if (Settings.Switch) {
 		let url = URL.parse($request.url);
 		$.log(url.path);
@@ -34,7 +34,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 					case "pgc/player/web/playurl":
 						break;
 					case "x/v2/search/type":
-					case "x/web-interface/search/type":
+                    case "x/web-interface/search/type":
+                        
 						break;
 					case "pgc/view/web/season":
 					case "pgc/view/v2/app/season":
@@ -106,12 +107,12 @@ async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $a
  */
 async function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let { Settings, Caches = {} } = await getENV(name, platform, database);
+	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
 	/***************** Prase *****************/
 	Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-	return { Settings, Caches }
+	return { Settings, Caches, Configs }
 };
 
 /***************** Env *****************/
