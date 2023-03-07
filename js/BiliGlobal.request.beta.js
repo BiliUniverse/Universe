@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.0(1) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(1) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -32,29 +32,32 @@ for (const [key, value] of Object.entries($request.headers)) {
 				switch (url.path) {
 					case "pgc/player/api/playurl":
 					case "pgc/player/web/playurl":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 					case "x/v2/search/type":
 					case "x/web-interface/search/type":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 					case "pgc/view/web/season":
 					case "pgc/view/v2/app/season":
-						break;
+                        break;
+                    case "pgc/app/follow/v2/bangumi":
+                        break;
+                    case "pgc/app/related/recommend":
+                        break;
+                    case "pgc/web/playlist":
+                        break;
+                    case "pgc/web/season/cards":
+                        break;
 				};
 				break;
 			case "app.biliintl.com":
 			case "api.global.bilibili.com":
 				switch (url.path) {
 					case "intl/gateway/v2/ogv/playurl":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 					case "intl/gateway/v2/app/search/type":
 					case "intl/gateway/v2/app/search/v2":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 					case "intl/gateway/v2/ogv/view/app/season":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 					case "intl/gateway/v2/ogv/view/app/season/section":
 					case "intl/gateway/v2/ogv/view/app/season/user/status":
@@ -62,10 +65,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 					case "intl/gateway/v2/ogv/view/app/episode":
 						break;
 					case "intl/gateway/v2/app/subtitle":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 					case "x/intl/passport-login/oauth2/refresh_token":
-						url.host = Settings.Proxy.Pool[Math.floor(Math.random() * Settings.Proxy.Pool.length)];
 						break;
 				};
 				break;
