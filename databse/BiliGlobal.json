@@ -1,0 +1,12 @@
+{
+	"Settings": {
+		"Switch": true,
+		"Proxy": {
+			"CHN": "DIRECT",
+			"HKG": "🇭🇰香港",
+			"MAC": "🇲🇴澳门",
+			"TWN": "🇹🇼台湾",
+			"SEA": "🇸🇬新加坡"
+		}
+	}
+}
