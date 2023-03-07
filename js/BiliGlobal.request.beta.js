@@ -115,6 +115,24 @@ async function setENV(name, platform, database) {
 	return { Settings, Caches, Configs }
 };
 
+/**
+ * Fetch Muti-area Reqeusts
+ * @author VirgilClyne
+ * @param {String} request - request content
+ * @param {String} platform - Platform Name
+ * @param {Object} database - Default DataBase
+ * @return {Promise<*>}
+ */
+async function mutiFetch(request = {}, Proxies = {}) {
+	$.log(`⚠ ${$.name}, Fetch Muti-area Reqeusts`, "");
+	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
+	/***************** Prase *****************/
+	Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
+	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
+	$.log(`🎉 ${$.name}, Fetch Muti-area Reqeusts`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
+	return { Settings, Caches, Configs }
+};
+
 /***************** Env *****************/
 // prettier-ignore
 // https://github.com/chavyleung/scripts/blob/master/Env.min.js
