@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(3) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(6) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -27,7 +27,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 	if (Settings.Switch) {
 		let url = URL.parse($request.url);
         $.log(url.path);
-        let responses = mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
+        let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
         $.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
         /*
 		switch (url.host) {
@@ -141,7 +141,7 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
         if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
         if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
         $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
-        let response = (request.body) ? await $.http.post(request) : await $.http.get(request);
+        let response = (request.body) ? await $.http.post(request).then(resp => resp.body) : await $.http.get(request).then(resp => resp.body);
         $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
         return response;
     };
