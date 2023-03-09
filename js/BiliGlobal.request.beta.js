@@ -118,19 +118,26 @@ async function setENV(name, platform, database) {
 /**
  * Fetch Muti-area Reqeusts
  * @author VirgilClyne
- * @param {String} request - request content
- * @param {String} platform - Platform Name
- * @param {Object} database - Default DataBase
+ * @param {Object} request - Original Request Content
+ * @param {Object} proxies - Proxies Name
+ * @param {Array} aera - Area Name
  * @return {Promise<*>}
  */
-async function mutiFetch(request = {}, Proxies = {}) {
-	$.log(`⚠ ${$.name}, Fetch Muti-area Reqeusts`, "");
-	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
-	/***************** Prase *****************/
-	Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
-	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
+async function mutiFetch(request = {}, proxies = {}, area = []) {
+    $.log(`⚠ ${$.name}, Fetch Muti-area Reqeusts`, "");
+
 	$.log(`🎉 ${$.name}, Fetch Muti-area Reqeusts`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-	return { Settings, Caches, Configs }
+    return response;
+
+    async function Fetch(request = {}, proxies = {}, area = "") {
+        $.log(`⚠ ${$.name}, Fetch Ruled Reqeusts`, "");
+        if ($.isLoon()) request.node = proxies[area];
+        if ($.isQuanX()) request.opts = { "policy": proxies[area] };
+        if ($.isSurge()) request.headers["X-Surge-Policy"] = proxies[area];
+        if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
+        if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "")
+        $.log(`🚧 ${$.name}, Fetch Ruled Reqeusts`, `Request:${JSON.stringify(request)}`, "");
+    };
 };
 
 /***************** Env *****************/
