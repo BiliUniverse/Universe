@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(2) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(3) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -26,7 +26,10 @@ for (const [key, value] of Object.entries($request.headers)) {
     const { Settings, Caches, Configs } = await setENV("BiliBili", "BiliGlobal", DataBase);
 	if (Settings.Switch) {
 		let url = URL.parse($request.url);
-		$.log(url.path);
+        $.log(url.path);
+        let responses = mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
+        $.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
+        /*
 		switch (url.host) {
 			case "api.bilibili.com":
 				switch (url.path) {
@@ -35,7 +38,6 @@ for (const [key, value] of Object.entries($request.headers)) {
 						break;
 					case "x/v2/search/type":
                     case "x/web-interface/search/type":
-                        
 						break;
 					case "pgc/view/web/season":
 					case "pgc/view/v2/app/season":
@@ -77,6 +79,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 		if ($request?.headers?.Host) $request.headers.Host = url.host;
 		if ($request?.headers?.authority) $request.headers.authority = url.host;
 		$request.url = URL.stringify(url);
+        */
 	}
 })()
 	.catch((e) => $.logErr(e))
@@ -127,7 +130,7 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
     $.log(`⚠ ${$.name}, Fetch Muti-Locales Reqeusts`, `locales = [${locales}]`, "");
     let responses = {};
     locales.map(async locale => responses[locale] = await Fetch(request, proxies[locale]));
-	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, ``, "");
+	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
     return responses;
 
     async function Fetch(request = {}, proxyName = "") {
