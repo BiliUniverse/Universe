@@ -116,27 +116,31 @@ async function setENV(name, platform, database) {
 };
 
 /**
- * Fetch Muti-area Reqeusts
+ * Fetch Muti-Locales Reqeusts
  * @author VirgilClyne
  * @param {Object} request - Original Request Content
  * @param {Object} proxies - Proxies Name
- * @param {Array} aera - Area Name
+ * @param {Array} Locales - Locales Names
  * @return {Promise<*>}
  */
-async function mutiFetch(request = {}, proxies = {}, area = []) {
-    $.log(`⚠ ${$.name}, Fetch Muti-area Reqeusts`, "");
+async function mutiFetch(request = {}, proxies = {}, locales = []) {
+    $.log(`⚠ ${$.name}, Fetch Muti-Locales Reqeusts`, `locales = [${locales}]`, "");
+    let responses = {};
+    locales.map(async locale => responses[locale] = await Fetch(request, proxies[locale]));
+	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, ``, "");
+    return responses;
 
-	$.log(`🎉 ${$.name}, Fetch Muti-area Reqeusts`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-    return response;
-
-    async function Fetch(request = {}, proxies = {}, area = "") {
-        $.log(`⚠ ${$.name}, Fetch Ruled Reqeusts`, "");
-        if ($.isLoon()) request.node = proxies[area];
-        if ($.isQuanX()) request.opts = { "policy": proxies[area] };
-        if ($.isSurge()) request.headers["X-Surge-Policy"] = proxies[area];
+    async function Fetch(request = {}, proxyName = "") {
+        $.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
+        if ($.isLoon()) request.node = proxyName;
+        if ($.isQuanX()) request.opts = { "policy": proxyName };
+        if ($.isSurge()) request.headers["X-Surge-Policy"] = proxyName;
         if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
-        if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "")
-        $.log(`🚧 ${$.name}, Fetch Ruled Reqeusts`, `Request:${JSON.stringify(request)}`, "");
+        if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
+        $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
+        let response = (request.body) ? await $.http.post(request) : await $.http.get(request);
+        $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
+        return response;
     };
 };
 
