@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(10) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(11) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -129,7 +129,7 @@ async function setENV(name, platform, database) {
 async function mutiFetch(request = {}, proxies = {}, locales = []) {
     $.log(`⚠ ${$.name}, Fetch Muti-Locales Reqeusts`, `locales = [${locales}]`, "");
     let responses = {};
-	locales.map(async locale => { responses[locale] = await Fetch(request, proxies[locale]) });
+	await Promise.all(locales.map(async locale => { responses[locale] = await Fetch(request, proxies[locale]) }));
 	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
     return responses;
 
