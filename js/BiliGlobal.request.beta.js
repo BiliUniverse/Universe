@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(9) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(10) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -129,23 +129,29 @@ async function setENV(name, platform, database) {
 async function mutiFetch(request = {}, proxies = {}, locales = []) {
     $.log(`⚠ ${$.name}, Fetch Muti-Locales Reqeusts`, `locales = [${locales}]`, "");
     let responses = {};
-    locales.map(async locale => responses[locale] = await Fetch(request, proxies[locale]));
+	locales.map(async locale => { responses[locale] = await Fetch(request, proxies[locale]) });
 	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
     return responses;
 
-    async function Fetch(request = {}, proxyName = "") {
-        $.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
-        if ($.isLoon()) request.node = proxyName;
-        if ($.isQuanX()) request.opts = { "policy": proxyName };
-        //if ($.isSurge()) request.headers["X-Surge-Policy"] = proxyName;
-        if ($.isSurge()) request.policy = proxyName;
-        if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
-        if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
+	async function Fetch(request = {}, proxyName = "") {
+		$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
+		if ($.isLoon()) request.node = proxyName;
+		if ($.isQuanX()) request.opts = { "policy": proxyName };
+		//if ($.isSurge()) request.headers["X-Surge-Policy"] = proxyName;
+		if ($.isSurge()) request.policy = proxyName;
+		if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
+		if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
 		$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
 		
 		let response = (request.body)
-			? await $.http.post(request)
-			: await $.http.get(request);
+			? await $.http.post(request).then(resp => {
+				$.log(JSON.stringify(resp))
+				return resp
+			})
+			: await $.http.get(request).then(resp => {
+				$.log(JSON.stringify(resp))
+				return resp
+			});
         $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
 		return response;
     };
