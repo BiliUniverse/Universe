@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(7) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(9) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -141,10 +141,13 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
         if ($.isSurge()) request.policy = proxyName;
         if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
         if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
-        $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
-        let response = (request.body) ? await $.http.post(request).then(resp => resp.body) : await $.http.get(request).then(resp => resp.body);
+		$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
+		
+		let response = (request.body)
+			? await $.http.post(request)
+			: await $.http.get(request);
         $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
-        return response;
+		return response;
     };
 };
 
