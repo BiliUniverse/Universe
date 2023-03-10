@@ -37,6 +37,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 						break;
 					case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 						break;
+					case "bilibili.app.nativeact.v1.NativeAct/Index": // 动画（番剧）（港澳台）（白）
 					case "bilibili.app.interface.v1.Search/Suggest3" // 搜索-建议
 						break;
 					case "bilibili.polymer.app.search.v1.Search/SearchAll" // 搜索-全部结果（综合）
@@ -45,6 +46,43 @@ for (const [key, value] of Object.entries($request.headers)) {
 				};
 				break;
 			case "app.bilibili.com":
+				switch (url.path) {
+					case "x/resource/show/tab/v2": // 首页-Tab
+						break;
+					case "x/resource/show/tab/bubble": // 首页-Tab-?
+						break;
+					case "x/v2/feed/index":
+						break;
+					case "x/resource/ip":
+						break;
+					case "x/resource/fingerprint":
+						break;
+					case "x/resource/show/skin":
+						break;
+					case "x/v2/splash/show":
+						break;
+					case "x/v2/splash/list":
+						break;
+					case "x/v2/splash/brand/list":
+						break;
+					case "x/v2/splash/event/list2":
+						break;
+					case "x/resource/abtest/abserver":
+						break;
+					case "x/v2/param":
+						break;
+					case "x/resource/domain":
+						break;
+					case "x/v2/account/mine":
+						break;
+					case "x/v2/account/myinfo":
+						break;
+					case "x/resource/peak/download":
+						break;
+					case "x/v2/channel/region/list":
+						break;
+				};
+				break;
 			case "api.bilibili.com":
 				switch (url.path) {
 					case "pgc/player/api/playurl": // 播放地址
