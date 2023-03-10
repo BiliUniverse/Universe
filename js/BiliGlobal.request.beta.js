@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(11) request.beta");
+const $ = new Env("📺 BiliGlobal v1.0.1(12) request.beta");
 const URL = new URLs();
 const DataBase = {
     "BiliGlobal":{
@@ -144,15 +144,9 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
 		$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
 		
 		let response = (request.body)
-			? await $.http.post(request).then(resp => {
-				$.log(JSON.stringify(resp))
-				return resp
-			})
-			: await $.http.get(request).then(resp => {
-				$.log(JSON.stringify(resp))
-				return resp
-			});
-        $.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
+			? await $.http.post(request)
+			: await $.http.get(request);
+        //$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
 		return response;
     };
 };
