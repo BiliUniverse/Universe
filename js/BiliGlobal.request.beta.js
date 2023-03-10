@@ -31,19 +31,47 @@ for (const [key, value] of Object.entries($request.headers)) {
         $.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
         /*
 		switch (url.host) {
+			case "grpc.biliapi.net":
+				switch (url.path) {
+					case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
+						break;
+					case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
+						break;
+					case "bilibili.app.interface.v1.Search/Suggest3" // 搜索-建议
+						break;
+					case "bilibili.polymer.app.search.v1.Search/SearchAll" // 搜索-全部结果（综合）
+						break;
+					case "bilibili.polymer.app.search.v1.Search/SearchByType" // 搜索-按分类搜索（番剧、用户、影视、专栏）
+				};
+				break;
+			case "app.bilibili.com":
 			case "api.bilibili.com":
 				switch (url.path) {
-					case "pgc/player/api/playurl":
-					case "pgc/player/web/playurl":
+					case "pgc/player/api/playurl": // 播放地址
+					case "pgc/player/web/playurl": // 播放地址
 						break;
-					case "x/v2/search/type":
-                    case "x/web-interface/search/type":
+					case "x/v2/search/type": // 搜索
+                    case "x/web-interface/search/type": // 搜索
 						break;
-					case "pgc/view/web/season":
-					case "pgc/view/v2/app/season":
+					case "x/v2/space": // 用户空间
+						if (url.params.vmid == "11783021") // 哔哩哔哩番剧出差
+						break;
+					case "pgc/page/bangumi": // 追番
+						break;
+					case "pgc/page/module/mine": // 追番-正在追
+						break;
+					case "pgc/bangumi/index": // 追番-全部内容
+						break;
+					case "pgc/app/timeline": // 追番-时间表
+					case "pgc/web/timeline": // 追番-时间表
+					    break;
+					case "pgc/view/web/season": // 番剧页面
+					case "pgc/view/v2/app/season": // 番剧页面
                         break;
-                    case "pgc/app/follow/v2/bangumi":
+                    case "pgc/app/follow/v2/bangumi": // 我的收藏-追番
                         break;
+					case "pgc/app/follow/v2/cinema" // 我的收藏-追剧
+						break;
                     case "pgc/app/related/recommend":
                         break;
                     case "pgc/web/playlist":
