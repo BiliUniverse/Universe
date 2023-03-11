@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliEnhanced v1.0.0(5) response.beta");
+const $ = new Env("📺 BiliEnhanced v1.0.0(19) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"BiliEnhanced":{
@@ -45,28 +45,30 @@ for (const [key, value] of Object.entries($response.headers)) {
 			const Format = $response?.headers?.["content-type"]?.split(";")?.[0]
 			$.log(`🚧 ${$.name}`, `Format: ${Format}`, "");
 			// 创建空数据
-			let data = { "code": 0, "message": "success", "data": {} };
+			let body = { "code": 0, "message": "success", "data": {} };
 			// 解析格式
 			switch (Format) {
 				case "application/json":
-					data = JSON.parse($response.body);
+				body = JSON.parse($response.body);
+					let data = body.data;
 					switch (url.host) {
 						case "grpc.biliapi.net":
 							break;
 						case "app.bilibili.com":
 							switch (url.path) {
 								case "x/resource/show/tab/v2": // 首页-Tab
-									data.data.tab = Configs.Tab.tab.map(t => {
-										if (Settings.Tabs.Default_Tab === t.tab_id) t.default_selected = 1;
-										if (Settings.Tabs.includes(t.tab_id)) return t;
+									data.tab = Configs.Tab.tab.map(e => {
+										if (Settings.Tabs.Default_Tab === e.tab_id) e.default_selected = 1;
+										if (Settings.Tabs.includes(e.tab_id)) return e;
+									}).filter(Boolean).map((e,i) => {
+										e.pos = i + 1;
+										return e;
 									});
-									/*
-									body.data.tab = Configs.Tab.tab.map((t,i) => {
-										t.pos = i + 1;
-									});
-									*/
-									data.data.bottom = Configs.Tab.bottom.map(t => {
-										if (Settings.Bottoms.includes(t.tab_id)) return t;
+									data.bottom = Configs.Tab.bottom.map(e => {
+										if (Settings.Bottoms.includes(e.tab_id)) return e;
+									}).filter(Boolean).map((e,i) => {
+										e.pos = i + 1;
+										return e;
 									});
 									break;
 								case "x/resource/show/tab/bubble": // 首页-Tab-?
@@ -79,7 +81,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 						case "api.global.bilibili.com":
 							break;
 					};
-					$response.body = JSON.stringify(data);
+					$response.body = JSON.stringify(body);
 					break;
 				case "text/xml":
 					break;
