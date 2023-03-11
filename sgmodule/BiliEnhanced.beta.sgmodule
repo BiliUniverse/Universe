@@ -1,0 +1,13 @@
+#!name=📺 BiliBili: 🧰 BiliEnhanced
+#!desc=(BETA) 哔哩哔哩功能增强及自定义
+#!openUrl=http://boxjs.com/#/app/BiliBili.BiliEnhanced.beta
+#!author=VirgilClyne
+#!homepage=https://github.com/VirgilClyne
+#!manual=https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliEnhanced
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+
+[Script]
+BiliEnhanced.x.resource.show.tab.v2 = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab\/v2(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliEnhanced.response.beta.js, argument=
+
+[MITM]
+hostname = %APPEND% app.bilibili.com, app.biliintl.com
