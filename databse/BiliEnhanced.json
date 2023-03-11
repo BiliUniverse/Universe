@@ -20,8 +20,7 @@
                     "name": "推荐",
                     "uri": "bilibili://pegasus/promo",
                     "tab_id": "推荐tab",
-                    "pos": 2,
-                    "default_selected": 1
+                    "pos": 2
                 },
                 {
                     "id": 41,
