@@ -1,9 +1,9 @@
-#!name=📺 BiliBili for ✈ BiliRoaming
+#!name=📺 BiliBili: ✈ Roaming β
 #!desc=(BETA) 哔哩哔哩多地区漫游解锁及内容合成
-#!openUrl=http://boxjs.com/#/app/BiliBili.BiliRoaming.beta
+#!openUrl=http://boxjs.com/#/app/BiliBili.Roaming.beta
 #!author=VirgilClyne
 #!homepage=https://github.com/VirgilClyne
-#!manual=https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliRoaming
+#!manual=https://github.com/VirgilClyne/BiliBili/wiki/✈-Roaming
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
 
 [Script]

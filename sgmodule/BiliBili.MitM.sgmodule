@@ -1,9 +1,9 @@
-#!name=📺 BiliBili for 🔓 MitM
+#!name=📺 BiliBili: 🔓 MitM
 #!desc=(MitM) MitM所有能解密的BiliBili主机名称，仅供学习研究
 #!openUrl=http://boxjs.com/#/app/BiliBili
 #!author=VirgilClyne
 #!homepage=https://github.com/VirgilClyne
-#!manual=https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliRoaming
+#!manual=https://github.com/VirgilClyne/BiliBili/wiki/
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Unlock.png
 
 [General]
