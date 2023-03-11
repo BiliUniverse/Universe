@@ -1,13 +1,13 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliGlobal v1.0.1(12) request.beta");
+const $ = new Env("📺 BiliBili:Global v1.0.1(12) request.beta");
 const URL = new URLs();
 const DataBase = {
-    "BiliGlobal":{
+    "Global":{
 		"Settings":{"Switch":true,"Proxy":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}}
 	},
-	"BiliRoaming":{
+	"Roaming":{
 		"Settings":{"Switch":true,"Proxy":{"Pool":["xn--2vrub.plus","api.qiu.moe","xn--2vrub.icu","xn--n4yr07d.xn--6qq986b3xl","xn--3dz622b.xn--n4y597a0mfle743a.icu","bili.tuturu.top","xn--7rv796dvkm.xn--6qq986b3xl","xn--7ovr3tf1cxr4d.fun","xn--8fv56a330gjea.icu","xn--qoqt3y678a.xn--6qq986b3xl","atri.ink","xn--kiv440b.xn--6qq986b3xl","xn--w4r620anpl.xn--oor00vs23b.icu","xn--chqwq129p.pch.pub","melusinesuki.site","bili.takami.ink"],"Customs":""}}
 	},
 	"Default": {
@@ -23,7 +23,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 
 /***************** Processing *****************/
 !(async () => {
-    const { Settings, Caches, Configs } = await setENV("BiliBili", "BiliGlobal", DataBase);
+    const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
 	if (Settings.Switch) {
 		let url = URL.parse($request.url);
         $.log(url.path);
