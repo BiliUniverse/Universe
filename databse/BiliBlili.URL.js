@@ -14,6 +14,7 @@ switch (url.host) {
         };
 		break;
 	case "app.bilibili.com":
+	case "app.biliapi.net":
 		switch (url.path) {
 			case "x/resource/show/tab/v2": // 首页-Tab
 				break;

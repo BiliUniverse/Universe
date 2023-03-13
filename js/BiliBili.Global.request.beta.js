@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -54,6 +54,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 					};
 					break;
 				case "app.bilibili.com":
+				case "app.biliapi.net":
 					break;
 				case "api.bilibili.com":
 					switch (url.path) {

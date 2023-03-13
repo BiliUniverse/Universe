@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Enhanced v0.1.2(11) response");
+const $ = new Env("📺 BiliBili:Enhanced v0.1.2(12) response");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -54,6 +54,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 						case "grpc.biliapi.net":
 							break;
 						case "app.bilibili.com":
+						case "app.biliapi.net":
 							switch (url.path) {
 								case "x/resource/show/tab/v2": // 首页-Tab
 									// 顶栏-左侧
