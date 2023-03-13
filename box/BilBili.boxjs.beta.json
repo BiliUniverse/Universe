@@ -83,7 +83,7 @@
 					"desc": "选择启用的首页标签页，建议不超过7个"
 				},
 				{
-					"id": "@DualSubs.Enhanced.Settings.Home.Tab_default",
+					"id": "@BiliBili.Enhanced.Settings.Home.Tab_default",
 					"name": "首页: 默认标签页",
 					"val": "推荐tab",
 					"type": "selects",
