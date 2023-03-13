@@ -1,193 +1,371 @@
 {
-  "id": "BiliBili.beta.app.sub",
-  "name": "📺 哔哩哔哩 β",
-  "author": "@VirgilClyne",
-  "description": "哔哩哔哩功能增强系列",
-  "icon": "https://avatars.githubusercontent.com/u/2111377?s=100&v=4",
-  "repo": "https://github.com/VirgilClyne/BiliBili",
-  "apps": [
-    {
-      "id": "BiliBili.BiliGlobal.beta",
-      "name": "📺 哔哩全球 β",
-      "descs_html": [
-        "使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliGlobal#使用方式\">使用方式</a>进行配置",
-        "填写完成后记得点击此页面底端右下角的\"保存\"。"
-      ],
-      "keys": [
-        "@BiliBili.BiliGlobal.Settings",
-        "@BiliBili.BiliGlobal.Caches"
-      ],
-      "settings": [
-        {
-					"id": "@BiliBili.BiliGlobal.Settings.Switch",
+	"id": "BiliBili.app.beta.sub",
+	"name": "📺 哔哩哔哩 β",
+	"author": "@VirgilClyne",
+	"description": "哔哩哔哩功能增强系列",
+	"icon": "https://avatars.githubusercontent.com/u/2111377?s=100&v=4",
+	"repo": "https://github.com/VirgilClyne/BiliBili",
+	"apps": [
+		{
+			"id": "BiliBili.Enhanced.beta",
+			"name": "📺 BiliBili: Enhanced β",
+			"descs_html": [
+				"使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/📺-Enhanced#使用方式\">使用方式</a>进行配置",
+				"填写完成后记得点击此页面底端右下角的\"保存\"。"
+			],
+			"keys": [
+				"@BiliBili.Enhanced.Settings",
+				"@BiliBili.Enhanced.Caches"
+			],
+			"settings": [
+				{
+					"id": "@BiliBili.Enhanced.Settings.Switch",
 					"name": "总功能开关",
 					"val": true,
 					"type": "boolean",
 					"desc": "是否启用此APP修改"
 				},
-        {
-          "id": "@BiliBili.BiliGlobal.Settings.Proxy.CHN",
-          "name": "[🇨🇳中国大陆]代理或策略组选择",
-          "val": "DIRECT",
-          "type": "text",
-          "desc": "选择此地区代理或策略组"
-        },
-        {
-          "id": "@BiliBili.BiliGlobal.Settings.Proxy.HKG",
-          "name": "[🇭🇰中国香港]代理或策略组选择",
-          "val": "🇭🇰香港",
-          "type": "text",
-          "desc": "选择此地区代理或策略组"
-        },
-        {
-          "id": "@BiliBili.BiliGlobal.Settings.Proxy.MAC",
-          "name": "[🇲🇴中国澳门]代理或策略组选择",
-          "val": "🇲🇴澳门",
-          "type": "text",
-          "desc": "选择此地区代理或策略组"
-        },
-        {
-          "id": "@BiliBili.BiliGlobal.Settings.Proxy.TWN",
-          "name": "[🇹🇼中国台湾]代理或策略组选择",
-          "val": "🇹🇼台湾",
-          "type": "text",
-          "desc": "选择此地区代理或策略组"
-        },
-        {
-          "id": "@BiliBili.BiliGlobal.Settings.Proxy.SEA",
-          "name": "[东南亚地区]代理或策略组选择",
-          "val": "🇸🇬新加坡",
-          "type": "text",
-          "desc": "选择此地区代理或策略组"
-        }
-      ],
-      "author": "@VirgilClyne",
-      "repo": "https://github.com/VirgilClyne/BiliBili/blob/beta/",
-      "icons": ["https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/bilibili.png", "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png"]
-    },
-    {
-      "id": "BiliBili.BiliRoaming.beta",
-      "name": "📺 哔哩漫游 β",
-      "descs_html": [
-        "使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/📺-BiliRoming#使用方式\">使用方式</a>进行配置",
-        "填写完成后记得点击此页面底端右下角的\"保存\"。"
-      ],
-      "keys": [
-        "@BiliBili.BiliRoaming.Settings",
-        "@BiliBili.BiliRoaming.Caches"
-      ],
-      "settings": [
-        {
-					"id": "@BiliBili.BiliRoaming.Settings.Switch",
+				{
+					"id": "@BiliBili.Enhanced.Settings.Home.Tab",
+					"name": "首页: 标签页",
+					"val": [
+						"直播tab",
+						"推荐tab",
+						"hottopic",
+						"bangumi",
+						"anime",
+						"film",
+						"koreavtw"
+					],
+					"type": "checkboxes",
+					"items": [
+						{
+							"key": "直播tab",
+							"label": "直播"
+						},
+						{
+							"key": "推荐tab",
+							"label": "推荐"
+						},
+						{
+							"key": "hottopic",
+							"label": "热门"
+						},
+						{
+							"key": "bangumi",
+							"label": "番剧"
+						},
+						{
+							"key": "anime",
+							"label": "动画"
+						},
+						{
+							"key": "film",
+							"label": "影视"
+						},
+						{
+							"key": "school",
+							"label": "校园"
+						},
+						{
+							"key": "165",
+							"label": "两会"
+						},
+						{
+							"key": "kj",
+							"label": "数码"
+						},
+						{
+							"key": "koreavtw",
+							"label": "韩综"
+						}
+					],
+					"desc": "选择启用的首页标签页"
+				},
+				{
+					"id": "@DualSubs.Enhanced.Settings.Home.Tab_default",
+					"name": "首页: 默认标签页",
+					"val": "推荐tab",
+					"type": "selects",
+					"items": [
+						{
+							"key": "直播tab",
+							"label": "直播"
+						},
+						{
+							"key": "推荐tab",
+							"label": "推荐"
+						},
+						{
+							"key": "hottopic",
+							"label": "热门"
+						},
+						{
+							"key": "bangumi",
+							"label": "番剧"
+						},
+						{
+							"key": "anime",
+							"label": "动画"
+						},
+						{
+							"key": "film",
+							"label": "影视"
+						},
+						{
+							"key": "school",
+							"label": "校园"
+						},
+						{
+							"key": "165",
+							"label": "两会"
+						},
+						{
+							"key": "kj",
+							"label": "数码"
+						},
+						{
+							"key": "koreavtw",
+							"label": "韩综"
+						}
+					],
+					"desc": "启动客户端时默认展示的标签页"
+				},
+				{
+					"id": "@BiliBili.Enhanced.Settings.Bottom",
+					"name": "底部导航栏",
+					"val": [
+						"home",
+						"dynamic",
+						"ogv",
+						"会员购Bottom",
+						"我的Bottom"
+					],
+					"type": "checkboxes",
+					"items": [
+						{
+							"key": "home",
+							"label": "首页"
+						},
+						{
+							"key": "dynamic",
+							"label": "动态"
+						},
+						{
+							"key": "publish",
+							"label": "发布"
+						},
+						{
+							"key": "ogv",
+							"label": "节目"
+						},
+						{
+							"key": "会员购Bottom",
+							"label": "会员购"
+						},
+						{
+							"key": "我的Bottom",
+							"label": "我的"
+						}
+					],
+					"desc": "选择启用的底部导航栏"
+				}
+			],
+			"author": "@VirgilClyne",
+			"repo": "https://github.com/VirgilClyne/BiliBili/tree/beta",
+			"icons": [
+				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/bilibili.png",
+				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png"
+			]
+		},
+		{
+			"id": "BiliBili.Global.beta",
+			"name": "📺 BiliBili: Global β",
+			"descs_html": [
+				"使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/📺-Global#使用方式\">使用方式</a>进行配置",
+				"填写完成后记得点击此页面底端右下角的\"保存\"。"
+			],
+			"keys": [
+				"@BiliBili.Global.Settings",
+				"@BiliBili.Global.Caches"
+			],
+			"settings": [
+				{
+					"id": "@BiliBili.Global.Settings.Switch",
 					"name": "总功能开关",
 					"val": true,
 					"type": "boolean",
 					"desc": "是否启用此APP修改"
 				},
-        {
-          "id": "@BiliBili.BiliRoaming.Settings.Proxy.Pool",
-          "name": "代理池选择",
-          "val": [
-            "xn--2vrub.plus",
-            "api.qiu.moe",
-            "xn--2vrub.icu",
-            "xn--n4yr07d.xn--6qq986b3xl",
-            "xn--3dz622b.xn--n4y597a0mfle743a.icu",
-            "bili.tuturu.top",
-            "xn--7rv796dvkm.xn--6qq986b3xl",
-            "xn--7ovr3tf1cxr4d.fun",
-            "xn--8fv56a330gjea.icu",
-            "xn--qoqt3y678a.xn--6qq986b3xl",
-            "atri.ink",
-            "xn--kiv440b.xn--6qq986b3xl",
-            "xn--w4r620anpl.xn--oor00vs23b.icu",
-            "xn--chqwq129p.pch.pub",
-            "melusinesuki.site",
-            "bili.takami.ink"
-          ],
-          "type": "checkboxes",
-          "items": [
-            {
-              "key": "xn--2vrub.plus",
-              "label": "哔哩.plus by @Kimmy_XYC"
-            },
-            {
-              "key": "api.qiu.moe",
-              "label": "api.qiu.moe by @Sakura_Akino"
-            },
-            {
-              "key": "xn--2vrub.icu",
-              "label": "哔哩.icu by @qi_mo_bot"
-            },
-            {
-              "key": "xn--n4yr07d.xn--6qq986b3xl",
-              "label": "陈睿.我爱你 by @internetbugs"
-            },
-            {
-              "key": "xn--3dz622b.xn--n4y597a0mfle743a.icu",
-              "label": "xn--3dz622b.xn--n4y597a0mfle743a.icu by @internetbugs"
-            },
-            {
-              "key": "bili.tuturu.top",
-              "label": "bili.tuturu.top by @AisukaYuki"
-            },
-            {
-              "key": "xn--7rv796dvkm.xn--6qq986b3xl",
-              "label": "東雪蓮.我爱你 by @東雪蓮Official"
-            },
-            {
-              "key": "xn--7ovr3tf1cxr4d.fun",
-              "label": "璃月烧鸡.fun by @東雪蓮Official"
-            },
-            {
-              "key": "xn--8fv56a330gjea.icu",
-              "label": "xn--8fv56a330gjea.icu by @東雪蓮Official"
-            },
-            {
-              "key": "xn--qoqt3y678a.xn--6qq986b3xl",
-              "label": "伊蕾娜.我爱你 by @azurstar"
-            },
-            {
-              "key": "atri.ink",
-              "label": "atri.ink by @atri828"
-            },
-            {
-              "key": "xn--kiv440b.xn--6qq986b3xl",
-              "label": "星瞳.我爱你 by @星瞳_Official"
-            },
-            {
-              "key": "xn--w4r620anpl.xn--oor00vs23b.icu",
-              "label": "嘉然批.发超市.icu by @P CH"
-            },
-            {
-              "key": "xn--chqwq129p.pch.pub",
-              "label": "万人骑.pch.pub by @pchpub"
-            },
-            {
-              "key": "melusinesuki.site",
-              "label": "melusinesuki.site by @kotori tan"
-            },
-            {
-              "key": "bili.takami.ink",
-              "label": "bili.takami.ink by @Takami114514"
-            }
-          ],
-          "desc": "选择启用的服务器"
-        },
-        {
-          "id": "@BiliBili.BiliRoaming.Settings.Proxy.Customs",
-          "name": "代理池自定义",
-          "val": "",
-          "type": "textarea",
-          "placeholder": "api.bilibili.sb",
-          "autoGrow": true,
-          "rows": 3,
-          "desc": "一行一个代理域名，以回车/换行分隔多个域名，留空不修改"
-        }
-      ],
-      "author": "@VirgilClyne",
-      "repo": "https://github.com/VirgilClyne/BiliBili/blob/beta/js/BiliRomaing.beta.js",
-      "icons": ["https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/bilibili.png", "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png"]
-    }
-  ]
+				{
+					"id": "@BiliBili.Global.Settings.Proxy.CHN",
+					"name": "[🇨🇳中国大陆]代理或策略组选择",
+					"val": "DIRECT",
+					"type": "text",
+					"desc": "选择此地区代理或策略组"
+				},
+				{
+					"id": "@BiliBili.Global.Settings.Proxy.HKG",
+					"name": "[🇭🇰中国香港]代理或策略组选择",
+					"val": "🇭🇰香港",
+					"type": "text",
+					"desc": "选择此地区代理或策略组"
+				},
+				{
+					"id": "@BiliBili.Global.Settings.Proxy.MAC",
+					"name": "[🇲🇴中国澳门]代理或策略组选择",
+					"val": "🇲🇴澳门",
+					"type": "text",
+					"desc": "选择此地区代理或策略组"
+				},
+				{
+					"id": "@BiliBili.BiliGlobal.Settings.Proxy.TWN",
+					"name": "[🇹🇼中国台湾]代理或策略组选择",
+					"val": "🇹🇼台湾",
+					"type": "text",
+					"desc": "选择此地区代理或策略组"
+				},
+				{
+					"id": "@BiliBili.Global.Settings.Proxy.SEA",
+					"name": "[东南亚地区]代理或策略组选择",
+					"val": "🇸🇬新加坡",
+					"type": "text",
+					"desc": "选择此地区代理或策略组"
+				}
+			],
+			"author": "@VirgilClyne",
+			"repo": "https://github.com/VirgilClyne/BiliBili/tree/beta",
+			"icons": [
+				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/bilibili.png",
+				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png"
+			]
+		},
+		{
+			"id": "BiliBili.Roaming.beta",
+			"name": "📺 BiliBili: Roaming β",
+			"descs_html": [
+				"使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/📺-Roming#使用方式\">使用方式</a>进行配置",
+				"填写完成后记得点击此页面底端右下角的\"保存\"。"
+			],
+			"keys": [
+				"@BiliBili.Roaming.Settings",
+				"@BiliBili.Roaming.Caches"
+			],
+			"settings": [
+				{
+					"id": "@BiliBili.Roaming.Settings.Switch",
+					"name": "总功能开关",
+					"val": true,
+					"type": "boolean",
+					"desc": "是否启用此APP修改"
+				},
+				{
+					"id": "@BiliBili.Roaming.Settings.Proxy.Pool",
+					"name": "代理池选择",
+					"val": [
+						"xn--2vrub.plus",
+						"api.qiu.moe",
+						"xn--2vrub.icu",
+						"xn--n4yr07d.xn--6qq986b3xl",
+						"xn--3dz622b.xn--n4y597a0mfle743a.icu",
+						"bili.tuturu.top",
+						"xn--7rv796dvkm.xn--6qq986b3xl",
+						"xn--7ovr3tf1cxr4d.fun",
+						"xn--8fv56a330gjea.icu",
+						"xn--qoqt3y678a.xn--6qq986b3xl",
+						"atri.ink",
+						"xn--kiv440b.xn--6qq986b3xl",
+						"xn--w4r620anpl.xn--oor00vs23b.icu",
+						"xn--chqwq129p.pch.pub",
+						"melusinesuki.site",
+						"bili.takami.ink"
+					],
+					"type": "checkboxes",
+					"items": [
+						{
+							"key": "xn--2vrub.plus",
+							"label": "哔哩.plus by @Kimmy_XYC"
+						},
+						{
+							"key": "api.qiu.moe",
+							"label": "api.qiu.moe by @Sakura_Akino"
+						},
+						{
+							"key": "xn--2vrub.icu",
+							"label": "哔哩.icu by @qi_mo_bot"
+						},
+						{
+							"key": "xn--n4yr07d.xn--6qq986b3xl",
+							"label": "陈睿.我爱你 by @internetbugs"
+						},
+						{
+							"key": "xn--3dz622b.xn--n4y597a0mfle743a.icu",
+							"label": "xn--3dz622b.xn--n4y597a0mfle743a.icu by @internetbugs"
+						},
+						{
+							"key": "bili.tuturu.top",
+							"label": "bili.tuturu.top by @AisukaYuki"
+						},
+						{
+							"key": "xn--7rv796dvkm.xn--6qq986b3xl",
+							"label": "東雪蓮.我爱你 by @東雪蓮Official"
+						},
+						{
+							"key": "xn--7ovr3tf1cxr4d.fun",
+							"label": "璃月烧鸡.fun by @東雪蓮Official"
+						},
+						{
+							"key": "xn--8fv56a330gjea.icu",
+							"label": "xn--8fv56a330gjea.icu by @東雪蓮Official"
+						},
+						{
+							"key": "xn--qoqt3y678a.xn--6qq986b3xl",
+							"label": "伊蕾娜.我爱你 by @azurstar"
+						},
+						{
+							"key": "atri.ink",
+							"label": "atri.ink by @atri828"
+						},
+						{
+							"key": "xn--kiv440b.xn--6qq986b3xl",
+							"label": "星瞳.我爱你 by @星瞳_Official"
+						},
+						{
+							"key": "xn--w4r620anpl.xn--oor00vs23b.icu",
+							"label": "嘉然批.发超市.icu by @P CH"
+						},
+						{
+							"key": "xn--chqwq129p.pch.pub",
+							"label": "万人骑.pch.pub by @pchpub"
+						},
+						{
+							"key": "melusinesuki.site",
+							"label": "melusinesuki.site by @kotori tan"
+						},
+						{
+							"key": "bili.takami.ink",
+							"label": "bili.takami.ink by @Takami114514"
+						}
+					],
+					"desc": "选择启用的服务器"
+				},
+				{
+					"id": "@BiliBili.Roaming.Settings.Proxy.Customs",
+					"name": "代理池自定义",
+					"val": "",
+					"type": "textarea",
+					"placeholder": "api.bilibili.sb",
+					"autoGrow": true,
+					"rows": 3,
+					"desc": "一行一个代理域名，以回车/换行分隔多个域名，留空不修改"
+				}
+			],
+			"author": "@VirgilClyne",
+			"repo": "https://github.com/VirgilClyne/BiliBili/tree/beta",
+			"icons": [
+				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/bilibili.png",
+				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png"
+			]
+		}
+	]
 }
