@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Roaming v1.0.5 request.beta");
+const $ = new Env("📺 BiliBili:Roaming v0.1.5 request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Roaming":{
