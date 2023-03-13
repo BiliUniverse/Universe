@@ -1,0 +1,25 @@
+name: 📺 BiliBili: 🧰 BiliEnhanced
+desc: 哔哩哔哩功能增强及自定义
+openUrl: http://boxjs.com/#/app/BiliBili.Enhanced
+author: VirgilClyne
+homepage: https://github.com/VirgilClyne
+manual: https://github.com/VirgilClyne/BiliBili/wiki/🧰-Enhanced
+icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+
+http:
+  mitm:
+    - "app.bilibili.com"
+    - "app.biliapi.net"
+    - "app.biliintl.com"
+  script:
+    - match: ^https?:\/\/app\.bili(bili|api)\.(com|net)\/x\/resource\/show\/tab\/v2(\?.+)?$
+      name: BiliBili.Enhanced.response
+      type: response
+      require-body: true
+      timeout: 15
+      max-size: 0
+
+script-providers:
+  BiliBili.Enhanced.response:
+    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Enhanced.response.js
+    interval: 86400
