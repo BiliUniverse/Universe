@@ -132,6 +132,23 @@
 					"desc": "选择启动APP时默认展示的标签页，需选择已启用的标签页"
 				},
 				{
+					"id": "@BiliBili.Enhanced.Settings.Home.Top_left",
+					"name": "首页: 顶栏（左侧）按钮（用户头像）",
+					"val": "mine",
+					"type": "selects",
+					"items": [
+						{
+							"key": "mine",
+							"label": "用户中心-我的"
+						},
+						{
+							"key": "videoshortcut",
+							"label": "短视频"
+						}
+					],
+					"desc": "选择顶栏（左侧）按钮（用户头像）的作用（在biliBili粉色版中无法修改）"
+				},
+				{
 					"id": "@BiliBili.Enhanced.Settings.Home.Top",
 					"name": "首页: 顶栏（右侧）按钮",
 					"val": [
