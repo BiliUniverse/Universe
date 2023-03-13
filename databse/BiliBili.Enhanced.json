@@ -2,9 +2,7 @@
 	"Settings": {
 		"Switch": "true",
 		"Home": {
-			"Top_left": [
-				"我的Bottom"
-			],
+			"Top_left": "mine",
 			"Top": [
 				"消息Top"
 			],
