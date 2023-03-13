@@ -223,14 +223,26 @@
 				}
 			],
 			"top_left": {
-				"exp": 1,
-				"head_tag": "https://i0.hdslb.com/bfs/app/92e7b36c3bd10c850e8a2ba85d19566937751540.png",
-				"url": "bilibili://videoshortcut?user_reg_state=0",
-				"goto": 2,
-				"story_background_image": "http://i0.hdslb.com/bfs/app/7391267ec11cfe99823a8cfd80532a7bc6eca390.png",
-				"story_foreground_image": "http://i0.hdslb.com/bfs/app/98098cfd9349b7500c233216169d768cd536d305.png",
-				"listen_background_image": "http://i0.hdslb.com/bfs/app/365848675f453e32b42567ba9e249a347a5df061.png",
-				"listen_foreground_image": "http://i0.hdslb.com/bfs/app/986ee5e963237d511802c4084c83c2f228e97369.png"
+				"mine": {
+					"exp": 0,
+					"head_tag": "",
+					"url": "bilibili://user_center/mine",
+					"goto": 1,
+					"story_background_image": "",
+					"story_foreground_image": "",
+					"listen_background_image": "",
+					"listen_foreground_image": ""
+				},
+				"videoshortcut": {
+					"exp": 1,
+					"head_tag": "https://i0.hdslb.com/bfs/app/92e7b36c3bd10c850e8a2ba85d19566937751540.png",
+					"url": "bilibili://videoshortcut?user_reg_state=0",
+					"goto": 2,
+					"story_background_image": "http://i0.hdslb.com/bfs/app/7391267ec11cfe99823a8cfd80532a7bc6eca390.png",
+					"story_foreground_image": "http://i0.hdslb.com/bfs/app/98098cfd9349b7500c233216169d768cd536d305.png",
+					"listen_background_image": "http://i0.hdslb.com/bfs/app/365848675f453e32b42567ba9e249a347a5df061.png",
+					"listen_foreground_image": "http://i0.hdslb.com/bfs/app/986ee5e963237d511802c4084c83c2f228e97369.png"
+				}
 			}
 		}
 	}
