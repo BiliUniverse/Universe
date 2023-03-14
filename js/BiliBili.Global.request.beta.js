@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -35,16 +35,17 @@ for (const [key, value] of Object.entries($request.headers)) {
 		default:
 			let url = URL.parse($request.url);
 			$.log(url.path);
-			let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
-			$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
 			switch (url.host) {
 				case "grpc.biliapi.net":
 					switch (url.path) {
 						case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
 							break;
 						case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
+							let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
+							$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
 							break;
-						case "bilibili.app.nativeact.v1.NativeAct/Index": // 动画（番剧）（港澳台）（白）
+						case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
+							break;
 						case "bilibili.app.interface.v1.Search/Suggest3": // 搜索-建议
 							break;
 						case "bilibili.polymer.app.search.v1.Search/SearchAll": // 搜索-全部结果（综合）
@@ -55,18 +56,41 @@ for (const [key, value] of Object.entries($request.headers)) {
 					break;
 				case "app.bilibili.com":
 				case "app.biliapi.net":
+					switch (url.path) {
+						case "x/v2/search/type": // 搜索
+						case "x/web-interface/search/type": // 搜索
+							break;
+						case "x/v2/space": // 用户空间
+							switch (url.params.vmid || url.params.mid) {
+								case "11783021": // 哔哩哔哩番剧出差
+								case "2042149112": // b站_綜藝咖
+									let responses = await mutiFetch($request, Settings.Proxy, ["HKG"]);
+									$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
+									$response = responses["HKG"];
+									break;
+								default:
+									break;
+							};
+							break;
+					};
 					break;
 				case "api.bilibili.com":
 					switch (url.path) {
 						case "pgc/player/api/playurl": // 播放地址
 						case "pgc/player/web/playurl": // 播放地址
 							break;
-						case "x/v2/search/type": // 搜索
-						case "x/web-interface/search/type": // 搜索
+						case "x/space/wbi/acc/info": // 用户空间-账号信息
+							switch (url.params.vmid || url.params.mid) {
+								case "11783021": // 哔哩哔哩番剧出差
+								case "2042149112": // b站_綜藝咖
+									let responses = await mutiFetch($request, Settings.Proxy, ["HKG"]);
+									$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
+									$response = responses["HKG"];
+									break;
+								default:
+									break;
+							};
 							break;
-						case "x/v2/space": // 用户空间
-							if (url.params.vmid == "11783021") // 哔哩哔哩番剧出差
-								break;
 						case "pgc/page/bangumi": // 追番
 							break;
 						case "pgc/page/module/mine": // 追番-正在追
@@ -92,6 +116,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 					};
 					break;
 				case "app.biliintl.com":
+					break;
 				case "api.global.bilibili.com":
 					switch (url.path) {
 						case "intl/gateway/v2/ogv/playurl":
