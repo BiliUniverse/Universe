@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(13) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(16) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -91,13 +91,18 @@ for (const [key, value] of Object.entries($request.headers)) {
 								let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG", "TWN"]);
 								let all_locates = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
-								for (var response in responses) {
+								for (let response in responses) {
 									$.log(`🚧 ${$.name}`, `${response}.statusCode: ${responses[response].statusCode}`, "");
 									if (responses[response].statusCode !== 200) delete responses[response];
 								};
 								let match_available = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `match_available: ${match_available}`, "");
-								$.done(responses[match_available[Math.floor(Math.random()*match_available.length)]]); // 随机用一个
+								let response = responses[match_available[Math.floor(Math.random() * match_available.length)]]; // 随机用一个
+								delete response.hreaders["Content-Encoding"];
+								if ($.isQuanX()) {
+									response.status = "HTTP/2 200";
+									$.done(response)
+								} else $.done({ response })
 							};
 						case "grpc.biliapi.net":
 							switch (url.path) {
