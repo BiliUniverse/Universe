@@ -5,7 +5,8 @@ switch (url.host) {
 				break;
 			case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 				break;
-			case "bilibili.app.nativeact.v1.NativeAct/Index": // 动画（番剧）（港澳台）（白）
+			case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
+				break;
 			case "bilibili.app.interface.v1.Search/Suggest3": // 搜索-建议
                 break;
 			case "bilibili.polymer.app.search.v1.Search/SearchAll": // 搜索-全部结果（综合）
@@ -61,8 +62,15 @@ switch (url.host) {
 			case "x/web-interface/search/type": // 搜索
 				break;
 			case "x/v2/space": // 用户空间
-				if (url.params.vmid == "11783021") // 哔哩哔哩番剧出差
-					break;
+			case "x/space/wbi/acc/info": // 用户空间-账号信息
+				switch (url.params.vmid || url.params.mid) {
+					case "11783021": // 哔哩哔哩番剧出差
+					case "2042149112": // b站_綜藝咖
+						break;
+					default:
+						break;
+				};
+				break;
 			case "pgc/page/bangumi": // 追番
 				break;
 			case "pgc/page/module/mine": // 追番-正在追
