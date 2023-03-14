@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(16) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(20) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -87,8 +87,9 @@ for (const [key, value] of Object.entries($request.headers)) {
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
+						case "m.bilibili.com":
 							if (url.path.includes("bangumi/play/ss")) {// web版番剧
-								let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG", "TWN"]);
+								let responses = await mutiFetch($request, Settings.Proxy, ["HKG", "TWN", "CHN"]);
 								let all_locates = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
 								for (let response in responses) {
@@ -97,13 +98,20 @@ for (const [key, value] of Object.entries($request.headers)) {
 								};
 								let match_available = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `match_available: ${match_available}`, "");
+								//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
 								let response = responses[match_available[Math.floor(Math.random() * match_available.length)]]; // 随机用一个
-								delete response.hreaders["Content-Encoding"];
+								// headers转小写
+								for (const [key, value] of Object.entries(response.headers)) {
+									delete response.headers[key]
+									response.headers[key.toLowerCase()] = value
+								};
+								delete response.headers["content-encoding"];
 								if ($.isQuanX()) {
 									response.status = "HTTP/2 200";
 									$.done(response)
 								} else $.done({ response })
 							};
+							break;
 						case "grpc.biliapi.net":
 							switch (url.path) {
 								case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
@@ -273,7 +281,7 @@ async function Fetch(request = {}) {
 async function mutiFetch(request = {}, proxies = {}, locales = []) {
     $.log(`⚠ ${$.name}, Fetch Muti-Locales Reqeusts`, `locales = [${locales}]`, "");
     let responses = {};
-	await Promise.all(locales.map(async locale => { responses[locale] = await Fetch(ReReqeust(request, proxies[locale])) }));
+	await Promise.allSettled(locales.map(async locale => { responses[locale] = await Fetch(ReReqeust(request, proxies[locale])) }));
 	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
 	//$.log(`🚧 ${$.name}, Fetch Muti-Locales Reqeusts`, `Responses:${JSON.stringify(responses)}`, "");
     return responses;
