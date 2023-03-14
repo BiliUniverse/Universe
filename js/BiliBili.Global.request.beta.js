@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(13) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -87,11 +87,17 @@ for (const [key, value] of Object.entries($request.headers)) {
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
-							if (url.path.includes(/^bangumi\/play\/ss\d+/)) {// web版番剧
+							if (url.path.includes("bangumi/play/ss")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG", "TWN"]);
+								let all_locates = Object.keys(responses);
+								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
 								for (var response in responses) {
-									if (response.status || response.statusCode === 200) $.done(responses);
+									$.log(`🚧 ${$.name}`, `${response}.statusCode: ${responses[response].statusCode}`, "");
+									if (responses[response].statusCode !== 200) delete responses[response];
 								};
+								let match_available = Object.keys(responses);
+								$.log(`🚧 ${$.name}`, `match_available: ${match_available}`, "");
+								$.done(responses[match_available[Math.floor(Math.random()*match_available.length)]]); // 随机用一个
 							};
 						case "grpc.biliapi.net":
 							switch (url.path) {
@@ -231,7 +237,7 @@ function ReReqeust(request = {}, proxyName = "") {
 	if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
 	if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
 	$.log(`🎉 ${$.name}, Construct Redirect Reqeusts`, "");
-	$.log(`🚧 ${$.name}, Construct Redirect Reqeusts`, `Request:${JSON.stringify(request)}`, "");
+	//$.log(`🚧 ${$.name}, Construct Redirect Reqeusts`, `Request:${JSON.stringify(request)}`, "");
 	return request;
 };
 
@@ -247,7 +253,7 @@ async function Fetch(request = {}) {
 		? await $.http.post(request)
 		: await $.http.get(request);
 	$.log(`🎉 ${$.name}, Fetch Ruled Reqeust`, "");
-	$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
+	//$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
 	return response;
 };
 
@@ -264,7 +270,7 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
     let responses = {};
 	await Promise.all(locales.map(async locale => { responses[locale] = await Fetch(ReReqeust(request, proxies[locale])) }));
 	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
-	$.log(`🚧 ${$.name}, Fetch Muti-Locales Reqeusts`, `Responses:${JSON.stringify(responses)}`, "");
+	//$.log(`🚧 ${$.name}, Fetch Muti-Locales Reqeusts`, `Responses:${JSON.stringify(responses)}`, "");
     return responses;
 };
 
