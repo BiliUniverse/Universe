@@ -3,6 +3,8 @@ switch (url.host) {
 		switch (url.path) {
 			case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
 				break;
+			case "bilibili.app.playurl.v1.PlayURL/PlayConf": // 普通视频-播放配置？
+				break;
 			case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 				break;
 			case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
@@ -17,6 +19,18 @@ switch (url.host) {
 	case "app.bilibili.com":
 	case "app.biliapi.net":
 		switch (url.path) {
+			case "x/v2/search/type": // 搜索
+			case "x/web-interface/search/type": // 搜索
+				break;
+			case "x/v2/space": // 用户空间
+				switch (url.params.vmid || url.params.mid) {
+					case "11783021": // 哔哩哔哩番剧出差
+					case "2042149112": // b站_綜藝咖
+						break;
+					default:
+						break;
+				};
+				break;
 			case "x/resource/show/tab/v2": // 首页-Tab
 				break;
 			case "x/resource/show/tab/bubble": // 首页-Tab-?
@@ -58,10 +72,6 @@ switch (url.host) {
 			case "pgc/player/api/playurl": // 播放地址
 			case "pgc/player/web/playurl": // 播放地址
 				break;
-			case "x/v2/search/type": // 搜索
-			case "x/web-interface/search/type": // 搜索
-				break;
-			case "x/v2/space": // 用户空间
 			case "x/space/wbi/acc/info": // 用户空间-账号信息
 				switch (url.params.vmid || url.params.mid) {
 					case "11783021": // 哔哩哔哩番剧出差
