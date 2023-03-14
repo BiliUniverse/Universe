@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(6) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -86,12 +86,19 @@ for (const [key, value] of Object.entries($request.headers)) {
 				default:
 					// 解析链接
 					switch (url.host) {
+						case "www.bilibili.com":
+							if (url.path.includes(/^bangumi\/play\/ss\d+/)) {// web版番剧
+								let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG", "TWN"]);
+								for (var response in responses) {
+									if (response.status || response.statusCode === 200) $.done(responses);
+								};
+							};
 						case "grpc.biliapi.net":
 							switch (url.path) {
 								case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
 									break;
 								case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
-									let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
+									//let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
 									break;
 								case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 									break;
@@ -123,9 +130,6 @@ for (const [key, value] of Object.entries($request.headers)) {
 							break;
 						case "api.bilibili.com":
 							switch (url.path) {
-								case "x/web-show/wbi/res/locs": // web-show测试											$request = ReReqeust($request, Settings.Proxy["HKG"]);
-									$request = ReReqeust($request, Settings.Proxy["HKG"]);									
-									break;
 								case "pgc/player/api/playurl": // 播放地址
 								case "pgc/player/web/playurl": // 播放地址
 									break;
