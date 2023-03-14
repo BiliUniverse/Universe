@@ -18,5 +18,7 @@ BiliIntl.Global.search.json = type=http-request, pattern=^https?:\/\/api\.global
 BiliBili.Global.space.json = type=http-request, pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, argument=
 BiliBili.Global.space.json = type=http-request, pattern=^https?:\/\/api\.bilibili\.com\/x\/space\/wbi/acc\/info(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, argument=
 
+BiliBili.Global.web-show.json = type=http-request, pattern=^https?:\/\/api\.bilibili\.com\/x\/web-show\/wbi/res\/locs(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, argument=
+
 [MITM]
 hostname = %APPEND% grpc.biliapi.net, api.bilibili.com, api.global.bilibili.com, app.bilibili.com

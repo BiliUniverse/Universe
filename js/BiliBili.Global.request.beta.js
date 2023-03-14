@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -123,6 +123,9 @@ for (const [key, value] of Object.entries($request.headers)) {
 							break;
 						case "api.bilibili.com":
 							switch (url.path) {
+								case "x/web-show/wbi/res/locs": // web-show测试											$request = ReReqeust($request, Settings.Proxy["HKG"]);
+									$request = ReReqeust($request, Settings.Proxy["HKG"]);									
+									break;
 								case "pgc/player/api/playurl": // 播放地址
 								case "pgc/player/web/playurl": // 播放地址
 									break;
