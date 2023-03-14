@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(10) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -42,7 +42,6 @@ for (const [key, value] of Object.entries($request.headers)) {
 							break;
 						case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 							let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
-							$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
 							break;
 						case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 							break;
@@ -64,9 +63,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 							switch (url.params.vmid || url.params.mid) {
 								case "11783021": // 哔哩哔哩番剧出差
 								case "2042149112": // b站_綜藝咖
-									let responses = await mutiFetch($request, Settings.Proxy, ["HKG"]);
-									$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
-									$response = responses["HKG"];
+									$request = ReReqeust($request, Settings.Proxy["HKG"]);
 									break;
 								default:
 									break;
@@ -83,9 +80,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 							switch (url.params.vmid || url.params.mid) {
 								case "11783021": // 哔哩哔哩番剧出差
 								case "2042149112": // b站_綜藝咖
-									let responses = await mutiFetch($request, Settings.Proxy, ["HKG"]);
-									$.log(`🚧 ${$.name}`, `Responses:${JSON.stringify(responses)}`, "");
-									$response = responses["HKG"];
+									$request = ReReqeust($request, Settings.Proxy["HKG"]);
 									break;
 								default:
 									break;
@@ -146,24 +141,25 @@ for (const [key, value] of Object.entries($request.headers)) {
 })()
 .catch((e) => $.logErr(e))
 .finally(() => {
+	$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
 	// 设置格式
-	const Format = $response?.headers?.["content-type"]?.split(";")?.[0]
+	const Format = $request?.headers?.["content-type"]?.split(";")?.[0]
 	$.log(`🚧 ${$.name}`, `Format: ${Format}`, "");
 	switch (Format) {
 		case "application/json":
 		case "text/xml":
 		default:
-			if ($.isQuanX()) $.done({ headers: $response.headers, body: $response.body })
-			else $.done($response)
+			if ($.isQuanX()) $.done({ headers: $request.headers, body: $request.body, opts: $request.opts })
+			else $.done($request)
 			break;
 		case "application/x-protobuf":
 			if ($.isQuanX()) {
-				$.log(`${$response.bodyBytes.byteLength}---${$response.bodyBytes.buffer.byteLength}`);
-				$.log(`bodyBytes.byteOffset: ${$response.bodyBytes.byteOffset}}`);
-				$.done({ headers: $response.headers, bodyBytes: $response.bodyBytes.buffer.slice($response.bodyBytes.byteOffset, $response.bodyBytes.byteLength + $response.bodyBytes.byteOffset) });
+				$.log(`${$request.bodyBytes.byteLength}---${$request.bodyBytes.buffer.byteLength}`);
+				$.log(`bodyBytes.byteOffset: ${$request.bodyBytes.byteOffset}}`);
+				$.done({ headers: $request.headers, bodyBytes: $request.bodyBytes.buffer.slice($request.bodyBytes.byteOffset, $request.bodyBytes.byteLength + $request.bodyBytes.byteOffset), opts: $request.opts });
 			} else {
-				$.log(`${$response.body.byteLength}---${$response.body.buffer.byteLength}`);
-				$.done($response)
+				$.log(`${$request.body.byteLength}---${$request.body.buffer.byteLength}`);
+				$.done($request)
 			}
 			break;
 	};
@@ -200,6 +196,42 @@ async function setENV(name, platform, database) {
 };
 
 /**
+ * Construct Redirect Reqeusts
+ * @author VirgilClyne
+ * @param {Object} request - Original Request Content
+ * @param {Object} proxyName - Proxies Name
+ * @return {Object}
+ */
+function ReReqeust(request = {}, proxyName = "") {
+	$.log(`⚠ ${$.name}, Construct Redirect Reqeusts`, "");
+	if ($.isLoon()) request.node = proxyName;
+	if ($.isQuanX()) request.opts = { "policy": proxyName };
+	if ($.isSurge()) request.headers["X-Surge-Policy"] = proxyName;
+	if ($.isSurge()) request.policy = proxyName;
+	if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
+	if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
+	$.log(`🎉 ${$.name}, Construct Redirect Reqeusts`, "");
+	$.log(`🚧 ${$.name}, Construct Redirect Reqeusts`, `Request:${JSON.stringify(request)}`, "");
+	return request;
+};
+
+/**
+ * Fetch Ruled Reqeust
+ * @author VirgilClyne
+ * @param {Object} request - Original Request Content
+ * @return {Promise<*>}
+ */
+async function Fetch(request = {}) {
+	$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
+	let response = (request.body)
+		? await $.http.post(request)
+		: await $.http.get(request);
+	$.log(`🎉 ${$.name}, Fetch Ruled Reqeust`, "");
+	$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
+	return response;
+};
+
+/**
  * Fetch Muti-Locales Reqeusts
  * @author VirgilClyne
  * @param {Object} request - Original Request Content
@@ -210,26 +242,10 @@ async function setENV(name, platform, database) {
 async function mutiFetch(request = {}, proxies = {}, locales = []) {
     $.log(`⚠ ${$.name}, Fetch Muti-Locales Reqeusts`, `locales = [${locales}]`, "");
     let responses = {};
-	await Promise.all(locales.map(async locale => { responses[locale] = await Fetch(request, proxies[locale]) }));
+	await Promise.all(locales.map(async locale => { responses[locale] = await Fetch(ReReqeust(request, proxies[locale])) }));
 	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
+	$.log(`🚧 ${$.name}, Fetch Muti-Locales Reqeusts`, `Responses:${JSON.stringify(responses)}`, "");
     return responses;
-
-	async function Fetch(request = {}, proxyName = "") {
-		$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
-		if ($.isLoon()) request.node = proxyName;
-		if ($.isQuanX()) request.opts = { "policy": proxyName };
-		//if ($.isSurge()) request.headers["X-Surge-Policy"] = proxyName;
-		if ($.isSurge()) request.policy = proxyName;
-		if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
-		if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
-		$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Request:${JSON.stringify(request)}`, "");
-		
-		let response = (request.body)
-			? await $.http.post(request)
-			: await $.http.get(request);
-        //$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
-		return response;
-    };
 };
 
 /***************** Env *****************/
