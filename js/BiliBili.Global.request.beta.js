@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.5(13) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.5(21) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -43,17 +43,23 @@ for (const [key, value] of Object.entries($request.headers)) {
 					let data = { "code": 0, "message": "0", "data": {} };
 					// 解析格式
 					switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
+						case "text/html":
+							break;
+						case "text/xml":
+							break;
+						case "application/x-www-form-urlencoded":
 						case "application/json":
 							switch ($request.headers["grpc-encoding"]) {
 								case "gzip":
-									delete $request.headers["grpc-encoding"];
+								case "deflate":
+									$request.headers["grpc-encoding"] = "identity";
 									//break; // 不需要break, 继续处理
+								case undefined:
 								default:
-									$request.headers["content-type"] = "application/grpc";
+									$request.headers["content-type"] = "application/grpc"; // HTTP/2 自动添加
+									$request.headers["Content-Type"] = "application/grpc"; // HTTP/1.1 自动添加
 									break;
 							};
-							break;
-						case "text/xml":
 							break;
 						case "application/x-protobuf":
 						case "application/grpc":
@@ -340,6 +346,7 @@ function isResponseAvailability(response = {}) {
 			break;
 		case 403:
 		case 404:
+		case 415:
 		default:
 			isAvailable = false;
 			break;
