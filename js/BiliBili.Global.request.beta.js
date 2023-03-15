@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.5(10) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.5(13) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -115,18 +115,15 @@ for (const [key, value] of Object.entries($request.headers)) {
 								case "bilibili.app.playurl.v1.PlayURL/PlayConf": // 普通视频-播放配置？
 									break;
 								case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
-									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-									let availableLocales = checkLocales(responses);
-									//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
-									let response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-									// headers转小写
-									for (const [key, value] of Object.entries(response.headers)) {
-										delete response.headers[key]
-										response.headers[key.toLowerCase()] = value
+									switch ($request.headers["grpc-encoding"]) {
+										case "gzip":
+											$request.headers["content-type"] = "application/grpc";
+											delete $request.headers["grpc-encoding"];
+											break;
+										default:
+											break;
 									};
-									delete response.headers["content-encoding"];
-									if ($.isQuanX()) $.done(response)
-									else $.done({ response });
+									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 									break;
 								case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 									break;
