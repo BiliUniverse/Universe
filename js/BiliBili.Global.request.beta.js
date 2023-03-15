@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(23) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(27) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -94,10 +94,24 @@ for (const [key, value] of Object.entries($request.headers)) {
 								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
 								for (let response in responses) {
 									$.log(`🚧 ${$.name}`, `${response}.statusCode: ${responses[response].statusCode}`, "");
-									$.log(`🚧 ${$.name}`, `${response}.headers: ${responses[response].headers}`, "");
-									if (responses[response].statusCode !== 200) delete responses[response];
-									if (responses[response].headers?.["bili-status-code"]) {
-										if (responses[response].headers?.["bili-status-code"] !== "0") delete responses[response];
+									$.log(`🚧 ${$.name}`, `${response}.headers: ${JSON.stringify(responses[response].headers)}`, "");
+									switch (responses[response]?.statusCode) {
+										case 200:
+											switch (responses[response]?.headers?.["bili-status-code"]) {
+												case "0":
+												case undefined:
+													break;
+												case "-10403":
+												default:
+													delete responses[response];
+													break;
+											};
+											break;
+										case 403:
+										case 404:
+										default:
+											delete responses[response];
+											break;
 									};
 								};
 								let match_available = Object.keys(responses);
@@ -110,10 +124,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 									response.headers[key.toLowerCase()] = value
 								};
 								delete response.headers["content-encoding"];
-								if ($.isQuanX()) {
-									response.status = "HTTP/2 200";
-									$.done(response)
-								} else $.done({ response })
+								if ($.isQuanX()) $.done(response)
+								else $.done({ response });
 							};
 							break;
 						case "grpc.biliapi.net":
