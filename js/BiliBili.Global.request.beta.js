@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(27) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.4(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -90,29 +90,10 @@ for (const [key, value] of Object.entries($request.headers)) {
 						case "m.bilibili.com":
 							if (url.path.includes("bangumi/play/")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-								let all_locates = Object.keys(responses);
-								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
-								for (let response in responses) {
-									$.log(`🚧 ${$.name}`, `${response}.statusCode: ${responses[response].statusCode}`, "");
-									$.log(`🚧 ${$.name}`, `${response}.headers: ${JSON.stringify(responses[response].headers)}`, "");
-									switch (responses[response]?.statusCode) {
-										case 200:
-											switch (responses[response]?.headers?.["bili-status-code"]) {
-												case "0":
-												case undefined:
-													break;
-												case "-10403":
-												default:
-													delete responses[response];
-													break;
-											};
-											break;
-										case 403:
-										case 404:
-										default:
-											delete responses[response];
-											break;
-									};
+								let all_locales = Object.keys(responses);
+								$.log(`🚧 ${$.name}`, `all_locales: ${all_locales}`, "");
+								for (let locale in responses) {
+									if(!isResponseAvailability(responses[locale]))	delete responses[locale];						
 								};
 								let match_available = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `match_available: ${match_available}`, "");
@@ -301,6 +282,39 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
 	$.log(`🎉 ${$.name}, Fetch Muti-Locales Reqeusts`, "");
 	//$.log(`🚧 ${$.name}, Fetch Muti-Locales Reqeusts`, `Responses:${JSON.stringify(responses)}`, "");
     return responses;
+};
+
+/**
+ * Determine Response Availability
+ * @author VirgilClyne
+ * @param {Object} response - Original Response Content
+ * @return {Boolean}
+ */
+function isResponseAvailability(response = {}) {
+    $.log(`⚠ ${$.name}, Determine Response Availability`, "");
+	$.log(`🚧 ${$.name}, Determine Response Availability`, `statusCode: ${response.statusCode}`, `headers: ${JSON.stringify(response.headers)}`, "");
+	let isAvailable = true;
+	switch (response?.statusCode) {
+		case 200:
+			switch (response?.headers?.["bili-status-code"]) {
+				case "0":
+				case undefined:
+					isAvailable = true;
+					break;
+				case "-10403":
+				default:
+					isAvailable = false;
+					break;
+			};
+			break;
+		case 403:
+		case 404:
+		default:
+			isAvailable = false;
+			break;
+	};
+	$.log(`🎉 ${$.name}, Determine Response Availability`, `isAvailable:${isAvailable}`, "");
+    return isAvailable;
 };
 
 /***************** Env *****************/
