@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.4(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.5(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -306,16 +306,27 @@ function isResponseAvailability(response = {}) {
 	let isAvailable = true;
 	switch (response?.statusCode) {
 		case 200:
-			switch (response?.headers?.["bili-status-code"]) {
-				case "0":
-				case undefined:
+			switch (response?.headers?.["content-type"]?.split(";")?.[0]) {
+				case "application/grpc":
+					if (parseInt(response?.headers?.["content-length"]) < 700) isAvailable = false;
+					else isAvailable = true;
+					break;
+				case "application/json":
+					switch (response?.headers?.["bili-status-code"]) {
+						case "0":
+						case undefined:
+							isAvailable = true;
+							break;
+						case "-10403":
+						default:
+							isAvailable = false;
+							break;
+					};
+					break;
+				case "text/html":
 					isAvailable = true;
 					break;
-				case "-10403":
-				default:
-					isAvailable = false;
-					break;
-			};
+				};
 			break;
 		case 403:
 		case 404:
