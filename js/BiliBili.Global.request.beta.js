@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(20) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(22) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -88,13 +88,16 @@ for (const [key, value] of Object.entries($request.headers)) {
 					switch (url.host) {
 						case "www.bilibili.com":
 						case "m.bilibili.com":
-							if (url.path.includes("bangumi/play/ss")) {// web版番剧
+							if (url.path.includes("bangumi/play/")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxy, ["HKG", "TWN", "CHN"]);
 								let all_locates = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
 								for (let response in responses) {
 									$.log(`🚧 ${$.name}`, `${response}.statusCode: ${responses[response].statusCode}`, "");
 									if (responses[response].statusCode !== 200) delete responses[response];
+									if (responses[response].headers?.["bili-status-code"]) {
+										if (responses[response].headers?.["bili-status-code"] !== "0") delete responses[response];
+									};
 								};
 								let match_available = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `match_available: ${match_available}`, "");
