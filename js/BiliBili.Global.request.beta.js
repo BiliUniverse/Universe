@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.5(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.5(10) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -37,19 +37,26 @@ for (const [key, value] of Object.entries($request.headers)) {
 			$.log(url.path);
 			switch ($request.method) {
 				case "POST":
-					// 设置格式
-					const Format = $request?.headers?.["content-type"]?.split(";")?.[0]
-					$.log(`🚧 ${$.name}`, `Format: ${Format}`, "");
+				case "PUT":
+				case "PATCH":
 					// 创建空数据
 					let data = { "code": 0, "message": "0", "data": {} };
 					// 解析格式
-					switch (Format) {
+					switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 						case "application/json":
+							switch ($request.headers["grpc-encoding"]) {
+								case "gzip":
+									delete $request.headers["grpc-encoding"];
+									//break; // 不需要break, 继续处理
+								default:
+									$request.headers["content-type"] = "application/grpc";
+									break;
+							};
 							break;
 						case "text/xml":
 							break;
 						case "application/x-protobuf":
-						//case "application/grpc":
+						case "application/grpc":
 							/******************  initialization start  *******************/
 							/*
 							// timostamm/protobuf-ts
@@ -78,11 +85,9 @@ for (const [key, value] of Object.entries($request.headers)) {
 					};
 					//break; // 不需要break, 继续处理
 				case "GET":
-				case "PUT":
 				case "DELETE":
 				case "HEAD":
 				case "OPTIONS":
-				case "PATCH":
 				default:
 					// 解析链接
 					switch (url.host) {
@@ -198,10 +203,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 .catch((e) => $.logErr(e))
 .finally(() => {
 	//$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
-	// 设置格式
-	const Format = $request?.headers?.["content-type"]?.split(";")?.[0]
-	$.log(`🚧 ${$.name}`, `Format: ${Format}`, "");
-	switch (Format) {
+	switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 		case "application/json":
 		case "text/xml":
 		default:
@@ -209,7 +211,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 			else $.done($request)
 			break;
 		case "application/x-protobuf":
-		//case "application/grpc":
+		case "application/grpc":
 			if ($.isQuanX()) {
 				$.log(`${$request.bodyBytes.byteLength}---${$request.bodyBytes.buffer.byteLength}`);
 				$.log(`bodyBytes.byteOffset: ${$request.bodyBytes.byteOffset}}`);
@@ -267,8 +269,8 @@ function ReReqeust(request = {}, proxyName = "") {
 	if ($.isSurge()) request.policy = proxyName;
 	if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
 	if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
-	$.log(`🎉 ${$.name}, Construct Redirect Reqeusts`, "");
-	//$.log(`🚧 ${$.name}, Construct Redirect Reqeusts`, `Request:${JSON.stringify(request)}`, "");
+	//$.log(`🎉 ${$.name}, Construct Redirect Reqeusts`, "");
+	$.log(`🚧 ${$.name}, Construct Redirect Reqeusts`, `Request:${JSON.stringify(request)}`, "");
 	return request;
 };
 
