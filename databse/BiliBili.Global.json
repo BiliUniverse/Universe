@@ -1,7 +1,12 @@
 {
 	"Settings": {
 		"Switch": true,
-		"Proxy": {
+		"Locales": [
+			"CHN",
+			"HKG",
+			"TWN"
+		],
+		"Proxies": {
 			"CHN": "DIRECT",
 			"HKG": "🇭🇰香港",
 			"MAC": "🇲🇴澳门",
@@ -9,7 +14,7 @@
 			"SEA": "🇸🇬新加坡"
 		}
 	},
-	"Configs":{
+	"Configs": {
 		"Locale": {
 			"CHN": "",
 			"HKG": "（僅限港.*地區）",

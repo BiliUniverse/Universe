@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.3(22) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(23) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -11,7 +11,7 @@ const DataBase = {
 		}
 	},
     "Global":{
-		"Settings":{"Switch":"true","Proxy":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}}
+		"Settings":{"Switch":"true","Locales":["CHN","HKG","TWN"],"Proxies":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}}
 	},
 	"Roaming":{
 		"Settings":{"Switch":"true","Proxy":{"Pool":["xn--2vrub.plus","api.qiu.moe","xn--2vrub.icu","xn--n4yr07d.xn--6qq986b3xl","xn--3dz622b.xn--n4y597a0mfle743a.icu","bili.tuturu.top","xn--7rv796dvkm.xn--6qq986b3xl","xn--7ovr3tf1cxr4d.fun","xn--8fv56a330gjea.icu","xn--qoqt3y678a.xn--6qq986b3xl","atri.ink","xn--kiv440b.xn--6qq986b3xl","xn--w4r620anpl.xn--oor00vs23b.icu","xn--chqwq129p.pch.pub","melusinesuki.site","bili.takami.ink"],"Customs":""}}
@@ -89,11 +89,12 @@ for (const [key, value] of Object.entries($request.headers)) {
 						case "www.bilibili.com":
 						case "m.bilibili.com":
 							if (url.path.includes("bangumi/play/")) {// web版番剧
-								let responses = await mutiFetch($request, Settings.Proxy, ["HKG", "TWN", "CHN"]);
+								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let all_locates = Object.keys(responses);
 								$.log(`🚧 ${$.name}`, `all_locates: ${all_locates}`, "");
 								for (let response in responses) {
 									$.log(`🚧 ${$.name}`, `${response}.statusCode: ${responses[response].statusCode}`, "");
+									$.log(`🚧 ${$.name}`, `${response}.headers: ${responses[response].headers}`, "");
 									if (responses[response].statusCode !== 200) delete responses[response];
 									if (responses[response].headers?.["bili-status-code"]) {
 										if (responses[response].headers?.["bili-status-code"] !== "0") delete responses[response];
@@ -142,7 +143,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 									switch (url.params.vmid || url.params.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
-											$request = ReReqeust($request, Settings.Proxy["HKG"]);
+											$request = ReReqeust($request, Settings.Proxies["HKG"]);
 											break;
 										default:
 											break;
@@ -159,7 +160,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 									switch (url.params.vmid || url.params.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
-											$request = ReReqeust($request, Settings.Proxy["HKG"]);
+											$request = ReReqeust($request, Settings.Proxies["HKG"]);
 											break;
 										default:
 											break;
@@ -278,7 +279,7 @@ async function Fetch(request = {}) {
  * @author VirgilClyne
  * @param {Object} request - Original Request Content
  * @param {Object} proxies - Proxies Name
- * @param {Array} Locales - Locales Names
+ * @param {Array} locales - Locales Names
  * @return {Promise<*>}
  */
 async function mutiFetch(request = {}, proxies = {}, locales = []) {

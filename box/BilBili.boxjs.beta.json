@@ -234,35 +234,68 @@
 					"desc": "是否启用此APP修改"
 				},
 				{
-					"id": "@BiliBili.Global.Settings.Proxy.CHN",
+					"id": "@BiliBili.Global.Settings.Locales",
+					"name": "启用自动识别和分类功能的地区",
+					"val": [
+						"CHN",
+						"HKG",
+						"TWN"
+					],
+					"type": "checkboxes",
+					"items": [
+						{
+							"key": "CHN",
+							"label": "🇨🇳中国大陆"
+						},
+						{
+							"key": "HKG",
+							"label": "🇭🇰中国香港"
+						},
+						{
+							"key": "MAC",
+							"label": "🇲🇴中国澳门"
+						},
+						{
+							"key": "TWN",
+							"label": "🇹🇼中国台湾"
+						},
+						{
+							"key": "SEA",
+							"label": "东南亚地区"
+						}
+					],
+					"desc": "选择启用此功能的地区"
+				},
+				{
+					"id": "@BiliBili.Global.Settings.Proxies.CHN",
 					"name": "[🇨🇳中国大陆]代理或策略组选择",
 					"val": "DIRECT",
 					"type": "text",
 					"desc": "选择此地区代理或策略组"
 				},
 				{
-					"id": "@BiliBili.Global.Settings.Proxy.HKG",
+					"id": "@BiliBili.Global.Settings.Proxies.HKG",
 					"name": "[🇭🇰中国香港]代理或策略组选择",
 					"val": "🇭🇰香港",
 					"type": "text",
 					"desc": "选择此地区代理或策略组"
 				},
 				{
-					"id": "@BiliBili.Global.Settings.Proxy.MAC",
+					"id": "@BiliBili.Global.Settings.Proxies.MAC",
 					"name": "[🇲🇴中国澳门]代理或策略组选择",
 					"val": "🇲🇴澳门",
 					"type": "text",
 					"desc": "选择此地区代理或策略组"
 				},
 				{
-					"id": "@BiliBili.BiliGlobal.Settings.Proxy.TWN",
+					"id": "@BiliBili.BiliGlobal.Settings.Proxies.TWN",
 					"name": "[🇹🇼中国台湾]代理或策略组选择",
 					"val": "🇹🇼台湾",
 					"type": "text",
 					"desc": "选择此地区代理或策略组"
 				},
 				{
-					"id": "@BiliBili.Global.Settings.Proxy.SEA",
+					"id": "@BiliBili.Global.Settings.Proxies.SEA",
 					"name": "[东南亚地区]代理或策略组选择",
 					"val": "🇸🇬新加坡",
 					"type": "text",
