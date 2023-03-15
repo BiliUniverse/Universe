@@ -1,4 +1,9 @@
 switch (url.host) {
+	case "www.bilibili.com":
+	case "m.bilibili.com":
+		if (url.path.includes("bangumi/play/")) {// web版番剧
+		};
+		break;
 	case "grpc.biliapi.net":
 		switch (url.path) {
 			case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
@@ -69,8 +74,10 @@ switch (url.host) {
 		break;
 	case "api.bilibili.com":
 		switch (url.path) {
-			case "pgc/player/api/playurl": // 播放地址
-			case "pgc/player/web/playurl": // 播放地址
+			case "pgc/player/api/playurl": // 番剧-播放地址
+			case "pgc/player/web/playurl": // 番剧-播放地址
+				break;
+			case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 				break;
 			case "x/space/wbi/acc/info": // 用户空间-账号信息
 				switch (url.params.vmid || url.params.mid) {
