@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.4(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.4(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -107,6 +107,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 							switch (url.path) {
 								case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
 									break;
+								case "bilibili.app.playurl.v1.PlayURL/PlayConf": // 普通视频-播放配置？
+									break;
 								case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 									//let responses = await mutiFetch($request, Settings.Proxy, ["CHN", "HKG"]);
 									break;
@@ -140,8 +142,22 @@ for (const [key, value] of Object.entries($request.headers)) {
 							break;
 						case "api.bilibili.com":
 							switch (url.path) {
-								case "pgc/player/api/playurl": // 播放地址
-								case "pgc/player/web/playurl": // 播放地址
+								case "pgc/player/api/playurl": // 番剧-播放地址
+								case "pgc/player/web/playurl": // 番剧-播放地址
+									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+									let availableLocales = checkLocales(responses);
+									//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
+									let response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+									// headers转小写
+									for (const [key, value] of Object.entries(response.headers)) {
+										delete response.headers[key]
+										response.headers[key.toLowerCase()] = value
+									};
+									delete response.headers["content-encoding"];
+									if ($.isQuanX()) $.done(response)
+									else $.done({ response });
+									break;
+								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
 								case "x/space/wbi/acc/info": // 用户空间-账号信息
 									switch (url.params.vmid || url.params.mid) {
