@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.4(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.4(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -90,15 +90,9 @@ for (const [key, value] of Object.entries($request.headers)) {
 						case "m.bilibili.com":
 							if (url.path.includes("bangumi/play/")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-								let all_locales = Object.keys(responses);
-								$.log(`🚧 ${$.name}`, `all_locales: ${all_locales}`, "");
-								for (let locale in responses) {
-									if(!isResponseAvailability(responses[locale]))	delete responses[locale];						
-								};
-								let match_available = Object.keys(responses);
-								$.log(`🚧 ${$.name}`, `match_available: ${match_available}`, "");
+								let availableLocales = checkLocales(responses);
 								//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
-								let response = responses[match_available[Math.floor(Math.random() * match_available.length)]]; // 随机用一个
+								let response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 								// headers转小写
 								for (const [key, value] of Object.entries(response.headers)) {
 									delete response.headers[key]
@@ -236,7 +230,7 @@ async function setENV(name, platform, database) {
  * @author VirgilClyne
  * @param {Object} request - Original Request Content
  * @param {Object} proxyName - Proxies Name
- * @return {Object}
+ * @return {Object} Modify Request Content with Policy
  */
 function ReReqeust(request = {}, proxyName = "") {
 	$.log(`⚠ ${$.name}, Construct Redirect Reqeusts`, "");
@@ -288,7 +282,7 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
  * Determine Response Availability
  * @author VirgilClyne
  * @param {Object} response - Original Response Content
- * @return {Boolean}
+ * @return {Boolean} is Available
  */
 function isResponseAvailability(response = {}) {
     $.log(`⚠ ${$.name}, Determine Response Availability`, "");
@@ -315,6 +309,21 @@ function isResponseAvailability(response = {}) {
 	};
 	$.log(`🎉 ${$.name}, Determine Response Availability`, `isAvailable:${isAvailable}`, "");
     return isAvailable;
+};
+/**
+ * Check Locales Availability
+ * @author VirgilClyne
+ * @param {Object} responses - Several Original Response Content
+ * @return {Array} available Locales Code
+ */
+function checkLocales(responses = {}) {
+	$.log(`⚠ ${$.name}, Check Locales Availability`, `allLocales: ${Object.keys(responses)}`, "");
+	for (let locale in responses) {
+		if (!isResponseAvailability(responses[locale])) delete responses[locale];
+	};
+	let availableLocales = Object.keys(responses);
+	$.log(`🎉 ${$.name}, Check Locales Availability`, `Available Locales: ${availableLocales}`, "");
+	return availableLocales;
 };
 
 /***************** Env *****************/
