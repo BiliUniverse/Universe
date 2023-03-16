@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.6(7) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.6(8) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -254,7 +254,10 @@ async function setENV(name, platform, database) {
 function ReReqeust(request = {}, proxyName = "") {
 	$.log(`⚠ ${$.name}, Construct Redirect Reqeusts`, "");
 	if ($.isLoon()) request.node = proxyName;
-	if ($.isQuanX()) request.opts = { "policy": proxyName };
+	if ($.isQuanX()) {
+		if (request.opts) request.opts.policy = proxyName;
+		else request.opts = { "policy": proxyName };
+	};
 	if ($.isSurge()) {
 		delete request.id;
 		request.headers["X-Surge-Policy"] = proxyName;
@@ -283,26 +286,10 @@ async function Fetch(request = {}) {
 		//break; // 不需要break, 继续处理
 		case undefined:
 		default:
-			switch (request?.headers?.["content-type"]?.split(";")?.[0]) {
-				case "application/x-www-form-urlencoded":
-					request.headers["content-type"] = "application/grpc"; // HTTP/2 自动添加
-					break;
-				case "application/json":
-					request.headers["content-type"] = "application/grpc"; // HTTP/2 自动添加
-					break;
-				case "text/xml":
-				default:
-					break;
-				case "application/x-protobuf":
-					break;
-				case "application/grpc":
-					request.headers["Content-Type"] = "application/grpc"; // HTTP/1.1 自动添加
-					break;
-			};
 			break;
 	};
 	let response = (request.body)
-		? await $.http.post({ headers: request.headers, body: request.body, policy: request.policy })
+		? await $.http.post(request)
 		: await $.http.get(request);
 	$.log(`🎉 ${$.name}, Fetch Ruled Reqeust`, "");
 	//$.log(`🚧 ${$.name}, Fetch Ruled Reqeust`, `Response:${JSON.stringify(response)}`, "");
