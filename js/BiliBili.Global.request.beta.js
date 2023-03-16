@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.5(21) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.5(22) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -123,13 +123,15 @@ for (const [key, value] of Object.entries($request.headers)) {
 								case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 									switch ($request.headers["grpc-encoding"]) {
 										case "gzip":
-											$request.headers["content-type"] = "application/grpc";
-											delete $request.headers["grpc-encoding"];
-											break;
+											$request.headers["grpc-encoding"] = "identity";
+											if ($.isQuanX()) $request.bodyBytes = gzip($request.bodyBytes);
+											else $request.body = gzip($request.body);
+										//break; // 不需要break, 继续处理
+										case undefined:
 										default:
+											let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 											break;
 									};
-									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 									break;
 								case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 									break;
@@ -354,6 +356,7 @@ function isResponseAvailability(response = {}) {
 	$.log(`🎉 ${$.name}, Determine Response Availability`, `isAvailable:${isAvailable}`, "");
     return isAvailable;
 };
+
 /**
  * Check Locales Availability
  * @author VirgilClyne
@@ -368,6 +371,27 @@ function checkLocales(responses = {}) {
 	let availableLocales = Object.keys(responses);
 	$.log(`🎉 ${$.name}, Check Locales Availability`, `Available Locales: ${availableLocales}`, "");
 	return availableLocales;
+};
+
+/**
+ * Compress Body to Gzip Filetype
+ * @author app2smile
+ * @param {Object} unGzipBody - unGzip Body
+ * @return {ArrayBuffer} gzip Binary Data
+ */
+function gzip(unGzipBody) {
+	const length = unGzipBody.length;
+	let merge = new Uint8Array(5 + length);
+	merge.set(intToUint8Array(length), 1);
+	merge.set(unGzipBody, 5);
+	return merge;
+
+	function intToUint8Array(num) {
+		let arr = new ArrayBuffer(4); // an Int32 takes 4 bytes
+		let view = new DataView(arr);
+		view.setUint32(0, num, false); // byteOffset = 0; litteEndian = false
+		return new Uint8Array(arr);
+	};
 };
 
 /***************** Env *****************/
