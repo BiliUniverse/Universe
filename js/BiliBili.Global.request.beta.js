@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.1(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.1(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -357,7 +357,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 														{ name: "PlayView", options: {}, I: PlayViewReq, O: PlayViewReply },
 														{ name: "PlayViewComic", options: {}, I: PlayViewReq, O: PlayViewReply }
 													]);
-													$request.body = PlayURL.fromBinary($request.body);
+													$request.body = PlayViewReq.fromBinary($request.body);
 													$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
 													//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 													//let availableLocales = checkLocales(responses);
