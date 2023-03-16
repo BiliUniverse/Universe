@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.5(23) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.5(25) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -49,6 +49,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 							break;
 						case "application/x-www-form-urlencoded":
 						case "application/json":
+							/*
 							switch ($request.headers["grpc-encoding"]) {
 								case "gzip":
 								case "deflate":
@@ -60,6 +61,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 									$request.headers["Content-Type"] = "application/grpc"; // HTTP/1.1 自动添加
 									break;
 							};
+							*/
 							break;
 						case "application/x-protobuf":
 						case "application/grpc":
@@ -123,12 +125,14 @@ for (const [key, value] of Object.entries($request.headers)) {
 								case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
 									switch ($request.headers["grpc-encoding"]) {
 										case "gzip":
-											$request.headers["grpc-encoding"] = "identity";
+											//$request.headers["grpc-encoding"] = "identity";
 											if ($.isQuanX()) $request.bodyBytes = gzip($request.bodyBytes);
 											else $request.body = gzip($request.body);
 										//break; // 不需要break, 继续处理
 										case undefined:
 										default:
+											$request.headers["content-type"] = "application/grpc"; // HTTP/2 自动添加
+											$request.headers["Content-Type"] = "application/grpc"; // HTTP/1.1 自动添加
 											let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 											break;
 									};
