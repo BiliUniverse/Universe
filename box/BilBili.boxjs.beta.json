@@ -234,6 +234,27 @@
 					"desc": "是否启用此APP修改"
 				},
 				{
+					"id": "@BiliBili.Global.Settings.ForceHost",
+					"name": "强制媒体流CDN主机名类型",
+					"val": "1",
+					"type": "selects",
+					"desc": "强制设置音视频媒体流的CDN主机名类型",
+					"items": [
+						{
+							"key": "0",
+							"label": "IP: 返回远端DNS解析地址（强烈不推荐！严重影响域名分流规则与CDN重定向）"
+						},
+						{
+							"key": "1",
+							"label": "HTTP: 返回HTTP域名（推荐，免去重定向时MitM操作）"
+						},
+						{
+							"key": "2",
+							"label": "HTTPS: 返回HTTPS域名（重定向时需对指定域名启用MitM）"
+						}
+					]
+				},
+				{
 					"id": "@BiliBili.Global.Settings.Locales",
 					"name": "启用自动识别和分类功能的地区",
 					"val": [
