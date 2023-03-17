@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.4(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.4(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -61,20 +61,18 @@ for (const [key, value] of Object.entries($request.headers)) {
 							//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 								case "application/grpc":
-									rawBody = rawBody.slice(5);
-									// 自动解压，毋需操作
-									/*
 									switch ($request?.headers?.["grpc-encoding"]) {
 										case "gzip":
-											rawBody = pako.ungzip(rawBody.slice(5));
+											// 已自动解压，毋需操作
+											//rawBody = pako.ungzip(rawBody.slice(5));
+											rawBody = rawBody.slice(5);
 											$request.headers["grpc-encoding"] = "identity";
 											break;
 										default:
 											rawBody = rawBody.slice(5);
 											break;
 									};
-									$.log(`🚧 ${$.name}`, `$request.bodyBinary: ${JSON.stringify($request.bodyBinary)}`, "");
-									*/
+									//$.log(`🚧 ${$.name}`, `$request.bodyBinary: ${JSON.stringify($request.bodyBinary)}`, "");
 									// 解析链接
 									switch (url.host) {
 										case "grpc.biliapi.net":
@@ -381,8 +379,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
-													//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-													//let availableLocales = checkLocales(responses);
+													if ($.isQuanX()) $request.bodyBytes = rawBody;
+													else $request.body = rawBody;
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 													break;
@@ -507,7 +505,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 				case "identity":
 					if ($.isQuanX()) $request.bodyBytes = gzip($request.bodyBytes);
 					else $request.body = gzip($request.body);
-					$request.headers["grpc-encoding"] = "gzip";
+					//$request.headers["grpc-encoding"] = "gzip";
 				//break; // 不需要break, 继续处理
 				case undefined:
 				default:
