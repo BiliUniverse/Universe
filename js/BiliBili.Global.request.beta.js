@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.2(9) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.2(10) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -692,9 +692,10 @@ function checkLocales(responses = {}) {
 function gzip(unGzipBody) {
 	$.log(`⚠ ${$.name}, Compress Body to Gzip Filetype`, "");
 	const length = unGzipBody.length;
-	let merge = new Uint8Array(5 + length);
+	//let merge = new Uint8Array(5 + length);
+	let merge = new Uint8Array(length);
 	merge.set(intToUint8Array(length), 1);
-	merge.set(unGzipBody, 5);
+	//merge.set(unGzipBody, 5);
 	$.log(`🎉 ${$.name}, Compress Body to Gzip Filetype`, "");
 	return merge;
 
