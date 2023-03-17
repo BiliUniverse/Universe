@@ -2667,9 +2667,9 @@ export const PlayViewReply = new PlayViewReply$Type();
 class PlayViewReq$Type extends MessageType {
     constructor() {
         super("bilibili.pgc.gateway.player.v2.PlayViewReq", [
-            { no: 1, name: "epid", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 2, name: "cid", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 3, name: "qn", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 1, name: "epid", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "cid", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 3, name: "qn", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "fnver", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 5, name: "fnval", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 6, name: "download", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
@@ -2680,15 +2680,15 @@ class PlayViewReq$Type extends MessageType {
             { no: 11, name: "teenagers_mode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 12, name: "prefer_codec_type", kind: "enum", T: () => ["bilibili.pgc.gateway.player.v2.CodeType", CodeType] },
             { no: 13, name: "is_preview", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 14, name: "room_id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 14, name: "room_id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 15, name: "is_need_view_info", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 16, name: "scene_control", kind: "message", T: () => SceneControl },
             { no: 17, name: "inline_scene", kind: "enum", T: () => ["bilibili.pgc.gateway.player.v2.InlineScene", InlineScene] },
-            { no: 18, name: "material_no", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 18, name: "material_no", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ }
         ]);
     }
     create(value) {
-        const message = { epid: 0n, cid: 0n, qn: 0n, fnver: 0, fnval: 0, download: 0, forceHost: 0, fourk: false, spmid: "", fromSpmid: "", teenagersMode: 0, preferCodecType: 0, isPreview: false, roomId: 0n, isNeedViewInfo: false, inlineScene: 0, materialNo: 0n };
+        const message = { epid: 0, cid: 0, qn: 0, fnver: 0, fnval: 0, download: 0, forceHost: 0, fourk: false, spmid: "", fromSpmid: "", teenagersMode: 0, preferCodecType: 0, isPreview: false, roomId: 0, isNeedViewInfo: false, inlineScene: 0, materialNo: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -2699,14 +2699,14 @@ class PlayViewReq$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* int64 epid */ 1:
-                    message.epid = reader.int64().toBigInt();
+                case /* int64 epid = 1 [jstype = JS_NUMBER];*/ 1:
+                    message.epid = reader.int64().toNumber();
                     break;
-                case /* int64 cid */ 2:
-                    message.cid = reader.int64().toBigInt();
+                case /* int64 cid = 2 [jstype = JS_NUMBER];*/ 2:
+                    message.cid = reader.int64().toNumber();
                     break;
-                case /* int64 qn */ 3:
-                    message.qn = reader.int64().toBigInt();
+                case /* int64 qn = 3 [jstype = JS_NUMBER];*/ 3:
+                    message.qn = reader.int64().toNumber();
                     break;
                 case /* int32 fnver */ 4:
                     message.fnver = reader.int32();
@@ -2738,8 +2738,8 @@ class PlayViewReq$Type extends MessageType {
                 case /* bool is_preview */ 13:
                     message.isPreview = reader.bool();
                     break;
-                case /* int64 room_id */ 14:
-                    message.roomId = reader.int64().toBigInt();
+                case /* int64 room_id = 14 [jstype = JS_NUMBER];*/ 14:
+                    message.roomId = reader.int64().toNumber();
                     break;
                 case /* bool is_need_view_info */ 15:
                     message.isNeedViewInfo = reader.bool();
@@ -2750,8 +2750,8 @@ class PlayViewReq$Type extends MessageType {
                 case /* bilibili.pgc.gateway.player.v2.InlineScene inline_scene */ 17:
                     message.inlineScene = reader.int32();
                     break;
-                case /* int64 material_no */ 18:
-                    message.materialNo = reader.int64().toBigInt();
+                case /* int64 material_no = 18 [jstype = JS_NUMBER];*/ 18:
+                    message.materialNo = reader.int64().toNumber();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2765,14 +2765,14 @@ class PlayViewReq$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* int64 epid = 1; */
-        if (message.epid !== 0n)
+        /* int64 epid = 1 [jstype = JS_NUMBER]; */
+        if (message.epid !== 0)
             writer.tag(1, WireType.Varint).int64(message.epid);
-        /* int64 cid = 2; */
-        if (message.cid !== 0n)
+        /* int64 cid = 2 [jstype = JS_NUMBER]; */
+        if (message.cid !== 0)
             writer.tag(2, WireType.Varint).int64(message.cid);
-        /* int64 qn = 3; */
-        if (message.qn !== 0n)
+        /* int64 qn = 3 [jstype = JS_NUMBER]; */
+        if (message.qn !== 0)
             writer.tag(3, WireType.Varint).int64(message.qn);
         /* int32 fnver = 4; */
         if (message.fnver !== 0)
@@ -2804,8 +2804,8 @@ class PlayViewReq$Type extends MessageType {
         /* bool is_preview = 13; */
         if (message.isPreview !== false)
             writer.tag(13, WireType.Varint).bool(message.isPreview);
-        /* int64 room_id = 14; */
-        if (message.roomId !== 0n)
+        /* int64 room_id = 14 [jstype = JS_NUMBER]; */
+        if (message.roomId !== 0)
             writer.tag(14, WireType.Varint).int64(message.roomId);
         /* bool is_need_view_info = 15; */
         if (message.isNeedViewInfo !== false)
@@ -2816,8 +2816,8 @@ class PlayViewReq$Type extends MessageType {
         /* bilibili.pgc.gateway.player.v2.InlineScene inline_scene = 17; */
         if (message.inlineScene !== 0)
             writer.tag(17, WireType.Varint).int32(message.inlineScene);
-        /* int64 material_no = 18; */
-        if (message.materialNo !== 0n)
+        /* int64 material_no = 18 [jstype = JS_NUMBER]; */
+        if (message.materialNo !== 0)
             writer.tag(18, WireType.Varint).int64(message.materialNo);
         let u = options.writeUnknownFields;
         if (u !== false)

@@ -1189,21 +1189,21 @@ export interface PlayViewReq {
     /**
      * 剧集epid
      *
-     * @generated from protobuf field: int64 epid = 1;
+     * @generated from protobuf field: int64 epid = 1 [jstype = JS_NUMBER];
      */
-    epid: bigint;
+    epid: number;
     /**
      * 视频cid
      *
-     * @generated from protobuf field: int64 cid = 2;
+     * @generated from protobuf field: int64 cid = 2 [jstype = JS_NUMBER];
      */
-    cid: bigint;
+    cid: number;
     /**
      * 清晰度
      *
-     * @generated from protobuf field: int64 qn = 3;
+     * @generated from protobuf field: int64 qn = 3 [jstype = JS_NUMBER];
      */
-    qn: bigint;
+    qn: number;
     /**
      * 视频流版本
      *
@@ -1269,9 +1269,9 @@ export interface PlayViewReq {
     /**
      * 一起看房间id
      *
-     * @generated from protobuf field: int64 room_id = 14;
+     * @generated from protobuf field: int64 room_id = 14 [jstype = JS_NUMBER];
      */
-    roomId: bigint;
+    roomId: number;
     /**
      * 是否需要展示信息
      *
@@ -1289,9 +1289,9 @@ export interface PlayViewReq {
      */
     inlineScene: InlineScene;
     /**
-     * @generated from protobuf field: int64 material_no = 18;
+     * @generated from protobuf field: int64 material_no = 18 [jstype = JS_NUMBER];
      */
-    materialNo: bigint;
+    materialNo: number;
 }
 /**
  * 弹窗信息

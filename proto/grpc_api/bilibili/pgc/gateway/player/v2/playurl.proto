@@ -518,11 +518,11 @@ message PlayViewReply {
 // 播放页信息-请求
 message PlayViewReq {
     // 剧集epid
-    int64 epid = 1;
+    int64 epid = 1 [jstype = JS_NUMBER];
     // 视频cid
-    int64 cid = 2;
+    int64 cid = 2 [jstype = JS_NUMBER];
     // 清晰度
-    int64 qn = 3;
+    int64 qn = 3 [jstype = JS_NUMBER];
     // 视频流版本
     int32 fnver = 4;
     // 视频流格式
@@ -546,7 +546,7 @@ message PlayViewReq {
     // 是否强制请求预览视频
     bool is_preview = 13;
     // 一起看房间id
-    int64 room_id = 14;
+    int64 room_id = 14 [jstype = JS_NUMBER];
     // 是否需要展示信息
     bool is_need_view_info = 15;
     // 场景控制
@@ -554,7 +554,7 @@ message PlayViewReq {
     //
     InlineScene inline_scene = 17;
     //
-    int64 material_no = 18;
+    int64 material_no = 18 [jstype = JS_NUMBER];
 }
 
 // 弹窗信息
