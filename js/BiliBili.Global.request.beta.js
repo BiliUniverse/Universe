@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.3(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.4(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -11,7 +11,7 @@ const DataBase = {
 		}
 	},
     "Global":{
-		"Settings":{"Switch":"true","Locales":["CHN","HKG","TWN"],"Proxies":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}}
+		"Settings":{"Switch":"true","ForceHost":"1","Locales":["CHN","HKG","TWN"],"Proxies":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}}
 	},
 	"Roaming":{
 		"Settings":{"Switch":"true","Proxy":{"Pool":["xn--2vrub.plus","api.qiu.moe","xn--2vrub.icu","xn--n4yr07d.xn--6qq986b3xl","xn--3dz622b.xn--n4y597a0mfle743a.icu","bili.tuturu.top","xn--7rv796dvkm.xn--6qq986b3xl","xn--7ovr3tf1cxr4d.fun","xn--8fv56a330gjea.icu","xn--qoqt3y678a.xn--6qq986b3xl","atri.ink","xn--kiv440b.xn--6qq986b3xl","xn--w4r620anpl.xn--oor00vs23b.icu","xn--chqwq129p.pch.pub","melusinesuki.site","bili.takami.ink"],"Customs":""}}
@@ -378,10 +378,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 													 */
 													const PlayViewReq = new PlayViewReq$Type();
 													data = PlayViewReq.fromBinary(rawBody);
-													$.log(`🚧 ${$.name}`, `data.epid: ${data.epid}`, "");
-													$.log(`🚧 ${$.name}`, `data.cid: ${data.cid}`, "");
-													$.log(`🚧 ${$.name}`, `data.spmid: ${data.spmid}`, "");
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
+													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
 													//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 													//let availableLocales = checkLocales(responses);
@@ -552,7 +550,7 @@ async function setENV(name, platform, database) {
 	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
-	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
+	Settings.ForceHost = parseInt(Settings.ForceHost, 10) // BoxJs字符串转Number
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	return { Settings, Caches, Configs }
 };
