@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.2(10) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.3(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -58,22 +58,23 @@ for (const [key, value] of Object.entries($request.headers)) {
 							/******************  initialization finish  *******************/
 							$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
 							//$request.bodyBinary = $.isQuanX() ? new Uint8Array($request.bodyBytes) : $request.body;
-							$request.bodyBinary = new Uint8Array($.isQuanX() ? $request.bodyBytes : $request.body);
+							$request.bodyBinary = $.isQuanX() ? new Uint8Array($request.bodyBytes) : $request.body;
 							$.log(`🚧 ${$.name}`, `$request.bodyBinary? ${ArrayBuffer.isView($request.bodyBinary)}: ${JSON.stringify($request.bodyBinary)}`, "");
 							switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 								case "application/grpc":
-									$request.body = $request.bodyBinary.slice(4);
-									$.log(`🚧 ${$.name}`, `body: ${JSON.stringify($request.body)}`, "");
+									rawBody = rawBody.slice(5);
+									// 自动解压，毋需操作
 									/*
 									switch ($request?.headers?.["grpc-encoding"]) {
 										case "gzip":
-											$request.body = pako.ungzip($request.bodyBinary.slice(5));
+											$request.bodyBinary = pako.ungzip($request.bodyBinary.slice(5));
 											$request.headers["grpc-encoding"] = "identity";
 											break;
 										default:
-											$request.body = $request.bodyBinary.slice(5);
+											$request.bodyBinary = $request.bodyBinary.slice(5);
 											break;
 									};
+									$.log(`🚧 ${$.name}`, `$request.bodyBinary: ${JSON.stringify($request.bodyBinary)}`, "");
 									*/
 									// 解析链接
 									switch (url.host) {
@@ -377,8 +378,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 													 * @generated MessageType for protobuf message bilibili.pgc.gateway.player.v2.PlayViewReq
 													 */
 													const PlayViewReq = new PlayViewReq$Type();
-													$request.body = PlayViewReq.fromBinary($request.body);
-													//$.log(`🚧 ${$.name}`, `$request.body: ${$request.body}`, "");
+													$request.body = PlayViewReq.fromBinary($request.bodyBinary);
+													$.log(`🚧 ${$.name}`, `$request.body: ${$request.body}`, "");
 													//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 													//let availableLocales = checkLocales(responses);
 													break;
@@ -395,7 +396,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 									};
 									break;
 								case "application/x-protobuf":
-									$request.body = Player.fromBinary($request.body);
+									$request.body = Player.fromBinary($request.bodyBinary);
 									$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
 							};
 							break;
@@ -692,16 +693,20 @@ function checkLocales(responses = {}) {
 function gzip(unGzipBody) {
 	$.log(`⚠ ${$.name}, Compress Body to Gzip Filetype`, "");
 	const length = unGzipBody.length;
-	//let merge = new Uint8Array(5 + length);
-	let merge = new Uint8Array(length);
-	merge.set(intToUint8Array(length), 1);
-	//merge.set(unGzipBody, 5);
+	// 首位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
+	let merge = new Uint8Array(5 + length);
+	// 首位：当为1的时候, app会校验1-4位的校验值是否正确
+	// 当Grpc-Encoding响应头为Identity时,判断首位是否为0
+	merge.set(intToUint8Array(length), 1); //从1位开始填充校验值
+	merge.set(unGzipBody, 5); // 在byteOffset = 5的位置写入新数据
 	$.log(`🎉 ${$.name}, Compress Body to Gzip Filetype`, "");
 	return merge;
 
+	// 校验值计算
 	function intToUint8Array(num) {
 		let arr = new ArrayBuffer(4); // an Int32 takes 4 bytes
 		let view = new DataView(arr);
+		// 首位填充计算过的新数据长度
 		view.setUint32(0, num, false); // byteOffset = 0; litteEndian = false
 		return new Uint8Array(arr);
 	};
