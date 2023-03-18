@@ -1,0 +1,33 @@
+#!name=📺 BiliBili: 🌐 Global
+#!desc=哔哩哔哩：全球模式                           （国际内容聚合及自动线路）
+#!openUrl=http://boxjs.com/#/app/BiliBili.Global
+#!author=VirgilClyne
+#!homepage=https://github.com/VirgilClyne
+#!manual=https://github.com/VirgilClyne/BiliBili/wiki/🌐-Global
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+
+#[Script]
+# BiliBili.Global.bangumi.player
+^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+
+# BiliBili.Global.playurl.grpc
+^https?:\/\/grpc\.biliapi\.net\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView(\?.+)?$ url script-request-body https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliBili.Global.playurl.json
+^https?:\/\/api\.bilibili\.com\/pgc\/player\/(api|web)\/playurl(\/html5)?(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliIntl.Global.playurl.json
+^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/ogv\/playurl(\?.+)?$ url script-request-header https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+
+# BiliBili.Global.search.grpc
+^https?:\/\/grpc\.biliapi\.net\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$ url script-request-body =https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliBili.Global.search.json
+^https?:\/\/api\.bilibili\.com\/x\/(v2|web-interface)\/search\/type(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliIntl.Global.search.json
+^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+
+# BiliBili.Global.space.json
+^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$ url script-request-header https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliBili.Global.space.json
+^https?:\/\/api\.bilibili\.com\/x\/space\/wbi/acc\/info(\?.+)?$ url script-request-header https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+
+#[MITM]
+hostname = www.bilibili.com, grpc.biliapi.net, api.bilibili.com, api.global.bilibili.com, app.bilibili.com

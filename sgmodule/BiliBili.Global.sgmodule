@@ -1,0 +1,24 @@
+#!name=📺 BiliBili: 🌐 Global
+#!desc=哔哩哔哩：全球模式                           （国际内容聚合及自动线路）
+#!openUrl=http://boxjs.com/#/app/BiliBili.Global
+#!author=VirgilClyne
+#!homepage=https://github.com/VirgilClyne
+#!manual=https://github.com/VirgilClyne/BiliBili/wiki/🌐-Global
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+
+[Script]
+BiliBili.Global.bangumi.play = type=http-request, pattern=^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, ability=http-client-policy, argument=
+
+BiliBili.Global.playurl.grpc = type=http-request, pattern=^https?:\/\/grpc\.biliapi\.net\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView(\?.+)?$, requires-body=1, binary-body-mode=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, argument=
+BiliBili.Global.playurl.json = type=http-request, pattern=^https?:\/\/api\.bilibili\.com\/pgc\/player\/(api|web)\/playurl(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, ability=http-client-policy, argument=
+BiliIntl.Global.playurl.json = type=http-request, pattern=^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/ogv\/playurl(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, ability=http-client-policy, argument=
+
+BiliBili.Global.search.grpc = type=http-request, pattern=^https?:\/\/grpc\.biliapi\.net\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$, requires-body=1, binary-body-mode=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, ability=http-client-policy, argument=
+BiliBili.Global.search.json = type=http-request, pattern=^https?:\/\/api\.bilibili\.com\/x\/(v2|web-interface)\/search\/type(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, ability=http-client-policy, argument=
+BiliIntl.Global.search.json = type=http-request, pattern=^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, ability=http-client-policy, argument=
+
+BiliBili.Global.space.json = type=http-request, pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, argument=
+BiliBili.Global.space.json = type=http-request, pattern=^https?:\/\/api\.bilibili\.com\/x\/space\/wbi/acc\/info(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=0, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, argument=
+
+[MITM]
+hostname = %APPEND% grpc.biliapi.net, api.bilibili.com, api.global.bilibili.com, app.bilibili.com
