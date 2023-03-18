@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.5(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -26,6 +26,9 @@ for (const [key, value] of Object.entries($request.headers)) {
 	delete $request.headers[key]
 	$request.headers[key.toLowerCase()] = value
 };
+
+// 是否构造返回数据
+let isEchoResponse = false;
 
 /***************** Processing *****************/
 !(async () => {
@@ -137,15 +140,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
 								//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
-								let response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-								// headers转小写
-								for (const [key, value] of Object.entries(response.headers)) {
-									delete response.headers[key]
-									response.headers[key.toLowerCase()] = value
-								};
-								delete response.headers["content-encoding"];
-								if ($.isQuanX()) $.done(response)
-								else $.done({ response });
+								$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+								isEchoResponse = true;
 							};
 							break;
 						case "app.bilibili.com":
@@ -173,15 +169,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 									let availableLocales = checkLocales(responses);
 									//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
-									let response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-									// headers转小写
-									for (const [key, value] of Object.entries(response.headers)) {
-										delete response.headers[key]
-										response.headers[key.toLowerCase()] = value
-									};
-									delete response.headers["content-encoding"];
-									if ($.isQuanX()) $.done(response)
-									else $.done({ response });
+									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+									isEchoResponse = true;
 									break;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
@@ -213,28 +202,64 @@ for (const [key, value] of Object.entries($request.headers)) {
 .catch((e) => $.logErr(e))
 .finally(() => {
 	//$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
-	switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
-		case "application/json":
-		case "text/xml":
-		default:
-			if ($.isQuanX()) $.done({ headers: $request.headers, body: $request.body, opts: $request.opts })
-			else $.done($request)
-			break;
-		case "application/x-protobuf":
-		case "application/grpc":
-			// 添加B站gRPC校验头
-			if ($.isQuanX()) $request.bodyBytes = CreateNewBody($request.bodyBytes);
-			else $request.body = CreateNewBody($request.body);
-			switch ($request.headers["grpc-encoding"]) {
-				case "identity":
-					// 压缩后不认
-					//if ($.isQuanX()) $request.bodyBytes = pako.gzip($request.bodyBytes);
-					//else $request.body = pako.gzip($request.body);
-					//$request.headers["grpc-encoding"] = "gzip";
-				//break; // 不需要break, 继续处理
+	switch (isEchoResponse) {
+		case true:
+			// 构造体数据直接来自$httpClient，未被自动解压，也未修改"content-encoding"，处理后压缩返回
+			switch ($response.headers?.["content-encoding"] || $response.headers?.["Content-Encoding"]) {
 				case "gzip":
-				case undefined:
+					if ($.isQuanX()) $response.bodyBytes = pako.gzip($response.bodyBytes);
+					else $response.body = pako.gzip($response.body);
+					break;
+				case "deflate":
+					if ($.isQuanX()) $response.bodyBytes = pako.deflate($response.bodyBytes);
+					else $response.body = pako.deflate($response.body);
+					break;
+				case "deflate-raw":
+					if ($.isQuanX()) $response.bodyBytes = pako.deflateRaw($response.bodyBytes);
+					else $response.body = pako.deflateRaw($response.body);
+					break;
+				case "identity": // 视为无压缩
+				case undefined: // 视为无压缩
 				default:
+					break;
+			};
+			if ($.isQuanX()) $.done($response)
+			else $.done({ $response });
+			break;
+		case false:
+		default:
+			switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
+				case "application/json":
+				case "text/xml":
+				default:
+					// 返回普通数据
+					if ($.isQuanX()) $.done({ headers: $request.headers, body: $request.body, opts: $request.opts })
+					else $.done($request)
+					break;
+				case "application/x-protobuf":
+				case "application/grpc":
+					switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
+						case "application/x-protobuf":
+							break;
+						case "application/grpc":
+							// 添加B站gRPC校验头
+							if ($.isQuanX()) $request.bodyBytes = CreateNewBody($request.bodyBytes);
+							else $request.body = CreateNewBody($request.body);
+							switch ($request.headers["grpc-encoding"]) {
+								case "identity":
+									// 压缩后不认
+									//if ($.isQuanX()) $request.bodyBytes = pako.gzip($request.bodyBytes);
+									//else $request.body = pako.gzip($request.body);
+									//$request.headers["grpc-encoding"] = "gzip";
+									break;
+								case "gzip":
+								case undefined:
+								default:
+									break;
+							};
+							break;
+					};
+					// 返回二进制数据
 					if ($.isQuanX()) {
 						$.log(`${$request.bodyBytes.byteLength}---${$request.bodyBytes.buffer.byteLength}`);
 						$.log(`bodyBytes.byteOffset: ${$request.bodyBytes.byteOffset}}`);
@@ -242,8 +267,14 @@ for (const [key, value] of Object.entries($request.headers)) {
 					} else {
 						$.log(`${$request.body.byteLength}---${$request.body.buffer.byteLength}`);
 						$.done($request)
-					}
+					};
 					break;
+				case undefined: // 视为无body
+					// 返回普通数据
+					if ($.isQuanX()) $.done({ headers: $request.headers, opts: $request.opts })
+					else $.done($request)
+					break;
+
 			};
 			break;
 	};
@@ -313,13 +344,17 @@ function ReReqeust(request = {}, proxyName = "") {
  */
 async function Fetch(request = {}) {
 	$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
+	// 请求体数据来自app，已被自动解压，已被修改"content-encoding"，处理后压缩返回
 	switch (request.headers["grpc-encoding"]) {
-		case "gzip":
+		case "identity":
+			// gRPC显然使用gzip压缩
 			if ($.isQuanX()) request.bodyBytes = pako.gzip(request.bodyBytes);
 			else request.body = pako.gzip(request.body);
-			request.headers["content-encoding"] = "gzip";
-		//break; // 不需要break, 继续处理
-		case "identity":
+			request.headers["grpc-encoding"] = "gzip";
+			break;
+		case "gzip":
+		case "deflate":
+		case "deflate-raw":
 		case undefined:
 		default:
 			break;
