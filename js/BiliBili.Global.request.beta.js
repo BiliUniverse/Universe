@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -305,6 +305,7 @@ async function setENV(name, platform, database) {
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	Settings.ForceHost = parseInt(Settings.ForceHost, 10) // BoxJs字符串转Number
+	if (typeof Settings.Locales === "string") Settings.Locales = Settings.Locales.split(",") // BoxJs字符串转数组
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	return { Settings, Caches, Configs }
 };
