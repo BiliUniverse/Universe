@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(6) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -396,9 +396,9 @@ function isResponseAvailability(response = {}) {
 	let isAvailable = true;
 	switch (response?.statusCode) {
 		case 200:
-			switch (response?.headers?.["content-type"]?.split(";")?.[0]) {
+			switch ((response?.headers?.["content-type"] || response.headers?.["Content-Type"]).split(";")?.[0] ) {
 				case "application/grpc":
-					if (parseInt(response?.headers?.["content-length"]) < 700) isAvailable = false;
+					if (parseInt(response?.headers?.["content-length"] ?? response?.headers?.["Content-Length"]) < 700) isAvailable = false;
 					else isAvailable = true;
 					break;
 				case "application/json":
