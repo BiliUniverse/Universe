@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(8) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(14) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -202,11 +202,18 @@ let $response = undefined;
 })()
 .catch((e) => $.logErr(e))
 .finally(() => {
-	//$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
 	switch ($response) {
-		default:
-			$.log("echo response");
-			// 构造体数据直接来自$httpClient，未被自动解压，也未修改"content-encoding"，处理后压缩返回
+		default: // 有构造回复数据，返回构造的回复数据
+			$.log(`🚧 ${$.name}, finally`, `$response:${JSON.stringify($response)}`, "");
+			// headers转小写
+			for (const [key, value] of Object.entries($response.headers)) {
+				delete $response.headers[key]
+				$response.headers[key.toLowerCase()] = value
+			};
+			$response.headers["content-encoding"] = "identity";
+			/*
+			// 不压了，gzip压完有问题
+			// 构造回复数据直接来自$httpClient，未被自动解压，也未修改"content-encoding"，处理后压缩返回
 			switch ($response.headers?.["content-encoding"] || $response.headers?.["Content-Encoding"]) {
 				case "gzip":
 					if ($.isQuanX()) $response.bodyBytes = pako.gzip($response.bodyBytes);
@@ -220,16 +227,19 @@ let $response = undefined;
 					if ($.isQuanX()) $response.bodyBytes = pako.deflateRaw($response.bodyBytes);
 					else $response.body = pako.deflateRaw($response.body);
 					break;
-				case "identity": // 视为无压缩
-				case undefined: // 视为无压缩
 				case "br": // 处理不了
+					break;
+				case "identity": // 视为无压缩
+				case undefined: // 不存在回复体
 				default:
 					break;
 			};
+			*/
 			if ($.isQuanX()) $.done($response)
-			else $.done({ $response });
+			else $.done({ response: $response });
 			break;
-		case undefined:
+		case undefined: // 无构造回复数据，发送修改的请求数据
+			$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
 			switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 				case "application/json":
 				case "text/xml":
