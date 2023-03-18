@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(7) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(8) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -121,8 +121,9 @@ let $response = undefined;
 									else $request.body = CreateNewBody(rawBody);
 									break;
 								case "application/x-protobuf":
-									$request.body = Player.fromBinary($request.bodyBinary);
-									$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
+									//$request.body = Player.fromBinary($request.bodyBinary);
+									//$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
+									break;
 							};
 							break;
 						default:
