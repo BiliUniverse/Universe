@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -31,7 +31,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 let isEchoResponse = false;
 
 /***************** Processing *****************/
-!(async () => {
+(async () => {
 	const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
@@ -66,17 +66,18 @@ let isEchoResponse = false;
 								case "application/grpc":
 									switch ($request?.headers?.["grpc-encoding"]) {
 										case "gzip":
-											// 已自动解压，毋需操作
+											// $request.body已被app自动解压，毋需操作
 											//rawBody = pako.ungzip(rawBody.slice(5));
-											rawBody = rawBody.slice(5);
+											// 但app只默认更改"content-encoding"的值
+											// 所以需要手动修改"grpc-encoding"的值
 											$request.headers["grpc-encoding"] = "identity";
 											break;
 										default:
-											rawBody = rawBody.slice(5);
 											break;
 									};
-									//$.log(`🚧 ${$.name}`, `$request.bodyBinary: ${JSON.stringify($request.bodyBinary)}`, "");
-									// 解析链接
+									// 先移除B站gRPC校验头，只保留protocol部分
+									rawBody = rawBody.slice(5);
+									// 解析链接并处理protocol数据
 									switch (url.host) {
 										case "grpc.biliapi.net": // HTTP/2
 										case "app.bilibili.com": // HTTP/1.1
@@ -103,8 +104,6 @@ let isEchoResponse = false;
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
-													if ($.isQuanX()) $request.bodyBytes = rawBody;
-													else $request.body = rawBody;
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 													break;
@@ -117,6 +116,9 @@ let isEchoResponse = false;
 											};
 											break;
 									};
+									// protocol部分处理完后，重新添加B站gRPC校验头
+									if ($.isQuanX()) $request.bodyBytes = CreateNewBody(rawBody);
+									else $request.body = CreateNewBody(rawBody);
 									break;
 								case "application/x-protobuf":
 									$request.body = Player.fromBinary($request.bodyBinary);
@@ -242,9 +244,6 @@ let isEchoResponse = false;
 						case "application/x-protobuf":
 							break;
 						case "application/grpc":
-							// 添加B站gRPC校验头
-							if ($.isQuanX()) $request.bodyBytes = CreateNewBody($request.bodyBytes);
-							else $request.body = CreateNewBody($request.body);
 							switch ($request.headers["grpc-encoding"]) {
 								case "identity":
 									// 压缩后不认
