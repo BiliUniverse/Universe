@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Enhanced v0.1.2(12) response.beta");
+const $ = new Env("📺 BiliBili:Enhanced v0.1.2(13) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -164,7 +164,10 @@ async function setENV(name, platform, database) {
 	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
-	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
+	if (typeof Settings.Home.Top === "string") Settings.Home.Top = Settings.Home.Top.split(",") // BoxJs字符串转数组
+	if (typeof Settings.Home.Top_more === "string") Settings.Home.Top_more = Settings.Home.Top_more.split(",") // BoxJs字符串转数组
+	if (typeof Settings.Home.Tab === "string") Settings.Home.Tab = Settings.Home.Tab.split(",") // BoxJs字符串转数组
+	if (typeof Settings.Bottom === "string") Settings.Bottom = Settings.Bottom.split(",") // BoxJs字符串转数组
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	return { Settings, Caches, Configs }
 };
