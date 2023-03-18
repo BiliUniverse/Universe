@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(7) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -27,8 +27,8 @@ for (const [key, value] of Object.entries($request.headers)) {
 	$request.headers[key.toLowerCase()] = value
 };
 
-// 是否构造返回数据
-let isEchoResponse = false;
+// 构造回复数据
+let $response = undefined;
 
 /***************** Processing *****************/
 (async () => {
@@ -143,7 +143,6 @@ let isEchoResponse = false;
 								let availableLocales = checkLocales(responses);
 								//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
 								$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-								isEchoResponse = true;
 							};
 							break;
 						case "app.bilibili.com":
@@ -172,7 +171,6 @@ let isEchoResponse = false;
 									let availableLocales = checkLocales(responses);
 									//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
 									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-									isEchoResponse = true;
 									break;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
@@ -204,8 +202,9 @@ let isEchoResponse = false;
 .catch((e) => $.logErr(e))
 .finally(() => {
 	//$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
-	switch (isEchoResponse) {
-		case true:
+	switch ($response) {
+		default:
+			$.log("echo response");
 			// 构造体数据直接来自$httpClient，未被自动解压，也未修改"content-encoding"，处理后压缩返回
 			switch ($response.headers?.["content-encoding"] || $response.headers?.["Content-Encoding"]) {
 				case "gzip":
@@ -222,14 +221,14 @@ let isEchoResponse = false;
 					break;
 				case "identity": // 视为无压缩
 				case undefined: // 视为无压缩
+				case "br": // 处理不了
 				default:
 					break;
 			};
 			if ($.isQuanX()) $.done($response)
 			else $.done({ $response });
 			break;
-		case false:
-		default:
+		case undefined:
 			switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 				case "application/json":
 				case "text/xml":
