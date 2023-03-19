@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(14) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.6(15) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -129,7 +129,7 @@ let $response = undefined;
 						default:
 							break;
 					};
-					//break; // 不需要break, 继续处理
+					break;
 				case "GET":
 				case "DELETE":
 				case "HEAD":
@@ -138,7 +138,6 @@ let $response = undefined;
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
-						case "m.bilibili.com":
 							if (url.path.includes("bangumi/play/")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
@@ -166,8 +165,9 @@ let $response = undefined;
 							break;
 						case "api.bilibili.com":
 							switch (url.path) {
-								case "pgc/player/api/playurl": // 番剧-播放地址
-								case "pgc/player/web/playurl": // 番剧-播放地址
+								case "pgc/player/api/playurl": // 番剧-播放地址-api
+								case "pgc/player/web/playurl": // 番剧-播放地址-web
+								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
 									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 									let availableLocales = checkLocales(responses);
 									//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
