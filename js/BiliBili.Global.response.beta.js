@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.0(1) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.0(18) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -129,88 +129,67 @@ for (const [key, value] of Object.entries($response.headers)) {
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
-							if (url.path.includes("bangumi/play/")) {// web版番剧
-							};
 							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
-							switch (url.path) {
-								case "x/v2/search/type": // 搜索
-								case "x/web-interface/search/type": // 搜索
-									break;
-								case "x/v2/space": // 用户空间
-									switch (url.params.vmid || url.params.mid) {
-										case "11783021": // 哔哩哔哩番剧出差
-										case "2042149112": // b站_綜藝咖
-											break;
-										default:
-											break;
-									};
-									break;
-							};
 							break;
 						case "api.bilibili.com":
 							switch (url.path) {
-								case "pgc/player/api/playurl": // 番剧-播放地址-api
-								case "pgc/player/web/playurl": // 番剧-播放地址-web
-								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
-									break;
-								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
-									break;
-								case "x/space/wbi/acc/info": // 用户空间-账号信息
-									switch (url.params.vmid || url.params.mid) {
-										case "11783021": // 哔哩哔哩番剧出差
-										case "2042149112": // b站_綜藝咖
-											break;
-										default:
-											break;
-									};
-									break;
 								case "pgc/view/web/season": // 番剧页面
 								case "pgc/view/v2/app/season": // 番剧页面
 									body = JSON.parse($response.body);
 									$.log(`season_id: ${body?.data?.season_id}, season_title: ${body?.data?.season_title}`);
+									/*
 									let epids = (body?.data?.modules ?? []).map(module => {
-										let epids = (module?.data?.episodes ?? []).map(episode => episode.id);
-										$.log(`episode.ids: ${epids}`);
-										return epids;
+										let epid = (module?.data?.episodes ?? []).map(episode => episode.id);
+										$.log(`episode.id: ${epid}`);
+										return epid ?? [];
+									}).flat(Infinity);
+									*/
+									//let epids = (body?.data?.modules ?? []).map(module => module?.data?.episodes).map((episode => episode?.id));
+									let episodes = (body?.data?.modules ?? []).map(module => {
+										switch (module?.data?.style) {
+											case "positive": // 选集
+											case "section": // SP
+												return module?.data?.episodes;
+											case "pugv": // 猜你喜欢
+											case "season": // 选季
+											default:
+												return [];
+										};
 									});
-									$.log(`episodes.ids: ${epids}`);
+									$.log(`modules.episodes: ${JSON.stringify(episodes)}`);
+									let epids = episodes.flatMap((episode => episode?.id));
+									$.log(`modules.episodes.ids: ${epids}`);
 									let newCaches = Caches;
-									switch (body?.data?.title.match(/\uFF09(.+)\uFF09)/?.[0])) {
+									if (!newCaches?.ep) newCaches.ep = {};
+									$.log(JSON.stringify(body?.data?.title.match(/\uFF08(.+)\uFF09/)));
+									switch (body?.data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
 										case "僅限港澳台地區":
-											newCaches.HKG = [...epids, ...(newCaches?.HKG ?? [])];
-											newCaches.MAC = [...epids, ...(newCaches?.MAC ?? [])];
-											newCaches.TWN = [...epids, ...(newCaches?.TWN ?? [])];
+											episodes.flatMap(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"])
 											break;
 										case "僅限港台地區":
-											newCaches.HKG = [...epids, ...(newCaches?.HKG ?? [])];
-											newCaches.TWN = [...epids, ...(newCaches?.TWN ?? [])];
+											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "TWN"])
 											break;
 										case "僅限港澳地區":
-											newCaches.HKG = [...epids, ...(newCaches?.HKG ?? [])];
-											newCaches.MAC = [...epids, ...(newCaches?.MAC ?? [])];
+											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "MAC"])
 											break;
 										case "僅限台灣地區":
-											newCaches.TWN = [...epids, ...(newCaches?.TWN ?? [])];
+											episodes.flatMap(episode => newCaches.ep[episode?.id] = ["TWN"])
 											break;
 										case "僅限港澳台及其他地區":
-											newCaches.HKG = [...epids, ...(newCaches?.HKG ?? [])];
-											newCaches.MAC = [...epids, ...(newCaches?.MAC ?? [])];
-											newCaches.TWN = [...epids, ...(newCaches?.TWN ?? [])];
-											newCaches.SEA = [...epids, ...(newCaches?.SEA ?? [])];
+											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN", "SEA"])
 											break;
 										case "僅限港澳及其他地區":
-											newCaches.HKG = [...epids, ...(newCaches?.HKG ?? [])];
-											newCaches.MAC = [...epids, ...(newCaches?.MAC ?? [])];
-											newCaches.SEA = [...epids, ...(newCaches?.SEA ?? [])];
+											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "MAC", "SEA"])
 											break;
 										case undefined:
-											newCaches.CHN = [...epids, ...(newCaches?.CHN ?? [])];
+											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["CHN"])
 											break;
 									};
+									$.log(`newCaches = ${JSON.stringify(newCaches)}`);
 									let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
-									$.log(`已储存? ${isSave}`);
+									$.log(`$.setjson ? ${isSave}`);
 									break;
 							};
 							break;
@@ -231,7 +210,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 .finally(() => {
 	switch ($response) {
 		default: // 有回复数据，返回修改的回复数据
-			$.log(`🚧 ${$.name}, finally`, `$response:${JSON.stringify($response)}`, "");
+			//$.log(`🚧 ${$.name}, finally`, `$response:${JSON.stringify($response)}`, "");
 			switch ($response?.headers?.["content-type"]?.split(";")?.[0]) {
 				case "application/json":
 				case "text/xml":
