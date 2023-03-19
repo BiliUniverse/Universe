@@ -309,7 +309,7 @@
 					"desc": "选择此地区代理或策略组"
 				},
 				{
-					"id": "@BiliBili.BiliGlobal.Settings.Proxies.TWN",
+					"id": "@BiliBili.Global.Settings.Proxies.TWN",
 					"name": "[🇹🇼中国台湾]代理或策略组选择",
 					"val": "🇹🇼台湾",
 					"type": "text",
