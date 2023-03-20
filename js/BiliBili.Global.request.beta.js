@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.6(15) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.7(7) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -104,6 +104,11 @@ let $response = undefined;
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
+													$.log(`🚧 ${$.name}`, `data.epid: ${data.epid}`, "");
+													$.log(`🚧 ${$.name}`, ` Caches.ep[data.epid]: ${Caches.ep[data.epid.toString()]}`, "");
+													let availableLocales = Caches.ep[data.epid.toString()].filter(locale => Settings?.Locales.includes(locale));
+													$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+													$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 													break;
@@ -141,7 +146,7 @@ let $response = undefined;
 							if (url.path.includes("bangumi/play/")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
-								//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
+								//$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);								
 								$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 							};
 							break;
@@ -170,7 +175,7 @@ let $response = undefined;
 								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
 									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 									let availableLocales = checkLocales(responses);
-									//$request = ReReqeust($request, Settings.Proxy[match_available[Math.floor(Math.random() * match_available.length)]]);								
+									//$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);								
 									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									break;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
@@ -204,7 +209,7 @@ let $response = undefined;
 .finally(() => {
 	switch ($response) {
 		default: // 有构造回复数据，返回构造的回复数据
-			$.log(`🚧 ${$.name}, finally`, `$response:${JSON.stringify($response)}`, "");
+			$.log(`🚧 ${$.name}, finally`, `echo $response:${JSON.stringify($response)}`, "");
 			// headers转小写
 			for (const [key, value] of Object.entries($response.headers)) {
 				delete $response.headers[key]
@@ -239,7 +244,7 @@ let $response = undefined;
 			else $.done({ response: $response });
 			break;
 		case undefined: // 无构造回复数据，发送修改的请求数据
-			$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
+			//$.log(`🚧 ${$.name}, finally`, `$request:${JSON.stringify($request)}`, "");
 			switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 				case "application/json":
 				case "text/xml":
