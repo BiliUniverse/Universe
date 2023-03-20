@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.8(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.8(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -32,7 +32,7 @@ let $response = undefined;
 
 /***************** Processing *****************/
 (async () => {
-	const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
+	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -327,22 +327,19 @@ function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argumen
  * Set Environment Variables
  * @author VirgilClyne
  * @param {String} name - Persistent Store Key
- * @param {String} platforms - Platforms Name
+ * @param {String} platform - Platform Name
  * @param {Object} database - Default DataBase
- * @return {Promise<*>}
+ * @return {Object}
  */
-async function setENV(name, platforms, database) {
+function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let env = {};
-	if (Array.isArray(platforms)) {
-		env.Caches = platforms.flatMap(async platform => getENV(name, platform, database).Caches);
-	} else env = await getENV(name, platforms, database);
+	let { Settings, Caches = {}, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	Settings.ForceHost = parseInt(Settings.ForceHost, 10) // BoxJs字符串转Number
 	if (typeof Settings.Locales === "string") Settings.Locales = Settings.Locales.split(",") // BoxJs字符串转数组
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-	return { Settings, Caches = {}, Configs } = env;
+	return { Settings, Caches, Configs }
 };
 
 /**
