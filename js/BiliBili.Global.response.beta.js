@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.0(18) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.0(26) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -138,17 +138,11 @@ for (const [key, value] of Object.entries($response.headers)) {
 								case "pgc/view/web/season": // 番剧页面
 								case "pgc/view/v2/app/season": // 番剧页面
 									body = JSON.parse($response.body);
+									let newCaches = Caches;
+									if (!newCaches?.ep) newCaches.ep = {};
 									$.log(`season_id: ${body?.data?.season_id}, season_title: ${body?.data?.season_title}`);
-									/*
-									let epids = (body?.data?.modules ?? []).map(module => {
-										let epid = (module?.data?.episodes ?? []).map(episode => episode.id);
-										$.log(`episode.id: ${epid}`);
-										return epid ?? [];
-									}).flat(Infinity);
-									*/
-									//let epids = (body?.data?.modules ?? []).map(module => module?.data?.episodes).map((episode => episode?.id));
 									let episodes = (body?.data?.modules ?? []).map(module => {
-										switch (module?.data?.style) {
+										switch (module?.style) {
 											case "positive": // 选集
 											case "section": // SP
 												return module?.data?.episodes;
@@ -157,34 +151,28 @@ for (const [key, value] of Object.entries($response.headers)) {
 											default:
 												return [];
 										};
-									});
-									$.log(`modules.episodes: ${JSON.stringify(episodes)}`);
-									let epids = episodes.flatMap((episode => episode?.id));
-									$.log(`modules.episodes.ids: ${epids}`);
-									let newCaches = Caches;
-									if (!newCaches?.ep) newCaches.ep = {};
-									$.log(JSON.stringify(body?.data?.title.match(/\uFF08(.+)\uFF09/)));
+									}).flat(1);
 									switch (body?.data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
 										case "僅限港澳台地區":
-											episodes.flatMap(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"]);
 											break;
 										case "僅限港台地區":
-											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "TWN"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "TWN"]);
 											break;
 										case "僅限港澳地區":
-											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "MAC"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC"]);
 											break;
 										case "僅限台灣地區":
-											episodes.flatMap(episode => newCaches.ep[episode?.id] = ["TWN"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["TWN"]);
 											break;
 										case "僅限港澳台及其他地區":
-											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN", "SEA"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN", "SEA"]);
 											break;
 										case "僅限港澳及其他地區":
-											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["HKG", "MAC", "SEA"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "SEA"]);
 											break;
 										case undefined:
-											episodes.flatMap(epid => newCaches.ep[episode?.id] = ["CHN"])
+											episodes.forEach(episode => newCaches.ep[episode?.id] = ["CHN"]);
 											break;
 									};
 									$.log(`newCaches = ${JSON.stringify(newCaches)}`);
