@@ -80,7 +80,7 @@
 				},
 				{
 					"id": 136117,
-					"name": "两会",
+					"name": "新征程",
 					"uri": "bilibili://following/home_activity_tab/136117",
 					"tab_id": "165",
 					"pos": 7,
@@ -113,6 +113,14 @@
 					"pos": 1
 				},
 				{
+					"id": 108,
+					"icon": "http://i0.hdslb.com/bfs/archive/9d1c0985b9d0e2da2c2f919cc2ee0e36ea41fd90.png",
+					"name": "会员购",
+					"uri": "bilibili://mall/home/",
+					"tab_id": "会员购Top",
+					"pos": 2
+				},
+				{
 					"id": 176,
 					"icon": "http://i0.hdslb.com/bfs/archive/d43047538e72c9ed8fd8e4e34415fbe3a4f632cb.png",
 					"name": "消息",
@@ -130,6 +138,15 @@
 					"uri": "bilibili://main/home/",
 					"tab_id": "home",
 					"pos": 1
+				},
+				{
+					"id": 103,
+					"icon": "http://i0.hdslb.com/bfs/archive/b4f621f268c1f9eda501805135f132aa9498b0ba.png",
+					"icon_selected": "http://i0.hdslb.com/bfs/archive/94539249e59621214f7dc1226cf38a2b8fe4c64f.png",
+					"name": "频道",
+					"uri": "bilibili://pegasus/channel/",
+					"tab_id": "频道Bottom",
+					"pos": 2
 				},
 				{
 					"id": 179,
@@ -195,6 +212,15 @@
 					"pos": 4
 				},
 				{
+					"id": 105,
+					"icon": "http://i0.hdslb.com/bfs/archive/93dae0f0fb2c9887effb2840800d5b639be69351.png",
+					"icon_selected": "http://i0.hdslb.com/bfs/archive/f96bfd9ffea2e51443aed44dba6d76b7b34891c8.png",
+					"name": "消息",
+					"uri": "bilibili://link/im_home",
+					"tab_id": "消息Bottom",
+					"pos": 4
+				},
+				{
 					"id": 181,
 					"icon": "http://i0.hdslb.com/bfs/archive/4b0b2c49ffeb4f0c2e6a4cceebeef0aab1c53fe1.png",
 					"icon_selected": "http://i0.hdslb.com/bfs/archive/a54a8009116cb896e64ef14dcf50e5cade401e00.png",
@@ -224,7 +250,7 @@
 				"mine": {
 					"exp": 0,
 					"head_tag": "",
-					"url": "bilibili://user_center/mine",
+					"url": "bilibili://root?bottom_tab_id=我的Bottom",
 					"goto": 1,
 					"story_background_image": "",
 					"story_foreground_image": "",
