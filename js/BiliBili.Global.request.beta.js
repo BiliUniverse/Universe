@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.8(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.8(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -104,12 +104,18 @@ let $response = undefined;
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
-													let epid = data.epid.toString();
+													let epid = data?.epid?.toString();
 													//$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-													//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
-													let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
-													$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-													$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
+													if (Caches?.ep?.[epid]) {
+														//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
+														let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
+														$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);
+													} else {
+														let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+														let availableLocales = checkLocales(responses);
+														$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+													};
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 													break;
@@ -174,17 +180,17 @@ let $response = undefined;
 								case "pgc/player/api/playurl": // 番剧-播放地址-api
 								case "pgc/player/web/playurl": // 番剧-播放地址-web
 								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
-									let epid = url.params.ep_id;
+									let epid = url?.params?.ep_id;
 									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
-									$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-									if (availableLocales) {
+									if (Caches?.ep?.[epid]) {
+										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
 										$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);
 									} else {
 										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-										availableLocales = checkLocales(responses);
+										let availableLocales = checkLocales(responses);
 										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-									}
+									};
 									break;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
@@ -203,7 +209,7 @@ let $response = undefined;
 										// https://github.com/ipcjs/bilibili-helper/blob/user.js/packages/unblock-area-limit/src/api/biliplus.ts
 									} else {
 										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-										availableLocales = checkLocales(responses);
+										let availableLocales = checkLocales(responses);
 										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									};
 									break;
@@ -423,7 +429,7 @@ async function mutiFetch(request = {}, proxies = {}, locales = []) {
  * @return {Boolean} is Available
  */
 function isResponseAvailability(response = {}) {
-    $.log(`⚠ ${$.name}, Determine Response Availability`, "");
+    //$.log(`⚠ ${$.name}, Determine Response Availability`, "");
 	$.log(`🚧 ${$.name}, Determine Response Availability`, `statusCode: ${response.statusCode}`, `headers: ${JSON.stringify(response.headers)}`, "");
 	let isAvailable = true;
 	switch (response?.statusCode) {
