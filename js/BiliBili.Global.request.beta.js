@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.7(7) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.8(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -104,9 +104,10 @@ let $response = undefined;
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
-													$.log(`🚧 ${$.name}`, `data.epid: ${data.epid}`, "");
-													$.log(`🚧 ${$.name}`, ` Caches.ep[data.epid]: ${Caches.ep[data.epid.toString()]}`, "");
-													let availableLocales = Caches.ep[data.epid.toString()].filter(locale => Settings?.Locales.includes(locale));
+													let epid = data.epid.toString();
+													//$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+													//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
+													let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 													$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
 													$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
 													break;
@@ -173,10 +174,17 @@ let $response = undefined;
 								case "pgc/player/api/playurl": // 番剧-播放地址-api
 								case "pgc/player/web/playurl": // 番剧-播放地址-web
 								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
-									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-									let availableLocales = checkLocales(responses);
-									//$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);								
-									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+									let epid = url.params.ep_id;
+									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+									let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+									$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+									if (availableLocales) {
+										$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);
+									} else {
+										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+										availableLocales = checkLocales(responses);
+										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+									}
 									break;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
