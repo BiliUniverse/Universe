@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.8(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.8(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -198,6 +198,15 @@ let $response = undefined;
 											break;
 									};
 									break;
+								case "pgc/view/web/season": // 番剧-内容-web
+									if (Caches.AccessKey) {
+										// https://github.com/ipcjs/bilibili-helper/blob/user.js/packages/unblock-area-limit/src/api/biliplus.ts
+									} else {
+										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+										availableLocales = checkLocales(responses);
+										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+									};
+									break;
 							};
 							break;
 						case "app.biliintl.com":
@@ -310,27 +319,30 @@ let $response = undefined;
  * @param {String} t - Persistent Store Key
  * @param {String} e - Platform Name
  * @param {Object} n - Default Database
- * @return {Promise<*>}
+ * @return {Object}
  */
-async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
+function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
 
 /**
  * Set Environment Variables
  * @author VirgilClyne
  * @param {String} name - Persistent Store Key
- * @param {String} platform - Platform Name
+ * @param {String} platforms - Platforms Name
  * @param {Object} database - Default DataBase
  * @return {Promise<*>}
  */
-async function setENV(name, platform, database) {
+async function setENV(name, platforms, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
+	let env = {};
+	if (Array.isArray(platforms)) {
+		env.Caches = platforms.flatMap(async platform => getENV(name, platform, database).Caches);
+	} else env = await getENV(name, platforms, database);
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	Settings.ForceHost = parseInt(Settings.ForceHost, 10) // BoxJs字符串转Number
 	if (typeof Settings.Locales === "string") Settings.Locales = Settings.Locales.split(",") // BoxJs字符串转数组
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-	return { Settings, Caches, Configs }
+	return { Settings, Caches = {}, Configs } = env;
 };
 
 /**
