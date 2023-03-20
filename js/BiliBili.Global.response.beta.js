@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.0(26) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.1(1) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -140,18 +140,8 @@ for (const [key, value] of Object.entries($response.headers)) {
 									body = JSON.parse($response.body);
 									let newCaches = Caches;
 									if (!newCaches?.ep) newCaches.ep = {};
-									$.log(`season_id: ${body?.data?.season_id}, season_title: ${body?.data?.season_title}`);
-									let episodes = (body?.data?.modules ?? []).map(module => {
-										switch (module?.style) {
-											case "positive": // 选集
-											case "section": // SP
-												return module?.data?.episodes;
-											case "pugv": // 猜你喜欢
-											case "season": // 选季
-											default:
-												return [];
-										};
-									}).flat(1);
+									let episodes = getEpisodes(body.data);
+									//$.log(JSON.stringify(body?.data?.title.match(/\uFF08(.+)\uFF09/)));
 									switch (body?.data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
 										case "僅限港澳台地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"]);
@@ -307,6 +297,37 @@ async function setENV(name, platform, database) {
 	if (typeof Settings.Locales === "string") Settings.Locales = Settings.Locales.split(",") // BoxJs字符串转数组
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	return { Settings, Caches, Configs }
+};
+
+/**
+ * Get Episodes Data
+ * @author VirgilClyne
+ * @param {Object} data - Response Body's Data
+ * @return {Array<Object>} Episodes Datas
+ */
+function getEpisodes(data) {
+	$.log(`⚠ ${$.name}, Get Episodes`, `season_id: ${data?.season_id}, season_title: ${data?.season_title}`, "");
+	let episodes = (data?.modules ?? []).flatMap(module => {
+		switch (module?.style) {
+			case "positive": // 选集
+			case "section": // SP
+				return module?.data?.episodes;
+			case "pugv": // 猜你喜欢
+			case "season": // 选季
+			default:
+				return [];
+		};
+	});
+	/*
+	let epids = episodes.map(episode => {
+		$.log(`episode.id: ${episode?.id}`);
+		$.log(`episode: ${JSON.stringify(episode)}`);
+		return episode?.id
+	});
+	*/
+	$.log(`🎉 ${$.name}, Get Episodes`, "");
+	//$.log(`🚧 ${$.name}, Get Episodes`, `modules.episodes: ${JSON.stringify(episodes)}`, "");
+	return episodes;
 };
 
 /**
