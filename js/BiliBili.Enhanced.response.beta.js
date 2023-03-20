@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Enhanced v0.1.2(13) response.beta");
+const $ = new Env("📺 BiliBili:Enhanced v0.1.3(1) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -55,6 +55,14 @@ for (const [key, value] of Object.entries($response.headers)) {
 							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
+							// 先保存一下AccessKey
+							if (url?.params?.access_key) {
+								let newCaches = Caches;
+								newCaches.AccessKey = url.params.access_key; // 总是刷新
+								$.log(`newCaches = ${JSON.stringify(newCaches)}`);
+								let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
+								$.log(`$.setjson ? ${isSave}`);
+							};
 							switch (url.path) {
 								case "x/resource/show/tab/v2": // 首页-Tab
 									// 顶栏-左侧
