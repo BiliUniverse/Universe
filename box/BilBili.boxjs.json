@@ -69,7 +69,7 @@
 						},
 						{
 							"key": "165",
-							"label": "两会"
+							"label": "新征程"
 						},
 						{
 							"key": "kj",
@@ -118,7 +118,7 @@
 						},
 						{
 							"key": "165",
-							"label": "两会"
+							"label": "新征程"
 						},
 						{
 							"key": "kj",
@@ -161,6 +161,10 @@
 							"label": "游戏中心"
 						},
 						{
+							"key": "会员购Top",
+							"label": "会员购"
+						},
+						{
 							"key": "消息Top",
 							"label": "消息"
 						}
@@ -184,6 +188,10 @@
 							"label": "首页"
 						},
 						{
+							"key": "频道Bottom",
+							"label": "频道"
+						},
+						{
 							"key": "dynamic",
 							"label": "动态"
 						},
@@ -198,6 +206,10 @@
 						{
 							"key": "会员购Bottom",
 							"label": "会员购"
+						},
+						{
+							"key": "消息Bottom",
+							"label": "消息"
 						},
 						{
 							"key": "我的Bottom",
