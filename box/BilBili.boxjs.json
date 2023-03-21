@@ -227,7 +227,7 @@
 			]
 		},
 		{
-			"id": "BiliBili.Global.beta",
+			"id": "BiliBili.Global",
 			"name": "📺 BiliBili: Global",
 			"descs_html": [
 				"使用说明请见<a href=\"https://github.com/VirgilClyne/BiliBili/wiki/🌐-Global#使用方式\">使用方式</a>进行配置",
