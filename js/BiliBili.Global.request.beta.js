@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.8(8) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.9(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -368,7 +368,7 @@ function ReReqeust(request = {}, proxyName = "") {
 			request.headers["X-Surge-Policy"] = proxyName;
 			request.policy = proxyName;
 		};
-		if ($.isStash()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Stash`, "");
+		if ($.isStash()) request.headers["X-Stash-Selected-Proxy"] = encodeURI(proxyName);
 		if ($.isShadowrocket()) $.logErr(`❗️${$.name}, ${Fetch.name}执行失败`, `不支持的app: Shadowrocket`, "");
 	}
 	//$.log(`🎉 ${$.name}, Construct Redirect Reqeusts`, "");
