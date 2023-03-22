@@ -20,6 +20,18 @@ http:
       require-body: true
       timeout: 15
       argument:
+    - match: ^https?:\/\/api\.bilibili\.com\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
+      name: BiliBili.Global.request
+      type: request
+      require-body: true
+      timeout: 15
+      argument:
+    - match: ^https?:\/\/api\.bilibili\.com\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
+      name: BiliBili.Global.response
+      type: response
+      require-body: true
+      timeout: 15
+      argument:
     - match: ^https?:\/\/grpc\.biliapi\.net\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView(\?.+)?$
       name: BiliBili.Global.request
       type: request
@@ -76,4 +88,7 @@ http:
 script-providers:
   BiliBili.Global.request:
     url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+    interval: 86400
+  BiliBili.Global.response:
+    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.response.js
     interval: 86400
