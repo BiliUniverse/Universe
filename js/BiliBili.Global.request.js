@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.8(7) request");
+const $ = new Env("📺 BiliBili:Global v0.2.8(8) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -110,7 +110,7 @@ let $response = undefined;
 														//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
 														let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
-														$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);
+														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);
 													} else {
 														let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 														let availableLocales = checkLocales(responses);
@@ -153,7 +153,7 @@ let $response = undefined;
 							if (url.path.includes("bangumi/play/")) {// web版番剧
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
-								//$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);								
+								//$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
 								$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 							};
 							break;
@@ -185,7 +185,7 @@ let $response = undefined;
 									if (Caches?.ep?.[epid]) {
 										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-										$request = ReReqeust($request, Settings.Proxies[match_available[Math.floor(Math.random() * match_available.length)]]);
+										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);
 									} else {
 										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 										let availableLocales = checkLocales(responses);
