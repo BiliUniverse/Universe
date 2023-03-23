@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.9(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.9(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -32,7 +32,7 @@ let $response = undefined;
 
 /***************** Processing *****************/
 (async () => {
-	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
+	const { Settings, Configs } = setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -106,7 +106,8 @@ let $response = undefined;
 													rawBody = PlayViewReq.toBinary(data);
 													let epid = data?.epid?.toString();
 													//$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-													if (Caches?.ep?.[epid]) {
+													// 从缓存中获取可用的地区
+													if (getENV("BiliBili", "Global", DataBase).Caches?.ep?.[epid]) {
 														//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
 														let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
@@ -184,7 +185,8 @@ let $response = undefined;
 								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
 									let epid = url?.params?.ep_id;
 									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									if (Caches?.ep?.[epid]) {
+									// 从缓存中获取可用的地区
+									if (getENV("BiliBili", "Global", DataBase).Caches?.ep?.[epid]) {
 										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
 										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
@@ -209,7 +211,8 @@ let $response = undefined;
 									};
 									break;
 								case "pgc/view/web/season": // 番剧-内容-web
-									if (Caches.AccessKey) {
+									// 从缓存中获取可用的地区
+									if (getENV("BiliBili", "Global", DataBase).Caches.AccessKey) {
 										// https://github.com/ipcjs/bilibili-helper/blob/user.js/packages/unblock-area-limit/src/api/biliplus.ts
 									} else {
 										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
