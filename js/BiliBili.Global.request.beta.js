@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.9(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.9(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -110,7 +110,7 @@ let $response = undefined;
 														//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
 														let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
-														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);
+														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 													} else {
 														let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 														let availableLocales = checkLocales(responses);
@@ -167,7 +167,9 @@ let $response = undefined;
 									switch (url.params.vmid || url.params.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
-											$request = ReReqeust($request, Settings.Proxies["HKG"]);
+											let availableLocales = Settings?.Locales.filter(locale => locale !== "CHN");
+											$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+											$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 											break;
 										default:
 											break;
@@ -185,7 +187,7 @@ let $response = undefined;
 									if (Caches?.ep?.[epid]) {
 										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);
+										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 									} else {
 										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 										let availableLocales = checkLocales(responses);
@@ -198,7 +200,9 @@ let $response = undefined;
 									switch (url.params.vmid || url.params.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
-											$request = ReReqeust($request, Settings.Proxies["HKG"]);
+											let availableLocales = Settings?.Locales.filter(locale => locale !== "CHN");
+											$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+											$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 											break;
 										default:
 											break;
