@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.10(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.10(7) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -103,6 +103,19 @@ let $response = undefined;
 													/******************  initialization finish  *******************/
 													data = PlayViewReq.fromBinary(rawBody);
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
+													let UF = UnknownFieldHandler.list(data);
+													$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
+													if (UF) {
+														UF = UF.map(uf => {
+															//uf.no; // 22
+															//uf.wireType; // WireType.Varint
+
+															// use the binary reader to decode the raw data:
+															let reader = new BinaryReader(uf.data);
+															let addedNumber = reader.int32(); // 7777
+															$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
+														});
+													};
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
 													let epid = data?.epid;
