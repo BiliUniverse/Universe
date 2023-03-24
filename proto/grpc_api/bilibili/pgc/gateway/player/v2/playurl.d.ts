@@ -1189,15 +1189,15 @@ export interface PlayViewReq {
     /**
      * 剧集epid
      *
-     * @generated from protobuf field: int64 epid = 1 [jstype = JS_NUMBER];
+     * @generated from protobuf field: int64 epid = 1 [jstype = JS_STRING];
      */
-    epid: number;
+    epid: string;
     /**
      * 视频cid
      *
-     * @generated from protobuf field: int64 cid = 2 [jstype = JS_NUMBER];
+     * @generated from protobuf field: int64 cid = 2 [jstype = JS_STRING];
      */
-    cid: number;
+    cid: string;
     /**
      * 清晰度
      *

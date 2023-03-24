@@ -518,9 +518,9 @@ message PlayViewReply {
 // 播放页信息-请求
 message PlayViewReq {
     // 剧集epid
-    int64 epid = 1 [jstype = JS_NUMBER];
+    int64 epid = 1 [jstype = JS_STRING];
     // 视频cid
-    int64 cid = 2 [jstype = JS_NUMBER];
+    int64 cid = 2 [jstype = JS_STRING];
     // 清晰度
     int64 qn = 3 [jstype = JS_NUMBER];
     // 视频流版本

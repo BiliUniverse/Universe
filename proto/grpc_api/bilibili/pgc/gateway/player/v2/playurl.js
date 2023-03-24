@@ -2667,8 +2667,8 @@ export const PlayViewReply = new PlayViewReply$Type();
 class PlayViewReq$Type extends MessageType {
     constructor() {
         super("bilibili.pgc.gateway.player.v2.PlayViewReq", [
-            { no: 1, name: "epid", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 2, name: "cid", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 1, name: "epid", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
+            { no: 2, name: "cid", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
             { no: 3, name: "qn", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 4, name: "fnver", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 5, name: "fnval", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
@@ -2688,7 +2688,7 @@ class PlayViewReq$Type extends MessageType {
         ]);
     }
     create(value) {
-        const message = { epid: 0, cid: 0, qn: 0, fnver: 0, fnval: 0, download: 0, forceHost: 0, fourk: false, spmid: "", fromSpmid: "", teenagersMode: 0, preferCodecType: 0, isPreview: false, roomId: 0, isNeedViewInfo: false, inlineScene: 0, materialNo: 0 };
+        const message = { epid: "0", cid: "0", qn: 0, fnver: 0, fnval: 0, download: 0, forceHost: 0, fourk: false, spmid: "", fromSpmid: "", teenagersMode: 0, preferCodecType: 0, isPreview: false, roomId: 0, isNeedViewInfo: false, inlineScene: 0, materialNo: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -2699,11 +2699,11 @@ class PlayViewReq$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* int64 epid = 1 [jstype = JS_NUMBER];*/ 1:
-                    message.epid = reader.int64().toNumber();
+                case /* int64 epid = 1 [jstype = JS_STRING];*/ 1:
+                    message.epid = reader.int64().toString();
                     break;
-                case /* int64 cid = 2 [jstype = JS_NUMBER];*/ 2:
-                    message.cid = reader.int64().toNumber();
+                case /* int64 cid = 2 [jstype = JS_STRING];*/ 2:
+                    message.cid = reader.int64().toString();
                     break;
                 case /* int64 qn = 3 [jstype = JS_NUMBER];*/ 3:
                     message.qn = reader.int64().toNumber();
@@ -2765,11 +2765,11 @@ class PlayViewReq$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* int64 epid = 1 [jstype = JS_NUMBER]; */
-        if (message.epid !== 0)
+        /* int64 epid = 1 [jstype = JS_STRING]; */
+        if (message.epid !== "0")
             writer.tag(1, WireType.Varint).int64(message.epid);
-        /* int64 cid = 2 [jstype = JS_NUMBER]; */
-        if (message.cid !== 0)
+        /* int64 cid = 2 [jstype = JS_STRING]; */
+        if (message.cid !== "0")
             writer.tag(2, WireType.Varint).int64(message.cid);
         /* int64 qn = 3 [jstype = JS_NUMBER]; */
         if (message.qn !== 0)
