@@ -32,7 +32,7 @@ http:
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/grpc\.biliapi\.net\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView(\?.+)?$
+    - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true
@@ -52,7 +52,7 @@ http:
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/grpc\.biliapi\.net\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$
+    - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true
