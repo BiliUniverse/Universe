@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.9(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.10(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -104,14 +104,17 @@ let $response = undefined;
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
-													let epid = data?.epid?.toString();
+													let epid = data?.epid;
 													//$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
 													if (Caches?.ep?.[epid]) {
 														//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
 														let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
 														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+													//} else if (epid == "0") {
+													//	$.log(`🚧 ${$.name}`, `season_id: ${Caches.LastSeason?.season_id}, season_title: ${Caches.LastSeason?.season_title}`, "");
 													} else {
+														$.log(`🚧 ${$.name}`, `season_id: ${Caches.LastSeason?.season_id}, season_title: ${Caches.LastSeason?.season_title}`, "");
 														let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 														let availableLocales = checkLocales(responses);
 														$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个

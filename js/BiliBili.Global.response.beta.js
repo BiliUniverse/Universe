@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.1(1) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(2) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -141,28 +141,39 @@ for (const [key, value] of Object.entries($response.headers)) {
 									let newCaches = Caches;
 									if (!newCaches?.ep) newCaches.ep = {};
 									let episodes = getEpisodes(body.data);
+									newCaches.LastSeason = {
+										season_id: body.data.season_id,
+										season_title: body.data.season_title
+									};
 									//$.log(JSON.stringify(body?.data?.title.match(/\uFF08(.+)\uFF09/)));
 									switch (body?.data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
 										case "僅限港澳台地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"]);
+											newCaches.LastSeason.locales = ["HKG", "MAC", "TWN"];
 											break;
 										case "僅限港台地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "TWN"]);
+											newCaches.LastSeason.locales = ["HKG", "TWN"];
 											break;
 										case "僅限港澳地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC"]);
+											newCaches.LastSeason.locales = ["HKG", "MAC"];
 											break;
 										case "僅限台灣地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["TWN"]);
+											newCaches.LastSeason.locales = ["TWN"];
 											break;
 										case "僅限港澳台及其他地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN", "SEA"]);
+											newCaches.LastSeason.locales = ["HKG", "MAC", "TWN", "SEA"];
 											break;
 										case "僅限港澳及其他地區":
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "SEA"]);
+											newCaches.LastSeason.locales = ["HKG", "MAC", "SEA"];
 											break;
 										case undefined:
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["CHN"]);
+											newCaches.LastSeason.locales = ["CHN"];
 											break;
 									};
 									$.log(`newCaches = ${JSON.stringify(newCaches)}`);
