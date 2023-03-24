@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.10(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.10(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -32,7 +32,8 @@ let $response = undefined;
 
 /***************** Processing *****************/
 (async () => {
-	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
+	await $.wait(3000);
+	const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -105,7 +106,6 @@ let $response = undefined;
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
 													let epid = data?.epid;
-													//$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
 													if (Caches?.ep?.[epid]) {
 														//$.log(`🚧 ${$.name}`, ` Caches.ep[epid]: ${Caches.ep[epid]}`, "");
 														let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
@@ -114,7 +114,6 @@ let $response = undefined;
 													//} else if (epid == "0") {
 													//	$.log(`🚧 ${$.name}`, `season_id: ${Caches.LastSeason?.season_id}, season_title: ${Caches.LastSeason?.season_title}`, "");
 													} else {
-														$.log(`🚧 ${$.name}`, `season_id: ${Caches.LastSeason?.season_id}, season_title: ${Caches.LastSeason?.season_title}`, "");
 														let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 														let availableLocales = checkLocales(responses);
 														$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
@@ -344,7 +343,7 @@ function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argumen
  * @param {Object} database - Default DataBase
  * @return {Object}
  */
-function setENV(name, platform, database) {
+async function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
 	let { Settings, Caches = {}, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
