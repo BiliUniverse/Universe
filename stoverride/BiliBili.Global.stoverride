@@ -9,10 +9,11 @@ icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibi
 http:
   mitm:
     - "www.bilibili.com"
-    - "grpc.biliapi.net"
+    - "app.bilibili.com"
     - "api.bilibili.com"
     - "api.global.bilibili.com"
-    - "app.bilibili.com"
+    - "grpc.biliapi.net"
+    - "api.biliapi.net"
   script:
     - match: ^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+(\?.+)?$
       name: BiliBili.Global.request
@@ -20,13 +21,13 @@ http:
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/api\.bilibili\.com\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
+    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/api\.bilibili\.com\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
+    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
       name: BiliBili.Global.response
       type: response
       require-body: true
@@ -40,7 +41,7 @@ http:
       binary-mode: true
       max-size: 0
       argument:
-    - match: ^https?:\/\/api\.bilibili\.com\/pgc\/player\/(api|web)\/playurl(\/html5)?(\?.+)?$
+    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/player\/(api|web)\/playurl(\/html5)?(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true
@@ -60,7 +61,7 @@ http:
       binary-mode: true
       max-size: 0
       argument:
-    - match: ^https?:\/\/api\.bilibili\.com\/x\/(v2|web-interface)\/search\/type(\?.+)?$
+    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/(v2|web-interface)\/search\/type(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true
@@ -78,7 +79,7 @@ http:
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/api\.bilibili\.com\/x\/space\/wbi/acc\/info(\?.+)?$
+    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/space\/wbi/acc\/info(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true

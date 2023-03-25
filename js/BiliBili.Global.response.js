@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(5) repsonse");
+const $ = new Env("📺 BiliBili:Global v0.1.2(6) repsonse");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -134,6 +134,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 						case "app.biliapi.net":
 							break;
 						case "api.bilibili.com":
+						case "api.biliapi.net":
 							switch (url.path) {
 								case "pgc/view/web/season": // 番剧页面
 								case "pgc/view/v2/app/season": // 番剧页面
