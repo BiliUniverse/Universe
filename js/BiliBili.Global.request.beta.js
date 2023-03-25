@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.11(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.11(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -32,7 +32,6 @@ let $response = undefined;
 
 /***************** Processing *****************/
 (async () => {
-	await $.wait(3000);
 	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
@@ -132,9 +131,10 @@ let $response = undefined;
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
 														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 													} else { // 都没有缓存
-														let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-														let availableLocales = checkLocales(responses);
-														$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+														//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+														//let availableLocales = checkLocales(responses);
+														//$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+														delete $response.body;
 													};
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
