@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.11(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.11(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -33,7 +33,7 @@ let $response = undefined;
 /***************** Processing *****************/
 (async () => {
 	await $.wait(3000);
-	const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
+	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -361,7 +361,7 @@ function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argumen
  * @param {Object} database - Default DataBase
  * @return {Object}
  */
-async function setENV(name, platform, database) {
+function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
 	let { Settings, Caches = {}, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
