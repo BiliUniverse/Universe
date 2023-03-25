@@ -480,6 +480,19 @@ export interface DashVideo {
     height: number;
 }
 /**
+ * 数据控制
+ *
+ * @generated from protobuf message bilibili.pgc.gateway.player.v2.DataControl
+ */
+export interface DataControl {
+    /**
+     * 需要观看进度
+     *
+     * @generated from protobuf field: bool need_watch_progress = 1;
+     */
+    needWatchProgress: boolean;
+}
+/**
  * 鉴权浮层
  *
  * @generated from protobuf message bilibili.pgc.gateway.player.v2.Dialog
@@ -1189,15 +1202,15 @@ export interface PlayViewReq {
     /**
      * 剧集epid
      *
-     * @generated from protobuf field: int64 epid = 1 [jstype = JS_STRING];
+     * @generated from protobuf field: optional int64 ep_id = 1 [jstype = JS_NUMBER];
      */
-    epid: string;
+    epId?: number;
     /**
      * 视频cid
      *
-     * @generated from protobuf field: int64 cid = 2 [jstype = JS_STRING];
+     * @generated from protobuf field: optional int64 cid = 2 [jstype = JS_NUMBER];
      */
-    cid: string;
+    cid?: number;
     /**
      * 清晰度
      *
@@ -1207,9 +1220,9 @@ export interface PlayViewReq {
     /**
      * 视频流版本
      *
-     * @generated from protobuf field: int32 fnver = 4;
+     * @generated from protobuf field: optional int32 fnver = 4;
      */
-    fnver: number;
+    fnver?: number;
     /**
      * 视频流格式
      *
@@ -1220,40 +1233,40 @@ export interface PlayViewReq {
      * 下载模式
      * 0:播放 1:flv下载 2:dash下载
      *
-     * @generated from protobuf field: uint32 download = 6;
+     * @generated from protobuf field: optional uint32 download = 6;
      */
-    download: number;
+    download?: number;
     /**
      * 流url强制是用域名
      * 0:允许使用ip 1:使用http 2:使用https
      *
-     * @generated from protobuf field: int32 force_host = 7;
+     * @generated from protobuf field: optional int32 force_host = 7;
      */
-    forceHost: number;
+    forceHost?: number;
     /**
      * 是否4K
      *
-     * @generated from protobuf field: bool fourk = 8;
+     * @generated from protobuf field: optional bool fourk = 8;
      */
-    fourk: boolean;
+    fourk?: boolean;
     /**
      * 当前页spm
      *
-     * @generated from protobuf field: string spmid = 9;
+     * @generated from protobuf field: optional string spmid = 9;
      */
-    spmid: string;
+    spmid?: string;
     /**
      * 上一页spm
      *
-     * @generated from protobuf field: string from_spmid = 10;
+     * @generated from protobuf field: optional string from_spmid = 10;
      */
-    fromSpmid: string;
+    fromSpmid?: string;
     /**
      * 青少年模式
      *
-     * @generated from protobuf field: int32 teenagers_mode = 11;
+     * @generated from protobuf field: optional int32 teenagers_mode = 11;
      */
-    teenagersMode: number;
+    teenagersMode?: number;
     /**
      * 视频编码
      *
@@ -1263,21 +1276,21 @@ export interface PlayViewReq {
     /**
      * 是否强制请求预览视频
      *
-     * @generated from protobuf field: bool is_preview = 13;
+     * @generated from protobuf field: optional bool is_preview = 13;
      */
-    isPreview: boolean;
+    isPreview?: boolean;
     /**
      * 一起看房间id
      *
-     * @generated from protobuf field: int64 room_id = 14 [jstype = JS_NUMBER];
+     * @generated from protobuf field: optional int64 room_id = 14 [jstype = JS_NUMBER];
      */
-    roomId: number;
+    roomId?: number;
     /**
      * 是否需要展示信息
      *
-     * @generated from protobuf field: bool is_need_view_info = 15;
+     * @generated from protobuf field: optional bool is_need_view_info = 15;
      */
-    isNeedViewInfo: boolean;
+    isNeedViewInfo?: boolean;
     /**
      * 场景控制
      *
@@ -1285,13 +1298,29 @@ export interface PlayViewReq {
      */
     sceneControl?: SceneControl;
     /**
-     * @generated from protobuf field: bilibili.pgc.gateway.player.v2.InlineScene inline_scene = 17;
+     * @generated from protobuf field: optional bilibili.pgc.gateway.player.v2.InlineScene inline_scene = 17;
      */
-    inlineScene: InlineScene;
+    inlineScene?: InlineScene;
     /**
-     * @generated from protobuf field: int64 material_no = 18 [jstype = JS_NUMBER];
+     * @generated from protobuf field: optional int64 material_no = 18 [jstype = JS_NUMBER];
      */
-    materialNo: number;
+    materialNo?: number;
+    /**
+     * @generated from protobuf field: optional int32 security_level = 19;
+     */
+    securityLevel?: number;
+    /**
+     * 剧集id
+     *
+     * @generated from protobuf field: int64 season_id = 20 [jstype = JS_NUMBER];
+     */
+    seasonId: number;
+    /**
+     * 数据控制
+     *
+     * @generated from protobuf field: optional bilibili.pgc.gateway.player.v2.DataControl data_control = 21;
+     */
+    dataControl?: DataControl;
 }
 /**
  * 弹窗信息
@@ -2137,6 +2166,16 @@ declare class DashVideo$Type extends MessageType<DashVideo> {
  * @generated MessageType for protobuf message bilibili.pgc.gateway.player.v2.DashVideo
  */
 export declare const DashVideo: DashVideo$Type;
+declare class DataControl$Type extends MessageType<DataControl> {
+    constructor();
+    create(value?: PartialMessage<DataControl>): DataControl;
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: DataControl): DataControl;
+    internalBinaryWrite(message: DataControl, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter;
+}
+/**
+ * @generated MessageType for protobuf message bilibili.pgc.gateway.player.v2.DataControl
+ */
+export declare const DataControl: DataControl$Type;
 declare class Dialog$Type extends MessageType<Dialog> {
     constructor();
     create(value?: PartialMessage<Dialog>): Dialog;

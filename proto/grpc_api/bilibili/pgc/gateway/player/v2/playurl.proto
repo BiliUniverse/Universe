@@ -209,6 +209,12 @@ message DashVideo {
     int32 height = 11;
 }
 
+// 数据控制
+message DataControl {
+    // 需要观看进度
+    bool need_watch_progress = 1;
+}
+
 // 鉴权浮层
 message Dialog {
     // 鉴权限制码
@@ -518,43 +524,49 @@ message PlayViewReply {
 // 播放页信息-请求
 message PlayViewReq {
     // 剧集epid
-    int64 epid = 1 [jstype = JS_STRING];
+    optional int64 ep_id = 1 [jstype = JS_NUMBER];
     // 视频cid
-    int64 cid = 2 [jstype = JS_STRING];
+    optional int64 cid = 2 [jstype = JS_NUMBER];
     // 清晰度
     int64 qn = 3 [jstype = JS_NUMBER];
     // 视频流版本
-    int32 fnver = 4;
+    optional int32 fnver = 4;
     // 视频流格式
     int32 fnval = 5;
     // 下载模式
     // 0:播放 1:flv下载 2:dash下载
-    uint32 download = 6;
+    optional uint32 download = 6;
     // 流url强制是用域名
     // 0:允许使用ip 1:使用http 2:使用https
-    int32 force_host = 7;
+    optional int32 force_host = 7;
     // 是否4K
-    bool fourk = 8;
+    optional bool fourk = 8;
     // 当前页spm
-    string spmid = 9;
+    optional string spmid = 9;
     // 上一页spm
-    string from_spmid = 10;
+    optional string from_spmid = 10;
     // 青少年模式
-    int32 teenagers_mode = 11;
+    optional int32 teenagers_mode = 11;
     // 视频编码
     CodeType prefer_codec_type = 12;
     // 是否强制请求预览视频
-    bool is_preview = 13;
+    optional bool is_preview = 13;
     // 一起看房间id
-    int64 room_id = 14 [jstype = JS_NUMBER];
+    optional int64 room_id = 14 [jstype = JS_NUMBER];
     // 是否需要展示信息
-    bool is_need_view_info = 15;
+    optional bool is_need_view_info = 15;
     // 场景控制
     SceneControl scene_control = 16;
     //
-    InlineScene inline_scene = 17;
+    optional InlineScene inline_scene = 17;
     //
-    int64 material_no = 18 [jstype = JS_NUMBER];
+    optional int64 material_no = 18 [jstype = JS_NUMBER];
+    //
+    optional int32 security_level = 19;
+    // 剧集id
+    int64 season_id = 20 [jstype = JS_NUMBER];
+    // 数据控制
+    optional DataControl data_control = 21;
 }
 
 // 弹窗信息

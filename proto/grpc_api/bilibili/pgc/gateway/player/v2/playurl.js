@@ -1132,6 +1132,53 @@ class DashVideo$Type extends MessageType {
  */
 export const DashVideo = new DashVideo$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class DataControl$Type extends MessageType {
+    constructor() {
+        super("bilibili.pgc.gateway.player.v2.DataControl", [
+            { no: 1, name: "need_watch_progress", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+    create(value) {
+        const message = { needWatchProgress: false };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* bool need_watch_progress */ 1:
+                    message.needWatchProgress = reader.bool();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* bool need_watch_progress = 1; */
+        if (message.needWatchProgress !== false)
+            writer.tag(1, WireType.Varint).bool(message.needWatchProgress);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message bilibili.pgc.gateway.player.v2.DataControl
+ */
+export const DataControl = new DataControl$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class Dialog$Type extends MessageType {
     constructor() {
         super("bilibili.pgc.gateway.player.v2.Dialog", [
@@ -2667,28 +2714,31 @@ export const PlayViewReply = new PlayViewReply$Type();
 class PlayViewReq$Type extends MessageType {
     constructor() {
         super("bilibili.pgc.gateway.player.v2.PlayViewReq", [
-            { no: 1, name: "epid", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
-            { no: 2, name: "cid", kind: "scalar", T: 3 /*ScalarType.INT64*/ },
+            { no: 1, name: "ep_id", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "cid", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 3, name: "qn", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 4, name: "fnver", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 4, name: "fnver", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
             { no: 5, name: "fnval", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 6, name: "download", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-            { no: 7, name: "force_host", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 8, name: "fourk", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 9, name: "spmid", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 10, name: "from_spmid", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 11, name: "teenagers_mode", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 6, name: "download", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 7, name: "force_host", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "fourk", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 9, name: "spmid", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 10, name: "from_spmid", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 11, name: "teenagers_mode", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
             { no: 12, name: "prefer_codec_type", kind: "enum", T: () => ["bilibili.pgc.gateway.player.v2.CodeType", CodeType] },
-            { no: 13, name: "is_preview", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 14, name: "room_id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
-            { no: 15, name: "is_need_view_info", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 13, name: "is_preview", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 14, name: "room_id", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 15, name: "is_need_view_info", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
             { no: 16, name: "scene_control", kind: "message", T: () => SceneControl },
-            { no: 17, name: "inline_scene", kind: "enum", T: () => ["bilibili.pgc.gateway.player.v2.InlineScene", InlineScene] },
-            { no: 18, name: "material_no", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ }
+            { no: 17, name: "inline_scene", kind: "enum", opt: true, T: () => ["bilibili.pgc.gateway.player.v2.InlineScene", InlineScene] },
+            { no: 18, name: "material_no", kind: "scalar", opt: true, T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 19, name: "security_level", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 20, name: "season_id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 21, name: "data_control", kind: "message", T: () => DataControl }
         ]);
     }
     create(value) {
-        const message = { epid: "0", cid: "0", qn: 0, fnver: 0, fnval: 0, download: 0, forceHost: 0, fourk: false, spmid: "", fromSpmid: "", teenagersMode: 0, preferCodecType: 0, isPreview: false, roomId: 0, isNeedViewInfo: false, inlineScene: 0, materialNo: 0 };
+        const message = { qn: 0, fnval: 0, preferCodecType: 0, seasonId: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -2699,59 +2749,68 @@ class PlayViewReq$Type extends MessageType {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* int64 epid = 1 [jstype = JS_STRING];*/ 1:
-                    message.epid = reader.int64().toString();
+                case /* optional int64 ep_id = 1 [jstype = JS_NUMBER];*/ 1:
+                    message.epId = reader.int64().toNumber();
                     break;
-                case /* int64 cid = 2 [jstype = JS_STRING];*/ 2:
-                    message.cid = reader.int64().toString();
+                case /* optional int64 cid = 2 [jstype = JS_NUMBER];*/ 2:
+                    message.cid = reader.int64().toNumber();
                     break;
                 case /* int64 qn = 3 [jstype = JS_NUMBER];*/ 3:
                     message.qn = reader.int64().toNumber();
                     break;
-                case /* int32 fnver */ 4:
+                case /* optional int32 fnver */ 4:
                     message.fnver = reader.int32();
                     break;
                 case /* int32 fnval */ 5:
                     message.fnval = reader.int32();
                     break;
-                case /* uint32 download */ 6:
+                case /* optional uint32 download */ 6:
                     message.download = reader.uint32();
                     break;
-                case /* int32 force_host */ 7:
+                case /* optional int32 force_host */ 7:
                     message.forceHost = reader.int32();
                     break;
-                case /* bool fourk */ 8:
+                case /* optional bool fourk */ 8:
                     message.fourk = reader.bool();
                     break;
-                case /* string spmid */ 9:
+                case /* optional string spmid */ 9:
                     message.spmid = reader.string();
                     break;
-                case /* string from_spmid */ 10:
+                case /* optional string from_spmid */ 10:
                     message.fromSpmid = reader.string();
                     break;
-                case /* int32 teenagers_mode */ 11:
+                case /* optional int32 teenagers_mode */ 11:
                     message.teenagersMode = reader.int32();
                     break;
                 case /* bilibili.pgc.gateway.player.v2.CodeType prefer_codec_type */ 12:
                     message.preferCodecType = reader.int32();
                     break;
-                case /* bool is_preview */ 13:
+                case /* optional bool is_preview */ 13:
                     message.isPreview = reader.bool();
                     break;
-                case /* int64 room_id = 14 [jstype = JS_NUMBER];*/ 14:
+                case /* optional int64 room_id = 14 [jstype = JS_NUMBER];*/ 14:
                     message.roomId = reader.int64().toNumber();
                     break;
-                case /* bool is_need_view_info */ 15:
+                case /* optional bool is_need_view_info */ 15:
                     message.isNeedViewInfo = reader.bool();
                     break;
                 case /* bilibili.pgc.gateway.player.v2.SceneControl scene_control */ 16:
                     message.sceneControl = SceneControl.internalBinaryRead(reader, reader.uint32(), options, message.sceneControl);
                     break;
-                case /* bilibili.pgc.gateway.player.v2.InlineScene inline_scene */ 17:
+                case /* optional bilibili.pgc.gateway.player.v2.InlineScene inline_scene */ 17:
                     message.inlineScene = reader.int32();
                     break;
-                case /* int64 material_no = 18 [jstype = JS_NUMBER];*/ 18:
+                case /* optional int64 material_no = 18 [jstype = JS_NUMBER];*/ 18:
                     message.materialNo = reader.int64().toNumber();
+                    break;
+                case /* optional int32 security_level */ 19:
+                    message.securityLevel = reader.int32();
+                    break;
+                case /* int64 season_id = 20 [jstype = JS_NUMBER];*/ 20:
+                    message.seasonId = reader.int64().toNumber();
+                    break;
+                case /* optional bilibili.pgc.gateway.player.v2.DataControl data_control */ 21:
+                    message.dataControl = DataControl.internalBinaryRead(reader, reader.uint32(), options, message.dataControl);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2765,60 +2824,69 @@ class PlayViewReq$Type extends MessageType {
         return message;
     }
     internalBinaryWrite(message, writer, options) {
-        /* int64 epid = 1 [jstype = JS_STRING]; */
-        if (message.epid !== "0")
-            writer.tag(1, WireType.Varint).int64(message.epid);
-        /* int64 cid = 2 [jstype = JS_STRING]; */
-        if (message.cid !== "0")
+        /* optional int64 ep_id = 1 [jstype = JS_NUMBER]; */
+        if (message.epId !== undefined)
+            writer.tag(1, WireType.Varint).int64(message.epId);
+        /* optional int64 cid = 2 [jstype = JS_NUMBER]; */
+        if (message.cid !== undefined)
             writer.tag(2, WireType.Varint).int64(message.cid);
         /* int64 qn = 3 [jstype = JS_NUMBER]; */
         if (message.qn !== 0)
             writer.tag(3, WireType.Varint).int64(message.qn);
-        /* int32 fnver = 4; */
-        if (message.fnver !== 0)
+        /* optional int32 fnver = 4; */
+        if (message.fnver !== undefined)
             writer.tag(4, WireType.Varint).int32(message.fnver);
         /* int32 fnval = 5; */
         if (message.fnval !== 0)
             writer.tag(5, WireType.Varint).int32(message.fnval);
-        /* uint32 download = 6; */
-        if (message.download !== 0)
+        /* optional uint32 download = 6; */
+        if (message.download !== undefined)
             writer.tag(6, WireType.Varint).uint32(message.download);
-        /* int32 force_host = 7; */
-        if (message.forceHost !== 0)
+        /* optional int32 force_host = 7; */
+        if (message.forceHost !== undefined)
             writer.tag(7, WireType.Varint).int32(message.forceHost);
-        /* bool fourk = 8; */
-        if (message.fourk !== false)
+        /* optional bool fourk = 8; */
+        if (message.fourk !== undefined)
             writer.tag(8, WireType.Varint).bool(message.fourk);
-        /* string spmid = 9; */
-        if (message.spmid !== "")
+        /* optional string spmid = 9; */
+        if (message.spmid !== undefined)
             writer.tag(9, WireType.LengthDelimited).string(message.spmid);
-        /* string from_spmid = 10; */
-        if (message.fromSpmid !== "")
+        /* optional string from_spmid = 10; */
+        if (message.fromSpmid !== undefined)
             writer.tag(10, WireType.LengthDelimited).string(message.fromSpmid);
-        /* int32 teenagers_mode = 11; */
-        if (message.teenagersMode !== 0)
+        /* optional int32 teenagers_mode = 11; */
+        if (message.teenagersMode !== undefined)
             writer.tag(11, WireType.Varint).int32(message.teenagersMode);
         /* bilibili.pgc.gateway.player.v2.CodeType prefer_codec_type = 12; */
         if (message.preferCodecType !== 0)
             writer.tag(12, WireType.Varint).int32(message.preferCodecType);
-        /* bool is_preview = 13; */
-        if (message.isPreview !== false)
+        /* optional bool is_preview = 13; */
+        if (message.isPreview !== undefined)
             writer.tag(13, WireType.Varint).bool(message.isPreview);
-        /* int64 room_id = 14 [jstype = JS_NUMBER]; */
-        if (message.roomId !== 0)
+        /* optional int64 room_id = 14 [jstype = JS_NUMBER]; */
+        if (message.roomId !== undefined)
             writer.tag(14, WireType.Varint).int64(message.roomId);
-        /* bool is_need_view_info = 15; */
-        if (message.isNeedViewInfo !== false)
+        /* optional bool is_need_view_info = 15; */
+        if (message.isNeedViewInfo !== undefined)
             writer.tag(15, WireType.Varint).bool(message.isNeedViewInfo);
         /* bilibili.pgc.gateway.player.v2.SceneControl scene_control = 16; */
         if (message.sceneControl)
             SceneControl.internalBinaryWrite(message.sceneControl, writer.tag(16, WireType.LengthDelimited).fork(), options).join();
-        /* bilibili.pgc.gateway.player.v2.InlineScene inline_scene = 17; */
-        if (message.inlineScene !== 0)
+        /* optional bilibili.pgc.gateway.player.v2.InlineScene inline_scene = 17; */
+        if (message.inlineScene !== undefined)
             writer.tag(17, WireType.Varint).int32(message.inlineScene);
-        /* int64 material_no = 18 [jstype = JS_NUMBER]; */
-        if (message.materialNo !== 0)
+        /* optional int64 material_no = 18 [jstype = JS_NUMBER]; */
+        if (message.materialNo !== undefined)
             writer.tag(18, WireType.Varint).int64(message.materialNo);
+        /* optional int32 security_level = 19; */
+        if (message.securityLevel !== undefined)
+            writer.tag(19, WireType.Varint).int32(message.securityLevel);
+        /* int64 season_id = 20 [jstype = JS_NUMBER]; */
+        if (message.seasonId !== 0)
+            writer.tag(20, WireType.Varint).int64(message.seasonId);
+        /* optional bilibili.pgc.gateway.player.v2.DataControl data_control = 21; */
+        if (message.dataControl)
+            DataControl.internalBinaryWrite(message.dataControl, writer.tag(21, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
