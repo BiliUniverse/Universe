@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(4) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(5) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -140,6 +140,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 									body = JSON.parse($response.body);
 									let newCaches = Caches;
 									if (!newCaches?.ep) newCaches.ep = {};
+									if (!newCaches?.ss) newCaches.ss = {};
 									let data = body.data;
 									let episodes = getEpisodes(data);
 									//$.log(JSON.stringify(data?.title.match(/\uFF08(.+)\uFF09/)));
