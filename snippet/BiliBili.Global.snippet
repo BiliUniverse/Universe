@@ -22,6 +22,13 @@
 # BiliIntl.Global.playurl.json
 ^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/ogv\/playurl(\?.+)?$ url script-request-header https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
 
+# BiliBili.Global.search.grpc
+^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$ url script-request-body https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliBili.Global.search.json
+^https?:\/\/api\.bilibili\.com\/x\/(v2|web-interface)\/search\/type(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+# BiliIntl.Global.search.json
+^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+
 # BiliBili.Global.space.json
 ^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$ url script-request-header https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
 # BiliBili.Global.space.json
