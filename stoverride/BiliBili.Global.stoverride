@@ -52,26 +52,6 @@ http:
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: true
-      timeout: 15
-      binary-mode: true
-      max-size: 0
-      argument:
-    - match: ^https?:\/\/api\.bilibili\.com\/x\/(v2|web-interface)\/search\/type(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: true
-      timeout: 15
-      argument:
-    - match: ^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: true
-      timeout: 15
-      argument:
     - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$
       name: BiliBili.Global.request
       type: request
