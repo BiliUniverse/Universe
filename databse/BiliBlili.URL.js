@@ -4,22 +4,47 @@ switch (url.host) {
 		if (url.path.includes("bangumi/play/")) {// web版番剧
 		};
 		break;
-	case "grpc.biliapi.net":
-		switch (url.path) {
-			case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
+	case "grpc.biliapi.net": // HTTP/2
+	case "app.bilibili.com": // HTTP/1.1
+		url.paths = url.path.split("/");
+		switch (url.paths[0]) {
+			case "bilibili.app.playurl.v1.PlayURL": // 普通视频
+				switch (url.paths?.[1]) {
+					case "PlayView": // 播放地址
+						break;
+					case "PlayConf": // 播放配置
+						break;
+				};
 				break;
-			case "bilibili.app.playurl.v1.PlayURL/PlayConf": // 普通视频-播放配置？
+			case "bilibili.pgc.gateway.player.v2.PlayURL": // 番剧;
+				switch (url.paths?.[1]) {
+					case "PlayView": // 播放地址
+						break;
+					case "PlayConf": // 播放配置
+						break;
+				};
 				break;
-			case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
+			case "bilibili.app.nativeact.v1.NativeAct": // 活动-节目、动画、韩综（港澳台）
+				switch (url.paths?.[1]) {
+					case "Index": // 首页
+						break;
+				};
 				break;
-			case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
+			case "bilibili.app.interface.v1.Search": // 搜索框
+				switch (url.paths?.[1]) {
+					case "Suggest3": // 搜索建议
+						break;
+				};
 				break;
-			case "bilibili.app.interface.v1.Search/Suggest3": // 搜索-建议
-                break;
-			case "bilibili.polymer.app.search.v1.Search/SearchAll": // 搜索-全部结果（综合）
-                break;
-			case "bilibili.polymer.app.search.v1.Search/SearchByType": // 搜索-按分类搜索（番剧、用户、影视、专栏）
-        };
+			case "bilibili.polymer.app.search.v1.Search": // 搜索结果
+				switch (url.paths?.[1]) {
+					case "SearchAll": // 全部结果（综合）
+						break;
+					case "SearchByType": // 按分类搜索（番剧、用户、影视、专栏）
+						break;
+				};
+				break;
+		};
 		break;
 	case "app.bilibili.com":
 	case "app.biliapi.net":
@@ -73,6 +98,7 @@ switch (url.host) {
 		};
 		break;
 	case "api.bilibili.com":
+	case "api.biliapi.net":
 		switch (url.path) {
 			case "pgc/player/api/playurl": // 番剧-播放地址
 			case "pgc/player/web/playurl": // 番剧-播放地址
