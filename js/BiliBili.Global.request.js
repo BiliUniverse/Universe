@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.11(8) request");
+const $ = new Env("📺 BiliBili:Global v0.3.1(8) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -66,19 +66,6 @@ let $response = undefined;
 							//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 								case "application/grpc":
-									switch ($request?.headers?.["grpc-encoding"]) {
-										case "gzip":
-											// $request.body已被app自动解压，毋需解压操作
-											//rawBody = pako.ungzip(rawBody.slice(5));
-											// 但app只默认更改"content-encoding"的值
-											// 所以需要手动修改"grpc-encoding"的值为对应值
-											$request.headers["grpc-encoding"] = "identity";
-											break;
-										default:
-											break;
-									};
-									// 先移除B站gRPC校验头，只保留pprotobuf部分
-									rawBody = rawBody.slice(5);
 									// 解析链接并处理protobuf数据
 									switch (url.host) {
 										case "grpc.biliapi.net": // HTTP/2
@@ -102,10 +89,16 @@ let $response = undefined;
 													class PlayViewReq$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.PlayViewReq",[{no:1,name:"ep_id",kind:"scalar",opt:true,T:3,L:2},{no:2,name:"cid",kind:"scalar",opt:true,T:3,L:2},{no:3,name:"qn",kind:"scalar",T:3,L:2},{no:4,name:"fnver",kind:"scalar",opt:true,T:5},{no:5,name:"fnval",kind:"scalar",T:5},{no:6,name:"download",kind:"scalar",opt:true,T:13},{no:7,name:"force_host",kind:"scalar",opt:true,T:5},{no:8,name:"fourk",kind:"scalar",opt:true,T:8},{no:9,name:"spmid",kind:"scalar",opt:true,T:9},{no:10,name:"from_spmid",kind:"scalar",opt:true,T:9},{no:11,name:"teenagers_mode",kind:"scalar",opt:true,T:5},{no:12,name:"prefer_codec_type",kind:"enum",T:()=>["bilibili.pgc.gateway.player.v2.CodeType",CodeType]},{no:13,name:"is_preview",kind:"scalar",opt:true,T:8},{no:14,name:"room_id",kind:"scalar",opt:true,T:3,L:2},{no:15,name:"is_need_view_info",kind:"scalar",opt:true,T:8},{no:16,name:"scene_control",kind:"message",T:()=>SceneControl},{no:17,name:"inline_scene",kind:"enum",opt:true,T:()=>["bilibili.pgc.gateway.player.v2.InlineScene",InlineScene]},{no:18,name:"material_no",kind:"scalar",opt:true,T:3,L:2},{no:19,name:"security_level",kind:"scalar",opt:true,T:5},{no:20,name:"season_id",kind:"scalar",T:3,L:2},{no:21,name:"data_control",kind:"message",T:()=>DataControl}])}create(value){const message={qn:0,fnval:0,preferCodecType:0,seasonId:0};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.epId=reader.int64().toNumber();break;case 2:message.cid=reader.int64().toNumber();break;case 3:message.qn=reader.int64().toNumber();break;case 4:message.fnver=reader.int32();break;case 5:message.fnval=reader.int32();break;case 6:message.download=reader.uint32();break;case 7:message.forceHost=reader.int32();break;case 8:message.fourk=reader.bool();break;case 9:message.spmid=reader.string();break;case 10:message.fromSpmid=reader.string();break;case 11:message.teenagersMode=reader.int32();break;case 12:message.preferCodecType=reader.int32();break;case 13:message.isPreview=reader.bool();break;case 14:message.roomId=reader.int64().toNumber();break;case 15:message.isNeedViewInfo=reader.bool();break;case 16:message.sceneControl=SceneControl.internalBinaryRead(reader,reader.uint32(),options,message.sceneControl);break;case 17:message.inlineScene=reader.int32();break;case 18:message.materialNo=reader.int64().toNumber();break;case 19:message.securityLevel=reader.int32();break;case 20:message.seasonId=reader.int64().toNumber();break;case 21:message.dataControl=DataControl.internalBinaryRead(reader,reader.uint32(),options,message.dataControl);break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.epId!==undefined)writer.tag(1,WireType.Varint).int64(message.epId);if(message.cid!==undefined)writer.tag(2,WireType.Varint).int64(message.cid);if(message.qn!==0)writer.tag(3,WireType.Varint).int64(message.qn);if(message.fnver!==undefined)writer.tag(4,WireType.Varint).int32(message.fnver);if(message.fnval!==0)writer.tag(5,WireType.Varint).int32(message.fnval);if(message.download!==undefined)writer.tag(6,WireType.Varint).uint32(message.download);if(message.forceHost!==undefined)writer.tag(7,WireType.Varint).int32(message.forceHost);if(message.fourk!==undefined)writer.tag(8,WireType.Varint).bool(message.fourk);if(message.spmid!==undefined)writer.tag(9,WireType.LengthDelimited).string(message.spmid);if(message.fromSpmid!==undefined)writer.tag(10,WireType.LengthDelimited).string(message.fromSpmid);if(message.teenagersMode!==undefined)writer.tag(11,WireType.Varint).int32(message.teenagersMode);if(message.preferCodecType!==0)writer.tag(12,WireType.Varint).int32(message.preferCodecType);if(message.isPreview!==undefined)writer.tag(13,WireType.Varint).bool(message.isPreview);if(message.roomId!==undefined)writer.tag(14,WireType.Varint).int64(message.roomId);if(message.isNeedViewInfo!==undefined)writer.tag(15,WireType.Varint).bool(message.isNeedViewInfo);if(message.sceneControl)SceneControl.internalBinaryWrite(message.sceneControl,writer.tag(16,WireType.LengthDelimited).fork(),options).join();if(message.inlineScene!==undefined)writer.tag(17,WireType.Varint).int32(message.inlineScene);if(message.materialNo!==undefined)writer.tag(18,WireType.Varint).int64(message.materialNo);if(message.securityLevel!==undefined)writer.tag(19,WireType.Varint).int32(message.securityLevel);if(message.seasonId!==0)writer.tag(20,WireType.Varint).int64(message.seasonId);if(message.dataControl)DataControl.internalBinaryWrite(message.dataControl,writer.tag(21,WireType.LengthDelimited).fork(),options).join();let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}};
 													const PlayViewReq = new PlayViewReq$Type();
 													/******************  initialization finish  *******************/
+													// 先移除B站gRPC校验头，只保留protobuf部分
+													rawBody = rawBody.slice(5);
 													data = PlayViewReq.fromBinary(rawBody);
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
+													// protobuf部分处理完后，重新计算并添加B站gRPC校验头
+													if ($.isQuanX()) $request.bodyBytes = CreateNewBody(rawBody);
+													else $request.body = CreateNewBody(rawBody);
+													// 判断线路
 													let epId = data?.epId?.toString();
 													let seasonId = data?.seasonId?.toString();
 													if (Caches?.ss?.[seasonId]) { // 有Season ID缓存
@@ -133,9 +126,16 @@ let $response = undefined;
 											};
 											break;
 									};
-									// protobuf部分处理完后，重新计算并添加B站gRPC校验头
-									if ($.isQuanX()) $request.bodyBytes = CreateNewBody(rawBody);
-									else $request.body = CreateNewBody(rawBody);
+									// 判断编码
+									switch (rawBody?.[0]) {
+										case 0:
+										default:
+											$request.headers["grpc-encoding"] = "identity";
+											break;
+										case 1:
+											$request.headers["grpc-encoding"] = "gzip";
+											break;
+									};
 									break;
 								case "application/x-protobuf":
 									//$request.body = Player.fromBinary($request.bodyBinary);
@@ -248,30 +248,6 @@ let $response = undefined;
 				$response.headers[key.toLowerCase()] = value
 			};
 			$response.headers["content-encoding"] = "identity";
-			/*
-			// 不压了，gzip压完有问题
-			// 构造回复数据直接来自$httpClient，未被自动解压，也未修改"content-encoding"，处理后压缩返回
-			switch ($response.headers?.["content-encoding"] || $response.headers?.["Content-Encoding"]) {
-				case "gzip":
-					if ($.isQuanX()) $response.bodyBytes = pako.gzip($response.bodyBytes);
-					else $response.body = pako.gzip($response.body);
-					break;
-				case "deflate":
-					if ($.isQuanX()) $response.bodyBytes = pako.deflate($response.bodyBytes);
-					else $response.body = pako.deflate($response.body);
-					break;
-				case "deflate-raw":
-					if ($.isQuanX()) $response.bodyBytes = pako.deflateRaw($response.bodyBytes);
-					else $response.body = pako.deflateRaw($response.body);
-					break;
-				case "br": // 处理不了
-					break;
-				case "identity": // 视为无压缩
-				case undefined: // 不存在回复体
-				default:
-					break;
-			};
-			*/
 			if ($.isQuanX()) $.done($response)
 			else $.done({ response: $response });
 			break;
@@ -287,24 +263,6 @@ let $response = undefined;
 					break;
 				case "application/x-protobuf":
 				case "application/grpc":
-					switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
-						case "application/x-protobuf":
-							break;
-						case "application/grpc":
-							switch ($request.headers["grpc-encoding"]) {
-								case "identity":
-									// 压缩后不认
-									//if ($.isQuanX()) $request.bodyBytes = pako.gzip($request.bodyBytes);
-									//else $request.body = pako.gzip($request.body);
-									//$request.headers["grpc-encoding"] = "gzip";
-									break;
-								case "gzip":
-								case undefined:
-								default:
-									break;
-							};
-							break;
-					};
 					// 返回二进制数据
 					if ($.isQuanX()) {
 						//$.log(`${$request.bodyBytes.byteLength}---${$request.bodyBytes.buffer.byteLength}`);
@@ -393,19 +351,24 @@ function ReReqeust(request = {}, proxyName = "") {
  */
 async function Fetch(request = {}) {
 	$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
-	// 请求体数据来自app，已被自动解压，已被修改"content-encoding"，处理后压缩返回
-	switch (request.headers["grpc-encoding"]) {
-		case "identity":
-			// gRPC显然使用gzip压缩
-			if ($.isQuanX()) request.bodyBytes = pako.gzip(request.bodyBytes);
-			else request.body = pako.gzip(request.body);
-			request.headers["grpc-encoding"] = "gzip";
+	switch (request?.headers?.["content-type"].split(";")?.[0]) {
+		case "application/grpc":
+			let rawBody = $.isQuanX() ? new Uint8Array(request.bodyBytes) : request.body;
+			switch (rawBody?.[0]) {
+				case 0:
+				default:
+					request.headers["grpc-encoding"] = "identity";
+					break;
+				case 1:
+					request.headers["grpc-encoding"] = "gzip";
+					break;
+			};
 			break;
-		case "gzip":
-		case "deflate":
-		case "deflate-raw":
-		case undefined:
-		default:
+		case "application/x-protobuf":
+			break;
+		case "application/json":
+			break;
+		case "text/html":
 			break;
 	};
 	let response = (request?.body ?? request?.bodyBytes)
@@ -445,7 +408,7 @@ function isResponseAvailability(response = {}) {
 	let isAvailable = true;
 	switch (response?.statusCode) {
 		case 200:
-			switch ((response?.headers?.["content-type"] || response.headers?.["Content-Type"]).split(";")?.[0] ) {
+			switch ((response?.headers?.["content-type"] || response.headers?.["Content-Type"]).split(";")?.[0]) {
 				case "application/grpc":
 					if (parseInt(response?.headers?.["content-length"] ?? response?.headers?.["Content-Length"]) < 700) isAvailable = false;
 					else isAvailable = true;
@@ -465,7 +428,7 @@ function isResponseAvailability(response = {}) {
 				case "text/html":
 					isAvailable = true;
 					break;
-				};
+			};
 			break;
 		case 403:
 		case 404:
@@ -506,7 +469,7 @@ function CreateNewBody(unGzipBody) {
 	// 首位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
 	let merge = new Uint8Array(5 + length);
 	// 首位：当为1的时候, app会校验1-4位的校验值是否正确
-	// 当Grpc-Encoding响应头为Identity时,判断首位是否为0
+	//merge.set([1], 0); // 当Grpc-Encoding响应头为Identity时,判断首位是否为0,为0则不解压,为1则解压
 	merge.set(Checksum(length), 1); //从1位开始填充4位校验值
 	merge.set(unGzipBody, 5); // 在5位置开始写入新数据
 	$.log(`🎉 ${$.name}, Create New Body`, "");
