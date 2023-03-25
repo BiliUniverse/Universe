@@ -475,15 +475,9 @@ function checkLocales(responses = {}) {
 function newRawBody({ header, body }, encoding = undefined) {
 	$.log(`⚠ ${$.name}, Create New Raw Body`, "");
 	// Header: 1位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
-	//const length = unGzipBody.length;
-	//let merge = new Uint8Array(5 + length);
 	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? header?.[0] : 0; // encoding flag
 	let checksum = Checksum(body.length);
 	let rawBody = new Uint8Array(header.length + body.length);
-	// 首位：当为1的时候, app会校验1-4位的校验值是否正确
-	//merge.set([1], 0); // 当Grpc-Encoding响应头为Identity时,判断首位是否为0,为0则不解压,为1则解压
-	//merge.set(Checksum(body.length), 1); //从1位开始填充4位校验值
-	//merge.set(body, 5); // 在5位置开始写入新数据
 	rawBody.set([flag], 0) // 0位：Encoding类型，当为1的时候, app会校验1-4位的校验值是否正确
 	rawBody.set(checksum, 1) // 1-4位： 校验值(4位)
 	rawBody.set(body, 5); // 5-end位：protobuf数据
