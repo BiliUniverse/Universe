@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(2) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(3) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -140,40 +140,37 @@ for (const [key, value] of Object.entries($response.headers)) {
 									body = JSON.parse($response.body);
 									let newCaches = Caches;
 									if (!newCaches?.ep) newCaches.ep = {};
-									let episodes = getEpisodes(body.data);
-									newCaches.LastSeason = {
-										season_id: body.data.season_id,
-										season_title: body.data.season_title
-									};
-									//$.log(JSON.stringify(body?.data?.title.match(/\uFF08(.+)\uFF09/)));
-									switch (body?.data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
+									let data = body.data;
+									let episodes = getEpisodes(data);
+									//$.log(JSON.stringify(data?.title.match(/\uFF08(.+)\uFF09/)));
+									switch (data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
 										case "僅限港澳台地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC", "TWN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"]);
-											newCaches.LastSeason.locales = ["HKG", "MAC", "TWN"];
 											break;
 										case "僅限港台地區":
+											newCaches.ss[data?.season_id] = ["HKG", "TWN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "TWN"]);
-											newCaches.LastSeason.locales = ["HKG", "TWN"];
 											break;
 										case "僅限港澳地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC"]);
-											newCaches.LastSeason.locales = ["HKG", "MAC"];
 											break;
 										case "僅限台灣地區":
+											newCaches.ss[data?.season_id] = ["TWN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["TWN"]);
-											newCaches.LastSeason.locales = ["TWN"];
 											break;
 										case "僅限港澳台及其他地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC", "TWN", "SEA"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN", "SEA"]);
-											newCaches.LastSeason.locales = ["HKG", "MAC", "TWN", "SEA"];
 											break;
 										case "僅限港澳及其他地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC", "SEA"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "SEA"]);
-											newCaches.LastSeason.locales = ["HKG", "MAC", "SEA"];
 											break;
 										case undefined:
+											newCaches.ss[data?.season_id] = ["CHN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["CHN"]);
-											newCaches.LastSeason.locales = ["CHN"];
 											break;
 									};
 									$.log(`newCaches = ${JSON.stringify(newCaches)}`);
