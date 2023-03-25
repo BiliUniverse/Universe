@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.11(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.11(6) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -134,7 +134,7 @@ let $response = undefined;
 														//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 														//let availableLocales = checkLocales(responses);
 														//$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-														delete $response.body;
+														await $.wait(3000);
 													};
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
