@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.11(8) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.1(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
