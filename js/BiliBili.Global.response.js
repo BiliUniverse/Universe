@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.1(1) repsonse");
+const $ = new Env("📺 BiliBili:Global v0.1.2(5) repsonse");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -33,7 +33,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 
 /***************** Processing *****************/
 (async () => {
-	const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
+	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -140,28 +140,37 @@ for (const [key, value] of Object.entries($response.headers)) {
 									body = JSON.parse($response.body);
 									let newCaches = Caches;
 									if (!newCaches?.ep) newCaches.ep = {};
-									let episodes = getEpisodes(body.data);
-									//$.log(JSON.stringify(body?.data?.title.match(/\uFF08(.+)\uFF09/)));
-									switch (body?.data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
+									if (!newCaches?.ss) newCaches.ss = {};
+									let data = body.data;
+									let episodes = getEpisodes(data);
+									//$.log(JSON.stringify(data?.title.match(/\uFF08(.+)\uFF09/)));
+									switch (data?.title.match(/\uFF08(.+)\uFF09/)?.[1]) {
 										case "僅限港澳台地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC", "TWN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN"]);
 											break;
 										case "僅限港台地區":
+											newCaches.ss[data?.season_id] = ["HKG", "TWN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "TWN"]);
 											break;
 										case "僅限港澳地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC"]);
 											break;
 										case "僅限台灣地區":
+											newCaches.ss[data?.season_id] = ["TWN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["TWN"]);
 											break;
 										case "僅限港澳台及其他地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC", "TWN", "SEA"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "TWN", "SEA"]);
 											break;
 										case "僅限港澳及其他地區":
+											newCaches.ss[data?.season_id] = ["HKG", "MAC", "SEA"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["HKG", "MAC", "SEA"]);
 											break;
 										case undefined:
+											newCaches.ss[data?.season_id] = ["CHN"];
 											episodes.forEach(episode => newCaches.ep[episode?.id] = ["CHN"]);
 											break;
 									};
@@ -250,7 +259,7 @@ for (const [key, value] of Object.entries($response.headers)) {
  * @param {Object} n - Default Database
  * @return {Promise<*>}
  */
-async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
+function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
 
 /**
  * Set Environment Variables
@@ -260,9 +269,9 @@ async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $a
  * @param {Object} database - Default DataBase
  * @return {Promise<*>}
  */
-async function setENV(name, platform, database) {
+function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
+	let { Settings, Caches = {}, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
 	Settings.ForceHost = parseInt(Settings.ForceHost, 10) // BoxJs字符串转Number
 	if (typeof Settings.Locales === "string") Settings.Locales = Settings.Locales.split(",") // BoxJs字符串转数组
