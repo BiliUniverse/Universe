@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.3(1) request");
+const $ = new Env("📺 BiliBili:Global v0.3.3(2) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -365,7 +365,7 @@ function ReReqeust(request = {}, proxyName = "") {
  */
 async function Fetch(request = {}) {
 	$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
-	switch (request?.headers?.["content-type"].split(";")?.[0]) {
+	switch (request?.headers?.["content-type"]?.split(";")?.[0]) {
 		case "application/grpc":
 			let rawBody = $.isQuanX() ? new Uint8Array(request.bodyBytes) : request.body;
 			switch (rawBody?.[0]) {
@@ -422,7 +422,7 @@ function isResponseAvailability(response = {}) {
 	let isAvailable = true;
 	switch (response?.statusCode) {
 		case 200:
-			switch ((response?.headers?.["content-type"] || response.headers?.["Content-Type"]).split(";")?.[0]) {
+			switch ((response?.headers?.["content-type"] || response.headers?.["Content-Type"])?.split(";")?.[0]) {
 				case "application/grpc":
 					if (parseInt(response?.headers?.["content-length"] ?? response?.headers?.["Content-Length"]) < 700) isAvailable = false;
 					else isAvailable = true;
