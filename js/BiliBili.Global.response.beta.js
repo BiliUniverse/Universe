@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(3) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.2(4) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -33,7 +33,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 
 /***************** Processing *****************/
 (async () => {
-	const { Settings, Caches, Configs } = await setENV("BiliBili", "Global", DataBase);
+	const { Settings, Caches, Configs } = setENV("BiliBili", "Global", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -286,7 +286,7 @@ for (const [key, value] of Object.entries($response.headers)) {
  * @param {Object} n - Default Database
  * @return {Promise<*>}
  */
-async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
+function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
 
 /**
  * Set Environment Variables
@@ -296,9 +296,9 @@ async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $a
  * @param {Object} database - Default DataBase
  * @return {Promise<*>}
  */
-async function setENV(name, platform, database) {
+function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
+	let { Settings, Caches = {}, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	Settings.ForceHost = parseInt(Settings.ForceHost, 10) // BoxJs字符串转Number
