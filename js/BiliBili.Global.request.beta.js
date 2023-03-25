@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.2(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.3(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -73,70 +73,93 @@ let $response = undefined;
 									switch (url.host) {
 										case "grpc.biliapi.net": // HTTP/2
 										case "app.bilibili.com": // HTTP/1.1
-											/******************  initialization start  *******************/
-											// proto/grpc_api/bilibili/pgc/gateway/player/v2/playurl.proto
-											var CodeType;(function(CodeType){CodeType[CodeType["NOCODE"]=0]="NOCODE";CodeType[CodeType["CODE264"]=1]="CODE264";CodeType[CodeType["CODE265"]=2]="CODE265"})(CodeType||(CodeType={}));
-											var InlineScene;(function(InlineScene){InlineScene[InlineScene["UNKNOWN"]=0]="UNKNOWN";InlineScene[InlineScene["RELATED_EP"]=1]="RELATED_EP";InlineScene[InlineScene["HE"]=2]="HE";InlineScene[InlineScene["SKIP"]=3]="SKIP"})(InlineScene||(InlineScene={}));
-											class DataControl$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.DataControl",[{no:1,name:"need_watch_progress",kind:"scalar",T:8}])}create(value){const message={needWatchProgress:false};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.needWatchProgress=reader.bool();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.needWatchProgress!==false)writer.tag(1,WireType.Varint).bool(message.needWatchProgress);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}};
-											const DataControl = new DataControl$Type();
-											class SceneControl$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.SceneControl",[{no:1,name:"fav_playlist",kind:"scalar",T:8},{no:2,name:"small_window",kind:"scalar",T:8},{no:3,name:"pip",kind:"scalar",T:8},{no:4,name:"was_he_inline",kind:"scalar",T:8},{no:5,name:"is_need_trial",kind:"scalar",T:8}])}create(value){const message={favPlaylist:false,smallWindow:false,pip:false,wasHeInline:false,isNeedTrial:false};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.favPlaylist=reader.bool();break;case 2:message.smallWindow=reader.bool();break;case 3:message.pip=reader.bool();break;case 4:message.wasHeInline=reader.bool();break;case 5:message.isNeedTrial=reader.bool();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.favPlaylist!==false)writer.tag(1,WireType.Varint).bool(message.favPlaylist);if(message.smallWindow!==false)writer.tag(2,WireType.Varint).bool(message.smallWindow);if(message.pip!==false)writer.tag(3,WireType.Varint).bool(message.pip);if(message.wasHeInline!==false)writer.tag(4,WireType.Varint).bool(message.wasHeInline);if(message.isNeedTrial!==false)writer.tag(5,WireType.Varint).bool(message.isNeedTrial);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
-											const SceneControl = new SceneControl$Type();
-											/******************  initialization finish  *******************/
-											switch (url.path) {
-												case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
+											url.paths = url.path.split("/");
+											switch (url.paths[0]) {
+												case "bilibili.app.playurl.v1.PlayURL": // 普通视频
+													switch (url.paths?.[1]) {
+														case "PlayView": // 播放地址
+															break;
+														case "PlayConf": // 播放配置
+															break;
+													};
 													break;
-												case "bilibili.app.playurl.v1.PlayURL/PlayConf": // 普通视频-播放配置？
-													break;
-												case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
+												case "bilibili.pgc.gateway.player.v2.PlayURL": // 番剧
 													/******************  initialization start  *******************/
-													class PlayViewReq$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.PlayViewReq",[{no:1,name:"ep_id",kind:"scalar",opt:true,T:3,L:2},{no:2,name:"cid",kind:"scalar",opt:true,T:3,L:2},{no:3,name:"qn",kind:"scalar",T:3,L:2},{no:4,name:"fnver",kind:"scalar",opt:true,T:5},{no:5,name:"fnval",kind:"scalar",T:5},{no:6,name:"download",kind:"scalar",opt:true,T:13},{no:7,name:"force_host",kind:"scalar",opt:true,T:5},{no:8,name:"fourk",kind:"scalar",opt:true,T:8},{no:9,name:"spmid",kind:"scalar",opt:true,T:9},{no:10,name:"from_spmid",kind:"scalar",opt:true,T:9},{no:11,name:"teenagers_mode",kind:"scalar",opt:true,T:5},{no:12,name:"prefer_codec_type",kind:"enum",T:()=>["bilibili.pgc.gateway.player.v2.CodeType",CodeType]},{no:13,name:"is_preview",kind:"scalar",opt:true,T:8},{no:14,name:"room_id",kind:"scalar",opt:true,T:3,L:2},{no:15,name:"is_need_view_info",kind:"scalar",opt:true,T:8},{no:16,name:"scene_control",kind:"message",T:()=>SceneControl},{no:17,name:"inline_scene",kind:"enum",opt:true,T:()=>["bilibili.pgc.gateway.player.v2.InlineScene",InlineScene]},{no:18,name:"material_no",kind:"scalar",opt:true,T:3,L:2},{no:19,name:"security_level",kind:"scalar",opt:true,T:5},{no:20,name:"season_id",kind:"scalar",T:3,L:2},{no:21,name:"data_control",kind:"message",T:()=>DataControl}])}create(value){const message={qn:0,fnval:0,preferCodecType:0,seasonId:0};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.epId=reader.int64().toNumber();break;case 2:message.cid=reader.int64().toNumber();break;case 3:message.qn=reader.int64().toNumber();break;case 4:message.fnver=reader.int32();break;case 5:message.fnval=reader.int32();break;case 6:message.download=reader.uint32();break;case 7:message.forceHost=reader.int32();break;case 8:message.fourk=reader.bool();break;case 9:message.spmid=reader.string();break;case 10:message.fromSpmid=reader.string();break;case 11:message.teenagersMode=reader.int32();break;case 12:message.preferCodecType=reader.int32();break;case 13:message.isPreview=reader.bool();break;case 14:message.roomId=reader.int64().toNumber();break;case 15:message.isNeedViewInfo=reader.bool();break;case 16:message.sceneControl=SceneControl.internalBinaryRead(reader,reader.uint32(),options,message.sceneControl);break;case 17:message.inlineScene=reader.int32();break;case 18:message.materialNo=reader.int64().toNumber();break;case 19:message.securityLevel=reader.int32();break;case 20:message.seasonId=reader.int64().toNumber();break;case 21:message.dataControl=DataControl.internalBinaryRead(reader,reader.uint32(),options,message.dataControl);break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.epId!==undefined)writer.tag(1,WireType.Varint).int64(message.epId);if(message.cid!==undefined)writer.tag(2,WireType.Varint).int64(message.cid);if(message.qn!==0)writer.tag(3,WireType.Varint).int64(message.qn);if(message.fnver!==undefined)writer.tag(4,WireType.Varint).int32(message.fnver);if(message.fnval!==0)writer.tag(5,WireType.Varint).int32(message.fnval);if(message.download!==undefined)writer.tag(6,WireType.Varint).uint32(message.download);if(message.forceHost!==undefined)writer.tag(7,WireType.Varint).int32(message.forceHost);if(message.fourk!==undefined)writer.tag(8,WireType.Varint).bool(message.fourk);if(message.spmid!==undefined)writer.tag(9,WireType.LengthDelimited).string(message.spmid);if(message.fromSpmid!==undefined)writer.tag(10,WireType.LengthDelimited).string(message.fromSpmid);if(message.teenagersMode!==undefined)writer.tag(11,WireType.Varint).int32(message.teenagersMode);if(message.preferCodecType!==0)writer.tag(12,WireType.Varint).int32(message.preferCodecType);if(message.isPreview!==undefined)writer.tag(13,WireType.Varint).bool(message.isPreview);if(message.roomId!==undefined)writer.tag(14,WireType.Varint).int64(message.roomId);if(message.isNeedViewInfo!==undefined)writer.tag(15,WireType.Varint).bool(message.isNeedViewInfo);if(message.sceneControl)SceneControl.internalBinaryWrite(message.sceneControl,writer.tag(16,WireType.LengthDelimited).fork(),options).join();if(message.inlineScene!==undefined)writer.tag(17,WireType.Varint).int32(message.inlineScene);if(message.materialNo!==undefined)writer.tag(18,WireType.Varint).int64(message.materialNo);if(message.securityLevel!==undefined)writer.tag(19,WireType.Varint).int32(message.securityLevel);if(message.seasonId!==0)writer.tag(20,WireType.Varint).int64(message.seasonId);if(message.dataControl)DataControl.internalBinaryWrite(message.dataControl,writer.tag(21,WireType.LengthDelimited).fork(),options).join();let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}};
-													const PlayViewReq = new PlayViewReq$Type();
+													// proto/bilibili/pgc/gateway/player/v2/playurl.proto
+													var CodeType;(function(CodeType){CodeType[CodeType["NOCODE"]=0]="NOCODE";CodeType[CodeType["CODE264"]=1]="CODE264";CodeType[CodeType["CODE265"]=2]="CODE265"})(CodeType||(CodeType={}));
+													var InlineScene;(function(InlineScene){InlineScene[InlineScene["UNKNOWN"]=0]="UNKNOWN";InlineScene[InlineScene["RELATED_EP"]=1]="RELATED_EP";InlineScene[InlineScene["HE"]=2]="HE";InlineScene[InlineScene["SKIP"]=3]="SKIP"})(InlineScene||(InlineScene={}));
+													class DataControl$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.DataControl",[{no:1,name:"need_watch_progress",kind:"scalar",T:8}])}create(value){const message={needWatchProgress:false};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.needWatchProgress=reader.bool();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.needWatchProgress!==false)writer.tag(1,WireType.Varint).bool(message.needWatchProgress);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}};
+													const DataControl = new DataControl$Type();
+													class SceneControl$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.SceneControl",[{no:1,name:"fav_playlist",kind:"scalar",T:8},{no:2,name:"small_window",kind:"scalar",T:8},{no:3,name:"pip",kind:"scalar",T:8},{no:4,name:"was_he_inline",kind:"scalar",T:8},{no:5,name:"is_need_trial",kind:"scalar",T:8}])}create(value){const message={favPlaylist:false,smallWindow:false,pip:false,wasHeInline:false,isNeedTrial:false};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.favPlaylist=reader.bool();break;case 2:message.smallWindow=reader.bool();break;case 3:message.pip=reader.bool();break;case 4:message.wasHeInline=reader.bool();break;case 5:message.isNeedTrial=reader.bool();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.favPlaylist!==false)writer.tag(1,WireType.Varint).bool(message.favPlaylist);if(message.smallWindow!==false)writer.tag(2,WireType.Varint).bool(message.smallWindow);if(message.pip!==false)writer.tag(3,WireType.Varint).bool(message.pip);if(message.wasHeInline!==false)writer.tag(4,WireType.Varint).bool(message.wasHeInline);if(message.isNeedTrial!==false)writer.tag(5,WireType.Varint).bool(message.isNeedTrial);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
+													const SceneControl = new SceneControl$Type();
 													/******************  initialization finish  *******************/
-													data = PlayViewReq.fromBinary(body);
-													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
-													// 变更"grpc-encoding"头，防止被B站gRPC校验拦截
-													$request.headers["grpc-encoding"] = "identity";
-													let UF = UnknownFieldHandler.list(data);
-													//$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
-													if (UF) {
-														UF = UF.map(uf => {
-															//uf.no; // 22
-															//uf.wireType; // WireType.Varint
-															// use the binary reader to decode the raw data:
-															let reader = new BinaryReader(uf.data);
-															let addedNumber = reader.int32(); // 7777
-															$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
-														});
+													switch (url.paths?.[1]) {
+														case "PlayView": // 播放地址
+															/******************  initialization start  *******************/
+															class PlayViewReq$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.PlayViewReq",[{no:1,name:"ep_id",kind:"scalar",opt:true,T:3,L:2},{no:2,name:"cid",kind:"scalar",opt:true,T:3,L:2},{no:3,name:"qn",kind:"scalar",T:3,L:2},{no:4,name:"fnver",kind:"scalar",opt:true,T:5},{no:5,name:"fnval",kind:"scalar",T:5},{no:6,name:"download",kind:"scalar",opt:true,T:13},{no:7,name:"force_host",kind:"scalar",opt:true,T:5},{no:8,name:"fourk",kind:"scalar",opt:true,T:8},{no:9,name:"spmid",kind:"scalar",opt:true,T:9},{no:10,name:"from_spmid",kind:"scalar",opt:true,T:9},{no:11,name:"teenagers_mode",kind:"scalar",opt:true,T:5},{no:12,name:"prefer_codec_type",kind:"enum",T:()=>["bilibili.pgc.gateway.player.v2.CodeType",CodeType]},{no:13,name:"is_preview",kind:"scalar",opt:true,T:8},{no:14,name:"room_id",kind:"scalar",opt:true,T:3,L:2},{no:15,name:"is_need_view_info",kind:"scalar",opt:true,T:8},{no:16,name:"scene_control",kind:"message",T:()=>SceneControl},{no:17,name:"inline_scene",kind:"enum",opt:true,T:()=>["bilibili.pgc.gateway.player.v2.InlineScene",InlineScene]},{no:18,name:"material_no",kind:"scalar",opt:true,T:3,L:2},{no:19,name:"security_level",kind:"scalar",opt:true,T:5},{no:20,name:"season_id",kind:"scalar",T:3,L:2},{no:21,name:"data_control",kind:"message",T:()=>DataControl}])}create(value){const message={qn:0,fnval:0,preferCodecType:0,seasonId:0};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.epId=reader.int64().toNumber();break;case 2:message.cid=reader.int64().toNumber();break;case 3:message.qn=reader.int64().toNumber();break;case 4:message.fnver=reader.int32();break;case 5:message.fnval=reader.int32();break;case 6:message.download=reader.uint32();break;case 7:message.forceHost=reader.int32();break;case 8:message.fourk=reader.bool();break;case 9:message.spmid=reader.string();break;case 10:message.fromSpmid=reader.string();break;case 11:message.teenagersMode=reader.int32();break;case 12:message.preferCodecType=reader.int32();break;case 13:message.isPreview=reader.bool();break;case 14:message.roomId=reader.int64().toNumber();break;case 15:message.isNeedViewInfo=reader.bool();break;case 16:message.sceneControl=SceneControl.internalBinaryRead(reader,reader.uint32(),options,message.sceneControl);break;case 17:message.inlineScene=reader.int32();break;case 18:message.materialNo=reader.int64().toNumber();break;case 19:message.securityLevel=reader.int32();break;case 20:message.seasonId=reader.int64().toNumber();break;case 21:message.dataControl=DataControl.internalBinaryRead(reader,reader.uint32(),options,message.dataControl);break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.epId!==undefined)writer.tag(1,WireType.Varint).int64(message.epId);if(message.cid!==undefined)writer.tag(2,WireType.Varint).int64(message.cid);if(message.qn!==0)writer.tag(3,WireType.Varint).int64(message.qn);if(message.fnver!==undefined)writer.tag(4,WireType.Varint).int32(message.fnver);if(message.fnval!==0)writer.tag(5,WireType.Varint).int32(message.fnval);if(message.download!==undefined)writer.tag(6,WireType.Varint).uint32(message.download);if(message.forceHost!==undefined)writer.tag(7,WireType.Varint).int32(message.forceHost);if(message.fourk!==undefined)writer.tag(8,WireType.Varint).bool(message.fourk);if(message.spmid!==undefined)writer.tag(9,WireType.LengthDelimited).string(message.spmid);if(message.fromSpmid!==undefined)writer.tag(10,WireType.LengthDelimited).string(message.fromSpmid);if(message.teenagersMode!==undefined)writer.tag(11,WireType.Varint).int32(message.teenagersMode);if(message.preferCodecType!==0)writer.tag(12,WireType.Varint).int32(message.preferCodecType);if(message.isPreview!==undefined)writer.tag(13,WireType.Varint).bool(message.isPreview);if(message.roomId!==undefined)writer.tag(14,WireType.Varint).int64(message.roomId);if(message.isNeedViewInfo!==undefined)writer.tag(15,WireType.Varint).bool(message.isNeedViewInfo);if(message.sceneControl)SceneControl.internalBinaryWrite(message.sceneControl,writer.tag(16,WireType.LengthDelimited).fork(),options).join();if(message.inlineScene!==undefined)writer.tag(17,WireType.Varint).int32(message.inlineScene);if(message.materialNo!==undefined)writer.tag(18,WireType.Varint).int64(message.materialNo);if(message.securityLevel!==undefined)writer.tag(19,WireType.Varint).int32(message.securityLevel);if(message.seasonId!==0)writer.tag(20,WireType.Varint).int64(message.seasonId);if(message.dataControl)DataControl.internalBinaryWrite(message.dataControl,writer.tag(21,WireType.LengthDelimited).fork(),options).join();let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}};
+															const PlayViewReq = new PlayViewReq$Type();
+															/******************  initialization finish  *******************/
+															data = PlayViewReq.fromBinary(body);
+															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
+															// 变更"grpc-encoding"头，防止被B站gRPC校验拦截
+															$request.headers["grpc-encoding"] = "identity";
+															let UF = UnknownFieldHandler.list(data);
+															//$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
+															if (UF) {
+																UF = UF.map(uf => {
+																	//uf.no; // 22
+																	//uf.wireType; // WireType.Varint
+																	// use the binary reader to decode the raw data:
+																	let reader = new BinaryReader(uf.data);
+																	let addedNumber = reader.int32(); // 7777
+																	$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
+																});
+															};
+															data.forceHost = Settings?.ForceHost ?? 1;
+															body = PlayViewReq.toBinary(data);
+															// 判断线路
+															let epId = data?.epId?.toString();
+															let seasonId = data?.seasonId?.toString();
+															if (Caches?.ss?.[seasonId]) { // 有Season ID缓存
+																//$.log(`🚧 ${$.name}`, ` Caches.ss[seasonId]: ${Caches.ss[seasonId]}`, "");
+																let availableLocales = Caches.ss[seasonId].filter(locale => Settings?.Locales.includes(locale));
+																$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+																$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+															} else if (Caches?.ep?.[epId]) { // 有Episode ID缓存
+																//$.log(`🚧 ${$.name}`, ` Caches.ep[epId]: ${Caches.ep[epId]}`, "");
+																let availableLocales = Caches.ep[epId].filter(locale => Settings?.Locales.includes(locale));
+																$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+																$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+															} else { // 都没有缓存
+																//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+																//let availableLocales = checkLocales(responses);
+																//$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+																//data = {};
+															};
+															break;
+														case "PlayConf": // 播放配置
+															break;
 													};
-													data.forceHost = Settings?.ForceHost ?? 1;
-													body = PlayViewReq.toBinary(data);
-													// 判断线路
-													let epId = data?.epId?.toString();
-													let seasonId = data?.seasonId?.toString();
-													if (Caches?.ss?.[seasonId]) { // 有Season ID缓存
-														//$.log(`🚧 ${$.name}`, ` Caches.ss[seasonId]: ${Caches.ss[seasonId]}`, "");
-														let availableLocales = Caches.ss[seasonId].filter(locale => Settings?.Locales.includes(locale));
-														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
-														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-													} else if (Caches?.ep?.[epId]) { // 有Episode ID缓存
-														//$.log(`🚧 ${$.name}`, ` Caches.ep[epId]: ${Caches.ep[epId]}`, "");
-														let availableLocales = Caches.ep[epId].filter(locale => Settings?.Locales.includes(locale));
-														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
-														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-													} else { // 都没有缓存
-														//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
-														//let availableLocales = checkLocales(responses);
-														//$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-														//data = {};
+													break;
+												case "bilibili.app.nativeact.v1.NativeAct": // 活动-节目、动画、韩综（港澳台）
+													switch (url.paths?.[1]) {
+														case "Index": // 首页
+															break;
 													};
 													break;
-												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
+												case "bilibili.app.interface.v1.Search": // 搜索框
+													switch (url.paths?.[1]) {
+														case "Suggest3": // 搜索建议
+															break;
+													};
 													break;
-												case "bilibili.app.interface.v1.Search/Suggest3": // 搜索-建议
-													break;
-												case "bilibili.polymer.app.search.v1.Search/SearchAll": // 搜索-全部结果（综合）
-													break;
-												case "bilibili.polymer.app.search.v1.Search/SearchByType": // 搜索-按分类搜索（番剧、用户、影视、专栏）
+												case "bilibili.polymer.app.search.v1.Search": // 搜索结果
+													switch (url.paths?.[1]) {
+														case "SearchAll": // 全部结果（综合）
+															break;
+														case "SearchByType": // 按分类搜索（番剧、用户、影视、专栏）
+															break;
+													};
 													break;
 											};
 											break;
