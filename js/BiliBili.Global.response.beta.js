@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.1.2(6) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.1.3(1) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -67,53 +67,60 @@ for (const [key, value] of Object.entries($response.headers)) {
 							//$.log(`🚧 ${$.name}`, `isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 							switch ($response?.headers?.["content-type"]?.split(";")?.[0]) {
 								case "application/grpc":
-									switch ($response?.headers?.["grpc-encoding"]) {
-										case "gzip":
-											// $request.body已被app自动解压，毋需解压操作
-											//rawBody = pako.ungzip(rawBody.slice(5));
-											// 但app只默认更改"content-encoding"的值
-											// 所以需要手动修改"grpc-encoding"的值为对应值
-											$response.headers["grpc-encoding"] = "identity";
-											break;
-										default:
-											break;
-									};
-									// 先移除B站gRPC校验头，只保留pprotobuf部分
-									rawBody = rawBody.slice(5);
+									// 先拆分B站gRPC校验头和protobuf数据体
+									let header = rawBody.slice(0, 5);
+									body = rawBody.slice(5);
 									// 解析链接并处理protobuf数据
 									switch (url.host) {
 										case "grpc.biliapi.net": // HTTP/2
 										case "app.bilibili.com": // HTTP/1.1
-											/******************  initialization start  *******************/
-											// proto/grpc_api/bilibili/pgc/gateway/player/v2/playurl.proto
-											var CodeType;(function(CodeType){CodeType[CodeType["NOCODE"]=0]="NOCODE";CodeType[CodeType["CODE264"]=1]="CODE264";CodeType[CodeType["CODE265"]=2]="CODE265"})(CodeType||(CodeType={}));
-											var InlineScene;(function(InlineScene){InlineScene[InlineScene["UNKNOWN"]=0]="UNKNOWN";InlineScene[InlineScene["RELATED_EP"]=1]="RELATED_EP";InlineScene[InlineScene["HE"]=2]="HE";InlineScene[InlineScene["SKIP"]=3]="SKIP"})(InlineScene||(InlineScene={}));
-											class SceneControl$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.SceneControl",[{no:1,name:"fav_playlist",kind:"scalar",T:8},{no:2,name:"small_window",kind:"scalar",T:8},{no:3,name:"pip",kind:"scalar",T:8},{no:4,name:"was_he_inline",kind:"scalar",T:8},{no:5,name:"is_need_trial",kind:"scalar",T:8}])}create(value){const message={favPlaylist:false,smallWindow:false,pip:false,wasHeInline:false,isNeedTrial:false};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.favPlaylist=reader.bool();break;case 2:message.smallWindow=reader.bool();break;case 3:message.pip=reader.bool();break;case 4:message.wasHeInline=reader.bool();break;case 5:message.isNeedTrial=reader.bool();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.favPlaylist!==false)writer.tag(1,WireType.Varint).bool(message.favPlaylist);if(message.smallWindow!==false)writer.tag(2,WireType.Varint).bool(message.smallWindow);if(message.pip!==false)writer.tag(3,WireType.Varint).bool(message.pip);if(message.wasHeInline!==false)writer.tag(4,WireType.Varint).bool(message.wasHeInline);if(message.isNeedTrial!==false)writer.tag(5,WireType.Varint).bool(message.isNeedTrial);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
-											const SceneControl = new SceneControl$Type();
-											/******************  initialization finish  *******************/
-											switch (url.path) {
-												case "bilibili.app.playurl.v1.PlayURL/PlayView": // 普通视频-播放地址
+											url.paths = url.path.split("/");
+											switch (url.paths[0]) {
+												case "bilibili.app.playurl.v1.PlayURL": // 普通视频
+													switch (url.paths?.[1]) {
+														case "PlayView": // 播放地址
+															break;
+														case "PlayConf": // 播放配置
+															break;
+													};
 													break;
-												case "bilibili.app.playurl.v1.PlayURL/PlayConf": // 普通视频-播放配置？
+												case "bilibili.pgc.gateway.player.v2.PlayURL": // 番剧
+													switch (url.paths?.[1]) {
+														case "PlayView": // 播放地址
+															break;
+														case "PlayConf": // 播放配置
+															break;
+													};
 													break;
-												case "bilibili.pgc.gateway.player.v2.PlayURL/PlayView": // 番剧-播放地址
+												case "bilibili.app.nativeact.v1.NativeAct": // 活动-节目、动画、韩综（港澳台）
+													switch (url.paths?.[1]) {
+														case "Index": // 首页
+															break;
+													};
 													break;
-												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
+												case "bilibili.app.interface.v1.Search": // 搜索框
+													switch (url.paths?.[1]) {
+														case "Suggest3": // 搜索建议
+															break;
+													};
 													break;
-												case "bilibili.app.interface.v1.Search/Suggest3": // 搜索-建议
-													break;
-												case "bilibili.polymer.app.search.v1.Search/SearchAll": // 搜索-全部结果（综合）
-													break;
-												case "bilibili.polymer.app.search.v1.Search/SearchByType": // 搜索-按分类搜索（番剧、用户、影视、专栏）
+												case "bilibili.polymer.app.search.v1.Search": // 搜索结果
+													switch (url.paths?.[1]) {
+														case "SearchAll": // 全部结果（综合）
+															break;
+														case "SearchByType": // 按分类搜索（番剧、用户、影视、专栏）
+															break;
+													};
 													break;
 											};
 											break;
 									};
 									// protobuf部分处理完后，重新计算并添加B站gRPC校验头
-									if ($.isQuanX()) $response.bodyBytes = CreateNewBody(rawBody);
-									else $response.body = CreateNewBody(rawBody);
+									rawBody = newRawBody({ header, body }, $request.headers["grpc-encoding"]);
 									break;
 								case "application/x-protobuf":
+									//$response.body = Player.fromBinary($request.bodyBinary);
+									//$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
 									break;
 							};
 							break;
@@ -197,6 +204,17 @@ for (const [key, value] of Object.entries($response.headers)) {
 .catch((e) => $.logErr(e))
 .finally(() => {
 	switch ($response) {
+		case undefined: // 无回复数据，返回构造的回复数据
+			$.log(`🚧 ${$.name}, finally`, `echo $response:${JSON.stringify($response)}`, "");
+			// headers转小写
+			for (const [key, value] of Object.entries($response.headers)) {
+				delete $response.headers[key]
+				$response.headers[key.toLowerCase()] = value
+			};
+			$response.headers["content-encoding"] = "identity";
+			if ($.isQuanX()) $.done($response)
+			else $.done({ response: $response });
+			break;
 		default: // 有回复数据，返回修改的回复数据
 			//$.log(`🚧 ${$.name}, finally`, `$response:${JSON.stringify($response)}`, "");
 			switch ($response?.headers?.["content-type"]?.split(";")?.[0]) {
@@ -209,24 +227,6 @@ for (const [key, value] of Object.entries($response.headers)) {
 					break;
 				case "application/x-protobuf":
 				case "application/grpc":
-					switch ($response?.headers?.["content-type"]?.split(";")?.[0]) {
-						case "application/x-protobuf":
-							break;
-						case "application/grpc":
-							switch ($response.headers["grpc-encoding"]) {
-								case "identity":
-									// 压缩后不认
-									//if ($.isQuanX()) $response.bodyBytes = pako.gzip($response.bodyBytes);
-									//else $response.body = pako.gzip($response.body);
-									//$response.headers["grpc-encoding"] = "gzip";
-									break;
-								case "gzip":
-								case undefined:
-								default:
-									break;
-							};
-							break;
-					};
 					// 返回二进制数据
 					if ($.isQuanX()) {
 						$.log(`${$response.bodyBytes.byteLength}---${$response.bodyBytes.buffer.byteLength}`);
@@ -245,36 +245,6 @@ for (const [key, value] of Object.entries($response.headers)) {
 
 			};
 			break;
-		case undefined: // 无回复数据，返回构造的回复数据
-			$.log(`🚧 ${$.name}, finally`, `echo $response:${JSON.stringify($response)}`, "");
-			$response.headers["content-encoding"] = "identity";
-			/*
-			// 不压了，gzip压完有问题
-			// 构造回复数据直接来自$httpClient，未被自动解压，也未修改"content-encoding"，处理后压缩返回
-			switch ($response.headers?.["content-encoding"] || $response.headers?.["Content-Encoding"]) {
-				case "gzip":
-					if ($.isQuanX()) $response.bodyBytes = pako.gzip($response.bodyBytes);
-					else $response.body = pako.gzip($response.body);
-					break;
-				case "deflate":
-					if ($.isQuanX()) $response.bodyBytes = pako.deflate($response.bodyBytes);
-					else $response.body = pako.deflate($response.body);
-					break;
-				case "deflate-raw":
-					if ($.isQuanX()) $response.bodyBytes = pako.deflateRaw($response.bodyBytes);
-					else $response.body = pako.deflateRaw($response.body);
-					break;
-				case "br": // 处理不了
-					break;
-				case "identity": // 视为无压缩
-				case undefined: // 不存在回复体
-				default:
-					break;
-			};
-			*/
-			if ($.isQuanX()) $.done($response)
-			else $.done({ response: $response });
-			break;
 	};
 })
 
@@ -286,7 +256,7 @@ for (const [key, value] of Object.entries($response.headers)) {
  * @param {String} t - Persistent Store Key
  * @param {String} e - Platform Name
  * @param {Object} n - Default Database
- * @return {Promise<*>}
+ * @return {Object}
  */
 function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
 
@@ -296,7 +266,7 @@ function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argumen
  * @param {String} name - Persistent Store Key
  * @param {String} platform - Platform Name
  * @param {Object} database - Default DataBase
- * @return {Promise<*>}
+ * @return {Object}
  */
 function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
@@ -341,22 +311,24 @@ function getEpisodes(data) {
 };
 
 /**
- * Create New Body
+ * Create New Raw Body
  * @author app2smile
- * @param {Object} unGzipBody - unGzip Body
- * @return {ArrayBuffer} new Body with Checksum Header
+ * @param {ArrayBuffer} header - unGzip Header
+ * @param {ArrayBuffer} body - unGzip Body
+ * @param {String} type - encoding type
+ * @return {ArrayBuffer} new raw Body with Checksum Header
  */
-function CreateNewBody(unGzipBody) {
-	$.log(`⚠ ${$.name}, Create New Body`, "");
-	const length = unGzipBody.length;
-	// 首位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
-	let merge = new Uint8Array(5 + length);
-	// 首位：当为1的时候, app会校验1-4位的校验值是否正确
-	// 当Grpc-Encoding响应头为Identity时,判断首位是否为0
-	merge.set(Checksum(length), 1); //从1位开始填充4位校验值
-	merge.set(unGzipBody, 5); // 在5位置开始写入新数据
-	$.log(`🎉 ${$.name}, Create New Body`, "");
-	return merge;
+function newRawBody({ header, body }, encoding = undefined) {
+	$.log(`⚠ ${$.name}, Create New Raw Body`, "");
+	// Header: 1位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
+	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? header?.[0] : 0; // encoding flag
+	let checksum = Checksum(body.length);
+	let rawBody = new Uint8Array(header.length + body.length);
+	rawBody.set([flag], 0) // 0位：Encoding类型，当为1的时候, app会校验1-4位的校验值是否正确
+	rawBody.set(checksum, 1) // 1-4位： 校验值(4位)
+	rawBody.set(body, 5); // 5-end位：protobuf数据
+	$.log(`🎉 ${$.name}, Create New Raw Body`, "");
+	return rawBody;
 
 	// 计算校验和 (B站为数据本体字节数)
 	function Checksum(num) {

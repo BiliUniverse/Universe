@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.3(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.3(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -38,12 +38,12 @@ let $response = undefined;
 		default:
 			let url = URL.parse($request.url);
 			$.log(url.path);
+			// 创建空数据
+			let body = { "code": 0, "message": "0", "data": {} };
 			switch ($request.method) {
 				case "POST":
 				case "PUT":
 				case "PATCH":
-					// 创建空数据
-					let data = { "code": 0, "message": "0", "data": {} };
 					// 解析格式
 					switch ($request?.headers?.["content-type"]?.split(";")?.[0]) {
 						case "application/x-www-form-urlencoded":
@@ -68,7 +68,7 @@ let $response = undefined;
 								case "application/grpc":
 									// 先拆分B站gRPC校验头和protobuf数据体
 									let header = rawBody.slice(0, 5);
-									let body = rawBody.slice(5);
+									body = rawBody.slice(5);
 									// 解析链接并处理protobuf数据
 									switch (url.host) {
 										case "grpc.biliapi.net": // HTTP/2
@@ -99,7 +99,7 @@ let $response = undefined;
 															class PlayViewReq$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.PlayViewReq",[{no:1,name:"ep_id",kind:"scalar",opt:true,T:3,L:2},{no:2,name:"cid",kind:"scalar",opt:true,T:3,L:2},{no:3,name:"qn",kind:"scalar",T:3,L:2},{no:4,name:"fnver",kind:"scalar",opt:true,T:5},{no:5,name:"fnval",kind:"scalar",T:5},{no:6,name:"download",kind:"scalar",opt:true,T:13},{no:7,name:"force_host",kind:"scalar",opt:true,T:5},{no:8,name:"fourk",kind:"scalar",opt:true,T:8},{no:9,name:"spmid",kind:"scalar",opt:true,T:9},{no:10,name:"from_spmid",kind:"scalar",opt:true,T:9},{no:11,name:"teenagers_mode",kind:"scalar",opt:true,T:5},{no:12,name:"prefer_codec_type",kind:"enum",T:()=>["bilibili.pgc.gateway.player.v2.CodeType",CodeType]},{no:13,name:"is_preview",kind:"scalar",opt:true,T:8},{no:14,name:"room_id",kind:"scalar",opt:true,T:3,L:2},{no:15,name:"is_need_view_info",kind:"scalar",opt:true,T:8},{no:16,name:"scene_control",kind:"message",T:()=>SceneControl},{no:17,name:"inline_scene",kind:"enum",opt:true,T:()=>["bilibili.pgc.gateway.player.v2.InlineScene",InlineScene]},{no:18,name:"material_no",kind:"scalar",opt:true,T:3,L:2},{no:19,name:"security_level",kind:"scalar",opt:true,T:5},{no:20,name:"season_id",kind:"scalar",T:3,L:2},{no:21,name:"data_control",kind:"message",T:()=>DataControl}])}create(value){const message={qn:0,fnval:0,preferCodecType:0,seasonId:0};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.epId=reader.int64().toNumber();break;case 2:message.cid=reader.int64().toNumber();break;case 3:message.qn=reader.int64().toNumber();break;case 4:message.fnver=reader.int32();break;case 5:message.fnval=reader.int32();break;case 6:message.download=reader.uint32();break;case 7:message.forceHost=reader.int32();break;case 8:message.fourk=reader.bool();break;case 9:message.spmid=reader.string();break;case 10:message.fromSpmid=reader.string();break;case 11:message.teenagersMode=reader.int32();break;case 12:message.preferCodecType=reader.int32();break;case 13:message.isPreview=reader.bool();break;case 14:message.roomId=reader.int64().toNumber();break;case 15:message.isNeedViewInfo=reader.bool();break;case 16:message.sceneControl=SceneControl.internalBinaryRead(reader,reader.uint32(),options,message.sceneControl);break;case 17:message.inlineScene=reader.int32();break;case 18:message.materialNo=reader.int64().toNumber();break;case 19:message.securityLevel=reader.int32();break;case 20:message.seasonId=reader.int64().toNumber();break;case 21:message.dataControl=DataControl.internalBinaryRead(reader,reader.uint32(),options,message.dataControl);break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.epId!==undefined)writer.tag(1,WireType.Varint).int64(message.epId);if(message.cid!==undefined)writer.tag(2,WireType.Varint).int64(message.cid);if(message.qn!==0)writer.tag(3,WireType.Varint).int64(message.qn);if(message.fnver!==undefined)writer.tag(4,WireType.Varint).int32(message.fnver);if(message.fnval!==0)writer.tag(5,WireType.Varint).int32(message.fnval);if(message.download!==undefined)writer.tag(6,WireType.Varint).uint32(message.download);if(message.forceHost!==undefined)writer.tag(7,WireType.Varint).int32(message.forceHost);if(message.fourk!==undefined)writer.tag(8,WireType.Varint).bool(message.fourk);if(message.spmid!==undefined)writer.tag(9,WireType.LengthDelimited).string(message.spmid);if(message.fromSpmid!==undefined)writer.tag(10,WireType.LengthDelimited).string(message.fromSpmid);if(message.teenagersMode!==undefined)writer.tag(11,WireType.Varint).int32(message.teenagersMode);if(message.preferCodecType!==0)writer.tag(12,WireType.Varint).int32(message.preferCodecType);if(message.isPreview!==undefined)writer.tag(13,WireType.Varint).bool(message.isPreview);if(message.roomId!==undefined)writer.tag(14,WireType.Varint).int64(message.roomId);if(message.isNeedViewInfo!==undefined)writer.tag(15,WireType.Varint).bool(message.isNeedViewInfo);if(message.sceneControl)SceneControl.internalBinaryWrite(message.sceneControl,writer.tag(16,WireType.LengthDelimited).fork(),options).join();if(message.inlineScene!==undefined)writer.tag(17,WireType.Varint).int32(message.inlineScene);if(message.materialNo!==undefined)writer.tag(18,WireType.Varint).int64(message.materialNo);if(message.securityLevel!==undefined)writer.tag(19,WireType.Varint).int32(message.securityLevel);if(message.seasonId!==0)writer.tag(20,WireType.Varint).int64(message.seasonId);if(message.dataControl)DataControl.internalBinaryWrite(message.dataControl,writer.tag(21,WireType.LengthDelimited).fork(),options).join();let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}};
 															const PlayViewReq = new PlayViewReq$Type();
 															/******************  initialization finish  *******************/
-															data = PlayViewReq.fromBinary(body);
+															let data = PlayViewReq.fromBinary(body);
 															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 															// 变更"grpc-encoding"头，防止被B站gRPC校验拦截
 															$request.headers["grpc-encoding"] = "identity";
@@ -213,6 +213,7 @@ let $response = undefined;
 							};
 							break;
 						case "api.bilibili.com":
+						case "api.biliapi.net":
 							switch (url.path) {
 								case "pgc/player/api/playurl": // 番剧-播放地址-api
 								case "pgc/player/web/playurl": // 番剧-播放地址-web
