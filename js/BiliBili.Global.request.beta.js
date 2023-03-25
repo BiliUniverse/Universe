@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.11(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.11(8) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -118,16 +118,16 @@ let $response = undefined;
 													};
 													data.forceHost = Settings?.ForceHost ?? 1;
 													rawBody = PlayViewReq.toBinary(data);
-													let ep_id = data?.ep_id;
-													let season_id = data?.season_id;
-													if (Caches?.ss?.[season_id]) { // 有Season ID缓存
-														//$.log(`🚧 ${$.name}`, ` Caches.ss[season_id]: ${Caches.ss[season_id]}`, "");
-														let availableLocales = Caches.ss[season_id].filter(locale => Settings?.Locales.includes(locale));
+													let epId = data?.epId?.toString();
+													let seasonId = data?.seasonId?.toString();
+													if (Caches?.ss?.[seasonId]) { // 有Season ID缓存
+														//$.log(`🚧 ${$.name}`, ` Caches.ss[seasonId]: ${Caches.ss[seasonId]}`, "");
+														let availableLocales = Caches.ss[seasonId].filter(locale => Settings?.Locales.includes(locale));
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
 														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-													} else if (Caches?.ep?.[ep_id]) { // 有Episode ID缓存
-														//$.log(`🚧 ${$.name}`, ` Caches.ep[ep_id]: ${Caches.ep[ep_id]}`, "");
-														let availableLocales = Caches.ep[ep_id].filter(locale => Settings?.Locales.includes(locale));
+													} else if (Caches?.ep?.[epId]) { // 有Episode ID缓存
+														//$.log(`🚧 ${$.name}`, ` Caches.ep[epId]: ${Caches.ep[epId]}`, "");
+														let availableLocales = Caches.ep[epId].filter(locale => Settings?.Locales.includes(locale));
 														$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");	
 														$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 													} else { // 都没有缓存
