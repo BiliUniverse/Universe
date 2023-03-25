@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.1(8) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.1(12) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -90,8 +90,8 @@ let $response = undefined;
 													const PlayViewReq = new PlayViewReq$Type();
 													/******************  initialization finish  *******************/
 													// 先移除B站gRPC校验头，只保留protobuf部分
-													rawBody = rawBody.slice(5);
-													data = PlayViewReq.fromBinary(rawBody);
+													//rawBody = rawBody.slice(5);
+													data = PlayViewReq.fromBinary(rawBody.slice(5));
 													$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 													let UF = UnknownFieldHandler.list(data);
 													//$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
@@ -106,10 +106,6 @@ let $response = undefined;
 														});
 													};
 													data.forceHost = Settings?.ForceHost ?? 1;
-													rawBody = PlayViewReq.toBinary(data);
-													// protobuf部分处理完后，重新计算并添加B站gRPC校验头
-													if ($.isQuanX()) $request.bodyBytes = CreateNewBody(rawBody);
-													else $request.body = CreateNewBody(rawBody);
 													// 判断线路
 													let epId = data?.epId?.toString();
 													let seasonId = data?.seasonId?.toString();
@@ -127,8 +123,13 @@ let $response = undefined;
 														//let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 														//let availableLocales = checkLocales(responses);
 														//$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-														await $.wait(3000);
+														//data = {};
 													};
+													data = PlayViewReq.toBinary(data);
+													// protobuf部分处理完后，重新计算并添加B站gRPC校验头
+													//if ($.isQuanX()) $request.bodyBytes = CreateNewBody(rawBody);
+													//else $request.body = CreateNewBody(rawBody);
+													rawBody = CreateNewBody(data);
 													break;
 												case "bilibili.app.nativeact.v1.NativeAct/Index": // 节目、动画、韩综（港澳台）
 													break;
