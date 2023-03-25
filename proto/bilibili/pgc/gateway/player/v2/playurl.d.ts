@@ -7,7 +7,7 @@ import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
-import { Timestamp } from "../../../../../../google/protobuf/timestamp";
+import { Timestamp } from "../../../../../google/protobuf/timestamp";
 /**
  * 角标信息
  *
