@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.0(2) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.0(5) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -289,6 +289,15 @@ for (const [key, value] of Object.entries($response.headers)) {
 																	$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, addedNumber: ${addedNumber}`, "");
 																});
 															};
+															const NAV = {
+																CHN: {"name":"番剧🇨🇳","total":0,"pages":0,"type":107},
+																HKG: {"name":"动画🇭🇰","total":0,"pages":0,"type":207},
+																MAC: {"name":"动画🇲🇴","total":0,"pages":0,"type":307},
+																TWN: {"name":"动画🇹🇼","total":0,"pages":0,"type":407},
+																SEA: {"name":"动画SEA","total":0,"pages":0,"type":507}
+															};
+															data.nav.unshift(NAV.CHN, NAV.HKG, NAV.TWN);
+															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 															body = SearchAllResponse.toBinary(data);
 															break;
 														case "SearchByType": // 按分类搜索（番剧、用户、影视、专栏）
