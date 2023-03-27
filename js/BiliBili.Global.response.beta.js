@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.0(8) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.0(23) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -293,14 +293,18 @@ for (const [key, value] of Object.entries($response.headers)) {
 																	$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, addedNumber: ${addedNumber}`, "");
 																});
 															};
+															data.nav = data.nav.filter(nav => {
+																if (nav.type !== 7) return nav;
+															});
 															const NAV = {
-																CHN: {"name":"番剧🇨🇳","total":0,"pages":0,"type":107},
-																HKG: {"name":"动画🇭🇰","total":0,"pages":0,"type":207},
-																MAC: {"name":"动画🇲🇴","total":0,"pages":0,"type":307},
-																TWN: {"name":"动画🇹🇼","total":0,"pages":0,"type":407},
-																SEA: {"name":"动画SEA","total":0,"pages":0,"type":507}
+																CHN: {"name":"番剧🇨🇳","total":0,"pages":0,"type":17},
+																HKG: {"name":"动画🇭🇰","total":0,"pages":0,"type":27},
+																MAC: {"name":"动画🇲🇴","total":0,"pages":0,"type":37},
+																TWN: {"name":"动画🇹🇼","total":0,"pages":0,"type":47},
+																SEA: {"name":"动画🇺🇳","total":0,"pages":0,"type":57}
 															};
 															data.nav.unshift(NAV.CHN, NAV.HKG, NAV.TWN);
+															//data.selectBarType = 1;
 															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 															body = SearchAllResponse.toBinary(data);
 															break;
@@ -311,15 +315,6 @@ for (const [key, value] of Object.entries($response.headers)) {
 											};
 											break;
 									};
-									// 处理response压缩protobuf数据体
-									switch ($response.headers["grpc-encoding"]) {
-										case "identity":
-											body = pako.gzip(body);
-											$response.headers["grpc-encoding"] = "gzip";
-											break;
-										case "gzip":
-											break;
-									};
 									// protobuf部分处理完后，重新计算并添加B站gRPC校验头
 									rawBody = newRawBody({ header, body }, $request.headers["grpc-encoding"]);
 									break;
@@ -328,6 +323,8 @@ for (const [key, value] of Object.entries($response.headers)) {
 									//$.log(`🚧 ${$.name}`, `$response.body: ${JSON.stringify($response.body)}`, "");
 									break;
 							};
+							if ($.isQuanX()) $response.bodyBytes = rawBody
+							else $response.body = rawBody;
 							break;
 						default:
 							break;
