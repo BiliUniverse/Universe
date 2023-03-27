@@ -53,7 +53,15 @@ http:
       require-body: true
       timeout: 15
       argument:
-    - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$
+    - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/SearchAll(\?.+)?$
+      name: BiliBili.Global.response
+      type: response
+      require-body: true
+      timeout: 15
+      binary-mode: true
+      max-size: 0
+      argument:
+    - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/SearchByType(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true
