@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Roaming v0.1.5 request.beta");
+const $ = new Env("📺 BiliBili:Roaming v0.1.5(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Roaming":{
@@ -20,7 +20,7 @@ for (const [key, value] of Object.entries($request.headers)) {
 
 /***************** Processing *****************/
 !(async () => {
-	const { Settings, Caches } = await setENV("BiliBili", "Roaming", DataBase);
+	const { Settings, Caches } = setENV("BiliBili", "Roaming", DataBase);
 	if (Settings.Switch) {
 		let url = URL.parse($request.url);
 		$.log(url.path);
@@ -80,29 +80,18 @@ for (const [key, value] of Object.entries($request.headers)) {
 		else $.done($request)
 	})
 
-/***************** Async Function *****************/
-/**
- * Get Environment Variables
- * @link https://github.com/VirgilClyne/VirgilClyne/blob/main/function/getENV/getENV.min.js
- * @author VirgilClyne
- * @param {String} t - Persistent Store Key
- * @param {String} e - Platform Name
- * @param {Object} n - Default Database
- * @return {Promise<*>}
- */
-async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
-
+/***************** Function *****************/
 /**
  * Set Environment Variables
  * @author VirgilClyne
  * @param {String} name - Persistent Store Key
  * @param {String} platform - Platform Name
  * @param {Object} database - Default DataBase
- * @return {Promise<*>}
+ * @return {Object} { Settings, Caches, Configs }
  */
-async function setENV(name, platform, database) {
+function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let { Settings, Caches = {} } = await getENV(name, platform, database);
+	let { Settings, Caches, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
 	Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
 	//if (Settings?.Config?.Defaults) for (let setting in Settings.Config.Defaults) Settings.Config.Defaults[setting] = JSON.parse(Settings.Config.Defaults[setting]) // BoxJs字符串转Boolean
@@ -111,7 +100,7 @@ async function setENV(name, platform, database) {
 		Settings.Proxy.Pool = [...new Set([...Settings.Proxy.Customs.split("\n") ?? [], ...Settings.Proxy.Pool ?? []])];
 	}
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-	return { Settings, Caches }
+	return { Settings, Caches, Configs }
 };
 
 /***************** Env *****************/
@@ -121,3 +110,14 @@ function Env(t,s){class e{constructor(t){this.env=t}send(t,s="GET"){t="string"==
 
 // https://github.com/DualSubs/URL/blob/main/URLs.embedded.min.js
 function URLs(s){return new class{constructor(s=[]){this.name="URL v1.0.2",this.opts=s,this.json={scheme:"",host:"",path:"",params:{}}}parse(s){let t=s.match(/(?<scheme>.+):\/\/(?<host>[^/]+)\/?(?<path>[^?]+)?\??(?<params>.*)?/)?.groups??null;return t?.path||(t.path=""),t?.params&&(t.params=Object.fromEntries(t.params.split("&").map((s=>s.split("="))))),t}stringify(s=this.json){return s?.params?s.scheme+"://"+s.host+"/"+s.path+"?"+Object.entries(s.params).map((s=>s.join("="))).join("&"):s.scheme+"://"+s.host+"/"+s.path}}(s)}
+
+/**
+ * Get Environment Variables
+ * @link https://github.com/VirgilClyne/VirgilClyne/blob/main/function/getENV/getENV.min.js
+ * @author VirgilClyne
+ * @param {String} t - Persistent Store Key
+ * @param {String} e - Platform Name
+ * @param {Object} n - Default Database
+ * @return {Object} { Settings, Caches, Configs }
+ */
+function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)l(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},f={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},o=i?.[e]?.Caches||{};return"string"==typeof o&&(o=JSON.parse(o)),{Settings:g,Caches:o,Configs:f};function l(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}

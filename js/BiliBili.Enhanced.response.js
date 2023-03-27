@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Enhanced v0.1.3(4) response");
+const $ = new Env("📺 BiliBili:Enhanced v0.1.3(5) response");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -33,7 +33,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 
 /***************** Processing *****************/
 !(async () => {
-    const { Settings, Caches, Configs } = await setENV("BiliBili", "Enhanced", DataBase);
+    const { Settings, Caches, Configs } = setENV("BiliBili", "Enhanced", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -147,29 +147,18 @@ for (const [key, value] of Object.entries($response.headers)) {
 		};
 	})
 
-/***************** Async Function *****************/
-/**
- * Get Environment Variables
- * @link https://github.com/VirgilClyne/VirgilClyne/blob/main/function/getENV/getENV.min.js
- * @author VirgilClyne
- * @param {String} t - Persistent Store Key
- * @param {String} e - Platform Name
- * @param {Object} n - Default Database
- * @return {Promise<*>}
- */
-async function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)f(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},o={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},a=i?.[e]?.Caches||void 0;return"string"==typeof a&&(a=JSON.parse(a)),{Settings:g,Caches:a,Configs:o};function f(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
-
+/***************** Function *****************/
 /**
  * Set Environment Variables
  * @author VirgilClyne
  * @param {String} name - Persistent Store Key
  * @param {String} platform - Platform Name
  * @param {Object} database - Default DataBase
- * @return {Promise<*>}
+ * @return {Object} { Settings, Caches, Configs }
  */
-async function setENV(name, platform, database) {
+function setENV(name, platform, database) {
 	$.log(`⚠ ${$.name}, Set Environment Variables`, "");
-	let { Settings, Caches = {}, Configs } = await getENV(name, platform, database);
+	let { Settings, Caches, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
 	if (typeof Settings.Home.Top === "string") Settings.Home.Top = Settings.Home.Top.split(",") // BoxJs字符串转数组
 	if (typeof Settings.Home.Top_more === "string") Settings.Home.Top_more = Settings.Home.Top_more.split(",") // BoxJs字符串转数组
@@ -186,3 +175,14 @@ function Env(t,s){class e{constructor(t){this.env=t}send(t,s="GET"){t="string"==
 
 // https://github.com/DualSubs/URL/blob/main/URLs.embedded.min.js
 function URLs(s){return new class{constructor(s=[]){this.name="URL v1.0.2",this.opts=s,this.json={scheme:"",host:"",path:"",params:{}}}parse(s){let t=s.match(/(?<scheme>.+):\/\/(?<host>[^/]+)\/?(?<path>[^?]+)?\??(?<params>.*)?/)?.groups??null;return t?.path||(t.path=""),t?.params&&(t.params=Object.fromEntries(t.params.split("&").map((s=>s.split("="))))),t}stringify(s=this.json){return s?.params?s.scheme+"://"+s.host+"/"+s.path+"?"+Object.entries(s.params).map((s=>s.join("="))).join("&"):s.scheme+"://"+s.host+"/"+s.path}}(s)}
+
+/**
+ * Get Environment Variables
+ * @link https://github.com/VirgilClyne/VirgilClyne/blob/main/function/getENV/getENV.min.js
+ * @author VirgilClyne
+ * @param {String} t - Persistent Store Key
+ * @param {String} e - Platform Name
+ * @param {Object} n - Default Database
+ * @return {Object} { Settings, Caches, Configs }
+ */
+function getENV(t,e,n){let i=$.getjson(t,n),s={};if("undefined"!=typeof $argument&&Boolean($argument)){let t=Object.fromEntries($argument.split("&").map((t=>t.split("="))));for(let e in t)l(s,e,t[e])}let g={...n?.Default?.Settings,...n?.[e]?.Settings,...i?.[e]?.Settings,...s},f={...n?.Default?.Configs,...n?.[e]?.Configs,...i?.[e]?.Configs},o=i?.[e]?.Caches||{};return"string"==typeof o&&(o=JSON.parse(o)),{Settings:g,Caches:o,Configs:f};function l(t,e,n){e.split(".").reduce(((t,i,s)=>t[i]=e.split(".").length===++s?n:t[i]||{}),t)}}
