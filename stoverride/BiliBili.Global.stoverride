@@ -15,7 +15,7 @@ http:
     - "grpc.biliapi.net"
     - "api.biliapi.net"
   script:
-    - match: ^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+(\?.+)?$
+    - match: ^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: true

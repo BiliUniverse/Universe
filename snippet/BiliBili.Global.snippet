@@ -8,7 +8,7 @@
 
 #[Script]
 # BiliBili.Global.bangumi.player
-^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?(\?.+)?$ url script-echo-response https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
 
 # BiliBili.Global.season.json
 ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$ url script-request-body https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
