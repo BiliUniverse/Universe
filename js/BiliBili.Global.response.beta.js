@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.0(6) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.0(7) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -98,8 +98,12 @@ for (const [key, value] of Object.entries($response.headers)) {
 													};
 													break;
 												case "bilibili.pgc.gateway.player.v2.PlayURL": // 番剧
+													/******************  initialization start  *******************/
+													/******************  initialization finish  *******************/
 													switch (url.paths?.[1]) {
 														case "PlayView": // 播放地址
+															/******************  initialization start  *******************/
+															/******************  initialization finish  *******************/
 															break;
 														case "PlayConf": // 播放配置
 															break;
@@ -320,8 +324,8 @@ for (const [key, value] of Object.entries($response.headers)) {
 									rawBody = newRawBody({ header, body }, $request.headers["grpc-encoding"]);
 									break;
 								case "application/x-protobuf":
-									//$response.body = Player.fromBinary($request.bodyBinary);
-									//$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
+									//$response.body = Player.fromBinary($response.bodyBinary);
+									//$.log(`🚧 ${$.name}`, `$response.body: ${JSON.stringify($response.body)}`, "");
 									break;
 							};
 							break;
@@ -337,6 +341,8 @@ for (const [key, value] of Object.entries($response.headers)) {
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
+							if (url.path.includes("bangumi/play/")) {// web版番剧
+							};
 							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
@@ -344,8 +350,23 @@ for (const [key, value] of Object.entries($response.headers)) {
 						case "api.bilibili.com":
 						case "api.biliapi.net":
 							switch (url.path) {
-								case "pgc/view/web/season": // 番剧页面
-								case "pgc/view/v2/app/season": // 番剧页面
+								case "pgc/player/api/playurl": // 番剧-播放地址-api
+								case "pgc/player/web/playurl": // 番剧-播放地址-web
+								case "pgc/player/web/playurl/html5": // 番剧-播放地址-web-HTML5
+									break;
+								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
+									break;
+								case "x/space/wbi/acc/info": // 用户空间-账号信息
+									switch (url.params.vmid || url.params.mid) {
+										case "11783021": // 哔哩哔哩番剧出差
+										case "2042149112": // b站_綜藝咖
+											break;
+										default:
+											break;
+									};
+									break;
+								case "pgc/view/v2/app/season": // 番剧页面-内容-api
+								case "pgc/view/web/season": // 番剧-内容-web
 									body = JSON.parse($response.body);
 									let newCaches = Caches;
 									if (!newCaches?.ep) newCaches.ep = {};
