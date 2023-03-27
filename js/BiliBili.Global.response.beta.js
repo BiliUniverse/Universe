@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.0(7) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.0(8) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -148,11 +148,11 @@ for (const [key, value] of Object.entries($response.headers)) {
 																		//{ no: 10, name: "new_search_exp_num", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
 																		//{ no: 11, name: "pagination", kind: "message", T: () => PaginationReply },
 																		{ no: 12, name: "app_display_option", kind: "message", T: () => DisplayOption },
-																		//{ no: 13, name: "annotation", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 9 /*ScalarType.STRING*/ } }
+																		{ no: 13, name: "annotation", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 9 /*ScalarType.STRING*/ } }
 																	]);
 																}
 																create(value) {
-																	const message = { keyword: "", trackid: "", nav: [] };
+																	const message = { keyword: "", trackid: "", nav: [], selectBarType: 0, annotation: {} };
 																	globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
 																	if (value !== undefined)
 																		reflectionMergePartial(this, message, value);
@@ -199,9 +199,9 @@ for (const [key, value] of Object.entries($response.headers)) {
 																			case /* bilibili.polymer.app.search.v1.DisplayOption app_display_option */ 12:
 																				message.appDisplayOption = DisplayOption.internalBinaryRead(reader, reader.uint32(), options, message.appDisplayOption);
 																				break;
-																			//case /* map<string, string> annotation */ 13:
-																				//this.binaryReadMap13(message.annotation, reader, options);
-																				//break;
+																			case /* map<string, string> annotation */ 13:
+																				this.binaryReadMap13(message.annotation, reader, options);
+																				break;
 																			default:
 																				let u = options.readUnknownField;
 																				if (u === "throw")
@@ -267,8 +267,8 @@ for (const [key, value] of Object.entries($response.headers)) {
 																	if (message.appDisplayOption)
 																		DisplayOption.internalBinaryWrite(message.appDisplayOption, writer.tag(12, WireType.LengthDelimited).fork(), options).join();
 																	/* map<string, string> annotation = 13; */
-																	//for (let k of Object.keys(message.annotation))
-																		//writer.tag(13, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(message.annotation[k]).join();
+																	for (let k of Object.keys(message.annotation))
+																		writer.tag(13, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.LengthDelimited).string(message.annotation[k]).join();
 																	let u = options.writeUnknownFields;
 																	if (u !== false)
 																		(u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
