@@ -4613,20 +4613,20 @@ class SearchAllRequest$Type extends MessageType {
     constructor() {
         super("bilibili.polymer.app.search.v1.SearchAllRequest", [
             { no: 1, name: "keyword", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 2, name: "order", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 3, name: "tid_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "duration_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "order", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "tid_list", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "duration_list", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 5, name: "extra_word", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 6, name: "from_source", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 7, name: "is_org_query", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
-            { no: 8, name: "local_time", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "local_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 9, name: "ad_extra", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 10, name: "pagination", kind: "message", T: () => Pagination },
             { no: 11, name: "player_args", kind: "message", T: () => PlayerArgs$ }
         ]);
     }
     create(value) {
-        const message = { keyword: "", order: 0, tidList: "", durationList: "", fromSource: "", adExtra: "" };
+        const message = { keyword: "", fromSource: "", localTime: 0, adExtra: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -4640,13 +4640,13 @@ class SearchAllRequest$Type extends MessageType {
                 case /* string keyword */ 1:
                     message.keyword = reader.string();
                     break;
-                case /* int32 order */ 2:
+                case /* optional int32 order */ 2:
                     message.order = reader.int32();
                     break;
-                case /* string tid_list */ 3:
+                case /* optional string tid_list */ 3:
                     message.tidList = reader.string();
                     break;
-                case /* string duration_list */ 4:
+                case /* optional string duration_list */ 4:
                     message.durationList = reader.string();
                     break;
                 case /* optional string extra_word */ 5:
@@ -4658,7 +4658,7 @@ class SearchAllRequest$Type extends MessageType {
                 case /* optional int32 is_org_query */ 7:
                     message.isOrgQuery = reader.int32();
                     break;
-                case /* optional int32 local_time */ 8:
+                case /* int32 local_time */ 8:
                     message.localTime = reader.int32();
                     break;
                 case /* string ad_extra */ 9:
@@ -4685,14 +4685,14 @@ class SearchAllRequest$Type extends MessageType {
         /* string keyword = 1; */
         if (message.keyword !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.keyword);
-        /* int32 order = 2; */
-        if (message.order !== 0)
+        /* optional int32 order = 2; */
+        if (message.order !== undefined)
             writer.tag(2, WireType.Varint).int32(message.order);
-        /* string tid_list = 3; */
-        if (message.tidList !== "")
+        /* optional string tid_list = 3; */
+        if (message.tidList !== undefined)
             writer.tag(3, WireType.LengthDelimited).string(message.tidList);
-        /* string duration_list = 4; */
-        if (message.durationList !== "")
+        /* optional string duration_list = 4; */
+        if (message.durationList !== undefined)
             writer.tag(4, WireType.LengthDelimited).string(message.durationList);
         /* optional string extra_word = 5; */
         if (message.extraWord !== undefined)
@@ -4703,8 +4703,8 @@ class SearchAllRequest$Type extends MessageType {
         /* optional int32 is_org_query = 7; */
         if (message.isOrgQuery !== undefined)
             writer.tag(7, WireType.Varint).int32(message.isOrgQuery);
-        /* optional int32 local_time = 8; */
-        if (message.localTime !== undefined)
+        /* int32 local_time = 8; */
+        if (message.localTime !== 0)
             writer.tag(8, WireType.Varint).int32(message.localTime);
         /* string ad_extra = 9; */
         if (message.adExtra !== "")
@@ -4736,7 +4736,7 @@ class SearchAllResponse$Type extends MessageType {
             { no: 5, name: "easter_egg", kind: "message", T: () => EasterEgg },
             { no: 6, name: "exp_str", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 7, name: "extra_word_list", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-            { no: 8, name: "org_extra_word", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 8, name: "org_extra_word", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 9, name: "select_bar_type", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 10, name: "new_search_exp_num", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 2 /*LongType.NUMBER*/ },
             { no: 11, name: "pagination", kind: "message", T: () => PaginationReply },
@@ -4745,7 +4745,7 @@ class SearchAllResponse$Type extends MessageType {
         ]);
     }
     create(value) {
-        const message = { keyword: "", trackid: "", nav: [], item: [], expStr: "", extraWordList: [], orgExtraWord: "", selectBarType: 0, newSearchExpNum: 0, annotation: {} };
+        const message = { keyword: "", trackid: "", nav: [], item: [], expStr: "", extraWordList: [], selectBarType: 0, newSearchExpNum: 0, annotation: {} };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -4768,7 +4768,7 @@ class SearchAllResponse$Type extends MessageType {
                 case /* repeated bilibili.polymer.app.search.v1.Item item */ 4:
                     message.item.push(Item.internalBinaryRead(reader, reader.uint32(), options));
                     break;
-                case /* bilibili.polymer.app.search.v1.EasterEgg easter_egg */ 5:
+                case /* optional bilibili.polymer.app.search.v1.EasterEgg easter_egg */ 5:
                     message.easterEgg = EasterEgg.internalBinaryRead(reader, reader.uint32(), options, message.easterEgg);
                     break;
                 case /* string exp_str */ 6:
@@ -4777,7 +4777,7 @@ class SearchAllResponse$Type extends MessageType {
                 case /* repeated string extra_word_list */ 7:
                     message.extraWordList.push(reader.string());
                     break;
-                case /* string org_extra_word */ 8:
+                case /* optional string org_extra_word */ 8:
                     message.orgExtraWord = reader.string();
                     break;
                 case /* int64 select_bar_type = 9 [jstype = JS_NUMBER];*/ 9:
@@ -4835,7 +4835,7 @@ class SearchAllResponse$Type extends MessageType {
         /* repeated bilibili.polymer.app.search.v1.Item item = 4; */
         for (let i = 0; i < message.item.length; i++)
             Item.internalBinaryWrite(message.item[i], writer.tag(4, WireType.LengthDelimited).fork(), options).join();
-        /* bilibili.polymer.app.search.v1.EasterEgg easter_egg = 5; */
+        /* optional bilibili.polymer.app.search.v1.EasterEgg easter_egg = 5; */
         if (message.easterEgg)
             EasterEgg.internalBinaryWrite(message.easterEgg, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         /* string exp_str = 6; */
@@ -4844,8 +4844,8 @@ class SearchAllResponse$Type extends MessageType {
         /* repeated string extra_word_list = 7; */
         for (let i = 0; i < message.extraWordList.length; i++)
             writer.tag(7, WireType.LengthDelimited).string(message.extraWordList[i]);
-        /* string org_extra_word = 8; */
-        if (message.orgExtraWord !== "")
+        /* optional string org_extra_word = 8; */
+        if (message.orgExtraWord !== undefined)
             writer.tag(8, WireType.LengthDelimited).string(message.orgExtraWord);
         /* int64 select_bar_type = 9 [jstype = JS_NUMBER]; */
         if (message.selectBarType !== 0)

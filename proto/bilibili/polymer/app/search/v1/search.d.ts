@@ -1616,17 +1616,17 @@ export interface SearchAllRequest {
      */
     keyword: string;
     /**
-     * @generated from protobuf field: int32 order = 2;
+     * @generated from protobuf field: optional int32 order = 2;
      */
-    order: number;
+    order?: number;
     /**
-     * @generated from protobuf field: string tid_list = 3;
+     * @generated from protobuf field: optional string tid_list = 3;
      */
-    tidList: string;
+    tidList?: string;
     /**
-     * @generated from protobuf field: string duration_list = 4;
+     * @generated from protobuf field: optional string duration_list = 4;
      */
-    durationList: string;
+    durationList?: string;
     /**
      * @generated from protobuf field: optional string extra_word = 5;
      */
@@ -1640,9 +1640,9 @@ export interface SearchAllRequest {
      */
     isOrgQuery?: number;
     /**
-     * @generated from protobuf field: optional int32 local_time = 8;
+     * @generated from protobuf field: int32 local_time = 8;
      */
-    localTime?: number;
+    localTime: number;
     /**
      * @generated from protobuf field: string ad_extra = 9;
      */
@@ -1677,7 +1677,7 @@ export interface SearchAllResponse {
      */
     item: Item[];
     /**
-     * @generated from protobuf field: bilibili.polymer.app.search.v1.EasterEgg easter_egg = 5;
+     * @generated from protobuf field: optional bilibili.polymer.app.search.v1.EasterEgg easter_egg = 5;
      */
     easterEgg?: EasterEgg;
     /**
@@ -1689,9 +1689,9 @@ export interface SearchAllResponse {
      */
     extraWordList: string[];
     /**
-     * @generated from protobuf field: string org_extra_word = 8;
+     * @generated from protobuf field: optional string org_extra_word = 8;
      */
-    orgExtraWord: string;
+    orgExtraWord?: string;
     /**
      * @generated from protobuf field: int64 select_bar_type = 9 [jstype = JS_NUMBER];
      */
