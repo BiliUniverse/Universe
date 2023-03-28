@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.4(7) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.4(12) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -300,6 +300,66 @@ let $response = undefined;
 																	let addedNumber = reader.int32(); // 7777
 																	$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, addedNumber: ${addedNumber}`, "");
 																});
+															};
+															let keywords = data.keyword?.split(" ");
+															$.log(`🚧 ${$.name}`, `keywords: ${keywords}`, "");
+															switch ([...keywords].pop()) {
+																case "CN":
+																case "CHN":
+																case "中国":
+																case "中":
+																case "🇨🇳":
+																	keywords.pop();
+																	data.keyword = keywords.join(" ");
+																	$request = ReReqeust($request, Settings.Proxies.CHN);
+																	break;
+																case "HK":
+																case "HKG":
+																case "港":
+																case "香港":
+																case "🇭🇰":
+																	keywords.pop();
+																	data.keyword = keywords.join(" ");
+																	$request = ReReqeust($request, Settings.Proxies.HKG);
+																	break;
+																case "MO":
+																case "MAC":
+																case "澳":
+																case "澳门":
+																case "🇲🇴":
+																	keywords.pop();
+																	data.keyword = keywords.join(" ");
+																	$request = ReReqeust($request, Settings.Proxies.MAC);
+																	break;
+																case "TW":
+																case "TWN":
+																case "台":
+																case "台湾":
+																case "🇹🇼":
+																	keywords.pop();
+																	data.keyword = keywords.join(" ");
+																	$request = ReReqeust($request, Settings.Proxies.TWN);
+																	break;
+																case "SE":
+																case "SEA":
+																case "东南亚":
+																case "🇺🇳":
+																case "TH":
+																case "泰":
+																case "泰国":
+																case "🇹🇭":
+																case "SG":
+																case "新":
+																case "新加坡":
+																case "🇸🇬":
+																case "MY":
+																case "马":
+																case "马来西亚":
+																case "🇲🇾":
+																	keywords.pop();
+																	data.keyword = keywords.join(" ");
+																	$request = ReReqeust($request, Settings.Proxies.SEA);
+																	break;	
 															};
 															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 															body = SearchAllRequest.toBinary(data);
