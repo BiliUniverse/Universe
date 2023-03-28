@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.5(3) request");
+const $ = new Env("📺 BiliBili:Global v0.3.6(3) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -223,11 +223,17 @@ let $response = undefined;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							switch (url.path) {
-								case "x/v2/search/type": // 搜索
-								case "x/web-interface/search/type": // 搜索
+								case "x/v2/search": // 搜索-全部结果（综合）
+								case "x/web-interface/search": // 搜索-全部结果（综合）
+								case "x/v2/search/type": // 搜索-分类结果（番剧、用户、影视、专栏）
+								case "x/web-interface/search/type": // 搜索-分类结果（番剧、用户、影视、专栏）
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
+									url.params.keyword = encodeURIComponent(keyword);
+									$request.url = URL.stringify(url);
+									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
 								case "x/v2/space": // 用户空间
-									switch (url.params.vmid || url.params.mid) {
+									switch (url.params?.vmid || url.params?.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
 											let availableLocales = Settings?.Locales.filter(locale => locale !== "CHN");
@@ -261,7 +267,7 @@ let $response = undefined;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
 								case "x/space/wbi/acc/info": // 用户空间-账号信息
-									switch (url.params.vmid || url.params.mid) {
+									switch (url.params?.vmid || url.params?.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
 											let availableLocales = Settings?.Locales.filter(locale => locale !== "CHN");
