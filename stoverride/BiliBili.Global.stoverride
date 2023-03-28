@@ -54,8 +54,8 @@ http:
       timeout: 15
       argument:
     - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/SearchAll(\?.+)?$
-      name: BiliBili.Global.response
-      type: response
+      name: BiliBili.Global.request
+      type: request
       require-body: true
       timeout: 15
       binary-mode: true
