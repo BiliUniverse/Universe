@@ -875,11 +875,11 @@ message SearchAllRequest {
     //
     string keyword = 1;
     //
-    int32 order = 2;
+    optional int32 order = 2;
     //
-    string tid_list = 3;
+    optional string tid_list = 3;
     //
-    string duration_list = 4;
+    optional string duration_list = 4;
     //
     optional string extra_word = 5;
     //
@@ -887,7 +887,7 @@ message SearchAllRequest {
     //
     optional int32 is_org_query = 7;
     //
-    optional int32 local_time = 8;
+    int32 local_time = 8;
     //
     string ad_extra = 9;
     //
@@ -907,13 +907,13 @@ message SearchAllResponse {
     //
     repeated Item item = 4;
     //
-    EasterEgg easter_egg = 5;
+    optional EasterEgg easter_egg = 5;
     //
     string exp_str = 6;
     //
     repeated string extra_word_list = 7;
     //
-    string org_extra_word = 8;
+    optional string org_extra_word = 8;
     //
     int64 select_bar_type = 9 [jstype = JS_NUMBER];
     //
