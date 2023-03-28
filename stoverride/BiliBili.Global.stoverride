@@ -61,16 +61,16 @@ http:
       binary-mode: true
       max-size: 0
       argument:
-    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/(v2|web-interface)\/search\/type(\?.+)?$
+    - match: ^https?:\/\/app\.bilibili\.com\/x\/(v2|web-interface)\/search(\/type)?(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$
