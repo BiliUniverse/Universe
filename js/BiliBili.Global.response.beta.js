@@ -294,18 +294,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 																	$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, addedNumber: ${addedNumber}`, "");
 																});
 															};
-															data.nav = data.nav.filter(nav => {
-																if (nav.type !== 7) return nav;
-															});
-															const NAV = {
-																CHN: {"name":"番剧🇨🇳","total":0,"pages":0,"type":17},
-																HKG: {"name":"动画🇭🇰","total":0,"pages":0,"type":27},
-																MAC: {"name":"动画🇲🇴","total":0,"pages":0,"type":37},
-																TWN: {"name":"动画🇹🇼","total":0,"pages":0,"type":47},
-																SEA: {"name":"动画🇺🇳","total":0,"pages":0,"type":57}
-															};
-															data.nav.unshift(NAV.CHN, NAV.HKG, NAV.TWN);
-															//data.selectBarType = 1;
+															
 															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
 															body = SearchAllResponse.toBinary(data);
 															break;
