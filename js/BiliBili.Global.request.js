@@ -11,7 +11,10 @@ const DataBase = {
 		}
 	},
     "Global":{
-		"Settings":{"Switch":"true","ForceHost":"1","Locales":["CHN","HKG","TWN"],"Proxies":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}}
+		"Settings":{"Switch":"true","ForceHost":"1","Locales":["CHN","HKG","TWN"],"Proxies":{"CHN": "DIRECT","HKG": "🇭🇰香港","MAC": "🇲🇴澳门","TWN": "🇹🇼台湾","SEA": "🇸🇬新加坡"}},
+		"Configs":{
+			"SearchNav":{"CHN":{"name":"番剧🇨🇳","total":0,"pages":0,"type":17},"HKG":{"name":"动画🇭🇰","total":0,"pages":0,"type":27},"MAC":{"name":"动画🇲🇴","total":0,"pages":0,"type":37},"TWN":{"name":"动画🇹🇼","total":0,"pages":0,"type":47},"SEA":{"name":"动画🇺🇳","total":0,"pages":0,"type":57}}
+		}
 	},
 	"Roaming":{
 		"Settings":{"Switch":"true","Proxy":{"Pool":["xn--2vrub.plus","api.qiu.moe","xn--2vrub.icu","xn--n4yr07d.xn--6qq986b3xl","xn--3dz622b.xn--n4y597a0mfle743a.icu","bili.tuturu.top","xn--7rv796dvkm.xn--6qq986b3xl","xn--7ovr3tf1cxr4d.fun","xn--8fv56a330gjea.icu","xn--qoqt3y678a.xn--6qq986b3xl","atri.ink","xn--kiv440b.xn--6qq986b3xl","xn--w4r620anpl.xn--oor00vs23b.icu","xn--chqwq129p.pch.pub","melusinesuki.site","bili.takami.ink"],"Customs":""}}
