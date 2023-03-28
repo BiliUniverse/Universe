@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.7(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.7(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -548,11 +548,12 @@ function checkLocales(responses = {}) {
  * Check Search Keyword
  * @author VirgilClyne
  * @param {String} keyword - Search Keyword
+ * @param {String} delimiter - Keyword Delimiter
  * @return {Object} { keyword, locale }
  */
-function checkKeyword(keyword = "") {
+function checkKeyword(keyword = "", delimiter = " ") {
 	$.log(`⚠ ${$.name}, Check Search Keyword`, `Original Keyword: ${keyword}`, "");
-	let keywords = keyword?.split(" ");
+	let keywords = keyword?.split(delimiter);
 	$.log(`🚧 ${$.name}, Check Search Keyword`, `keywords: ${keywords}`, "");
 	let locale = "";
 	switch ([...keywords].pop()) {
@@ -565,7 +566,7 @@ function checkKeyword(keyword = "") {
 		case "🇨🇳":
 			locale = "CHN";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		case "HK":
 		case "hk":
@@ -576,7 +577,7 @@ function checkKeyword(keyword = "") {
 		case "🇭🇰":
 			locale = "HKG";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		//case "MO":
 		//case "mo":
@@ -587,7 +588,7 @@ function checkKeyword(keyword = "") {
 		case "🇲🇴":
 			locale = "MAC";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		case "TW":
 		case "tw":
@@ -597,7 +598,7 @@ function checkKeyword(keyword = "") {
 		case "🇹🇼":
 			locale = "TWN";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		case "SEA":
 		case "sea":
@@ -617,7 +618,7 @@ function checkKeyword(keyword = "") {
 		case "🇲🇾":
 			locale = "SEA";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 	};
 	$.log(`🎉 ${$.name}, Check Search Keyword`, `Keyword: ${keyword}, Locale: ${locale}`, "");
