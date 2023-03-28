@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.5(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.5(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -112,7 +112,7 @@ let $response = undefined;
 													switch (url.paths?.[1]) {
 														case "PlayView": { // 播放地址
 															/******************  initialization start  *******************/
-															class PlayViewReq$Type extends MessageType { constructor() { super("bilibili.pgc.gateway.player.v2.PlayViewReq", [{ no: 1, name: "ep_id", kind: "scalar", opt: true, T: 3, L: 2 }, { no: 2, name: "cid", kind: "scalar", opt: true, T: 3, L: 2 }, { no: 3, name: "qn", kind: "scalar", T: 3, L: 2 }, { no: 4, name: "fnver", kind: "scalar", opt: true, T: 5 }, { no: 5, name: "fnval", kind: "scalar", T: 5 }, { no: 6, name: "download", kind: "scalar", opt: true, T: 13 }, { no: 7, name: "force_host", kind: "scalar", opt: true, T: 5 }, { no: 8, name: "fourk", kind: "scalar", opt: true, T: 8 }, { no: 9, name: "spmid", kind: "scalar", opt: true, T: 9 }, { no: 10, name: "from_spmid", kind: "scalar", opt: true, T: 9 }, { no: 11, name: "teenagers_mode", kind: "scalar", opt: true, T: 5 }, { no: 12, name: "prefer_codec_type", kind: "enum", T: () => ["bilibili.pgc.gateway.player.v2.CodeType", CodeType] }, { no: 13, name: "is_preview", kind: "scalar", opt: true, T: 8 }, { no: 14, name: "room_id", kind: "scalar", opt: true, T: 3, L: 2 }, { no: 15, name: "is_need_view_info", kind: "scalar", opt: true, T: 8 }, { no: 16, name: "scene_control", kind: "message", T: () => SceneControl }, { no: 17, name: "inline_scene", kind: "enum", opt: true, T: () => ["bilibili.pgc.gateway.player.v2.InlineScene", InlineScene] }, { no: 18, name: "material_no", kind: "scalar", opt: true, T: 3, L: 2 }, { no: 19, name: "security_level", kind: "scalar", opt: true, T: 5 }, { no: 20, name: "season_id", kind: "scalar", T: 3, L: 2 }, { no: 21, name: "data_control", kind: "message", T: () => DataControl }]) } create(value) { const message = { qn: 0, fnval: 0, preferCodecType: 0, seasonId: 0 }; globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this }); if (value !== undefined) reflectionMergePartial(this, message, value); return message } internalBinaryRead(reader, length, options, target) { let message = target ?? this.create(), end = reader.pos + length; while (reader.pos < end) { let [fieldNo, wireType] = reader.tag(); switch (fieldNo) { case 1: message.epId = reader.int64().toNumber(); break; case 2: message.cid = reader.int64().toNumber(); break; case 3: message.qn = reader.int64().toNumber(); break; case 4: message.fnver = reader.int32(); break; case 5: message.fnval = reader.int32(); break; case 6: message.download = reader.uint32(); break; case 7: message.forceHost = reader.int32(); break; case 8: message.fourk = reader.bool(); break; case 9: message.spmid = reader.string(); break; case 10: message.fromSpmid = reader.string(); break; case 11: message.teenagersMode = reader.int32(); break; case 12: message.preferCodecType = reader.int32(); break; case 13: message.isPreview = reader.bool(); break; case 14: message.roomId = reader.int64().toNumber(); break; case 15: message.isNeedViewInfo = reader.bool(); break; case 16: message.sceneControl = SceneControl.internalBinaryRead(reader, reader.uint32(), options, message.sceneControl); break; case 17: message.inlineScene = reader.int32(); break; case 18: message.materialNo = reader.int64().toNumber(); break; case 19: message.securityLevel = reader.int32(); break; case 20: message.seasonId = reader.int64().toNumber(); break; case 21: message.dataControl = DataControl.internalBinaryRead(reader, reader.uint32(), options, message.dataControl); break; default: let u = options.readUnknownField; if (u === "throw") throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`); let d = reader.skip(wireType); if (u !== false) (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d) } } return message } internalBinaryWrite(message, writer, options) { if (message.epId !== undefined) writer.tag(1, WireType.Varint).int64(message.epId); if (message.cid !== undefined) writer.tag(2, WireType.Varint).int64(message.cid); if (message.qn !== 0) writer.tag(3, WireType.Varint).int64(message.qn); if (message.fnver !== undefined) writer.tag(4, WireType.Varint).int32(message.fnver); if (message.fnval !== 0) writer.tag(5, WireType.Varint).int32(message.fnval); if (message.download !== undefined) writer.tag(6, WireType.Varint).uint32(message.download); if (message.forceHost !== undefined) writer.tag(7, WireType.Varint).int32(message.forceHost); if (message.fourk !== undefined) writer.tag(8, WireType.Varint).bool(message.fourk); if (message.spmid !== undefined) writer.tag(9, WireType.LengthDelimited).string(message.spmid); if (message.fromSpmid !== undefined) writer.tag(10, WireType.LengthDelimited).string(message.fromSpmid); if (message.teenagersMode !== undefined) writer.tag(11, WireType.Varint).int32(message.teenagersMode); if (message.preferCodecType !== 0) writer.tag(12, WireType.Varint).int32(message.preferCodecType); if (message.isPreview !== undefined) writer.tag(13, WireType.Varint).bool(message.isPreview); if (message.roomId !== undefined) writer.tag(14, WireType.Varint).int64(message.roomId); if (message.isNeedViewInfo !== undefined) writer.tag(15, WireType.Varint).bool(message.isNeedViewInfo); if (message.sceneControl) SceneControl.internalBinaryWrite(message.sceneControl, writer.tag(16, WireType.LengthDelimited).fork(), options).join(); if (message.inlineScene !== undefined) writer.tag(17, WireType.Varint).int32(message.inlineScene); if (message.materialNo !== undefined) writer.tag(18, WireType.Varint).int64(message.materialNo); if (message.securityLevel !== undefined) writer.tag(19, WireType.Varint).int32(message.securityLevel); if (message.seasonId !== 0) writer.tag(20, WireType.Varint).int64(message.seasonId); if (message.dataControl) DataControl.internalBinaryWrite(message.dataControl, writer.tag(21, WireType.LengthDelimited).fork(), options).join(); let u = options.writeUnknownFields; if (u !== false) (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer); return writer } };
+															class PlayViewReq$Type extends MessageType{constructor(){super("bilibili.pgc.gateway.player.v2.PlayViewReq",[{no:1,name:"ep_id",kind:"scalar",opt:true,T:3,L:2},{no:2,name:"cid",kind:"scalar",opt:true,T:3,L:2},{no:3,name:"qn",kind:"scalar",T:3,L:2},{no:4,name:"fnver",kind:"scalar",opt:true,T:5},{no:5,name:"fnval",kind:"scalar",T:5},{no:6,name:"download",kind:"scalar",opt:true,T:13},{no:7,name:"force_host",kind:"scalar",opt:true,T:5},{no:8,name:"fourk",kind:"scalar",opt:true,T:8},{no:9,name:"spmid",kind:"scalar",opt:true,T:9},{no:10,name:"from_spmid",kind:"scalar",opt:true,T:9},{no:11,name:"teenagers_mode",kind:"scalar",opt:true,T:5},{no:12,name:"prefer_codec_type",kind:"enum",T:()=>["bilibili.pgc.gateway.player.v2.CodeType",CodeType]},{no:13,name:"is_preview",kind:"scalar",opt:true,T:8},{no:14,name:"room_id",kind:"scalar",opt:true,T:3,L:2},{no:15,name:"is_need_view_info",kind:"scalar",opt:true,T:8},{no:16,name:"scene_control",kind:"message",T:()=>SceneControl},{no:17,name:"inline_scene",kind:"enum",opt:true,T:()=>["bilibili.pgc.gateway.player.v2.InlineScene",InlineScene]},{no:18,name:"material_no",kind:"scalar",opt:true,T:3,L:2},{no:19,name:"security_level",kind:"scalar",opt:true,T:5},{no:20,name:"season_id",kind:"scalar",T:3,L:2},{no:21,name:"data_control",kind:"message",T:()=>DataControl}])}create(value){const message={qn:0,fnval:0,preferCodecType:0,seasonId:0};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.epId=reader.int64().toNumber();break;case 2:message.cid=reader.int64().toNumber();break;case 3:message.qn=reader.int64().toNumber();break;case 4:message.fnver=reader.int32();break;case 5:message.fnval=reader.int32();break;case 6:message.download=reader.uint32();break;case 7:message.forceHost=reader.int32();break;case 8:message.fourk=reader.bool();break;case 9:message.spmid=reader.string();break;case 10:message.fromSpmid=reader.string();break;case 11:message.teenagersMode=reader.int32();break;case 12:message.preferCodecType=reader.int32();break;case 13:message.isPreview=reader.bool();break;case 14:message.roomId=reader.int64().toNumber();break;case 15:message.isNeedViewInfo=reader.bool();break;case 16:message.sceneControl=SceneControl.internalBinaryRead(reader,reader.uint32(),options,message.sceneControl);break;case 17:message.inlineScene=reader.int32();break;case 18:message.materialNo=reader.int64().toNumber();break;case 19:message.securityLevel=reader.int32();break;case 20:message.seasonId=reader.int64().toNumber();break;case 21:message.dataControl=DataControl.internalBinaryRead(reader,reader.uint32(),options,message.dataControl);break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.epId!==undefined)writer.tag(1,WireType.Varint).int64(message.epId);if(message.cid!==undefined)writer.tag(2,WireType.Varint).int64(message.cid);if(message.qn!==0)writer.tag(3,WireType.Varint).int64(message.qn);if(message.fnver!==undefined)writer.tag(4,WireType.Varint).int32(message.fnver);if(message.fnval!==0)writer.tag(5,WireType.Varint).int32(message.fnval);if(message.download!==undefined)writer.tag(6,WireType.Varint).uint32(message.download);if(message.forceHost!==undefined)writer.tag(7,WireType.Varint).int32(message.forceHost);if(message.fourk!==undefined)writer.tag(8,WireType.Varint).bool(message.fourk);if(message.spmid!==undefined)writer.tag(9,WireType.LengthDelimited).string(message.spmid);if(message.fromSpmid!==undefined)writer.tag(10,WireType.LengthDelimited).string(message.fromSpmid);if(message.teenagersMode!==undefined)writer.tag(11,WireType.Varint).int32(message.teenagersMode);if(message.preferCodecType!==0)writer.tag(12,WireType.Varint).int32(message.preferCodecType);if(message.isPreview!==undefined)writer.tag(13,WireType.Varint).bool(message.isPreview);if(message.roomId!==undefined)writer.tag(14,WireType.Varint).int64(message.roomId);if(message.isNeedViewInfo!==undefined)writer.tag(15,WireType.Varint).bool(message.isNeedViewInfo);if(message.sceneControl)SceneControl.internalBinaryWrite(message.sceneControl,writer.tag(16,WireType.LengthDelimited).fork(),options).join();if(message.inlineScene!==undefined)writer.tag(17,WireType.Varint).int32(message.inlineScene);if(message.materialNo!==undefined)writer.tag(18,WireType.Varint).int64(message.materialNo);if(message.securityLevel!==undefined)writer.tag(19,WireType.Varint).int32(message.securityLevel);if(message.seasonId!==0)writer.tag(20,WireType.Varint).int64(message.seasonId);if(message.dataControl)DataControl.internalBinaryWrite(message.dataControl,writer.tag(21,WireType.LengthDelimited).fork(),options).join();let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
 															const PlayViewReq = new PlayViewReq$Type();
 															/******************  initialization finish  *******************/
 															let data = PlayViewReq.fromBinary(body);
@@ -174,118 +174,7 @@ let $response = undefined;
 													switch (url.paths?.[1]) {
 														case "SearchAll": { // 全部结果（综合）
 															/******************  initialization start  *******************/
-															class SearchAllRequest$Type extends MessageType {
-																constructor() {
-																	super("bilibili.polymer.app.search.v1.SearchAllRequest", [
-																		{ no: 1, name: "keyword", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 2, name: "order", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-																		//{ no: 3, name: "tid_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 4, name: "duration_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 5, name: "extra_word", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 6, name: "from_source", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 7, name: "is_org_query", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
-																		//{ no: 8, name: "local_time", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
-																		//{ no: 9, name: "ad_extra", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 10, name: "pagination", kind: "message", T: () => Pagination },
-																		//{ no: 11, name: "player_args", kind: "message", T: () => PlayerArgs$ }
-																	]);
-																}
-																create(value) {
-																	const message = { keyword: "" };
-																	globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-																	if (value !== undefined)
-																		reflectionMergePartial(this, message, value);
-																	return message;
-																}
-																internalBinaryRead(reader, length, options, target) {
-																	let message = target ?? this.create(), end = reader.pos + length;
-																	while (reader.pos < end) {
-																		let [fieldNo, wireType] = reader.tag();
-																		switch (fieldNo) {
-																			case /* string keyword */ 1:
-																				message.keyword = reader.string();
-																				break;
-																			//case /* int32 order */ 2:
-																			//message.order = reader.int32();
-																			//break;
-																			//case /* string tid_list */ 3:
-																			//message.tidList = reader.string();
-																			//break;
-																			//case /* string duration_list */ 4:
-																			////message.durationList = reader.string();
-																			//break;
-																			//case /* optional string extra_word */ 5:
-																			//message.extraWord = reader.string();
-																			//break;
-																			//case /* string from_source */ 6:
-																			//message.fromSource = reader.string();
-																			//break;
-																			//case /* optional int32 is_org_query */ 7:
-																			//message.isOrgQuery = reader.int32();
-																			//break;
-																			//case /* optional int32 local_time */ 8:
-																			//message.localTime = reader.int32();
-																			//break;
-																			//case /* string ad_extra */ 9:
-																			//message.adExtra = reader.string();
-																			//break;
-																			//case /* bilibili.pagination.Pagination pagination */ 10:
-																			//message.pagination = Pagination.internalBinaryRead(reader, reader.uint32(), options, message.pagination);
-																			//break;
-																			//case /* bilibili.app.archive.middleware.v1.PlayerArgs player_args */ 11:
-																			//message.playerArgs = PlayerArgs$.internalBinaryRead(reader, reader.uint32(), options, message.playerArgs);
-																			//break;
-																			default:
-																				let u = options.readUnknownField;
-																				if (u === "throw")
-																					throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-																				let d = reader.skip(wireType);
-																				if (u !== false)
-																					(u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-																		}
-																	}
-																	return message;
-																}
-																internalBinaryWrite(message, writer, options) {
-																	/* string keyword = 1; */
-																	if (message.keyword !== "")
-																		writer.tag(1, WireType.LengthDelimited).string(message.keyword);
-																	/* int32 order = 2; */
-																	//if (message.order !== 0)
-																	//writer.tag(2, WireType.Varint).int32(message.order);
-																	/* string tid_list = 3; */
-																	//if (message.tidList !== "")
-																	//writer.tag(3, WireType.LengthDelimited).string(message.tidList);
-																	/* string duration_list = 4; */
-																	//if (message.durationList !== "")
-																	//writer.tag(4, WireType.LengthDelimited).string(message.durationList);
-																	/* optional string extra_word = 5; */
-																	//if (message.extraWord !== undefined)
-																	//writer.tag(5, WireType.LengthDelimited).string(message.extraWord);
-																	/* string from_source = 6; */
-																	//if (message.fromSource !== "")
-																	//writer.tag(6, WireType.LengthDelimited).string(message.fromSource);
-																	/* optional int32 is_org_query = 7; */
-																	//if (message.isOrgQuery !== undefined)
-																	//writer.tag(7, WireType.Varint).int32(message.isOrgQuery);
-																	/* optional int32 local_time = 8; */
-																	//if (message.localTime !== undefined)
-																	//writer.tag(8, WireType.Varint).int32(message.localTime);
-																	/* string ad_extra = 9; */
-																	//if (message.adExtra !== "")
-																	//writer.tag(9, WireType.LengthDelimited).string(message.adExtra);
-																	/* bilibili.pagination.Pagination pagination = 10; */
-																	//if (message.pagination)
-																	//Pagination.internalBinaryWrite(message.pagination, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
-																	/* bilibili.app.archive.middleware.v1.PlayerArgs player_args = 11; */
-																	//if (message.playerArgs)
-																	//PlayerArgs$.internalBinaryWrite(message.playerArgs, writer.tag(11, WireType.LengthDelimited).fork(), options).join();
-																	let u = options.writeUnknownFields;
-																	if (u !== false)
-																		(u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-																	return writer;
-																}
-															}
+															class SearchAllRequest$Type extends MessageType{constructor(){super("bilibili.polymer.app.search.v1.SearchAllRequest",[{no:1,name:"keyword",kind:"scalar",T:9}])}create(value){const message={keyword:""};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.keyword=reader.string();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.keyword!=="")writer.tag(1,WireType.LengthDelimited).string(message.keyword);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
 															const SearchAllRequest = new SearchAllRequest$Type();
 															/******************  initialization finish  *******************/
 															let data = SearchAllRequest.fromBinary(body);
@@ -311,97 +200,7 @@ let $response = undefined;
 														};
 														case "SearchByType": { // 按分类搜索（番剧、用户、影视、专栏）
 															/******************  initialization start  *******************/
-															class SearchByTypeRequest$Type extends MessageType {
-																constructor() {
-																	super("bilibili.polymer.app.search.v1.SearchByTypeRequest", [
-																		{ no: 1, name: "type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-																		{ no: 2, name: "keyword", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-																		//{ no: 3, name: "category_sort", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-																		//{ no: 4, name: "category_id", kind: "scalar", T: 3 /*ScalarType.INT64*/, L: 0 /*LongType.BIGINT*/ },
-																		//{ no: 5, name: "user_type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-																		//{ no: 6, name: "user_sort", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-																		//{ no: 7, name: "pagination", kind: "message", T: () => Pagination },
-																		//{ no: 8, name: "player_args", kind: "message", T: () => PlayerArgs$ }
-																	]);
-																}
-																create(value) {
-																	const message = { type: 0, keyword: "", categorySort: 0, categoryId: 0n, userType: 0, userSort: 0 };
-																	globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-																	if (value !== undefined)
-																		reflectionMergePartial(this, message, value);
-																	return message;
-																}
-																internalBinaryRead(reader, length, options, target) {
-																	let message = target ?? this.create(), end = reader.pos + length;
-																	while (reader.pos < end) {
-																		let [fieldNo, wireType] = reader.tag();
-																		switch (fieldNo) {
-																			case /* int32 type */ 1:
-																				message.type = reader.int32();
-																				break;
-																			case /* string keyword */ 2:
-																				message.keyword = reader.string();
-																				break;
-																			//case /* int32 category_sort */ 3:
-																			//message.categorySort = reader.int32();
-																			//break;
-																			//case /* int64 category_id */ 4:
-																			//message.categoryId = reader.int64().toBigInt();
-																			//break;
-																			//case /* int32 user_type */ 5:
-																			//message.userType = reader.int32();
-																			//break;
-																			//case /* int32 user_sort */ 6:
-																			//message.userSort = reader.int32();
-																			//break;
-																			//case /* bilibili.pagination.Pagination pagination */ 7:
-																			//message.pagination = Pagination.internalBinaryRead(reader, reader.uint32(), options, message.pagination);
-																			//break;
-																			//case /* bilibili.app.archive.middleware.v1.PlayerArgs player_args */ 8:
-																			//message.playerArgs = PlayerArgs$.internalBinaryRead(reader, reader.uint32(), options, message.playerArgs);
-																			//break;
-																			default:
-																				let u = options.readUnknownField;
-																				if (u === "throw")
-																					throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-																				let d = reader.skip(wireType);
-																				if (u !== false)
-																					(u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-																		}
-																	}
-																	return message;
-																}
-																internalBinaryWrite(message, writer, options) {
-																	/* int32 type = 1; */
-																	if (message.type !== 0)
-																		writer.tag(1, WireType.Varint).int32(message.type);
-																	/* string keyword = 2; */
-																	if (message.keyword !== "")
-																		writer.tag(2, WireType.LengthDelimited).string(message.keyword);
-																	/* int32 category_sort = 3; */
-																	//if (message.categorySort !== 0)
-																	//writer.tag(3, WireType.Varint).int32(message.categorySort);
-																	/* int64 category_id = 4; */
-																	//if (message.categoryId !== 0n)
-																	//writer.tag(4, WireType.Varint).int64(message.categoryId);
-																	/* int32 user_type = 5; */
-																	//if (message.userType !== 0)
-																	//writer.tag(5, WireType.Varint).int32(message.userType);
-																	/* int32 user_sort = 6; */
-																	//if (message.userSort !== 0)
-																	//writer.tag(6, WireType.Varint).int32(message.userSort);
-																	/* bilibili.pagination.Pagination pagination = 7; */
-																	//if (message.pagination)
-																	//Pagination.internalBinaryWrite(message.pagination, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
-																	/* bilibili.app.archive.middleware.v1.PlayerArgs player_args = 8; */
-																	//if (message.playerArgs)
-																	//PlayerArgs$.internalBinaryWrite(message.playerArgs, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
-																	let u = options.writeUnknownFields;
-																	if (u !== false)
-																		(u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-																	return writer;
-																}
-															}
+															class SearchByTypeRequest$Type extends MessageType{constructor(){super("bilibili.polymer.app.search.v1.SearchByTypeRequest",[{no:1,name:"type",kind:"scalar",T:5},{no:2,name:"keyword",kind:"scalar",T:9}])}create(value){const message={type:0,keyword:""};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.type=reader.int32();break;case 2:message.keyword=reader.string();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.type!==0)writer.tag(1,WireType.Varint).int32(message.type);if(message.keyword!=="")writer.tag(2,WireType.LengthDelimited).string(message.keyword);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
 															const SearchByTypeRequest = new SearchByTypeRequest$Type();
 															/******************  initialization finish  *******************/
 															let data = SearchByTypeRequest.fromBinary(body);
