@@ -4616,17 +4616,17 @@ class SearchAllRequest$Type extends MessageType {
             { no: 2, name: "order", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 3, name: "tid_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "duration_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 5, name: "extra_word", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "extra_word", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
             { no: 6, name: "from_source", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 7, name: "is_org_query", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 8, name: "local_time", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 7, name: "is_org_query", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "local_time", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
             { no: 9, name: "ad_extra", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 10, name: "pagination", kind: "message", T: () => Pagination },
             { no: 11, name: "player_args", kind: "message", T: () => PlayerArgs$ }
         ]);
     }
     create(value) {
-        const message = { keyword: "", order: 0, tidList: "", durationList: "", extraWord: "", fromSource: "", isOrgQuery: 0, localTime: 0, adExtra: "" };
+        const message = { keyword: "", order: 0, tidList: "", durationList: "", fromSource: "", adExtra: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial(this, message, value);
@@ -4649,16 +4649,16 @@ class SearchAllRequest$Type extends MessageType {
                 case /* string duration_list */ 4:
                     message.durationList = reader.string();
                     break;
-                case /* string extra_word */ 5:
+                case /* optional string extra_word */ 5:
                     message.extraWord = reader.string();
                     break;
                 case /* string from_source */ 6:
                     message.fromSource = reader.string();
                     break;
-                case /* int32 is_org_query */ 7:
+                case /* optional int32 is_org_query */ 7:
                     message.isOrgQuery = reader.int32();
                     break;
-                case /* int32 local_time */ 8:
+                case /* optional int32 local_time */ 8:
                     message.localTime = reader.int32();
                     break;
                 case /* string ad_extra */ 9:
@@ -4694,17 +4694,17 @@ class SearchAllRequest$Type extends MessageType {
         /* string duration_list = 4; */
         if (message.durationList !== "")
             writer.tag(4, WireType.LengthDelimited).string(message.durationList);
-        /* string extra_word = 5; */
-        if (message.extraWord !== "")
+        /* optional string extra_word = 5; */
+        if (message.extraWord !== undefined)
             writer.tag(5, WireType.LengthDelimited).string(message.extraWord);
         /* string from_source = 6; */
         if (message.fromSource !== "")
             writer.tag(6, WireType.LengthDelimited).string(message.fromSource);
-        /* int32 is_org_query = 7; */
-        if (message.isOrgQuery !== 0)
+        /* optional int32 is_org_query = 7; */
+        if (message.isOrgQuery !== undefined)
             writer.tag(7, WireType.Varint).int32(message.isOrgQuery);
-        /* int32 local_time = 8; */
-        if (message.localTime !== 0)
+        /* optional int32 local_time = 8; */
+        if (message.localTime !== undefined)
             writer.tag(8, WireType.Varint).int32(message.localTime);
         /* string ad_extra = 9; */
         if (message.adExtra !== "")

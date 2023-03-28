@@ -1628,21 +1628,21 @@ export interface SearchAllRequest {
      */
     durationList: string;
     /**
-     * @generated from protobuf field: string extra_word = 5;
+     * @generated from protobuf field: optional string extra_word = 5;
      */
-    extraWord: string;
+    extraWord?: string;
     /**
      * @generated from protobuf field: string from_source = 6;
      */
     fromSource: string;
     /**
-     * @generated from protobuf field: int32 is_org_query = 7;
+     * @generated from protobuf field: optional int32 is_org_query = 7;
      */
-    isOrgQuery: number;
+    isOrgQuery?: number;
     /**
-     * @generated from protobuf field: int32 local_time = 8;
+     * @generated from protobuf field: optional int32 local_time = 8;
      */
-    localTime: number;
+    localTime?: number;
     /**
      * @generated from protobuf field: string ad_extra = 9;
      */
