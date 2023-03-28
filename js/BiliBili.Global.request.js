@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.6(3) request");
+const $ = new Env("📺 BiliBili:Global v0.3.7(4) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -170,7 +170,7 @@ let $response = undefined;
 															body = SearchAllRequest.toBinary(data);
 															break;
 														};
-														case "SearchByType": { // 按分类搜索（番剧、用户、影视、专栏）
+														case "SearchByType": { // 分类结果（番剧、用户、影视、专栏）
 															/******************  initialization start  *******************/
 															class SearchByTypeRequest$Type extends MessageType{constructor(){super("bilibili.polymer.app.search.v1.SearchByTypeRequest",[{no:1,name:"type",kind:"scalar",T:5},{no:2,name:"keyword",kind:"scalar",T:9}])}create(value){const message={type:0,keyword:""};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.type=reader.int32();break;case 2:message.keyword=reader.string();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.type!==0)writer.tag(1,WireType.Varint).int32(message.type);if(message.keyword!=="")writer.tag(2,WireType.LengthDelimited).string(message.keyword);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
 															const SearchByTypeRequest = new SearchByTypeRequest$Type();
@@ -213,25 +213,34 @@ let $response = undefined;
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
-							if (url.path.includes("bangumi/play/")) {// web版番剧
+							if (url.path.includes("bangumi/play/")) {// 番剧-web
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
 								//$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
 								$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 							};
 							break;
+						case "search.bilibili.com":
+							switch (url.path) {
+								case "all": // 搜索-全部结果-web（综合）
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword), "+");
+									url.params.keyword = encodeURIComponent(keyword);
+									$request.url = URL.stringify(url);
+									$request = ReReqeust($request, Settings.Proxies[locale]);
+									break;
+							};
+							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							switch (url.path) {
-								case "x/v2/search": // 搜索-全部结果（综合）
-								case "x/web-interface/search": // 搜索-全部结果（综合）
-								case "x/v2/search/type": // 搜索-分类结果（番剧、用户、影视、专栏）
-								case "x/web-interface/search/type": // 搜索-分类结果（番剧、用户、影视、专栏）
+								case "x/v2/search": // 搜索-全部结果-api（综合）
+								case "x/v2/search/type": { // 搜索-分类结果-api（番剧、用户、影视、专栏）
 									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
 									url.params.keyword = encodeURIComponent(keyword);
 									$request.url = URL.stringify(url);
 									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
+								};
 								case "x/v2/space": // 用户空间
 									switch (url.params?.vmid || url.params?.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
@@ -288,6 +297,16 @@ let $response = undefined;
 										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									};
 									break;
+								case "x/web-interface/search": // 搜索-全部结果-web（综合）
+								case "x/web-interface/search/type": // 搜索-分类结果-web（番剧、用户、影视、专栏）
+								case "x/web-interface/wbi/search/all/v2": // 搜索-全部结果-wbi（综合）
+								case "x/web-interface/wbi/search/type": { // 搜索-分类结果-wbi（番剧、用户、影视、专栏）
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword), "+");
+									url.params.keyword = encodeURIComponent(keyword);
+									$request.url = URL.stringify(url);
+									$request = ReReqeust($request, Settings.Proxies[locale]);
+									break;
+								};
 							};
 							break;
 						case "app.biliintl.com":
@@ -496,11 +515,12 @@ function checkLocales(responses = {}) {
  * Check Search Keyword
  * @author VirgilClyne
  * @param {String} keyword - Search Keyword
+ * @param {String} delimiter - Keyword Delimiter
  * @return {Object} { keyword, locale }
  */
-function checkKeyword(keyword = "") {
+function checkKeyword(keyword = "", delimiter = " ") {
 	$.log(`⚠ ${$.name}, Check Search Keyword`, `Original Keyword: ${keyword}`, "");
-	let keywords = keyword?.split(" ");
+	let keywords = keyword?.split(delimiter);
 	$.log(`🚧 ${$.name}, Check Search Keyword`, `keywords: ${keywords}`, "");
 	let locale = "";
 	switch ([...keywords].pop()) {
@@ -513,7 +533,7 @@ function checkKeyword(keyword = "") {
 		case "🇨🇳":
 			locale = "CHN";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		case "HK":
 		case "hk":
@@ -524,7 +544,7 @@ function checkKeyword(keyword = "") {
 		case "🇭🇰":
 			locale = "HKG";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		//case "MO":
 		//case "mo":
@@ -535,7 +555,7 @@ function checkKeyword(keyword = "") {
 		case "🇲🇴":
 			locale = "MAC";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		case "TW":
 		case "tw":
@@ -545,7 +565,7 @@ function checkKeyword(keyword = "") {
 		case "🇹🇼":
 			locale = "TWN";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 		case "SEA":
 		case "sea":
@@ -565,7 +585,7 @@ function checkKeyword(keyword = "") {
 		case "🇲🇾":
 			locale = "SEA";
 			keywords.pop();
-			keyword = keywords.join(" ");
+			keyword = keywords.join(delimiter);
 			break;
 	};
 	$.log(`🎉 ${$.name}, Check Search Keyword`, `Keyword: ${keyword}, Locale: ${locale}`, "");

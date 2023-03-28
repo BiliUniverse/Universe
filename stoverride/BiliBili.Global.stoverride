@@ -10,6 +10,7 @@ http:
   mitm:
     - "www.bilibili.com"
     - "app.bilibili.com"
+    - "search.bilibili.com"
     - "api.bilibili.com"
     - "api.global.bilibili.com"
     - "grpc.biliapi.net"
@@ -62,6 +63,18 @@ http:
       max-size: 0
       argument:
     - match: ^https?:\/\/app\.bilibili\.com\/x\/(v2|web-interface)\/search(\/type)?(\?.+)?$
+      name: BiliBili.Global.request
+      type: request
+      require-body: false
+      timeout: 15
+      argument:
+    - match: ^https?:\/\/search\.bilibili\.com\/all?(\?.+)?$
+      name: BiliBili.Global.request
+      type: request
+      require-body: false
+      timeout: 15
+      argument:
+    - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/web-interface\/wbi\/search\/(all\/v2|type)?(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: false
