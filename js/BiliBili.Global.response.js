@@ -344,8 +344,9 @@ function getEpisodes(data) {
 function newRawBody({ header, body }, encoding = undefined) {
 	$.log(`⚠ ${$.name}, Create New Raw Body`, "");
 	// Header: 1位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
-	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? 0 : header?.[0] ?? 0; // encoding flag
-	let checksum = Checksum(body.length); // 校验值为未压缩情况下的数据长度, 不是压缩后的长度
+	const flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? 0 : header?.[0] ?? 0; // encoding flag
+	const checksum = Checksum(body.length); // 校验值为未压缩情况下的数据长度, 不是压缩后的长度
+	if (encoding == "gzip") body = pako.gzip(body); // gzip压缩（有问题，别压）
 	let rawBody = new Uint8Array(header.length + body.length);
 	rawBody.set([flag], 0) // 0位：Encoding类型，当为1的时候, app会校验1-4位的校验值是否正确
 	rawBody.set(checksum, 1) // 1-4位： 校验值(4位)
