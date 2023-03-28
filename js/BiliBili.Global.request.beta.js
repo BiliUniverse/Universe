@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.5(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.6(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -198,7 +198,7 @@ let $response = undefined;
 															body = SearchAllRequest.toBinary(data);
 															break;
 														};
-														case "SearchByType": { // 按分类搜索（番剧、用户、影视、专栏）
+														case "SearchByType": { // 分类结果（番剧、用户、影视、专栏）
 															/******************  initialization start  *******************/
 															class SearchByTypeRequest$Type extends MessageType{constructor(){super("bilibili.polymer.app.search.v1.SearchByTypeRequest",[{no:1,name:"type",kind:"scalar",T:5},{no:2,name:"keyword",kind:"scalar",T:9}])}create(value){const message={type:0,keyword:""};globalThis.Object.defineProperty(message,MESSAGE_TYPE,{enumerable:false,value:this});if(value!==undefined)reflectionMergePartial(this,message,value);return message}internalBinaryRead(reader,length,options,target){let message=target??this.create(),end=reader.pos+length;while(reader.pos<end){let[fieldNo,wireType]=reader.tag();switch(fieldNo){case 1:message.type=reader.int32();break;case 2:message.keyword=reader.string();break;default:let u=options.readUnknownField;if(u==="throw")throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);let d=reader.skip(wireType);if(u!==false)(u===true?UnknownFieldHandler.onRead:u)(this.typeName,message,fieldNo,wireType,d)}}return message}internalBinaryWrite(message,writer,options){if(message.type!==0)writer.tag(1,WireType.Varint).int32(message.type);if(message.keyword!=="")writer.tag(2,WireType.LengthDelimited).string(message.keyword);let u=options.writeUnknownFields;if(u!==false)(u==true?UnknownFieldHandler.onWrite:u)(this.typeName,message,writer);return writer}}
 															const SearchByTypeRequest = new SearchByTypeRequest$Type();
@@ -263,11 +263,17 @@ let $response = undefined;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							switch (url.path) {
-								case "x/v2/search/type": // 搜索
-								case "x/web-interface/search/type": // 搜索
+								case "x/v2/search": // 搜索-全部结果（综合）
+								case "x/web-interface/search": // 搜索-全部结果（综合）
+								case "x/v2/search/type": // 搜索-分类结果（番剧、用户、影视、专栏）
+								case "x/web-interface/search/type": // 搜索-分类结果（番剧、用户、影视、专栏）
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
+									url.params.keyword = encodeURIComponent(keyword);
+									$request.url = URL.stringify(url);
+									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
 								case "x/v2/space": // 用户空间
-									switch (url.params.vmid || url.params.mid) {
+									switch (url.params?.vmid || url.params?.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
 											let availableLocales = Settings?.Locales.filter(locale => locale !== "CHN");
@@ -301,7 +307,7 @@ let $response = undefined;
 								case "x/player/wbi/playurl": // UGC-用户生产内容-播放地址
 									break;
 								case "x/space/wbi/acc/info": // 用户空间-账号信息
-									switch (url.params.vmid || url.params.mid) {
+									switch (url.params?.vmid || url.params?.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
 										case "2042149112": // b站_綜藝咖
 											let availableLocales = Settings?.Locales.filter(locale => locale !== "CHN");
