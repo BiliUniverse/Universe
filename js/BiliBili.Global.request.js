@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.3(6) request");
+const $ = new Env("📺 BiliBili:Global v0.3.4(1) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -77,12 +77,12 @@ let $response = undefined;
 									let header = rawBody.slice(0, 5);
 									body = rawBody.slice(5);
 									// 处理request压缩protobuf数据体
-									switch ($request.headers["grpc-encoding"]) {
-										case "identity":
+									switch (header?.[0]) {
+										case 0: // unGzip
 											break;
-										case "gzip":
-											//body = pako.ungzip(body);
-											//$request.headers["grpc-encoding"] = "identity";
+										case 1: // Gzip
+											body = pako.ungzip(body);
+											header[0] = 0; // unGzip
 											break;
 									};
 									// 解析链接并处理protobuf数据
@@ -117,8 +117,6 @@ let $response = undefined;
 															/******************  initialization finish  *******************/
 															let data = PlayViewReq.fromBinary(body);
 															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
-															// 变更"grpc-encoding"头，防止被B站gRPC校验拦截
-															$request.headers["grpc-encoding"] = "identity";
 															data.forceHost = Settings?.ForceHost ?? 1;
 															body = PlayViewReq.toBinary(data);
 															// 判断线路
@@ -169,7 +167,7 @@ let $response = undefined;
 											break;
 									};
 									// protobuf部分处理完后，重新计算并添加B站gRPC校验头
-									rawBody = newRawBody({ header, body }, $request.headers["grpc-encoding"]);
+									rawBody = newRawBody({ header, body });
 									break;
 								case "application/x-protobuf":
 									//$request.body = Player.fromBinary($request.bodyBinary);
@@ -379,26 +377,6 @@ function ReReqeust(request = {}, proxyName = "") {
  */
 async function Fetch(request = {}) {
 	$.log(`⚠ ${$.name}, Fetch Ruled Reqeust`, "");
-	switch (request?.headers?.["content-type"]?.split(";")?.[0]) {
-		case "application/grpc":
-			let rawBody = $.isQuanX() ? new Uint8Array(request.bodyBytes) : request.body;
-			switch (rawBody?.[0]) {
-				case 0:
-				default:
-					request.headers["grpc-encoding"] = "identity";
-					break;
-				case 1:
-					request.headers["grpc-encoding"] = "gzip";
-					break;
-			};
-			break;
-		case "application/x-protobuf":
-			break;
-		case "application/json":
-			break;
-		case "text/html":
-			break;
-	};
 	let response = (request?.body ?? request?.bodyBytes)
 		? await $.http.post(request)
 		: await $.http.get(request);
@@ -438,7 +416,7 @@ function isResponseAvailability(response = {}) {
 		case 200:
 			switch ((response?.headers?.["content-type"] || response.headers?.["Content-Type"])?.split(";")?.[0]) {
 				case "application/grpc":
-					if (parseInt(response?.headers?.["content-length"] ?? response?.headers?.["Content-Length"]) < 700) isAvailable = false;
+					if (parseInt(response?.headers?.["content-length"] ?? response?.headers?.["Content-Length"]) < 800) isAvailable = false;
 					else isAvailable = true;
 					break;
 				case "application/json":
@@ -496,8 +474,8 @@ function checkLocales(responses = {}) {
 function newRawBody({ header, body }, encoding = undefined) {
 	$.log(`⚠ ${$.name}, Create New Raw Body`, "");
 	// Header: 1位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
-	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? header?.[0] : 0; // encoding flag
-	let checksum = Checksum(body.length);
+	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? 0 : header?.[0] ?? 0; // encoding flag
+	let checksum = Checksum(body.length); // 校验值为未压缩情况下的数据长度, 不是压缩后的长度
 	let rawBody = new Uint8Array(header.length + body.length);
 	rawBody.set([flag], 0) // 0位：Encoding类型，当为1的时候, app会校验1-4位的校验值是否正确
 	rawBody.set(checksum, 1) // 1-4位： 校验值(4位)

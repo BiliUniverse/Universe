@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.0(3) repsonse");
+const $ = new Env("📺 BiliBili:Global v0.2.0(4) repsonse");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -78,12 +78,12 @@ for (const [key, value] of Object.entries($response.headers)) {
 									let header = rawBody.slice(0, 5);
 									body = rawBody.slice(5);
 									// 处理response压缩protobuf数据体
-									switch ($response.headers["grpc-encoding"]) {
-										case "identity":
+									switch (header?.[0]) {
+										case 0: // unGzip
 											break;
-										case "gzip":
+										case 1: // Gzip
 											body = pako.ungzip(body);
-											$response.headers["grpc-encoding"] = "identity";
+											header[0] = 0; // unGzip
 											break;
 									};
 									// 解析链接并处理protobuf数据
@@ -139,17 +139,8 @@ for (const [key, value] of Object.entries($response.headers)) {
 											};
 											break;
 									};
-									// 处理response压缩protobuf数据体
-									switch ($response.headers["grpc-encoding"]) {
-										case "identity":
-											body = pako.gzip(body);
-											$response.headers["grpc-encoding"] = "gzip";
-											break;
-										case "gzip":
-											break;
-									};
 									// protobuf部分处理完后，重新计算并添加B站gRPC校验头
-									rawBody = newRawBody({ header, body }, $request.headers["grpc-encoding"]);
+									rawBody = newRawBody({ header, body });
 									break;
 								case "application/x-protobuf":
 									break;
@@ -353,8 +344,8 @@ function getEpisodes(data) {
 function newRawBody({ header, body }, encoding = undefined) {
 	$.log(`⚠ ${$.name}, Create New Raw Body`, "");
 	// Header: 1位：是否校验数据 （0或者1） + 4位:校验值（数据长度）
-	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? header?.[0] : 0; // encoding flag
-	let checksum = Checksum(body.length);
+	let flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? 0 : header?.[0] ?? 0; // encoding flag
+	let checksum = Checksum(body.length); // 校验值为未压缩情况下的数据长度, 不是压缩后的长度
 	let rawBody = new Uint8Array(header.length + body.length);
 	rawBody.set([flag], 0) // 0位：Encoding类型，当为1的时候, app会校验1-4位的校验值是否正确
 	rawBody.set(checksum, 1) // 1-4位： 校验值(4位)
