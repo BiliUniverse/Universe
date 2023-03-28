@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.0(2) repsonse");
+const $ = new Env("📺 BiliBili:Global v0.2.0(3) repsonse");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -151,6 +151,9 @@ for (const [key, value] of Object.entries($response.headers)) {
 								case "application/x-protobuf":
 									break;
 							};
+							// 写入二进制数据
+							if ($.isQuanX()) $response.bodyBytes = rawBody
+							else $response.body = rawBody;
 							break;
 						default:
 							break;

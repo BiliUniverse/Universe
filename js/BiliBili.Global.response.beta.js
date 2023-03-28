@@ -323,6 +323,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 									//$.log(`🚧 ${$.name}`, `$response.body: ${JSON.stringify($response.body)}`, "");
 									break;
 							};
+							// 写入二进制数据
 							if ($.isQuanX()) $response.bodyBytes = rawBody
 							else $response.body = rawBody;
 							break;

@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.3(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.3(6) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -181,15 +181,6 @@ let $response = undefined;
 											};
 											break;
 									};
-									// 处理request压缩protobuf数据体
-									switch ($request.headers["grpc-encoding"]) {
-										case "identity":
-											//body = pako.gzip(body);
-											//$request.headers["grpc-encoding"] = "gzip";
-											break;
-										case "gzip":
-											break;
-									};
 									// protobuf部分处理完后，重新计算并添加B站gRPC校验头
 									rawBody = newRawBody({ header, body }, $request.headers["grpc-encoding"]);
 									break;
@@ -198,6 +189,9 @@ let $response = undefined;
 									//$.log(`🚧 ${$.name}`, `$request.body: ${JSON.stringify($request.body)}`, "");
 									break;
 							};
+							// 写入二进制数据
+							if ($.isQuanX()) $request.bodyBytes = rawBody
+							else $request.body = rawBody;
 							break;
 						default:
 							break;
