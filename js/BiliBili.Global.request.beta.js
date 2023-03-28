@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.7(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.7(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -263,7 +263,7 @@ let $response = undefined;
 						case "search.bilibili.com":
 							switch (url.path) {
 								case "all": // 搜索-全部结果-web（综合）
-									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword), "+");
 									url.params.keyword = encodeURIComponent(keyword);
 									$request.url = URL.stringify(url);
 									$request = ReReqeust($request, Settings.Proxies[locale]);
@@ -274,16 +274,13 @@ let $response = undefined;
 						case "app.biliapi.net":
 							switch (url.path) {
 								case "x/v2/search": // 搜索-全部结果-api（综合）
-								case "x/v2/search/type": // 搜索-分类结果-api（番剧、用户、影视、专栏）
-								case "x/web-interface/search": // 搜索-全部结果-web（综合）
-								case "x/web-interface/search/type": // 搜索-分类结果-web（番剧、用户、影视、专栏）
-								case "x/web-interface/wbi/search/all/v2": // 搜索-全部结果-wbi（综合）
-								case "x/web-interface/wbi/search/type": // 搜索-分类结果-wbi（番剧、用户、影视、专栏）
+								case "x/v2/search/type": { // 搜索-分类结果-api（番剧、用户、影视、专栏）
 									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
 									url.params.keyword = encodeURIComponent(keyword);
 									$request.url = URL.stringify(url);
 									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
+								};
 								case "x/v2/space": // 用户空间
 									switch (url.params?.vmid || url.params?.mid) {
 										case "11783021": // 哔哩哔哩番剧出差
@@ -340,6 +337,16 @@ let $response = undefined;
 										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									};
 									break;
+								case "x/web-interface/search": // 搜索-全部结果-web（综合）
+								case "x/web-interface/search/type": // 搜索-分类结果-web（番剧、用户、影视、专栏）
+								case "x/web-interface/wbi/search/all/v2": // 搜索-全部结果-wbi（综合）
+								case "x/web-interface/wbi/search/type": { // 搜索-分类结果-wbi（番剧、用户、影视、专栏）
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword), "+");
+									url.params.keyword = encodeURIComponent(keyword);
+									$request.url = URL.stringify(url);
+									$request = ReReqeust($request, Settings.Proxies[locale]);
+									break;
+								};
 							};
 							break;
 						case "app.biliintl.com":
