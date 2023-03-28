@@ -2060,21 +2060,21 @@ export interface SearchByTypeRequest {
      */
     keyword: string;
     /**
-     * @generated from protobuf field: int32 category_sort = 3;
+     * @generated from protobuf field: optional int32 category_sort = 3;
      */
-    categorySort: number;
+    categorySort?: number;
     /**
-     * @generated from protobuf field: int64 category_id = 4;
+     * @generated from protobuf field: optional int64 category_id = 4 [jstype = JS_NUMBER];
      */
-    categoryId: bigint;
+    categoryId?: number;
     /**
-     * @generated from protobuf field: int32 user_type = 5;
+     * @generated from protobuf field: optional int32 user_type = 5;
      */
-    userType: number;
+    userType?: number;
     /**
-     * @generated from protobuf field: int32 user_sort = 6;
+     * @generated from protobuf field: optional int32 user_sort = 6;
      */
-    userSort: number;
+    userSort?: number;
     /**
      * @generated from protobuf field: bilibili.pagination.Pagination pagination = 7;
      */

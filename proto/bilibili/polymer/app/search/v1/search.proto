@@ -1103,13 +1103,13 @@ message SearchByTypeRequest {
     // 关键词
     string keyword = 2;
     //
-    int32 category_sort = 3;
+    optional int32 category_sort = 3;
     //
-    int64 category_id = 4;
+    optional int64 category_id = 4 [jstype = JS_NUMBER];
     //
-    int32 user_type = 5;
+    optional int32 user_type = 5;
     //
-    int32 user_sort = 6;
+    optional int32 user_sort = 6;
     //
     bilibili.pagination.Pagination pagination = 7;
     //
