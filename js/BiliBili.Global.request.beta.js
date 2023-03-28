@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.5(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.5(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -539,7 +539,9 @@ function checkKeyword(keyword = "") {
 	let locale = "";
 	switch ([...keywords].pop()) {
 		case "CN":
+		case "cn":
 		case "CHN":
+		case "chn":
 		case "中国":
 		case "中":
 		case "🇨🇳":
@@ -548,7 +550,9 @@ function checkKeyword(keyword = "") {
 			keyword = keywords.join(" ");
 			break;
 		case "HK":
+		case "hk":
 		case "HKG":
+		case "hkg":
 		case "港":
 		case "香港":
 		case "🇭🇰":
@@ -556,8 +560,10 @@ function checkKeyword(keyword = "") {
 			keywords.pop();
 			keyword = keywords.join(" ");
 			break;
-		case "MO":
-		case "MAC":
+		//case "MO":
+		//case "mo":
+		//case "MAC":
+		//case "mac":
 		case "澳":
 		case "澳门":
 		case "🇲🇴":
@@ -566,6 +572,7 @@ function checkKeyword(keyword = "") {
 			keyword = keywords.join(" ");
 			break;
 		case "TW":
+		case "tw":
 		case "TWN":
 		case "台":
 		case "台湾":
@@ -574,8 +581,8 @@ function checkKeyword(keyword = "") {
 			keywords.pop();
 			keyword = keywords.join(" ");
 			break;
-		case "SE":
 		case "SEA":
+		case "sea":
 		case "东南亚":
 		case "🇺🇳":
 		case "TH":
