@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.3(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.4(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -81,8 +81,8 @@ let $response = undefined;
 										case "identity":
 											break;
 										case "gzip":
-											//body = pako.ungzip(body);
-											//$request.headers["grpc-encoding"] = "identity";
+											body = pako.ungzip(body);
+											$request.headers["grpc-encoding"] = "identity";
 											break;
 									};
 									// 解析链接并处理protobuf数据
@@ -175,7 +175,138 @@ let $response = undefined;
 													switch (url.paths?.[1]) {
 														case "SearchAll": // 全部结果（综合）
 															/******************  initialization start  *******************/
+															class SearchAllRequest$Type extends MessageType {
+																constructor() {
+																	super("bilibili.polymer.app.search.v1.SearchAllRequest", [
+																		{ no: 1, name: "keyword", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+																		//{ no: 2, name: "order", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+																		//{ no: 3, name: "tid_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+																		//{ no: 4, name: "duration_list", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+																		//{ no: 5, name: "extra_word", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+																		//{ no: 6, name: "from_source", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+																		//{ no: 7, name: "is_org_query", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+																		//{ no: 8, name: "local_time", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+																		//{ no: 9, name: "ad_extra", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+																		//{ no: 10, name: "pagination", kind: "message", T: () => Pagination },
+																		//{ no: 11, name: "player_args", kind: "message", T: () => PlayerArgs$ }
+																	]);
+																}
+																create(value) {
+																	const message = { keyword: "" };
+																	globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+																	if (value !== undefined)
+																		reflectionMergePartial(this, message, value);
+																	return message;
+																}
+																internalBinaryRead(reader, length, options, target) {
+																	let message = target ?? this.create(), end = reader.pos + length;
+																	while (reader.pos < end) {
+																		let [fieldNo, wireType] = reader.tag();
+																		switch (fieldNo) {
+																			case /* string keyword */ 1:
+																				message.keyword = reader.string();
+																				break;
+																			//case /* int32 order */ 2:
+																				//message.order = reader.int32();
+																				//break;
+																			//case /* string tid_list */ 3:
+																				//message.tidList = reader.string();
+																				//break;
+																			//case /* string duration_list */ 4:
+																				////message.durationList = reader.string();
+																				//break;
+																			//case /* optional string extra_word */ 5:
+																				//message.extraWord = reader.string();
+																				//break;
+																			//case /* string from_source */ 6:
+																				//message.fromSource = reader.string();
+																				//break;
+																			//case /* optional int32 is_org_query */ 7:
+																				//message.isOrgQuery = reader.int32();
+																				//break;
+																			//case /* optional int32 local_time */ 8:
+																				//message.localTime = reader.int32();
+																				//break;
+																			//case /* string ad_extra */ 9:
+																				//message.adExtra = reader.string();
+																				//break;
+																			//case /* bilibili.pagination.Pagination pagination */ 10:
+																				//message.pagination = Pagination.internalBinaryRead(reader, reader.uint32(), options, message.pagination);
+																				//break;
+																			//case /* bilibili.app.archive.middleware.v1.PlayerArgs player_args */ 11:
+																				//message.playerArgs = PlayerArgs$.internalBinaryRead(reader, reader.uint32(), options, message.playerArgs);
+																				//break;
+																			default:
+																				let u = options.readUnknownField;
+																				if (u === "throw")
+																					throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+																				let d = reader.skip(wireType);
+																				if (u !== false)
+																					(u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+																		}
+																	}
+																	return message;
+																}
+																internalBinaryWrite(message, writer, options) {
+																	/* string keyword = 1; */
+																	if (message.keyword !== "")
+																		writer.tag(1, WireType.LengthDelimited).string(message.keyword);
+																	/* int32 order = 2; */
+																	//if (message.order !== 0)
+																		//writer.tag(2, WireType.Varint).int32(message.order);
+																	/* string tid_list = 3; */
+																	//if (message.tidList !== "")
+																		//writer.tag(3, WireType.LengthDelimited).string(message.tidList);
+																	/* string duration_list = 4; */
+																	//if (message.durationList !== "")
+																		//writer.tag(4, WireType.LengthDelimited).string(message.durationList);
+																	/* optional string extra_word = 5; */
+																	//if (message.extraWord !== undefined)
+																		//writer.tag(5, WireType.LengthDelimited).string(message.extraWord);
+																	/* string from_source = 6; */
+																	//if (message.fromSource !== "")
+																		//writer.tag(6, WireType.LengthDelimited).string(message.fromSource);
+																	/* optional int32 is_org_query = 7; */
+																	//if (message.isOrgQuery !== undefined)
+																		//writer.tag(7, WireType.Varint).int32(message.isOrgQuery);
+																	/* optional int32 local_time = 8; */
+																	//if (message.localTime !== undefined)
+																		//writer.tag(8, WireType.Varint).int32(message.localTime);
+																	/* string ad_extra = 9; */
+																	//if (message.adExtra !== "")
+																		//writer.tag(9, WireType.LengthDelimited).string(message.adExtra);
+																	/* bilibili.pagination.Pagination pagination = 10; */
+																	//if (message.pagination)
+																		//Pagination.internalBinaryWrite(message.pagination, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+																	/* bilibili.app.archive.middleware.v1.PlayerArgs player_args = 11; */
+																	//if (message.playerArgs)
+																		//PlayerArgs$.internalBinaryWrite(message.playerArgs, writer.tag(11, WireType.LengthDelimited).fork(), options).join();
+																	let u = options.writeUnknownFields;
+																	if (u !== false)
+																		(u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+																	return writer;
+																}
+															}
+															const SearchAllRequest = new SearchAllRequest$Type();
 															/******************  initialization finish  *******************/
+															let data = SearchAllRequest.fromBinary(body);
+															$.log(`🚧 ${$.name}`, `data: ${JSON.stringify(data)}`, "");
+															// 变更"grpc-encoding"头，防止被B站gRPC校验拦截
+															$request.headers["grpc-encoding"] = "identity";
+															let UF = UnknownFieldHandler.list(data);
+															//$.log(`🚧 ${$.name}`, `UF: ${JSON.stringify(UF)}`, "");
+															if (UF) {
+																UF = UF.map(uf => {
+																	//uf.no; // 22
+																	//uf.wireType; // WireType.Varint
+																	// use the binary reader to decode the raw data:
+																	let reader = new BinaryReader(uf.data);
+																	let addedNumber = reader.int32(); // 7777
+																	$.log(`🚧 ${$.name}`, `no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
+																});
+															};
+															
+															body = SearchAllRequest.toBinary(data);
 															break;
 														case "SearchByType": // 按分类搜索（番剧、用户、影视、专栏）
 															break;
