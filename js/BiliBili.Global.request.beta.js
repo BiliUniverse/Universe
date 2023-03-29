@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.8(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.8(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -376,7 +376,8 @@ let $response = undefined;
 									};
 									break;
 								};
-								case "intl/gateway/web/v2/subtitle": { // 番剧-字幕-web
+								case "intl/gateway/web/v2/subtitle": // 番剧-字幕-web
+								case "intl/gateway/web/v2/ogv/play/episode": { // 番剧-播放页-web-ogv
 									let epid = url?.params?.episode_id;
 									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
 									if (Caches?.ep?.[epid]) {
