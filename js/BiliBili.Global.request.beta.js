@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.8(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.8(6) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -350,47 +350,24 @@ let $response = undefined;
 							};
 							break;
 						case "www.bilibili.tv":
-							if (url.path.includes("/play/")) { // 番剧-web
-									let epid = url?.params?.ep_id;
-									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									if (Caches?.ep?.[epid]) {
-										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
-										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-									} else {
-										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
-									};
+							if (url.path.includes("/anime")) { // 番剧-web
+								$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+							} else if (url.path.includes("/play/")) { // 番剧-播放页-web
+								let epid = url?.params?.ep_id;
+								$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+								if (Caches?.ep?.[epid]) {
+									let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+									$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+									$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+								} else {
+									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+								};
 							};
 							break;
 						case "api.bilibili.tv":
 							switch (url.path) {
 								case "intl/gateway/web/playurl": { // 番剧-播放地址-web
 									let epid = url?.params?.ep_id;
-									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									if (Caches?.ep?.[epid]) {
-										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
-										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-									} else {
-										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
-									};
-									break;
-								};
-								case "intl/gateway/web/v2/subtitle": // 番剧-字幕-web
-								case "intl/gateway/web/v2/ogv/play/episode": { // 番剧-播放页-web-ogv
-									let epid = url?.params?.episode_id;
-									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									if (Caches?.ep?.[epid]) {
-										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
-										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-									} else {
-										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
-									};
-									break;
-								};
-								case "dm/web/view": { // 弹幕-播放页-web
-									let epid = url?.params?.oid;
 									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
 									if (Caches?.ep?.[epid]) {
 										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
