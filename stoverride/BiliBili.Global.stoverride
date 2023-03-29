@@ -9,6 +9,7 @@ icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibi
 http:
   mitm:
     - "www.bilibili.com"
+    - "www.bilibili.tv"
     - "app.bilibili.com"
     - "search.bilibili.com"
     - "api.bilibili.com"
@@ -19,13 +20,25 @@ http:
     - match: ^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
+      timeout: 15
+      argument:
+    - match: ^https?:\/\/www\.bilibili\.tv\/([a-z]{2})\/anime?(\?.+)?$
+      name: BiliBili.Global.request
+      type: request
+      require-body: false
+      timeout: 15
+      argument:
+    - match: ^https?:\/\/www\.bilibili\.tv\/([a-z]{2})\/play\/\d+(\/\d+)?(\?.+)?$
+      name: BiliBili.Global.request
+      type: request
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
@@ -45,13 +58,19 @@ http:
     - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/player\/(api|web)\/playurl(\/html5)?(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/ogv\/playurl(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
+      timeout: 15
+      argument:
+    - match: ^https?:\/\/api\.bilibili\.tv\/intl\/gateway\/web\/playurl(\?.+)?$
+      name: BiliBili.Global.request
+      type: request
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$
@@ -89,13 +108,13 @@ http:
     - match: ^https?:\/\/app\.bilibili\.com\/x\/v2\/space(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
       timeout: 15
       argument:
     - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/space\/wbi/acc\/info(\?.+)?$
       name: BiliBili.Global.request
       type: request
-      require-body: true
+      require-body: false
       timeout: 15
       argument:
 

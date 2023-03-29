@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.7(5) request");
+const $ = new Env("📺 BiliBili:Global v0.3.8(6) request");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -213,7 +213,7 @@ let $response = undefined;
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
-							if (url.path.includes("bangumi/play/")) {// 番剧-web
+							if (url.path.includes("bangumi/play/")) { // 番剧-web
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
 								//$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
@@ -305,6 +305,37 @@ let $response = undefined;
 									url.params.keyword = encodeURIComponent(keyword);
 									$request.url = URL.stringify(url);
 									$request = ReReqeust($request, Settings.Proxies[locale]);
+									break;
+								};
+							};
+							break;
+						case "www.bilibili.tv":
+							if (url.path.includes("/anime")) { // 番剧-web
+								$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+							} else if (url.path.includes("/play/")) { // 番剧-播放页-web
+								let epid = url?.params?.ep_id;
+								$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+								if (Caches?.ep?.[epid]) {
+									let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+									$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+									$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+								} else {
+									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+								};
+							};
+							break;
+						case "api.bilibili.tv":
+							switch (url.path) {
+								case "intl/gateway/web/playurl": { // 番剧-播放地址-web
+									let epid = url?.params?.ep_id;
+									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+									if (Caches?.ep?.[epid]) {
+										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+									} else {
+										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									};
 									break;
 								};
 							};
