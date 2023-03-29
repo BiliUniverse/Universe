@@ -48,6 +48,10 @@
 							"label": "推荐"
 						},
 						{
+							"key": "for_you_tab",
+							"label": "推荐（国际版）"
+						},
+						{
 							"key": "hottopic",
 							"label": "热门"
 						},
@@ -57,7 +61,11 @@
 						},
 						{
 							"key": "anime",
-							"label": "动画"
+							"label": "动画（港澳台）"
+						},
+						{
+							"key": "animation_tab",
+							"label": "番剧（国际版）"
 						},
 						{
 							"key": "film",
@@ -77,7 +85,11 @@
 						},
 						{
 							"key": "koreavtw",
-							"label": "韩综"
+							"label": "韩综（港澳台）"
+						},
+						{
+							"key": "gaming_tab",
+							"label": "游戏类（国际版）"
 						}
 					],
 					"desc": "选择启用的首页标签页，建议不超过7个"

@@ -44,6 +44,13 @@
 					"pos": 2
 				},
 				{
+					"id": 121,
+					"tab_id": "for_you_tab",
+					"default_selected": 1,
+					"name": "推荐",
+					"uri": "bstar:\/\/pegasus\/promo?bottom_tab_id=465&top_tab_id=1"
+				},
+				{
 					"id": 41,
 					"name": "热门",
 					"uri": "bilibili://pegasus/hottopic",
@@ -63,6 +70,12 @@
 					"uri": "bilibili://following/home_activity_tab/6544",
 					"tab_id": "anime",
 					"pos": 4
+				},
+				{
+					"id": 1,
+					"tab_id": "animation_tab",
+					"name": "番剧",
+					"uri": "bstar:\/\/anime\/cartoon?page_id=360003"
 				},
 				{
 					"id": 151,
@@ -101,6 +114,12 @@
 					"uri": "bilibili://following/home_activity_tab/95636",
 					"tab_id": "koreavtw",
 					"pos": 10
+				},
+				{
+					"id": 122,
+					"tab_id": "gaming_tab",
+					"name": "游戏类",
+					"uri": "bstar:\/\/activity\/home\/10002"
 				}
 			],
 			"top": [
