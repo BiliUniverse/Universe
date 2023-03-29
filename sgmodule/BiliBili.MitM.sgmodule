@@ -1,5 +1,5 @@
 #!name=📺 BiliBili: 🔓 MitM
-#!desc=(MitM) 哔哩哔哩：解密模式                      （尽可能解密BiliBili主机名称，仅供学习研究）
+#!desc=(MitM) 哔哩哔哩：解密模式                      （解密BiliBili主机，仅供学习研究）
 #!openUrl=http://boxjs.com/#/app/BiliBili
 #!author=VirgilClyne
 #!homepage=https://github.com/VirgilClyne
@@ -10,4 +10,4 @@
 # force-http-engine-hosts = %APPEND% 
 
 [MITM]
-hostname = %APPEND% *.bilibili.com, *.biliapi.com, *.biliapi.net, *.biliintl.com
+hostname = %APPEND% *.bilibili.com, *.bilibili.tv, *.biliapi.com, *.biliapi.net, *.biliintl.com
