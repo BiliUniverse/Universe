@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.7(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.8(1) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -347,6 +347,21 @@ let $response = undefined;
 									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
 								};
+							};
+							break;
+						case "api.bilibili.tv":
+							switch (url.path) {
+								case "intl/gateway/web/playurl": // 番剧-播放地址-web
+									let epid = url?.params?.ep_id;
+									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+									if (Caches?.ep?.[epid]) {
+										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+									} else {
+										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									};
+									break;
 							};
 							break;
 						case "app.biliintl.com":
