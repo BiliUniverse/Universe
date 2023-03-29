@@ -247,10 +247,10 @@
 				},
 				{
 					"id": "@BiliBili.Global.Settings.ForceHost",
-					"name": "强制媒体流CDN主机名类型",
+					"name": "强制CDN主机名类型",
 					"val": "1",
 					"type": "selects",
-					"desc": "强制设置音视频媒体流的CDN主机名类型",
+					"desc": "强制设置各类返回结果的CDN主机名类型",
 					"items": [
 						{
 							"key": "0",
