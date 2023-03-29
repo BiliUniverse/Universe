@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.8(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -327,7 +327,7 @@ let $response = undefined;
 											break;
 									};
 									break;
-								//case "pgc/view/v2/app/season": // 番剧页面-内容-api
+								//case "pgc/view/v2/app/season": // 番剧页面-内容-app
 								case "pgc/view/web/season": // 番剧-内容-web
 									if (Caches.AccessKey) {
 										// https://github.com/ipcjs/bilibili-helper/blob/user.js/packages/unblock-area-limit/src/api/biliplus.ts
@@ -381,8 +381,24 @@ let $response = undefined;
 							};
 							break;
 						case "app.biliintl.com":
-							break;
-						case "api.global.bilibili.com":
+							switch (url.path) {
+								case "intl/gateway/v2/ogv/playurl": { // 番剧-播放地址-ogv
+									let epid = url?.params?.ep_id;
+									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+									if (Caches?.ep?.[epid]) {
+										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+									} else {
+										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									};
+									break;
+								};
+								case "intl/gateway/v2/app/search/v2": // 搜索-全部结果-app
+								case "intl/gateway/v2/app/search/type": // 搜索-分类结果-app
+									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									break;
+								};
 							break;
 					};
 					break;
