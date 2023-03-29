@@ -7,7 +7,8 @@
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
 
 [Script]
-BiliBili.Global.bangumi.play = type=http-request, pattern=^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, ability=http-client-policy, argument=
+BiliBili.Global.bangumi.play.html = type=http-request, pattern=^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, ability=http-client-policy, argument=
+BiliIntl.Global.anime.play.html = type=http-request, pattern=^https?:\/\/www\.bilibili\.tv\/([a-z]{2})\/play\/\d+(\/\d+)?(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, argument=
 
 BiliBili.Global.season.json = type=http-request, pattern=^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, ability=http-client-policy, argument=
 BiliBili.Global.season.json = type=http-response, pattern=^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.response.beta.js, argument=
@@ -27,4 +28,4 @@ BiliBili.Global.space.json = type=http-request, pattern=^https?:\/\/app\.bilibil
 BiliBili.Global.space.wbi.json = type=http-request, pattern=^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/space\/wbi/acc\/info(\?.+)?$, requires-body=1, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, argument=
 
 [MITM]
-hostname = %APPEND% www.bilibili.com, app.bilibili.com, search.bilibili.com, api.bilibili.com, api.global.bilibili.com, api.bilibili.tv, api.biliapi.net, grpc.biliapi.net
+hostname = %APPEND% www.bilibili.com, www.bilibili.tv, app.bilibili.com, search.bilibili.com, api.bilibili.com, api.global.bilibili.com, api.bilibili.tv, api.biliapi.net, grpc.biliapi.net

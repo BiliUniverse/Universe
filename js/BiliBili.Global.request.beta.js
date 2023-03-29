@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.8(1) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.8(2) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -253,7 +253,7 @@ let $response = undefined;
 					// 解析链接
 					switch (url.host) {
 						case "www.bilibili.com":
-							if (url.path.includes("bangumi/play/")) {// 番剧-web
+							if (url.path.includes("bangumi/play/")) { // 番剧-web
 								let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
 								let availableLocales = checkLocales(responses);
 								//$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]);								
@@ -347,6 +347,19 @@ let $response = undefined;
 									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
 								};
+							};
+							break;
+						case "www.bilibili.tv":
+							if (url.path.includes("/play/")) { // 番剧-web
+									let epid = url?.params?.ep_id;
+									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+									if (Caches?.ep?.[epid]) {
+										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+									} else {
+										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									};
 							};
 							break;
 						case "api.bilibili.tv":
