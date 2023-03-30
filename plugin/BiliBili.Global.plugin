@@ -1,10 +1,10 @@
 #!name=📺 BiliBili: 🌐 Global
-#!desc=哔哩哔哩：全球模式                                   （国际内容聚合及自动线路）
+#!desc=哔哩哔哩：全球模式                                   （通用版内容聚合及自动线路）
 #!openUrl=http://boxjs.com/#/app/BiliBili.Global
 #!author=VirgilClyne
 #!homepage=https://github.com/VirgilClyne
 #!manual=https://github.com/VirgilClyne/BiliBili/wiki/🌐-Global
-#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
+#!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png
 
 [Script]
 http-request ^https?:\/\/www\.bilibili\.com\/bangumi\/play\/(ss|ep)\d+\/?(\?.+)?$ requires-body=1, max-size=0, timeout=15, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js, tag=BiliBili.Global.bangumi.play.html

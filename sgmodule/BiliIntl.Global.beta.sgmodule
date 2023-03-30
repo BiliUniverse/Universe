@@ -20,4 +20,4 @@ BiliIntl.Global.search.json = type=http-request, pattern=^https?:\/\/app\.biliin
 BiliIntl.Global.all.json = type=http-request, pattern=^https?:\/\/(app|passport)\.biliintl\.com\/(.+)?$, requires-body=0, max-size=0, timeout=15, debug=1, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/beta/js/BiliBili.Global.request.beta.js, argument=
 
 [MITM]
-hostname = %APPEND% www.bilibili.tv, app.biliintl.com, passport.biliintl.com
+hostname = %APPEND% www.bilibili.tv, api.bilibili.tv, app.biliintl.com, passport.biliintl.com
