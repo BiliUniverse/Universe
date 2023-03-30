@@ -590,6 +590,7 @@ function isResponseAvailability(response = {}) {
 							isAvailable = true;
 							break;
 						case "-10403":
+						case "10015001": // 版权地区受限
 						default:
 							isAvailable = false;
 							break;
