@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(3) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(4) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -684,23 +684,43 @@ function checkKeyword(keyword = "", delimiter = " ") {
 			keywords.pop();
 			keyword = keywords.join(delimiter);
 			break;
-		case "SEA":
-		case "sea":
-		case "东南亚":
-		case "🇺🇳":
+		//case "US":
+		//case "us":
+		case "USA":
+		//case "美":
+		case "美国":
+		case "🇺🇸":
+			locale = "USA";
+			keywords.pop();
+			keyword = keywords.join(delimiter);
+			break;
+		case "SG":
+		case "sg":
+		case "SGP":
+		//case "新":
+		case "新加坡":
+		case "🇸🇬":
+			locale = "SGP";
+			keywords.pop();
+			keyword = keywords.join(delimiter);
+			break;
 		case "TH":
+		case "th":
+		case "THA":
 		case "泰":
 		case "泰国":
 		case "🇹🇭":
-		case "SG":
-		case "新":
-		case "新加坡":
-		case "🇸🇬":
-		case "MY":
-		case "马":
+			locale = "THA";
+			keywords.pop();
+			keyword = keywords.join(delimiter);
+			break;
+		//case "MY":
+		//case "my":
+		case "MYS":
+		//case "马":
 		case "马来西亚":
 		case "🇲🇾":
-			locale = "SEA";
+			locale = "MYS";
 			keywords.pop();
 			keyword = keywords.join(delimiter);
 			break;
