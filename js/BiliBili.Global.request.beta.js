@@ -430,6 +430,18 @@ let $response = undefined;
 									break;
 							};
 							break;
+						case "passport.biliintl.com": // 登录
+							if (url?.params?.s_locale) { // 处理系统语言_地区代码
+								let s_locale = url.params.s_locale.split("_");
+								if (s_locale.length === 2) {
+									url.params.s_locale = `${s_locale[0]}_${"SG"}`;
+								};
+							};
+							if (url?.params?.sim_code) { // 处理MNC
+								url.params.sim_code = "";
+							};
+							$request.url = URL.stringify(url);
+							break;
 					};
 					break;
 			};
