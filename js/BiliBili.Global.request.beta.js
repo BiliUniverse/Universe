@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(4) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(5) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -397,24 +397,33 @@ let $response = undefined;
 										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
 										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 									} else {
-										$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+										let availableLocales = checkLocales(responses);
+										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									};
 									break;
 								};
 								case "intl/gateway/v2/app/search/v2": // 搜索-全部结果-app
 								case "intl/gateway/v2/app/search/type": // 搜索-分类结果-app
-									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
+									url.params.keyword = encodeURIComponent(keyword);
+									$request.url = URL.stringify(url);
+									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
 								case "intl/gateway/v2/ogv/view/app/season2": // 番剧-详情页-app
-									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+									let availableLocales = checkLocales(responses);
+									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									let epid = url?.params?.ep_id;
-									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									let newCaches = Caches;
-									if (!newCaches?.ep) newCaches.ep = {};
-									newCaches.ep[epid] = ["SEA"];
-									$.log(`newCaches = ${JSON.stringify(newCaches)}`);
-									let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
-									$.log(`$.setjson ? ${isSave}`);
+									if (epid) {
+										$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+										let newCaches = Caches;
+										if (!newCaches?.ep) newCaches.ep = {};
+										newCaches.ep[epid] = availableLocales;
+										$.log(`newCaches = ${JSON.stringify(newCaches)}`);
+										let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
+										$.log(`$.setjson ? ${isSave}`);
+									}
 									break;
 							};
 							break;
