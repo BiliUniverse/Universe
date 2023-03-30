@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(5) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(6) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -596,7 +596,25 @@ function isResponseAvailability(response = {}) {
 					switch (response?.headers?.["bili-status-code"]) {
 						case "0":
 						case undefined:
-							isAvailable = true;
+							switch (response?.headers?.["idc"]) {
+								case "sgp001":
+								case "sgp002":
+									let data = JSON.parse(response?.body).data;
+									switch (data?.limit) {
+										case "":
+										case undefined:
+											isAvailable = true;
+											break;
+										default:
+											isAvailable = false;
+											break;
+									};
+									break;
+								case undefined:
+								default:
+									isAvailable = true;
+									break;
+							};
 							break;
 						case "-10403":
 						case "10015001": // 版权地区受限
