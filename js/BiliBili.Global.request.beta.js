@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(6) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(7) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -385,9 +385,12 @@ let $response = undefined;
 								let s_locale = url.params.s_locale.split("_");
 								if (s_locale.length === 2) {
 									url.params.s_locale = `${s_locale[0]}_${"SG"}`;
-									$request.url = URL.stringify(url);
 								};
 							};
+							if (url?.params?.sim_code) { // 处理MNC
+								url.params.sim_code = "";
+							};
+							$request.url = URL.stringify(url);
 							switch (url.path) {
 								case "intl/gateway/v2/ogv/playurl": { // 番剧-播放地址-ogv
 									let epid = url?.params?.ep_id;
