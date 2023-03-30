@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(8) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(9) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -392,7 +392,9 @@ let $response = undefined;
 								url.params.sim_code = "";
 							};
 							$request.url = URL.stringify(url);
-							//delete $request.headers["Cookie"];
+							$.log(`🚧 ${$.name}`, `cookie: ${JSON.stringify($request.headers?.["cookie"] ?? $request.headers?.["Cookie"])}`, "");
+							delete $request.headers["cookie"];
+							delete $request.headers["Cookie"];
 							switch (url.host) {
 								case "app.biliintl.com":
 									switch (url.path) {
