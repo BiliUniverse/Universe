@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(7) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(8) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -380,56 +380,7 @@ let $response = undefined;
 								};
 							};
 							break;
-						case "app.biliintl.com":
-							if (url?.params?.s_locale) { // 处理系统语言_地区代码
-								let s_locale = url.params.s_locale.split("_");
-								if (s_locale.length === 2) {
-									url.params.s_locale = `${s_locale[0]}_${"SG"}`;
-								};
-							};
-							if (url?.params?.sim_code) { // 处理MNC
-								url.params.sim_code = "";
-							};
-							$request.url = URL.stringify(url);
-							switch (url.path) {
-								case "intl/gateway/v2/ogv/playurl": { // 番剧-播放地址-ogv
-									let epid = url?.params?.ep_id;
-									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-									if (Caches?.ep?.[epid]) {
-										let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
-										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
-										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
-									} else {
-										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales.filter(locale => locale !== "CHN")); // 国际版不含中国大陆
-										let availableLocales = checkLocales(responses);
-										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-									};
-									break;
-								};
-								case "intl/gateway/v2/app/search/v2": // 搜索-全部结果-app
-								case "intl/gateway/v2/app/search/type": // 搜索-分类结果-app
-									let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
-									url.params.keyword = encodeURIComponent(keyword);
-									$request.url = URL.stringify(url);
-									$request = ReReqeust($request, Settings.Proxies[locale]);
-									break;
-								case "intl/gateway/v2/ogv/view/app/season2": // 番剧-详情页-app
-									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales.filter(locale => locale !== "CHN")); // 国际版不含中国大陆
-									let availableLocales = checkLocales(responses);
-									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
-									let epid = url?.params?.ep_id;
-									if (epid) {
-										$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
-										let newCaches = Caches;
-										if (!newCaches?.ep) newCaches.ep = {};
-										newCaches.ep[epid] = availableLocales;
-										$.log(`newCaches = ${JSON.stringify(newCaches)}`);
-										let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
-										$.log(`$.setjson ? ${isSave}`);
-									}
-									break;
-							};
-							break;
+						case "app.biliintl.com": // app
 						case "passport.biliintl.com": // 登录
 							if (url?.params?.s_locale) { // 处理系统语言_地区代码
 								let s_locale = url.params.s_locale.split("_");
@@ -441,6 +392,51 @@ let $response = undefined;
 								url.params.sim_code = "";
 							};
 							$request.url = URL.stringify(url);
+							//delete $request.headers["Cookie"];
+							switch (url.host) {
+								case "app.biliintl.com":
+									switch (url.path) {
+										case "intl/gateway/v2/ogv/playurl": { // 番剧-播放地址-ogv
+											let epid = url?.params?.ep_id;
+											$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+											if (Caches?.ep?.[epid]) {
+												let availableLocales = Caches.ep[epid].filter(locale => Settings?.Locales.includes(locale));
+												$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
+												$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
+											} else {
+												let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales.filter(locale => locale !== "CHN")); // 国际版不含中国大陆
+												let availableLocales = checkLocales(responses);
+												$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+											};
+											break;
+										};
+										case "intl/gateway/v2/app/search/v2": // 搜索-全部结果-app
+										case "intl/gateway/v2/app/search/type": // 搜索-分类结果-app
+											let { keyword, locale } = checkKeyword(decodeURIComponent(url.params?.keyword));
+											url.params.keyword = encodeURIComponent(keyword);
+											$request.url = URL.stringify(url);
+											$request = ReReqeust($request, Settings.Proxies[locale]);
+											break;
+										case "intl/gateway/v2/ogv/view/app/season2": // 番剧-详情页-app
+											let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales.filter(locale => locale !== "CHN")); // 国际版不含中国大陆
+											let availableLocales = checkLocales(responses);
+											$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
+											let epid = url?.params?.ep_id;
+											if (epid) {
+												$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+												let newCaches = Caches;
+												if (!newCaches?.ep) newCaches.ep = {};
+												newCaches.ep[epid] = availableLocales;
+												$.log(`newCaches = ${JSON.stringify(newCaches)}`);
+												let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
+												$.log(`$.setjson ? ${isSave}`);
+											}
+											break;
+									};
+									break;
+								case "passport.biliintl.com": // 登录
+									break;
+							};
 							break;
 					};
 					break;
