@@ -397,7 +397,7 @@ let $response = undefined;
 										$.log(`🚧 ${$.name}`, `availableLocales: ${availableLocales}`, "");
 										$request = ReReqeust($request, Settings.Proxies[availableLocales[Math.floor(Math.random() * availableLocales.length)]]); // 随机用一个
 									} else {
-										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+										let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales.filter(locale => locale !== "CHN")); // 国际版不含中国大陆
 										let availableLocales = checkLocales(responses);
 										$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									};
@@ -411,7 +411,7 @@ let $response = undefined;
 									$request = ReReqeust($request, Settings.Proxies[locale]);
 									break;
 								case "intl/gateway/v2/ogv/view/app/season2": // 番剧-详情页-app
-									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales);
+									let responses = await mutiFetch($request, Settings.Proxies, Settings.Locales.filter(locale => locale !== "CHN")); // 国际版不含中国大陆
 									let availableLocales = checkLocales(responses);
 									$response = responses[availableLocales[Math.floor(Math.random() * availableLocales.length)]]; // 随机用一个
 									let epid = url?.params?.ep_id;
