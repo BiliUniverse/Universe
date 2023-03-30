@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.3.9(2) request.beta");
+const $ = new Env("📺 BiliBili:Global v0.3.9(3) request.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -381,6 +381,13 @@ let $response = undefined;
 							};
 							break;
 						case "app.biliintl.com":
+							if (url?.params?.s_locale) { // 处理系统语言_地区代码
+								let s_locale = url.params.s_locale.split("_");
+								if (s_locale.length === 2) {
+									url.params.s_locale = `${s_locale[0]}_${"SG"}`;
+									$request.url = URL.stringify(url);
+								};
+							};
 							switch (url.path) {
 								case "intl/gateway/v2/ogv/playurl": { // 番剧-播放地址-ogv
 									let epid = url?.params?.ep_id;
@@ -398,7 +405,18 @@ let $response = undefined;
 								case "intl/gateway/v2/app/search/type": // 搜索-分类结果-app
 									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
 									break;
-								};
+								case "intl/gateway/v2/ogv/view/app/season2": // 番剧-详情页-app
+									$request = ReReqeust($request, Settings.Proxies["SEA"]); // 默认用SEA
+									let epid = url?.params?.ep_id;
+									$.log(`🚧 ${$.name}`, `epid: ${epid}`, "");
+									let newCaches = Caches;
+									if (!newCaches?.ep) newCaches.ep = {};
+									newCaches.ep[epid] = ["SEA"];
+									$.log(`newCaches = ${JSON.stringify(newCaches)}`);
+									let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
+									$.log(`$.setjson ? ${isSave}`);
+									break;
+							};
 							break;
 					};
 					break;
