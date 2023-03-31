@@ -1,279 +1,19 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Enhanced v0.1.4(3) response.beta");
+const $ = new Env("📺 BiliIntl:Enhanced v0.1.4(3) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
-		"Settings":{"Switch":"true","Home":{"Top_left":"mine","Top":["消息Top"],"Top_more":[],"Tab":["直播tab","推荐tab","hottopic","bangumi","anime","film","koreavtw"],"Tab_default":"bangumi"},"Bottom":["home","dynamic","ogv","会员购Bottom","我的Bottom"]},
+		"Settings":{"Switch":"true","Home":{"Tab":["for_you_tab","animation_tab","gaming_tab"],"Tab_default":"for_you_tab"},"Following":{"Tab":["following_tab"],"Tab_default":"following_tab"},"Bottom":["home","search","following","me"]},
 		"Configs": {
-			"Tab": {
-				"tab": [
-					{
-						"id": 39,
-						"name": "直播",
-						"uri": "bilibili://live/home",
-						"tab_id": "直播tab",
-						"pos": 1
-					},
-					{
-						"id": 40,
-						"name": "推荐",
-						"uri": "bilibili://pegasus/promo",
-						"tab_id": "推荐tab",
-						"pos": 2
-					},
-					{
-						"id": 121,
-						"tab_id": "for_you_tab",
-						"default_selected": 1,
-						"name": "推荐",
-						"uri": "bstar:\/\/pegasus\/promo?bottom_tab_id=465&top_tab_id=1"
-					},
-					{
-						"id": 41,
-						"name": "热门",
-						"uri": "bilibili://pegasus/hottopic",
-						"tab_id": "hottopic",
-						"pos": 3
-					},
-					{
-						"id": 545,
-						"name": "追番",
-						"uri": "bilibili://pgc/home",
-						"tab_id": "bangumi",
-						"pos": 4
-					},
-					{
-						"id": 774,
-						"name": "动画",
-						"uri": "bilibili://following/home_activity_tab/6544",
-						"tab_id": "anime",
-						"pos": 4
-					},
-					{
-						"id": 1,
-						"tab_id": "animation_tab",
-						"name": "番剧",
-						"uri": "bstar:\/\/anime\/cartoon?page_id=360003"
-					},
-					{
-						"id": 151,
-						"name": "影视",
-						"uri": "bilibili://pgc/cinema-tab",
-						"tab_id": "film",
-						"pos": 5
-					},
-					{
-						"id": 2280,
-						"name": "校园",
-						"uri": "bilibili://campus/home_tab",
-						"tab_id": "school",
-						"pos": 6
-					},
-					{
-						"id": 136117,
-						"name": "新征程",
-						"uri": "bilibili://following/home_activity_tab/136117",
-						"tab_id": "165",
-						"pos": 7,
-						"color": "#DD1225"
-					},
-					{
-						"id": 1716,
-						"icon": "http://i0.hdslb.com/bfs/archive/38d2c2669a68eae8a53fc9afaa193aafa5265a78.png",
-						"name": "数码",
-						"uri": "bilibili://pegasus/vertical/13807",
-						"tab_id": "kj",
-						"pos": 8
-					},
-					{
-						"id": 801,
-						"icon": "http://i0.hdslb.com/bfs/archive/38d2c2669a68eae8a53fc9afaa193aafa5265a78.png",
-						"name": "韩综",
-						"uri": "bilibili://following/home_activity_tab/95636",
-						"tab_id": "koreavtw",
-						"pos": 10
-					},
-					{
-						"id": 122,
-						"tab_id": "gaming_tab",
-						"name": "游戏类",
-						"uri": "bstar:\/\/activity\/home\/10002"
-					}
-				],
-				"top": [
-					{
-						"id": 222,
-						"icon": "http://i0.hdslb.com/bfs/archive/734a3b610a953df398bbe6d787944514dcd94a46.png",
-						"name": "游戏中心",
-						"uri": "bilibili://game_center/home",
-						"tab_id": "游戏中心Top",
-						"pos": 1
-					},
-					{
-						"id": 108,
-						"icon": "http://i0.hdslb.com/bfs/archive/9d1c0985b9d0e2da2c2f919cc2ee0e36ea41fd90.png",
-						"name": "会员购",
-						"uri": "bilibili://mall/home/",
-						"tab_id": "会员购Top",
-						"pos": 2
-					},
-					{
-						"id": 176,
-						"icon": "http://i0.hdslb.com/bfs/archive/d43047538e72c9ed8fd8e4e34415fbe3a4f632cb.png",
-						"name": "消息",
-						"uri": "bilibili://link/im_home",
-						"tab_id": "消息Top",
-						"pos": 2
-					}
-				],
-				"bottom": [
-					{
-						"id": 177,
-						"icon": "http://i0.hdslb.com/bfs/archive/63d7ee88d471786c1af45af86e8cb7f607edf91b.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/archive/e5106aa688dc729e7f0eafcbb80317feb54a43bd.png",
-						"name": "首页",
-						"uri": "bilibili://main/home/",
-						"tab_id": "home",
-						"pos": 1
-					},
-					{
-						"id": 103,
-						"icon": "http://i0.hdslb.com/bfs/archive/b4f621f268c1f9eda501805135f132aa9498b0ba.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/archive/94539249e59621214f7dc1226cf38a2b8fe4c64f.png",
-						"name": "频道",
-						"uri": "bilibili://pegasus/channel/",
-						"tab_id": "频道Bottom",
-						"pos": 2
-					},
-					{
-						"id": 179,
-						"icon": "http://i0.hdslb.com/bfs/archive/86dfbe5fa32f11a8588b9ae0fccb77d3c27cedf6.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/archive/25b658e1f6b6da57eecba328556101dbdcb4b53f.png",
-						"name": "动态",
-						"uri": "bilibili://following/home/",
-						"tab_id": "dynamic",
-						"pos": 2
-					},
-					{
-						"id": 670,
-						"icon": "http://i0.hdslb.com/bfs/feed-admin/c25cabacb40e9df2ccf54c327350e1afc4ae2f8c.png",
-						"name": "发布",
-						"uri": "bilibili://uper/center_plus?relation_from=center_plus\u0026tab_index=2",
-						"tab_id": "publish",
-						"pos": 3,
-						"dialog_items": [
-							{
-								"id": 617,
-								"name": "开直播",
-								"icon": "http://i0.hdslb.com/bfs/feed-admin/01f9b3f8ed61a4e59af693da9fcd38fc342ee7e5.png",
-								"uri": "activity://liveStreaming/home?source_event=14"
-							},
-							{
-								"id": 618,
-								"name": "拍摄",
-								"icon": "http://i0.hdslb.com/bfs/feed-admin/30636aa60e594550ec47422e3875b4345e7d6017.png",
-								"uri": "bilibili://uper/user_center/add_archive/?from=1\u0026is_new_ui=1\u0026relation_from=center_plus"
-							},
-							{
-								"id": 619,
-								"name": "上传",
-								"icon": "http://i0.hdslb.com/bfs/feed-admin/55c3c112f4885adc6cce0b4b94149409fd1c147b.png",
-								"uri": "bilibili://uper/user_center/add_archive/?from=0\u0026is_new_ui=1\u0026relation_from=center_plus"
-							},
-							{
-								"id": 620,
-								"name": "模板创作",
-								"icon": "http://i0.hdslb.com/bfs/feed-admin/4e5188d8390754655dee0fdfd90c1088da3cdf90.png",
-								"uri": "bilibili://uper/user_center/add_archive/?from=2\u0026is_new_ui=1\u0026relation_from=center_plus"
-							}
-						],
-						"type": 3
-					},
-					{
-						"id": 690,
-						"icon": "http://i0.hdslb.com/bfs/feed-admin/68b1625cef3a8315d6fe3fbfd2a8b06c905f323a.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/feed-admin/1903c6f1dc881ed4c459ab337767fd8436cda159.png",
-						"name": "节目",
-						"uri": "bilibili://following/home_bottom_tab_activity_tab/168312",
-						"tab_id": "ogv",
-						"pos": 4,
-						"type": 4
-					},
-					{
-						"id": 242,
-						"icon": "http://i0.hdslb.com/bfs/archive/6090d5fa7ece2a94de839e7cce4f1e774dae7779.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/archive/eeaf83fb7157000776dd93f61702a049f56801d3.png",
-						"name": "会员购",
-						"uri": "bilibili://mall/home",
-						"tab_id": "会员购Bottom",
-						"pos": 4
-					},
-					{
-						"id": 105,
-						"icon": "http://i0.hdslb.com/bfs/archive/93dae0f0fb2c9887effb2840800d5b639be69351.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/archive/f96bfd9ffea2e51443aed44dba6d76b7b34891c8.png",
-						"name": "消息",
-						"uri": "bilibili://link/im_home",
-						"tab_id": "消息Bottom",
-						"pos": 4
-					},
-					{
-						"id": 181,
-						"icon": "http://i0.hdslb.com/bfs/archive/4b0b2c49ffeb4f0c2e6a4cceebeef0aab1c53fe1.png",
-						"icon_selected": "http://i0.hdslb.com/bfs/archive/a54a8009116cb896e64ef14dcf50e5cade401e00.png",
-						"name": "我的",
-						"uri": "bilibili://user_center/",
-						"tab_id": "我的Bottom",
-						"pos": 5
-					}
-				],
-				"top_more": [
-					{
-						"id": 621,
-						"icon": "http://i0.hdslb.com/bfs/feed-admin/f95dfa31c793c857af6e7b65b5387a05f30d31ba.png",
-						"name": "更多分区",
-						"uri": "bilibili://main/top_category",
-						"pos": 1
-					},
-					{
-						"id": 922,
-						"icon": "http://i0.hdslb.com/bfs/feed-admin/38beac42189ad4d838d20259a5b2cdfd302fef40.png",
-						"name": "搜索",
-						"uri": "bilibili://search",
-						"pos": 2
-					}
-				],
-				"top_left": {
-					"mine": {
-						"exp": 0,
-						"head_tag": "",
-						"url": "bilibili://root?bottom_tab_id=我的Bottom",
-						"goto": 1,
-						"story_background_image": "",
-						"story_foreground_image": "",
-						"listen_background_image": "",
-						"listen_foreground_image": ""
-					},
-					"videoshortcut": {
-						"exp": 1,
-						"head_tag": "https://i0.hdslb.com/bfs/app/92e7b36c3bd10c850e8a2ba85d19566937751540.png",
-						"url": "bilibili://videoshortcut?user_reg_state=0",
-						"goto": 2,
-						"story_background_image": "http://i0.hdslb.com/bfs/app/7391267ec11cfe99823a8cfd80532a7bc6eca390.png",
-						"story_foreground_image": "http://i0.hdslb.com/bfs/app/98098cfd9349b7500c233216169d768cd536d305.png",
-						"listen_background_image": "http://i0.hdslb.com/bfs/app/365848675f453e32b42567ba9e249a347a5df061.png",
-						"listen_foreground_image": "http://i0.hdslb.com/bfs/app/986ee5e963237d511802c4084c83c2f228e97369.png"
-					}
-				}
-			}
+			"Tab":{"bottom":[{"uri":"bstar:\/\/main\/intl-home?search_hidden=1","tab_id":"home","tab":[{"id":121,"tab_id":"for_you_tab","default_selected":1,"name":"推荐","uri":"bstar:\/\/pegasus\/promo?bottom_tab_id=465&top_tab_id=1"},{"id":1,"tab_id":"animation_tab","name":"番剧","uri":"bstar:\/\/anime\/cartoon?page_id=360003"},{"id":122,"tab_id":"gaming_tab","name":"游戏类","uri":"bstar:\/\/activity\/home\/10002"}],"id":465,"icon_selected":"https:\/\/p.bstarstatic.com\/management\/1a785c1715abd764ef3be465976b9c6f.png","icon":"https:\/\/p.bstarstatic.com\/management\/fb4a81e2045b30104596136229b1f78b.png","name":"首页"},{"id":501,"icon":"https:\/\/p.bstarstatic.com\/management\/3887a8c82a5ce529319f2fcfd9609ec1.png","icon_selected":"https:\/\/p.bstarstatic.com\/management\/decf6fed81b2812c63d9284f8e49f0cb.png","name":"发现","uri":"bstar:\/\/main\/search-home","tab_id":"search"},{"id":500,"icon":"https:\/\/p.bstarstatic.com\/management\/b85f07d4cf6474ab2c5c67e501e1a94e.png","tab_id":"edit","uri":"bstar:\/\/uper\/center_plus?tab_index=2&nav_pos=1","can_jump":1},{"uri":"bstar:\/\/main\/following-home","tab_id":"following","tab":[{"id":467,"tab_id":"following_tab","name":"关注","uri":"bstar:\/\/main\/subscriptions\/"}],"id":502,"icon_selected":"https:\/\/p.bstarstatic.com\/management\/c884a38f69097aea37b2700ccff52451.png","icon":"https:\/\/p.bstarstatic.com\/management\/85dfc913cb0ad54bec080c97ebfebdbf.png","name":"关注"},{"id":446,"icon":"https:\/\/p.bstarstatic.com\/management\/3ee2792129480bf330e7a6c1fd1743d0.png","icon_selected":"https:\/\/p.bstarstatic.com\/management\/a8e9dfa004ec3dc5be719483020787bb.png","name":"我的","uri":"bstar:\/\/user_center\/mine\/","tab_id":"me"}]}
 		}
 	},
     "Global":{
-		"Settings":{"Switch":true,"ForceHost":"1","Locales":["CHN","HKG","TWN","USA","SGP"],"Proxies":{"CHN":"DIRECT","HKG":"🇭🇰香港","MAC":"🇲🇴澳门","TWN":"🇹🇼台湾","USA":"🇺🇸美国","SGP":"🇸🇬新加坡","MYA":"🇲🇾马来西亚","THA":"🇹🇭泰国"}},
+		"Settings":{"Switch":true,"ForceHost":"1","Locales":["HKG","TWN","USA","SGP"],"Proxies":{"HKG":"🇭🇰香港","MAC":"🇲🇴澳门","TWN":"🇹🇼台湾","USA":"🇺🇸美国","SGP":"🇸🇬新加坡","MYA":"🇲🇾马来西亚","THA":"🇹🇭泰国"}},
 		"Configs":{
-			"SearchNav":{"CHN":{"name":"番剧🇨🇳","total":0,"pages":0,"type":17},"HKG":{"name":"动画🇭🇰","total":0,"pages":0,"type":27},"MAC":{"name":"动画🇲🇴","total":0,"pages":0,"type":37},"TWN":{"name":"动画🇹🇼","total":0,"pages":0,"type":47},"SEA":{"name":"动画🇺🇳","total":0,"pages":0,"type":57}}
+			"SearchNav":{"HKG":{"name":"动画🇭🇰","total":0,"pages":0,"type":27},"MAC":{"name":"动画🇲🇴","total":0,"pages":0,"type":37},"TWN":{"name":"动画🇹🇼","total":0,"pages":0,"type":47},"INTL":{"name":"动画🇺🇳","total":0,"pages":0,"type":57}}
 		}
 	},
 	"Roaming":{
@@ -296,7 +36,7 @@ for (const [key, value] of Object.entries($response.headers)) {
 
 /***************** Processing *****************/
 !(async () => {
-    const { Settings, Caches, Configs } = setENV("BiliBili", "Enhanced", DataBase);
+	const { Settings, Caches, Configs } = setENV("BiliIntl", "Enhanced", DataBase);
 	switch (Settings.Switch) {
 		case "true":
 		default:
@@ -314,47 +54,6 @@ for (const [key, value] of Object.entries($response.headers)) {
 				body = JSON.parse($response.body);
 					let data = body.data;
 					switch (url.host) {
-						case "app.bilibili.com":
-						case "app.biliapi.net":
-							// 先保存一下AccessKey
-							if (url?.params?.access_key) {
-								let newCaches = $.getjson("@BiliBili.Global.Caches", {});
-								newCaches.AccessKey = url.params.access_key; // 总是刷新
-								$.log(`newCaches = ${JSON.stringify(newCaches)}`);
-								let isSave = $.setjson(newCaches, "@BiliBili.Global.Caches");
-								$.log(`$.setjson ? ${isSave}`);
-							};
-							switch (url.path) {
-								case "x/resource/show/tab/v2": // 首页-Tab
-									// 顶栏-左侧
-									data.top_left = Configs.Tab.top_left[Settings.Home.Top_left];
-									// 顶栏-右侧
-									data.top = Configs.Tab.top.map(e => {
-										if (Settings.Home.Top.includes(e.tab_id)) return e;
-									}).filter(Boolean).map((e, i) => {
-										e.pos = i + 1;
-										return e;
-									});
-									// 标签栏
-									data.tab = Configs.Tab.tab.map(e => {
-										if (Settings.Home.Tab.includes(e.tab_id)) return e;
-									}).filter(Boolean).map((e, i) => {
-										if (Settings.Home.Tab_default == e.tab_id) e.default_selected = 1;
-										e.pos = i + 1;
-										return e;
-									});
-									// 底部导航栏
-									data.bottom = Configs.Tab.bottom.map(e => {
-										if (Settings.Bottom.includes(e.tab_id)) return e;
-									}).filter(Boolean).map((e,i) => {
-										e.pos = i + 1;
-										return e;
-									});
-									break;
-								case "x/resource/show/tab/bubble": // 首页-Tab-?
-									break;
-							};
-							break;
 						case "app.biliintl.com":
 							// 先保存一下AccessKey
 							if (url?.params?.access_key) {
@@ -366,8 +65,25 @@ for (const [key, value] of Object.entries($response.headers)) {
 							};
 							switch (url.path) {
 								case "intl/gateway/v2/app/resource/show/tab": // 首页-Tab
-									break;
-								case "x/resource/show/tab/bubble": // 首页-Tab-?
+									// 底部导航栏
+									data.bottom = Configs.Tab.bottom.map(bottom => {
+										// 标签栏
+										bottom.tab = bottom.tab.map(tab => {
+											switch (tab.tab_id) {
+												case "home":
+													if (Settings.Home.Tab_default == tab.tab_id) tab.default_selected = 1;
+													if (Settings.Home.Tab.includes(tab.tab_id)) return tab;
+													break;
+												case "following":
+													if (Settings.Following.Tab_default == tab.tab_id) tab.default_selected = 1;
+													if (Settings.Following.Tab.includes(tab.tab_id)) return tab;
+											};
+										}).filter(Boolean);
+										if (Settings.Bottom.includes(bottom.tab_id)) return bottom;
+									}).filter(Boolean).map((bottom, i) => {
+										bottom.pos = i + 1;
+										return bottom;
+									});
 									break;
 							};
 							break;
@@ -429,12 +145,11 @@ function setENV(name, platform, database) {
 	let { Settings, Caches, Configs } = getENV(name, platform, database);
 	/***************** Prase *****************/
 	//Settings.Switch = JSON.parse(Settings.Switch) // BoxJs字符串转Boolean
-	if (typeof Settings.Home.Top === "string") Settings.Home.Top = Settings.Home.Top.split(",") // BoxJs字符串转数组
-	if (typeof Settings.Home.Top_more === "string") Settings.Home.Top_more = Settings.Home.Top_more.split(",") // BoxJs字符串转数组
 	if (typeof Settings.Home.Tab === "string") Settings.Home.Tab = Settings.Home.Tab.split(",") // BoxJs字符串转数组
+	if (typeof Settings.Following.Tab === "string") Settings.Following.Tab = Settings.Following.Tab.split(",") // BoxJs字符串转数组
 	if (typeof Settings.Bottom === "string") Settings.Bottom = Settings.Bottom.split(",") // BoxJs字符串转数组
 	$.log(`🎉 ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
-	return { Settings, Caches, Configs }
+	return { Settings, Caches, Configs };
 };
 
 /***************** Env *****************/
