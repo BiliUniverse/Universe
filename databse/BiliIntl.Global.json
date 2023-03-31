@@ -3,15 +3,19 @@
 		"Switch": true,
 		"ForceHost": "1",
 		"Locales": [
-			"CHN",
 			"HKG",
-			"TWN"
+			"TWN",
+			"USA",
+			"SGP"
 		],
 		"Proxies": {
-			"CHN": "DIRECT",
 			"HKG": "🇭🇰香港",
 			"MAC": "🇲🇴澳门",
-			"TWN": "🇹🇼台湾"
+			"TWN": "🇹🇼台湾",
+			"USA": "🇺🇸美国",
+			"SGP": "🇸🇬新加坡",
+			"MYA": "🇲🇾马来西亚",
+			"THA": "🇹🇭泰国"
 		}
 	},
 	"Configs": {
@@ -19,15 +23,10 @@
 			"CHN": "",
 			"HKG": "（僅限港.*地區）",
 			"MAC": "（僅限.*澳.*地區）",
-			"TWN": "（僅限.*台地區）"
+			"TWN": "（僅限.*台地區）",
+			"INTL": "（僅限.*其他地區）"
 		},
 		"SearchNav":{
-			"CHN": {
-				"name": "番剧🇨🇳",
-				"total": 0,
-				"pages": 0,
-				"type": 17
-			},
 			"HKG": {
 				"name": "动画🇭🇰",
 				"total": 0,
@@ -45,6 +44,12 @@
 				"total": 0,
 				"pages": 0,
 				"type": 47
+			},
+			"INTL": {
+				"name": "动画🇺🇳",
+				"total": 0,
+				"pages": 0,
+				"type": 57
 			}
 		}
 	}
