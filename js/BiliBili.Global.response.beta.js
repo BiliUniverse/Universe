@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Global v0.2.1(1) repsonse.beta");
+const $ = new Env("📺 BiliBili:Global v0.2.1(2) repsonse.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -396,10 +396,6 @@ for (const [key, value] of Object.entries($response.headers)) {
 									$.log(`$.setjson ? ${isSave}`);
 									break;
 							};
-							break;
-						case "app.biliintl.com":
-							break;
-						case "api.global.bilibili.com":
 							break;
 					};
 					break;
