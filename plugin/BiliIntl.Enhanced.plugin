@@ -7,7 +7,7 @@
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png
 
 [Script]
-http-response ^https?:\/\/app\.biliintl\.com\/intl\/gateway\/v2\/app\/resource\/show\/tab(\?.+)?$ requires-body=1, max-size=0, timeout=15, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Enhanced.response.js, tag=BiliIntl.Enhanced.intl.gateway.v2.app.resource.show.tab
+http-response ^https?:\/\/app\.biliintl\.com\/intl\/gateway\/v2\/app\/resource\/show\/tab(\?.+)?$ requires-body=1, max-size=0, timeout=15, script-path=https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliIntl.Enhanced.response.js, tag=BiliIntl.Enhanced.intl.gateway.v2.app.resource.show.tab
 
 [MITM]
 hostname = app.biliintl.com

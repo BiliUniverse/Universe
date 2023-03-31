@@ -52,8 +52,8 @@ http:
 
 script-providers:
   BiliBili.Global.request:
-    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.request.js
+    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliIntl.Global.request.js
     interval: 86400
   BiliBili.Global.response:
-    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Global.response.js
+    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliIntl.Global.response.js
     interval: 86400

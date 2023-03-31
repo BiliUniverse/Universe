@@ -19,5 +19,5 @@ http:
 
 script-providers:
   BiliBili.Enhanced.response:
-    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliBili.Enhanced.response.js
+    url: https://raw.githubusercontent.com/VirgilClyne/BiliBili/main/js/BiliIntl.Enhanced.response.js
     interval: 86400

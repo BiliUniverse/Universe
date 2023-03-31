@@ -21,18 +21,6 @@ http:
       require-body: false
       timeout: 15
       argument:
-    - match: ^https?:\/\/www\.bilibili\.tv\/([a-z]{2})\/anime?(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: false
-      timeout: 15
-      argument:
-    - match: ^https?:\/\/www\.bilibili\.tv\/([a-z]{2})\/play\/\d+(\/\d+)?(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: false
-      timeout: 15
-      argument:
     - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/pgc\/view\/(v2\/app|web)\/season(\?.+)?$
       name: BiliBili.Global.request
       type: request
@@ -59,18 +47,6 @@ http:
       require-body: false
       timeout: 15
       argument:
-    - match: ^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/ogv\/playurl(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: false
-      timeout: 15
-      argument:
-    - match: ^https?:\/\/api\.bilibili\.tv\/intl\/gateway\/web\/playurl(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: false
-      timeout: 15
-      argument:
     - match: ^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.polymer\.app\.search\.v1\.Search\/(SearchAll|SearchByType)(\?.+)?$
       name: BiliBili.Global.request
       type: request
@@ -92,12 +68,6 @@ http:
       timeout: 15
       argument:
     - match: ^https?:\/\/api\.(bilibili\.com|biliapi\.net)\/x\/web-interface\/wbi\/search\/(all\/v2|type)?(\?.+)?$
-      name: BiliBili.Global.request
-      type: request
-      require-body: false
-      timeout: 15
-      argument:
-    - match: ^https?:\/\/api\.global\.bilibili\.com\/intl\/gateway\/v2\/app\/search\/(type|v2)(\?.+)?$
       name: BiliBili.Global.request
       type: request
       require-body: false
