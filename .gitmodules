@@ -1,0 +1,12 @@
+[submodule "Roaming"]
+	path = Roaming
+	url = https://github.com/BiliUniverse/Roaming.git
+[submodule "Global"]
+	path = Global
+	url = https://github.com/BiliUniverse/Global.git
+[submodule "Enhanced"]
+	path = Enhanced
+	url = https://github.com/BiliUniverse/Enhanced.git
+[submodule "BoxJs"]
+	path = BoxJs
+	url = https://github.com/BiliUniverse/BoxJs.git
