@@ -1,7 +1,7 @@
 /*
 README:https://github.com/VirgilClyne/BiliBili
 */
-const $ = new Env("📺 BiliBili:Enhanced v0.1.4(1) response.beta");
+const $ = new Env("📺 BiliBili:Enhanced v0.1.4(2) response.beta");
 const URL = new URLs();
 const DataBase = {
 	"Enhanced":{
@@ -314,8 +314,6 @@ for (const [key, value] of Object.entries($response.headers)) {
 				body = JSON.parse($response.body);
 					let data = body.data;
 					switch (url.host) {
-						case "grpc.biliapi.net":
-							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							// 先保存一下AccessKey
@@ -357,10 +355,21 @@ for (const [key, value] of Object.entries($response.headers)) {
 									break;
 							};
 							break;
-						case "api.bilibili.com":
-							break;
 						case "app.biliintl.com":
-						case "api.global.bilibili.com":
+							// 先保存一下AccessKey
+							if (url?.params?.access_key) {
+								let newCaches = $.getjson("@BiliIntl.Global.Caches", {});
+								newCaches.AccessKey = url.params.access_key; // 总是刷新
+								$.log(`newCaches = ${JSON.stringify(newCaches)}`);
+								let isSave = $.setjson(newCaches, "@BiliIntl.Global.Caches");
+								$.log(`$.setjson ? ${isSave}`);
+							};
+							switch (url.path) {
+								case "intl/gateway/v2/app/resource/show/tab": // 首页-Tab
+									break;
+								case "x/resource/show/tab/bubble": // 首页-Tab-?
+									break;
+							};
 							break;
 					};
 					$response.body = JSON.stringify(body);
