@@ -1,5 +1,5 @@
 # BiliUniverse 哔哩万象
-  * Function enhance for BiliBili streaming media platform
+  * Function enhancement for BiliBili streaming media platform
   * 哔哩哔哩流媒体平台功能增强系列模块
   * **Powered by [Chavy](https://github.com/chavyleung)‘s [Env.js](https://github.com/chavyleung/scripts/blob/master/Env.js) and [BoxJs](https://chavyleung.gitbook.io/boxjs/)**
   * 有问题请至[Issue页面](https://github.com/BiliUniverse/Universe/issues)反馈
