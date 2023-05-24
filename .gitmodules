@@ -10,3 +10,6 @@
 [submodule "BoxJs"]
 	path = BoxJs
 	url = https://github.com/BiliUniverse/BoxJs.git
+[submodule "ADBlock"]
+	path = ADBlock
+	url = https://github.com/BiliUniverse/ADBlock.git
