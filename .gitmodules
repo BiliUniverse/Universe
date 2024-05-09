@@ -13,3 +13,6 @@
 [submodule "ADBlock"]
 	path = ADBlock
 	url = https://github.com/BiliUniverse/ADBlock.git
+[submodule "Redirect"]
+	path = Redirect
+	url = https://github.com/BiliUniverse/Redirect.git
